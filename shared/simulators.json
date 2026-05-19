@@ -1,0 +1,12 @@
+{
+  "$schema": "Manifest of all simulators. Each entry drives the home page list AND the cross-simulator dropdown in the portal bar.",
+  "simulators": [
+    {
+      "slug": "voiture",
+      "title": "Achat d'une voiture électrique",
+      "tagline": "Comparer le coût total d'une voiture électrique vs thermique sur la durée de détention.",
+      "status": "draft",
+      "tags": ["mobilité", "ménages"]
+    }
+  ]
+}

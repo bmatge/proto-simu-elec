@@ -1,0 +1,19 @@
+# Production — `docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d`
+services:
+  web:
+    restart: always
+    networks:
+      - default
+      - ecosystem-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=ecosystem-network"
+      - "traefik.http.routers.simu-elec.rule=Host(`simu-elec.bercy.matge.com`)"
+      - "traefik.http.routers.simu-elec.entrypoints=websecure"
+      - "traefik.http.routers.simu-elec.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.simu-elec.priority=100"
+      - "traefik.http.services.simu-elec.loadbalancer.server.port=80"
+
+networks:
+  ecosystem-network:
+    external: true

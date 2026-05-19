@@ -1,0 +1,14 @@
+.git
+.gitignore
+.dockerignore
+.claude
+.vscode
+.idea
+.DS_Store
+README.md
+CLAUDE.md
+deploy.sh
+docker-compose*.yml
+Dockerfile
+**/node_modules
+**/*.log

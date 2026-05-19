@@ -1,0 +1,11 @@
+# Development — `docker compose up`
+# Mounts the working copy in read-only so editing files locally is reflected
+# immediately (just refresh the browser, no rebuild).
+services:
+  web:
+    ports:
+      - "8080:80"
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html:ro
+      - ./shared:/usr/share/nginx/html/shared:ro
+      - ./voiture:/usr/share/nginx/html/voiture:ro

@@ -1,0 +1,67 @@
+/* Slim portal bar injected at the top of every simulator page.
+   Self-contained, no external dependencies, no DSFR required. */
+.portal-bar {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 20px;
+  background: #000091;
+  color: #fff;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}
+.portal-bar a,
+.portal-bar a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+.portal-bar a:hover,
+.portal-bar a:focus-visible {
+  text-decoration: underline;
+}
+.portal-bar__home {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.portal-bar__home::before {
+  content: "←";
+  display: inline-block;
+  font-weight: 400;
+}
+.portal-bar__sep {
+  opacity: 0.4;
+}
+.portal-bar__title {
+  font-weight: 500;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.portal-bar__switcher {
+  flex: 0 0 auto;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.portal-bar__switcher option {
+  color: #161616;
+}
+@media (max-width: 600px) {
+  .portal-bar { padding: 6px 12px; gap: 8px; font-size: 12px; }
+  .portal-bar__title { display: none; }
+}

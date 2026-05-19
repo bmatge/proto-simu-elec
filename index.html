@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="fr" data-fr-scheme="system">
+<head>
+  <meta charset="utf-8">
+  <title>Portail simulateurs — Énergie / Électricité</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Portail regroupant des simulateurs autour de l'électricité et de l'énergie (DGEC).">
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/utility/utility.min.css">
+
+  <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/apple-touch-icon.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.ico" type="image/x-icon">
+
+  <style>
+    .simu-card { height: 100%; }
+    .simu-card .fr-card__title { font-size: 1.125rem; }
+    .simu-grid { margin-top: 2rem; }
+    .simu-status {
+      display: inline-block;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <header role="banner" class="fr-header">
+    <div class="fr-header__body">
+      <div class="fr-container">
+        <div class="fr-header__body-row">
+          <div class="fr-header__brand fr-enlarge-link">
+            <div class="fr-header__brand-top">
+              <div class="fr-header__logo">
+                <p class="fr-logo">
+                  Ministère<br>de l'économie<br>des finances<br>et de la souveraineté<br>industrielle<br>et numérique
+                </p>
+              </div>
+            </div>
+            <div class="fr-header__service">
+              <a href="/" title="Accueil — Portail simulateurs">
+                <p class="fr-header__service-title">Portail simulateurs</p>
+              </a>
+              <p class="fr-header__service-tagline">Énergie · Électricité · DGEC</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main role="main" id="contenu">
+    <div class="fr-container fr-py-6w">
+      <h1>Simulateurs disponibles</h1>
+      <p class="fr-text--lead">
+        Une collection de simulateurs autour des sujets énergie et électricité.
+        Chaque simulateur est indépendant et peut être ouvert dans son contexte propre.
+      </p>
+
+      <div class="fr-grid-row fr-grid-row--gutters simu-grid" id="simu-list">
+        <!-- Cartes injectées par JS depuis /shared/simulators.json -->
+      </div>
+
+      <p id="simu-empty" class="fr-text--sm fr-mt-4w" hidden>
+        Aucun simulateur n'est encore référencé.
+      </p>
+    </div>
+  </main>
+
+  <footer class="fr-footer" role="contentinfo">
+    <div class="fr-container">
+      <div class="fr-footer__body">
+        <div class="fr-footer__brand fr-enlarge-link">
+          <p class="fr-logo">République<br>Française</p>
+        </div>
+        <div class="fr-footer__content">
+          <p class="fr-footer__content-desc">
+            Portail interne de simulateurs — Direction générale de l'énergie et du climat.
+          </p>
+        </div>
+      </div>
+      <div class="fr-footer__bottom">
+        <ul class="fr-footer__bottom-list">
+          <li class="fr-footer__bottom-item">
+            <a class="fr-footer__bottom-link" href="https://legifrance.gouv.fr" target="_blank" rel="noopener">legifrance.gouv.fr</a>
+          </li>
+          <li class="fr-footer__bottom-item">
+            <a class="fr-footer__bottom-link" href="https://service-public.fr" target="_blank" rel="noopener">service-public.fr</a>
+          </li>
+          <li class="fr-footer__bottom-item">
+            <a class="fr-footer__bottom-link" href="https://gouvernement.fr" target="_blank" rel="noopener">gouvernement.fr</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const STATUS_LABELS = {
+        draft: { text: "Brouillon", cls: "fr-badge--warning" },
+        beta: { text: "Bêta", cls: "fr-badge--info" },
+        published: { text: "Publié", cls: "fr-badge--success" },
+        archived: { text: "Archivé", cls: "fr-badge--grey" }
+      };
+
+      fetch("/shared/simulators.json", { cache: "no-cache" })
+        .then((r) => r.json())
+        .then((manifest) => {
+          const list = document.getElementById("simu-list");
+          const empty = document.getElementById("simu-empty");
+          const simulators = (manifest.simulators || []).filter(
+            (s) => s.status !== "archived"
+          );
+          if (!simulators.length) {
+            empty.hidden = false;
+            return;
+          }
+          simulators.forEach((s) => {
+            const status = STATUS_LABELS[s.status] || null;
+            const tags = (s.tags || [])
+              .map((t) => `<li><p class="fr-tag fr-tag--sm">${t}</p></li>`)
+              .join("");
+            const col = document.createElement("div");
+            col.className = "fr-col-12 fr-col-md-6 fr-col-lg-4";
+            col.innerHTML = `
+              <div class="fr-card fr-enlarge-link simu-card">
+                <div class="fr-card__body">
+                  <div class="fr-card__content">
+                    <h3 class="fr-card__title">
+                      <a href="/${s.slug}/">${s.title}</a>
+                      ${status ? `<span class="fr-badge fr-badge--sm ${status.cls} simu-status">${status.text}</span>` : ""}
+                    </h3>
+                    <p class="fr-card__desc">${s.tagline || ""}</p>
+                    ${tags ? `<div class="fr-card__end"><ul class="fr-tags-group">${tags}</ul></div>` : ""}
+                  </div>
+                </div>
+              </div>`;
+            list.appendChild(col);
+          });
+        })
+        .catch(() => {
+          document.getElementById("simu-empty").hidden = false;
+        });
+    })();
+  </script>
+
+  <script type="module"
+          src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.module.min.js"></script>
+  <script type="text/javascript" nomodule
+          src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.nomodule.min.js"></script>
+</body>
+</html>

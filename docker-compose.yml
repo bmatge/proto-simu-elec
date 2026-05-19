@@ -1,0 +1,10 @@
+services:
+  web:
+    build:
+      context: .
+    image: simulateurs-portail-elec:latest
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 128M
