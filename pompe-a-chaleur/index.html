@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="fr" data-fr-theme="light">
+<html lang="fr" data-fr-scheme="system">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#000091">
   <title>Simulateur pompe à chaleur — Aides, coût et amortissement 2026</title>
   <meta name="description" content="Estimez le coût d'installation d'une pompe à chaleur, les aides mobilisables (MaPrimeRénov', CEE) et la durée d'amortissement de votre projet." />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.13.0/dist/utility/icons/icons.min.css" />
+
+  <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/apple-touch-icon.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/utility/utility.min.css">
   <style>
     :root {
       --pac-accent: #169B62; /* vert ADEME / transition */
@@ -348,6 +354,8 @@
   <script src="/shared/portal-bar.js" defer></script>
 </head>
 <body>
+  <a class="fr-skiplink" href="#contenu">Contenu</a>
+
   <!-- En-tête République Française -->
   <header role="banner" class="fr-header">
     <div class="fr-header__body">
@@ -501,7 +509,7 @@
                   </button>
                 </div>
                 <div class="non-eligible-alert" id="airair-alert">
-                  ⚠️ La PAC air/air n'est pas éligible à MaPrimeRénov'&nbsp;2026 (parcours par geste).
+                  <span class="fr-icon-warning-line" aria-hidden="true"></span>&nbsp;La PAC air/air n'est pas éligible à MaPrimeRénov'&nbsp;2026 (parcours par geste).
                 </div>
               </div>
 
@@ -695,8 +703,8 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.13.0/dist/dsfr.module.min.js" type="module"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.13.0/dist/dsfr.nomodule.min.js" nomodule defer></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.module.min.js"></script>
+  <script type="text/javascript" nomodule src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.nomodule.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 
   <script>

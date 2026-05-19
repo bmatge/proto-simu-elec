@@ -252,7 +252,7 @@
     </p>
 
     <div class="callout-info">
-      <h3>⚠️ Prototype — valeurs courantes simulées</h3>
+      <h3><span class="fr-icon-warning-line" aria-hidden="true"></span>&nbsp;Prototype — valeurs courantes simulées</h3>
       <p>
         Ce tableau de bord est un <strong>prototype</strong>. Les valeurs cibles (« Quel objectif&nbsp;? »)
         et les échéances (« Quand&nbsp;? ») sont issues directement du dossier de presse d'avril 2026.
@@ -771,8 +771,8 @@ function renderMeasure(m) {
   // Meta
   const meta = el("div", "measure__meta");
   meta.innerHTML =
-    `<span>📅 <b>Échéance&nbsp;:</b> ${m.deadline}</span>
-     <span>🎯 <b>Objectif&nbsp;:</b> ${m.target}</span>`;
+    `<span><span class="fr-icon-calendar-line" aria-hidden="true"></span>&nbsp;<b>Échéance&nbsp;:</b> ${m.deadline}</span>
+     <span><span class="fr-icon-focus-2-line" aria-hidden="true"></span>&nbsp;<b>Objectif&nbsp;:</b> ${m.target}</span>`;
   card.appendChild(meta);
 
   // Progress

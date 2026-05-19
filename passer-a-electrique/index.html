@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="fr" data-fr-theme="light">
+<html lang="fr" data-fr-scheme="system">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#000091">
   <title>Passer à l'électrique — Aides et économies pour les particuliers (2026)</title>
   <meta name="description" content="Estimez l'ensemble des aides mobilisables pour électrifier votre quotidien : mobilité, chauffage, rénovation, solaire — et l'économie annuelle attendue." />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.13.0/dist/utility/icons/icons.min.css" />
-  <link rel="stylesheet" href="/shared/portal-bar.css" />
+
+  <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/apple-touch-icon.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/utility/utility.min.css">
+  <link rel="stylesheet" href="/shared/portal-bar.css">
   <script src="/shared/portal-bar.js" defer></script>
   <style>
     :root {
@@ -18,17 +24,6 @@
       --pae-pv: #E4794A;
     }
     main { background: var(--background-default-grey); }
-
-    .pae-hero {
-      background: var(--background-alt-blue-france);
-      padding: 3rem 0 2rem;
-    }
-    .pae-hero h1 { margin-bottom: 0.5rem; }
-    .pae-hero .fr-text--lead {
-      color: var(--text-mention-grey);
-      margin-bottom: 0;
-      max-width: 56rem;
-    }
 
     .form-card {
       background: var(--background-default-grey);
@@ -888,6 +883,8 @@
 </head>
 <body>
 
+  <a class="fr-skiplink" href="#contenu">Contenu</a>
+
   <!-- ====================================================================
        LANDING : choix Mode guidé / Mode expert (ADR-015)
        Visible au chargement initial, masquée dès le 1er choix.
@@ -941,7 +938,7 @@
     <div class="pae-wizard__topbar">
       <div class="pae-stepper" id="wizard-stepper" role="tablist" aria-label="Étapes du parcours guidé"></div>
       <button type="button" class="pae-wizard__switch" id="wizard-to-expert" title="Passer en mode expert">
-        ⚙️ Mode expert
+        <span class="fr-icon-settings-5-line" aria-hidden="true"></span>&nbsp;Mode expert
       </button>
     </div>
     <div class="pae-wizard__card" id="wizard-card">
@@ -952,32 +949,44 @@
   <!-- ====================================================================
        MODE EXPERT (formulaire dense)
        ================================================================== -->
-  <main role="main" id="pae-expert" class="pae-hidden">
+  <div id="pae-expert" class="pae-hidden">
 
-    <!-- Bandeau : retour mode guidé -->
-    <div class="pae-expert-notice">
-      <span>🧭 Préférez-vous être guidé pas à pas&nbsp;?</span>
-      <button type="button" id="expert-to-wizard">Repasser en mode guidé</button>
-    </div>
-
-    <!-- HERO -->
-    <section class="pae-hero">
-      <div class="fr-container">
-        <p class="fr-tag fr-tag--sm" style="background: #169B62; color: white; margin-bottom: 0.75rem;">
-          Particuliers · synthèse 2026
-        </p>
-        <h1 class="fr-h2">Aide à passer à l'électrique</h1>
-        <p class="fr-text--lead">
-          Renseignez votre foyer, votre logement et votre mobilité : nous estimons
-          <strong>tout ce que vous pouvez faire</strong>, <strong>combien vous gagnez</strong>
-          via les aides publiques, et l'<strong>économie annuelle récurrente</strong> attendue.
-        </p>
+    <header role="banner" class="fr-header">
+      <div class="fr-header__body">
+        <div class="fr-container">
+          <div class="fr-header__body-row">
+            <div class="fr-header__brand fr-enlarge-link">
+              <div class="fr-header__brand-top">
+                <div class="fr-header__logo"><p class="fr-logo">République<br>Française</p></div>
+              </div>
+              <div class="fr-header__service">
+                <a href="/passer-a-electrique/" title="Aide à passer à l'électrique">
+                  <p class="fr-header__service-title">Aide à passer à l'électrique</p>
+                </a>
+                <p class="fr-header__service-tagline">Foyer · synthèse des aides et économies attendues · 2026</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+    </header>
 
-    <!-- CONTENU PRINCIPAL -->
-    <section class="fr-py-4w">
-      <div class="fr-container">
+    <main role="main" id="contenu" class="fr-container fr-py-4w">
+
+      <!-- Bandeau : retour mode guidé -->
+      <div class="pae-expert-notice">
+        <span><span class="fr-icon-compass-3-line" aria-hidden="true"></span>&nbsp;Préférez-vous être guidé pas à pas&nbsp;?</span>
+        <button type="button" id="expert-to-wizard">Repasser en mode guidé</button>
+      </div>
+
+      <h1 class="fr-h3 fr-mb-1w">Renseignez votre situation</h1>
+      <p class="fr-text--lead fr-mb-4w">
+        Foyer, logement, mobilité&nbsp;: nous estimons <strong>tout ce que vous pouvez faire</strong>,
+        <strong>combien vous gagnez</strong> via les aides publiques, et l'<strong>économie annuelle récurrente</strong> attendue.
+      </p>
+
+      <!-- CONTENU PRINCIPAL -->
+      <section class="fr-py-2w">
         <div class="fr-grid-row fr-grid-row--gutters pae-grid">
 
           <!-- COLONNE FORMULAIRE -->
@@ -1472,10 +1481,11 @@
           <a href="https://www.maprimerenov.gouv.fr" target="_blank" rel="noopener">MaPrimeRénov'</a>.
         </div>
 
-      </div>
-    </section>
+      </section>
 
-  </main>
+    </main>
+
+  </div><!-- /#pae-expert -->
 
   <footer class="fr-footer" role="contentinfo">
     <div class="fr-container">
@@ -3361,7 +3371,7 @@
           <span class="recap-saving-value">${fmt(Math.abs(economie))}</span>
         </div>
         <p class="recap-aside">
-          <span aria-hidden="true">💶</span>
+          <span class="fr-icon-money-euro-circle-line" aria-hidden="true"></span>
           <strong>${fmt(totalAides)}</strong> d'aides publiques mobilisées (déjà déduites de l'investissement net ci-dessus).
         </p>
       `;
@@ -3483,6 +3493,9 @@
   // Rendu initial : mode landing
   showMode('landing');
   </script>
+
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.module.min.js"></script>
+  <script type="text/javascript" nomodule src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.nomodule.min.js"></script>
 
 </body>
 </html>

@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-fr-scheme="system">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000091">
 <title>Carte des bornes de recharge IRVE en France</title>
 <meta name="description" content="Carte interactive de la Base nationale des Infrastructures de Recharge pour Véhicules Électriques (IRVE).">
+
+<link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/apple-touch-icon.png">
+<link rel="icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.svg" type="image/svg+xml">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.ico" type="image/x-icon">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/utility/utility.min.css">
@@ -664,23 +669,23 @@
             <strong>${esc(r.puissance_nominale ?? '—')}</strong>
             <span>kW</span>
           </div>
-          ${isFree ? '<div class="poi-hero-divider"></div><div class="poi-hero-item"><strong style="color:#18753c">🆓</strong><span style="color:#18753c">Gratuit</span></div>' : ''}
+          ${isFree ? '<div class="poi-hero-divider"></div><div class="poi-hero-item"><strong style="color:#18753c">Gratuit</strong></div>' : ''}
         </div>
 
-        <h5>⚡ Connectique</h5>
+        <h5><span class="fr-icon-flashlight-fill" aria-hidden="true"></span>&nbsp;Connectique</h5>
         ${prisesChips ? `<div class="poi-chips">${prisesChips}</div>` : '<p style="color:#999;font-style:italic;margin:0">Aucune prise renseignée</p>'}
 
-        <h5>🕒 Accès</h5>
+        <h5><span class="fr-icon-time-line" aria-hidden="true"></span>&nbsp;Accès</h5>
         <div class="poi-row"><span class="lbl">Type d'accès</span><span class="val">${valueOr(r.condition_acces)}</span></div>
         <div class="poi-row"><span class="lbl">Horaires</span><span class="val">${formatHoraires(r.horaires)}</span></div>
         <div class="poi-row"><span class="lbl">Sur réservation</span><span class="val">${yn(r.reservation)}</span></div>
         <div class="poi-row"><span class="lbl">Accessible PMR</span><span class="val">${valueOr(r.accessibilite_pmr)}</span></div>
 
-        <h5>💳 Paiement</h5>
+        <h5><span class="fr-icon-bank-card-line" aria-hidden="true"></span>&nbsp;Paiement</h5>
         <div class="poi-row"><span class="lbl">Gratuité</span><span class="val">${isFree ? '<span class="free-tag">Gratuit</span>' : yn(r.gratuit)}</span></div>
         <div class="poi-row"><span class="lbl">Carte bancaire</span><span class="val">${yn(r.paiement_cb)}</span></div>
 
-        <h5>🏢 Exploitation</h5>
+        <h5><span class="fr-icon-building-line" aria-hidden="true"></span>&nbsp;Exploitation</h5>
         <div class="poi-row"><span class="lbl">Puissance</span><span class="val">${formatPower(r.puissance_nominale)}</span></div>
         ${operateurDisplay ? `<div class="poi-row"><span class="lbl">Exploitant·e·s</span><span class="val">${operateurDisplay}</span></div>` : ''}
         ${r.raccordement ? `<div class="poi-row"><span class="lbl">Raccordement</span><span class="val">${valueOr(r.raccordement)}</span></div>` : ''}
@@ -794,6 +799,35 @@
   }
 })();
 </script>
+
+<footer class="fr-footer" role="contentinfo">
+  <div class="fr-container">
+    <div class="fr-footer__body">
+      <div class="fr-footer__brand fr-enlarge-link">
+        <p class="fr-logo">République<br>Française</p>
+      </div>
+      <div class="fr-footer__content">
+        <p class="fr-footer__content-desc">
+          Visualisation cartographique de la Base nationale des IRVE (Etalab). Direction
+          générale de l'énergie et du climat.
+        </p>
+      </div>
+    </div>
+    <div class="fr-footer__bottom">
+      <ul class="fr-footer__bottom-list">
+        <li class="fr-footer__bottom-item">
+          <a class="fr-footer__bottom-link" href="https://www.data.gouv.fr/datasets/base-nationale-des-irve-infrastructures-de-recharge-pour-vehicules-electriques" target="_blank" rel="noopener">Source IRVE — data.gouv.fr</a>
+        </li>
+        <li class="fr-footer__bottom-item">
+          <a class="fr-footer__bottom-link" href="https://adresse.data.gouv.fr" target="_blank" rel="noopener">API Base Adresse Nationale</a>
+        </li>
+        <li class="fr-footer__bottom-item">
+          <a class="fr-footer__bottom-link" href="https://geoservices.ign.fr" target="_blank" rel="noopener">Géoplateforme IGN</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
