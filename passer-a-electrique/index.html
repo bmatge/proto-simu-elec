@@ -90,7 +90,7 @@
       display: flex; flex-direction: column; justify-content: center; min-height: 3.6rem;
       font: inherit;
     }
-    .radio-tile:hover {
+    .radio-tile:not(.active):hover {
       background: var(--background-alt-grey);
       border-color: var(--border-action-high-blue-france);
     }
@@ -287,74 +287,89 @@
      * ================================================================== */
     .pae-hidden { display: none !important; }
 
-    /* --- Landing : écran de choix initial ---------------------------- */
+    /* --- Landing : écran de choix initial (calé sur le pattern voiture) - */
     .pae-landing {
-      min-height: calc(100vh - var(--portal-bar-height, 36px));
-      display: flex; align-items: center; justify-content: center;
-      padding: 2.5rem 1.25rem;
-      background: linear-gradient(180deg, var(--background-alt-blue-france) 0%, #fff 100%);
+      display: none;
+      min-height: calc(100vh - var(--portal-bar-height, 0px));
+      background: var(--background-alt-blue-france, #f5f5fe);
+      padding-top: 3rem;
+      padding-bottom: 3rem;
     }
-    .pae-landing__inner {
-      max-width: 56rem; width: 100%; text-align: center;
-    }
+    .pae-landing:not(.pae-hidden) { display: block; }
     .pae-landing__eyebrow {
-      display: inline-block;
-      font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--text-action-high-blue-france);
-      background: rgba(0, 0, 145, 0.08);
-      padding: 0.25rem 0.7rem; border-radius: 999px;
-      margin-bottom: 1rem;
+      color: var(--text-action-high-blue-france, #000091);
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin: 0 0 .5rem;
     }
     .pae-landing h1 {
+      margin: 0 0 1rem;
       font-size: clamp(1.6rem, 3vw, 2.2rem);
-      margin: 0 0 0.75rem;
     }
     .pae-landing__lede {
-      font-size: 1.05rem;
-      color: var(--text-mention-grey);
-      max-width: 44rem; margin: 0 auto 2rem;
-    }
-    .pae-landing__choices {
-      display: grid; gap: 1.25rem;
-      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-      max-width: 44rem; margin: 0 auto;
+      max-width: 40rem;
+      color: var(--text-default-grey, #3a3a3a);
+      line-height: 1.55;
     }
     .pae-landing__card {
-      background: #fff;
-      border: 2px solid var(--border-default-grey);
-      padding: 1.5rem 1.25rem;
+      background: var(--background-default-grey, #fff);
+      border: 1px solid var(--border-default-grey, #e5e5e5);
+      border-top: 4px solid var(--background-action-high-blue-france, #000091);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
       text-align: left;
+      font: inherit;
       cursor: pointer;
-      transition: all 0.18s ease;
-      display: flex; flex-direction: column; gap: 0.6rem;
-      font: inherit; color: inherit;
+      transition: box-shadow .15s ease, transform .15s ease;
+      width: 100%;
+      height: 100%;
     }
-    .pae-landing__card:hover {
-      border-color: var(--background-active-blue-france);
+    .pae-landing__card:hover, .pae-landing__card:focus-visible {
+      box-shadow: 0 6px 20px rgba(0, 0, 145, .12);
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 0, 145, 0.08);
+      outline: 2px solid var(--background-action-high-blue-france, #000091);
+      outline-offset: 2px;
     }
     .pae-landing__card-icon {
-      font-size: 2rem; line-height: 1;
+      width: 2.75rem; height: 2.75rem;
+      border-radius: 50%;
+      background: var(--background-contrast-blue-france, #e3e3fd);
+      color: var(--text-action-high-blue-france, #000091);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.375rem; line-height: 1;
     }
+    .pae-landing__card-icon::before { --icon-size: 1.5rem; margin: 0; }
     .pae-landing__card h2 {
-      font-size: 1.15rem; margin: 0;
+      margin: 0;
+      font-size: 1.1875rem;
+      color: var(--text-title-grey, #161616);
     }
     .pae-landing__card p {
-      font-size: 0.88rem; color: var(--text-mention-grey);
       margin: 0;
+      color: var(--text-mention-grey, #666);
+      font-size: .875rem;
+      line-height: 1.55;
+      flex: 1;
     }
     .pae-landing__card-cta {
       margin-top: auto;
-      font-weight: 700;
-      color: var(--text-action-high-blue-france);
-      font-size: 0.9rem;
+      color: var(--text-action-high-blue-france, #000091);
+      font-weight: 600;
+      font-size: .875rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .25rem;
     }
+    .pae-landing__card-cta::after { content: "→"; transition: transform .15s; }
+    .pae-landing__card:hover .pae-landing__card-cta::after { transform: translateX(.25rem); }
     .pae-landing__hint {
-      margin-top: 1.5rem;
-      font-size: 0.82rem;
-      color: var(--text-mention-grey);
+      margin-top: 2rem;
+      font-size: .8125rem;
+      color: var(--text-mention-grey, #666);
     }
 
     /* --- Wizard overlay ----------------------------------------------- */
@@ -368,26 +383,93 @@
       z-index: 100;
       background: #fff;
       border-bottom: 1px solid var(--border-default-grey);
-      padding: 0.6rem 1rem;
+      padding: 0.75rem 1rem;
       display: flex; align-items: center; gap: 1rem;
     }
-    .pae-wizard__counter {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-action-high-blue-france);
-      white-space: nowrap;
-    }
-    .pae-wizard__bar {
+    /* Stepper cliquable */
+    .pae-stepper {
       flex: 1;
-      height: 6px;
-      background: var(--border-default-grey);
-      border-radius: 999px; overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      min-width: 0;
     }
-    .pae-wizard__bar-fill {
-      height: 100%;
-      background: var(--background-active-blue-france);
-      transition: width 0.25s ease;
-      width: 20%;
+    .pae-step {
+      flex: 1 1 0;
+      background: none;
+      border: 0;
+      padding: 0.25rem 0.25rem;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      color: var(--text-mention-grey);
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.15;
+      position: relative;
+      min-width: 0;
+    }
+    /* Cercle numéroté */
+    .pae-step__dot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid var(--border-default-grey);
+      color: var(--text-mention-grey);
+      font-weight: 700;
+      font-size: 0.78rem;
+      transition: all 0.15s;
+      z-index: 1;
+    }
+    /* Ligne entre les cercles */
+    .pae-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: calc(0.25rem + 12px - 1px);
+      left: calc(50% + 12px + 4px);
+      right: calc(-50% + 12px + 4px);
+      height: 2px;
+      background: var(--border-default-grey);
+      z-index: 0;
+    }
+    /* États : visité (cliquable) */
+    .pae-step--visited { color: var(--text-action-high-blue-france); }
+    .pae-step--visited .pae-step__dot {
+      background: var(--background-contrast-blue-france);
+      border-color: var(--background-action-high-blue-france);
+      color: var(--text-action-high-blue-france);
+    }
+    .pae-step--visited:not(:last-child)::after { background: var(--background-action-high-blue-france); }
+    /* Étape courante */
+    .pae-step--current { color: var(--text-action-high-blue-france); font-weight: 700; }
+    .pae-step--current .pae-step__dot {
+      background: var(--background-action-high-blue-france);
+      border-color: var(--background-action-high-blue-france);
+      color: #fff;
+      box-shadow: 0 0 0 4px var(--background-contrast-blue-france);
+    }
+    /* Étape future (désactivée) */
+    .pae-step--future {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    .pae-step--future:hover .pae-step__dot { background: #fff; }
+    /* Hover (sauf future) */
+    .pae-step:not(.pae-step--future):not(.pae-step--current):hover .pae-step__dot {
+      transform: scale(1.08);
+    }
+    /* Focus accessibilité */
+    .pae-step:focus-visible { outline: 2px solid var(--background-action-high-blue-france); outline-offset: 2px; border-radius: 4px; }
+    /* Label texte (masqué en mobile pour économiser) */
+    @media (max-width: 700px) {
+      .pae-step__lbl { display: none; }
     }
     .pae-wizard__switch {
       flex: 0 0 auto;
@@ -811,35 +893,39 @@
        Visible au chargement initial, masquée dès le 1er choix.
        ================================================================== -->
   <section class="pae-landing" id="pae-landing" aria-labelledby="landing-title">
-    <div class="pae-landing__inner">
-      <p class="pae-landing__eyebrow">Simulateur · particuliers · 2026</p>
-      <h1 id="landing-title">Passer à l'électrique : comment commencer ?</h1>
-      <p class="pae-landing__lede">
+    <div class="fr-container">
+      <p class="pae-landing__eyebrow">Simulateur · aide à passer à l'électrique</p>
+      <h1 id="landing-title" class="fr-mb-2w">Comment souhaitez-vous démarrer&nbsp;?</h1>
+      <p class="fr-text--lead pae-landing__lede fr-mb-5w">
         Ce simulateur croise votre foyer, votre logement et votre mobilité pour estimer
-        <strong>tout ce que vous pouvez faire</strong>, <strong>combien vous gagnez</strong>
-        via les aides publiques, et l'<strong>économie annuelle</strong> attendue.
+        tout ce que vous pouvez faire, combien vous gagnez via les aides publiques,
+        et l'économie annuelle attendue. Choisissez la manière dont vous voulez l'utiliser&nbsp;:
       </p>
 
-      <div class="pae-landing__choices">
-        <button type="button" class="pae-landing__card" id="landing-guided">
-          <span class="pae-landing__card-icon" aria-hidden="true">🧭</span>
-          <h2>Mode guidé</h2>
-          <p>
-            Cinq étapes pas à pas, avec des libellés clairs et chaque solution
-            détaillée avant que vous ne décidiez. Idéal pour découvrir.
-          </p>
-          <span class="pae-landing__card-cta">Démarrer le guide →</span>
-        </button>
-
-        <button type="button" class="pae-landing__card" id="landing-expert">
-          <span class="pae-landing__card-icon" aria-hidden="true">⚙️</span>
-          <h2>Mode expert</h2>
-          <p>
-            Formulaire complet sur une page : tous les paramètres modifiables,
-            barèmes, hypothèses, courbe d'amortissement et horizon ajustable.
-          </p>
-          <span class="pae-landing__card-cta">Aller au formulaire →</span>
-        </button>
+      <div class="fr-grid-row fr-grid-row--gutters">
+        <div class="fr-col-12 fr-col-md-6">
+          <button type="button" class="pae-landing__card" id="landing-guided" aria-describedby="landing-guided-desc">
+            <span class="pae-landing__card-icon fr-icon-compass-3-line" aria-hidden="true"></span>
+            <h2>Mode guidé</h2>
+            <p id="landing-guided-desc">
+              Six étapes simples, dans un format pas à pas, pour évaluer
+              les solutions (PAC, rénovation, VE, solaire) sans avoir à connaître
+              les barèmes ni les paramètres techniques.
+            </p>
+            <span class="pae-landing__card-cta">Démarrer le guide</span>
+          </button>
+        </div>
+        <div class="fr-col-12 fr-col-md-6">
+          <button type="button" class="pae-landing__card" id="landing-expert" aria-describedby="landing-expert-desc">
+            <span class="pae-landing__card-icon fr-icon-settings-5-line" aria-hidden="true"></span>
+            <h2>Mode expert</h2>
+            <p id="landing-expert-desc">
+              Formulaire complet sur une page&nbsp;: tous les paramètres modifiables,
+              barèmes, hypothèses, courbe d'amortissement et horizon ajustable.
+            </p>
+            <span class="pae-landing__card-cta">Aller au formulaire</span>
+          </button>
+        </div>
       </div>
 
       <p class="pae-landing__hint">
@@ -853,10 +939,7 @@
        ================================================================== -->
   <section class="pae-wizard pae-hidden" id="pae-wizard" aria-labelledby="wizard-title">
     <div class="pae-wizard__topbar">
-      <span class="pae-wizard__counter" id="wizard-counter">Étape 1 / 5</span>
-      <div class="pae-wizard__bar" aria-hidden="true">
-        <div class="pae-wizard__bar-fill" id="wizard-bar"></div>
-      </div>
+      <div class="pae-stepper" id="wizard-stepper" role="tablist" aria-label="Étapes du parcours guidé"></div>
       <button type="button" class="pae-wizard__switch" id="wizard-to-expert" title="Passer en mode expert">
         ⚙️ Mode expert
       </button>
@@ -1598,6 +1681,7 @@
     mode: 'landing',
     // Étape du wizard guidé (1=Foyer, 2=Logement, 3=Mobilité, 4=Recap, 5=Solutions, 6=Bilan étalé).
     wizardStep: 1,
+    wizardMaxStep: 1, // plus haute étape visitée (pour autoriser le clic direct dans le stepper)
     wizardTotalSteps: 6,
     // Solutions cochées en mode guidé + leur année de démarrage (1..horizon).
     // Ordre par défaut suggéré : rénovation → PAC → VE → PV.
@@ -2452,11 +2536,15 @@
   // Prix moyen d'un VE neuf (hypothèse pour B1, à exposer dans accordéon plus tard).
   const PRIX_VE_NEUF_MOYEN = 32000;
 
+  // Libellés courts pour le stepper (cohérents avec les eyebrows des étapes)
+  const WIZARD_STEPS_LABELS = ['Foyer', 'Logement', 'Mobilité', 'Situation', 'Solutions', 'Bilan'];
+
   function renderWizard() {
     const step = state.wizardStep;
     const total = state.wizardTotalSteps;
-    document.getElementById('wizard-counter').textContent = `Étape ${step} / ${total}`;
-    document.getElementById('wizard-bar').style.width = (step / total * 100) + '%';
+    // Tracker la plus haute étape atteinte (pour autoriser le clic direct dans le stepper)
+    if (step > state.wizardMaxStep) state.wizardMaxStep = step;
+    renderStepper();
     const card = document.getElementById('wizard-card');
     const isFirst = step === 1;
     const isLast = step === total;
@@ -2490,6 +2578,14 @@
     else if (step === 3) bindWizardStep3();
     else if (step === 5) bindWizardStep5();
     else if (step === 6) bindWizardStep6();
+
+    // Câblage générique des raccourcis « Modifier une saisie » sur l'étape recap (étape 4).
+    card.querySelectorAll('[data-goto-step]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const target = parseInt(btn.dataset.gotoStep, 10);
+        goToWizardStep(target);
+      });
+    });
   }
 
   function wizardNext() {
@@ -2508,6 +2604,45 @@
       state.wizardStep -= 1;
       renderWizard();
     }
+  }
+  // Saut direct à une étape déjà visitée (clic sur le stepper).
+  // On refuse les étapes futures pour ne pas court-circuiter la saisie.
+  function goToWizardStep(target) {
+    if (target < 1 || target > state.wizardTotalSteps) return;
+    if (target > state.wizardMaxStep) return; // étape non encore visitée → refusé
+    state.wizardStep = target;
+    renderWizard();
+  }
+
+  // Construit le stepper cliquable dans la topbar
+  function renderStepper() {
+    const root = document.getElementById('wizard-stepper');
+    if (!root) return;
+    const cur = state.wizardStep;
+    const max = state.wizardMaxStep;
+    root.innerHTML = WIZARD_STEPS_LABELS.map((lbl, i) => {
+      const n = i + 1;
+      const isCurrent = n === cur;
+      const isVisited = n < cur || (n <= max && n !== cur);
+      const isFuture = n > max;
+      const cls = isCurrent ? 'pae-step--current'
+                : isFuture  ? 'pae-step--future'
+                : 'pae-step--visited';
+      return `
+        <button type="button" class="pae-step ${cls}"
+                role="tab" aria-selected="${isCurrent}"
+                aria-disabled="${isFuture}"
+                ${isFuture ? 'tabindex="-1"' : ''}
+                data-step="${n}"
+                title="Étape ${n} : ${lbl}${isFuture ? ' (non encore atteinte)' : ''}">
+          <span class="pae-step__dot" aria-hidden="true">${isVisited && !isCurrent ? '✓' : n}</span>
+          <span class="pae-step__lbl">${lbl}</span>
+        </button>`;
+    }).join('');
+    // Câblage des clics
+    root.querySelectorAll('.pae-step').forEach((btn) => {
+      btn.addEventListener('click', () => goToWizardStep(parseInt(btn.dataset.step, 10)));
+    });
   }
 
   function bindWizardCommon() {
@@ -2786,6 +2921,16 @@
         DPE ${state.logement.dpe}, ${state.logement.surface} m², chauffage ${state.logement.chauffage}
         ${state.mobilite.actuel !== 'aucun' ? ` · ${state.mobilite.km.toLocaleString('fr-FR')} km en ${state.mobilite.actuel}` : ''}.
       </p>
+
+      <!-- Raccourcis pour corriger une réponse précédente sans passer par le bouton Précédent N fois -->
+      <div class="recap-edits" style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed var(--border-default-grey);">
+        <p class="helper" style="margin-bottom: 0.5rem;">Modifier une saisie précédente :</p>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <button type="button" class="fr-btn fr-btn--sm fr-btn--secondary" data-goto-step="1">← Foyer</button>
+          <button type="button" class="fr-btn fr-btn--sm fr-btn--secondary" data-goto-step="2">← Logement</button>
+          <button type="button" class="fr-btn fr-btn--sm fr-btn--secondary" data-goto-step="3">← Mobilité</button>
+        </div>
+      </div>
     `;
   }
 
@@ -3312,6 +3457,28 @@
   document.getElementById('landing-expert').addEventListener('click', () => showMode('expert'));
   document.getElementById('wizard-to-expert').addEventListener('click', () => showMode('expert'));
   document.getElementById('expert-to-wizard').addEventListener('click', () => showMode('guided'));
+
+  // Raccourcis clavier (← → pour naviguer, Esc pour passer en mode expert).
+  // Actifs uniquement quand le wizard est visible et qu'on n'est pas dans un champ saisissable.
+  document.addEventListener('keydown', (e) => {
+    if (state.mode !== 'guided') return;
+    const tag = (e.target.tagName || '').toLowerCase();
+    // Ne pas intercepter si l'utilisateur saisit dans un input texte / number / textarea / select
+    if (tag === 'input' || tag === 'textarea' || tag === 'select') {
+      // Pour les sliders (input type="range"), on laisse passer aussi → ← contrôlent le slider
+      return;
+    }
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      wizardNext();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      wizardPrev();
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      showMode('expert');
+    }
+  });
 
   // Rendu initial : mode landing
   showMode('landing');

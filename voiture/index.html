@@ -287,6 +287,7 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 1.375rem; line-height: 1;
     }
+    .landing__tile-icon::before { --icon-size: 1.5rem; margin: 0; }
     .landing__tile h2 {
       margin: 0;
       font-size: 1.1875rem;
@@ -339,6 +340,79 @@
       font-variant-numeric: tabular-nums;
       white-space: nowrap;
     }
+    /* Stepper cliquable */
+    .vw-stepper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      min-width: 0;
+    }
+    .vw-step {
+      flex: 1 1 0;
+      background: none;
+      border: 0;
+      padding: 0.25rem 0.25rem;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      color: var(--text-mention-grey, #666);
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.15;
+      position: relative;
+      min-width: 0;
+    }
+    .vw-step__dot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid var(--border-default-grey, #ddd);
+      color: var(--text-mention-grey, #666);
+      font-weight: 700;
+      font-size: 0.72rem;
+      transition: all 0.15s;
+      z-index: 1;
+    }
+    .vw-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: calc(0.25rem + 11px - 1px);
+      left: calc(50% + 11px + 4px);
+      right: calc(-50% + 11px + 4px);
+      height: 2px;
+      background: var(--border-default-grey, #ddd);
+      z-index: 0;
+    }
+    .vw-step--visited { color: var(--text-action-high-blue-france, #000091); }
+    .vw-step--visited .vw-step__dot {
+      background: #e3e3fd;
+      border-color: var(--background-action-high-blue-france, #000091);
+      color: var(--background-action-high-blue-france, #000091);
+    }
+    .vw-step--visited:not(:last-child)::after { background: var(--background-action-high-blue-france, #000091); }
+    .vw-step--current { color: var(--text-action-high-blue-france, #000091); font-weight: 700; }
+    .vw-step--current .vw-step__dot {
+      background: var(--background-action-high-blue-france, #000091);
+      border-color: var(--background-action-high-blue-france, #000091);
+      color: #fff;
+      box-shadow: 0 0 0 4px #e3e3fd;
+    }
+    .vw-step--future { cursor: not-allowed; opacity: 0.6; }
+    .vw-step--future:hover .vw-step__dot { background: #fff; }
+    .vw-step:not(.vw-step--future):not(.vw-step--current):hover .vw-step__dot { transform: scale(1.08); }
+    .vw-step:focus-visible { outline: 2px solid var(--background-action-high-blue-france, #000091); outline-offset: 2px; border-radius: 4px; }
+    @media (max-width: 700px) {
+      .vw-step__lbl { display: none; }
+    }
+    /* Legacy bar (kept for backward compat in welcome/initial state) */
     .wizard-progress .bar {
       flex: 1;
       height: .375rem;
@@ -412,7 +486,13 @@
       border-color: var(--background-action-high-blue-france, #000091);
       background: var(--background-contrast-blue-france, #e3e3fd);
     }
-    .choice-btn .icon { font-size: 1.625rem; line-height: 1; flex-shrink: 0; }
+    .choice-btn .icon {
+      font-size: 1.625rem; line-height: 1; flex-shrink: 0;
+      width: 2rem; height: 2rem;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--text-action-high-blue-france, #000091);
+    }
+    .choice-btn .icon::before { --icon-size: 1.625rem; margin: 0; }
     .choice-btn .label {
       font-size: .9375rem;
       font-weight: 600;
@@ -581,6 +661,14 @@
     }
 
     .app-hidden { display: none !important; }
+
+    /* fr-callout--sm : variante compacte pour les insights inline (pas dans DSFR) */
+    .fr-callout--sm { padding: .75rem 1rem; margin: .75rem 0; }
+    .fr-callout--sm .fr-callout__text { font-size: .9375rem; margin: 0; }
+
+    /* fr-callout : align list items proprement dans les blocs limites */
+    .fr-callout ul.fr-callout__text { padding-left: 1.25rem; margin: .5rem 0 0; }
+    .fr-callout ul.fr-callout__text li { margin: .25rem 0; }
   </style>
 </head>
 <body class="fr-background-default--grey">
@@ -602,7 +690,7 @@
     <div class="fr-grid-row fr-grid-row--gutters">
       <div class="fr-col-12 fr-col-md-6">
         <button type="button" class="landing__tile" id="landingGuided" aria-describedby="landing-guided-desc">
-          <span class="landing__tile-icon" aria-hidden="true">🧭</span>
+          <span class="landing__tile-icon fr-icon-compass-3-line" aria-hidden="true"></span>
           <h2>Mode guidé</h2>
           <p id="landing-guided-desc">
             Six à sept questions simples, dans un format pas à pas, pour obtenir une
@@ -613,7 +701,7 @@
       </div>
       <div class="fr-col-12 fr-col-md-6">
         <button type="button" class="landing__tile" id="landingExpert" aria-describedby="landing-expert-desc">
-          <span class="landing__tile-icon" aria-hidden="true">⚙️</span>
+          <span class="landing__tile-icon fr-icon-settings-5-line" aria-hidden="true"></span>
           <h2>Mode expert</h2>
           <p id="landing-expert-desc">
             Accès direct au formulaire complet&nbsp;: consommation, RFR/part, malus,
@@ -635,8 +723,7 @@
 <!-- ============================================== -->
 <div class="wizard-overlay" id="wizard">
   <div class="wizard-progress" id="wizardProgress">
-    <span class="counter" id="wizardCounter">Étape 1 / 6</span>
-    <div class="bar"><div class="bar-fill" id="wizardBar" style="width: 16%"></div></div>
+    <div class="vw-stepper" id="wizardStepper" role="tablist" aria-label="Étapes du parcours guidé"></div>
     <button type="button" class="fr-btn fr-btn--secondary fr-btn--sm" id="wizardSkip" title="Passer en mode expert">
       Mode expert
     </button>
@@ -672,7 +759,7 @@
   <main role="main" id="contenu" class="fr-container fr-py-4w">
 
     <div class="expert-notice" id="expertNotice">
-      <span>🧭 &nbsp;Vous préférez être guidé pas à pas&nbsp;?</span>
+      <span><span class="fr-icon-compass-3-line" aria-hidden="true"></span>&nbsp;Vous préférez être guidé pas à pas&nbsp;?</span>
       <button type="button" class="expert-notice__link" id="switchToGuided">Repasser en mode guidé</button>
     </div>
 
@@ -806,7 +893,7 @@
 
             <div class="form-card">
               <details>
-                <summary>⚙ Réglages avancés (énergie, entretien, décote)</summary>
+                <summary>Réglages avancés (énergie, entretien, décote)</summary>
                 <div class="fr-mt-2w">
                   <h3>Prix de l'énergie</h3>
                   <div class="fr-input-group">
@@ -1033,7 +1120,7 @@
 
             <div class="form-card">
               <details>
-                <summary>⚙ Réglages avancés</summary>
+                <summary>Réglages avancés</summary>
                 <div class="fr-mt-2w">
                   <h3>VE</h3>
                   <div class="fr-input-group">
@@ -1203,7 +1290,7 @@
 
             <div class="form-card">
               <details>
-                <summary>⚙ Réglages avancés</summary>
+                <summary>Réglages avancés</summary>
                 <div class="fr-mt-2w">
                   <h3>Achat & VE</h3>
                   <div class="fr-input-group">
@@ -1518,8 +1605,8 @@ function calcMode1() {
     <h2><span class="step-num">1</span>Combien coûtent ces voitures à l'achat&nbsp;?</h2>
     <p class="lead">Le prix affiché en concession n'est pas le prix que vous payez. L'électrique bénéficie d'aides, le thermique peut subir un malus.</p>
     <div class="bars">
-      ${barRow('🔋 Électrique (après aides)', ve_acq, null, maxAcq + 2000, 've')}
-      ${barRow('⛽ Thermique' + (th_malus>0?' (avec malus)':''), th_acq, null, maxAcq + 2000, 'th')}
+      ${barRow('Électrique (après aides)', ve_acq, null, maxAcq + 2000, 've')}
+      ${barRow('Thermique' + (th_malus>0?' (avec malus)':''), th_acq, null, maxAcq + 2000, 'th')}
     </div>
     <div class="fr-callout fr-callout--green-emeraude fr-callout--sm">
       <p class="fr-callout__text">
@@ -1550,7 +1637,6 @@ function calcMode1() {
     <p class="lead">L'énergie est le poste où l'électrique fait le plus gros écart. Pour vos ${km.toLocaleString('fr-FR')} km par an&nbsp;:</p>
     <div class="compare-cards">
       <div class="compare-card ve">
-        <div class="icon">🔋</div>
         <div class="title">Recharge électrique</div>
         <div class="big">${fmtEur(ve_energie_an/12)}</div>
         <div class="per">par mois · soit ${fmtEur(ve_energie_an)}/an</div>
@@ -1560,7 +1646,6 @@ function calcMode1() {
         </div>
       </div>
       <div class="compare-card th">
-        <div class="icon">⛽</div>
         <div class="title">Carburant ${th_carbu}</div>
         <div class="big">${fmtEur(th_energie_an/12)}</div>
         <div class="per">par mois · soit ${fmtEur(th_energie_an)}/an</div>
@@ -1593,7 +1678,7 @@ function calcMode1() {
     <p class="lead">Un moteur électrique a beaucoup moins de pièces qui s'usent (pas de vidange, pas de courroie, freins préservés grâce à la récupération d'énergie). L'assurance est globalement comparable.</p>
     <div class="compare-cards">
       <div class="compare-card ve">
-        <div class="title">🔋 VE — entretien + assurance</div>
+        <div class="title">VE — entretien + assurance</div>
         <div class="big">${fmtEur(ve_ent + ve_ass)}</div>
         <div class="per">par an</div>
         <div class="breakdown">
@@ -1602,7 +1687,7 @@ function calcMode1() {
         </div>
       </div>
       <div class="compare-card th">
-        <div class="title">⛽ Thermique — entretien + assurance</div>
+        <div class="title">Thermique — entretien + assurance</div>
         <div class="big">${fmtEur(th_ent + th_ass)}</div>
         <div class="per">par an</div>
         <div class="breakdown">
@@ -1620,12 +1705,12 @@ function calcMode1() {
     <p class="lead">Toute voiture perd de la valeur. Cette perte fait partie du coût réel. Pour les VE, c'est l'incertitude principale&nbsp;: le marché de l'occasion est jeune et la technologie évolue.</p>
     <div class="compare-cards">
       <div class="compare-card ve">
-        <div class="title">🔋 Valeur VE après ${N} ans</div>
+        <div class="title">Valeur VE après ${N} ans</div>
         <div class="big">${fmtEur(ve_residuel)}</div>
         <div class="per">${pct(dec_ve)} du prix neuf</div>
       </div>
       <div class="compare-card th">
-        <div class="title">⛽ Valeur thermique après ${N} ans</div>
+        <div class="title">Valeur thermique après ${N} ans</div>
         <div class="big">${fmtEur(th_residuel)}</div>
         <div class="per">${pct(dec_th)} du prix neuf</div>
       </div>
@@ -1643,8 +1728,8 @@ function calcMode1() {
     <h2><span class="step-num">5</span>Le bilan année après année</h2>
     <p class="lead">Voici comment se cumulent les dépenses au fil du temps. La voiture la plus avantageuse est celle dont la courbe reste la plus basse.</p>
     ${cumulativeChart(N, [
-      {label: '🔋 Coût cumulé VE', color: COL_VE, acq: ve_acq, annuel: ve_usage_an},
-      {label: '⛽ Coût cumulé thermique', color: COL_TH, acq: th_acq, annuel: th_usage_an}
+      {label: 'Coût cumulé VE', color: COL_VE, acq: ve_acq, annuel: ve_usage_an},
+      {label: 'Coût cumulé thermique', color: COL_TH, acq: th_acq, annuel: th_usage_an}
     ])}
     <p class="lead">
       ${bascule === 0 ? `Le VE part déjà moins cher (les aides compensent le prix catalogue). Aucun rattrapage à attendre — l'avantage est immédiat.` :
@@ -1660,15 +1745,15 @@ function calcMode1() {
 
   if (ecartRel < 0.05) {
     verdictVariant = 'fr-callout--brown-caramel';
-    headline = '⚖ Match nul';
+    headline = 'Match nul';
     detail = `L'écart de ${fmtEur(Math.abs(ecart))} sur ${N} ans (${(ecartRel*100).toFixed(1)} %) est trop faible pour conclure. Les incertitudes sur les hypothèses (décote, prix de l'énergie) peuvent renverser le résultat. Décidez sur d'autres critères : confort, contraintes ZFE, engagement écologique.`;
   } else if (ecart > 0) {
     verdictVariant = 'fr-callout--green-emeraude';
-    headline = `🔋 L'électrique est gagnant de ${fmtEur(ecart)} sur ${N} ans`;
+    headline = `L'électrique est gagnant de ${fmtEur(ecart)} sur ${N} ans`;
     detail = `Soit ${fmtEur(ecart / (N*12))}/mois d'économie en moyenne. Coût total VE&nbsp;: ${fmtEur(ve_tco)} · coût total thermique&nbsp;: ${fmtEur(th_tco)}.`;
   } else {
     verdictVariant = 'fr-callout--orange-terre-battue';
-    headline = `⛽ Le thermique reste gagnant de ${fmtEur(-ecart)} sur ${N} ans`;
+    headline = `Le thermique reste gagnant de ${fmtEur(-ecart)} sur ${N} ans`;
     detail = `Coût total thermique&nbsp;: ${fmtEur(th_tco)} · coût total VE&nbsp;: ${fmtEur(ve_tco)}. Le VE deviendrait avantageux si vous le gardiez plus longtemps${bascule ? ` (à partir de ${bascule.toFixed(1)} ans)` : ''} ou si vous rouliez plus.`;
   }
 
@@ -1772,7 +1857,7 @@ function calcMode2() {
       ${barRow('− Revente voiture actuelle', a_rev, null, ve_prix, 'discount')}
     </div>
     <div class="compare-card" style="margin-top: 1rem;">
-      <div class="title">💰 Cash à sortir aujourd'hui</div>
+      <div class="title">Cash à sortir aujourd'hui</div>
       <div class="big">${fmtEur(apport_net)}</div>
       <div class="per">${fmtEur(ve_prix)} − ${fmtEur(prime)} − ${fmtEur(surbonus)} + ${fmtEur(borne)} − ${fmtEur(a_rev)}</div>
     </div>
@@ -1795,7 +1880,7 @@ function calcMode2() {
     <p class="lead">L'apport initial est partiellement compensé par des coûts d'usage plus faibles. Pour vos ${km.toLocaleString('fr-FR')} km/an&nbsp;:</p>
     <div class="compare-cards">
       <div class="compare-card current">
-        <div class="title">📅 Si vous gardez l'actuelle</div>
+        <div class="title">Si vous gardez l'actuelle</div>
         <div class="big">${fmtEur(a_usage_an/12)}</div>
         <div class="per">par mois</div>
         <div class="breakdown">
@@ -1805,7 +1890,7 @@ function calcMode2() {
         </div>
       </div>
       <div class="compare-card ve">
-        <div class="title">🔋 Avec un VE neuf</div>
+        <div class="title">Avec un VE neuf</div>
         <div class="big">${fmtEur(ve_usage_an/12)}</div>
         <div class="per">par mois</div>
         <div class="breakdown">
@@ -1833,7 +1918,7 @@ function calcMode2() {
       : payback === null
         ? `<div class="fr-callout fr-callout--orange-terre-battue fr-callout--sm"><p class="fr-callout__text"><strong>Jamais rentabilisé</strong> dans ce scénario : le VE ne génère pas d'économie d'usage suffisante.</p></div>`
         : `<div class="compare-card" style="text-align:center; max-width: 25rem; margin: 0 auto;">
-            <div class="title">⏱ Temps de retour sur investissement</div>
+            <div class="title">Temps de retour sur investissement</div>
             <div class="big">${payback.toFixed(1)} ans</div>
             <div class="per">${fmtEur(apport_net)} d'apport ÷ ${fmtEur(eco_usage_an)} d'économie/an</div>
           </div>`}
@@ -1852,17 +1937,17 @@ function calcMode2() {
     <h2><span class="step-num">4</span>Le bilan à ${N} ans</h2>
     <p class="lead">On compare ce que ça coûte au total dans les deux scénarios, en tenant compte de ce qu'il vous reste en patrimoine voiture à la fin.</p>
     ${cumulativeChart(N, [
-      {label: '📅 Garder l\'actuelle (dépréciation + usage)', color: COL_CURRENT, acq: 0, annuel: a_usage_an + a_deprec/N},
-      {label: '🔋 Passer au VE neuf', color: COL_VE, acq: ve_acq_brut - a_rev, annuel: ve_usage_an + (ve_prix - ve_residuel_N)/N}
+      {label: 'Garder l\'actuelle (dépréciation + usage)', color: COL_CURRENT, acq: 0, annuel: a_usage_an + a_deprec/N},
+      {label: 'Passer au VE neuf', color: COL_VE, acq: ve_acq_brut - a_rev, annuel: ve_usage_an + (ve_prix - ve_residuel_N)/N}
     ])}
     <div class="compare-cards">
       <div class="compare-card current">
-        <div class="title">📅 Coût total scénario "garder"</div>
+        <div class="title">Coût total scénario "garder"</div>
         <div class="big">${fmtEur(total_A)}</div>
         <div class="per">Dépréciation ${fmtEur(a_deprec)} + usage ${fmtEur(a_usage_an*N)}</div>
       </div>
       <div class="compare-card ve">
-        <div class="title">🔋 Coût total scénario "passer au VE"</div>
+        <div class="title">Coût total scénario "passer au VE"</div>
         <div class="big">${fmtEur(total_B)}</div>
         <div class="per">Prix net VE − valeur de revente + usage cumulé</div>
       </div>
@@ -1874,15 +1959,15 @@ function calcMode2() {
   const ecartRel = Math.abs(diff) / Math.max(total_A, total_B);
   if (ecartRel < 0.05) {
     verdictVariant = 'fr-callout--brown-caramel';
-    headline = '⚖ Match nul';
+    headline = 'Match nul';
     detail = `Les deux scénarios se valent (écart de ${fmtEur(Math.abs(diff))}, ${(ecartRel*100).toFixed(1)} %). À ce niveau, l'incertitude sur la valeur de revente futur de votre voiture actuelle suffit à faire pencher dans un sens ou l'autre.`;
   } else if (diff > 0) {
     verdictVariant = 'fr-callout--green-emeraude';
-    headline = `🔋 Passer au VE économise ${fmtEur(diff)} sur ${N} ans`;
+    headline = `Passer au VE économise ${fmtEur(diff)} sur ${N} ans`;
     detail = `${payback ? `Retour sur investissement en ${payback.toFixed(1)} ans, ` : ''}puis l'écart se creuse en votre faveur.`;
   } else {
     verdictVariant = 'fr-callout--orange-terre-battue';
-    headline = `📅 Garder votre voiture actuelle reste plus économique (${fmtEur(-diff)} sur ${N} ans)`;
+    headline = `Garder votre voiture actuelle reste plus économique (${fmtEur(-diff)} sur ${N} ans)`;
     detail = `Soit votre voiture actuelle est bien amortie et économique, soit le surcoût d'acquisition VE est trop élevé pour être rattrapé sur ${N} ans.`;
   }
   out += `<div class="fr-callout ${verdictVariant} fr-mt-3w">
@@ -1980,7 +2065,7 @@ function calcMode3() {
       ${barRow('− Revente voiture actuelle', a_rev, null, ve_prix, 'discount')}
     </div>
     <div class="compare-card">
-      <div class="title">💰 Cash à sortir aujourd'hui</div>
+      <div class="title">Cash à sortir aujourd'hui</div>
       <div class="big">${fmtEur(apport_net)}</div>
       <div class="per">Sans aide nationale, l'effort est concentré sur l'apport personnel</div>
     </div>
@@ -1990,7 +2075,7 @@ function calcMode3() {
     <h2><span class="step-num">2</span>Qu'en est-il de la batterie&nbsp;?</h2>
     <p class="lead">C'est le point le plus critique pour un VE d'occasion. Une batterie dégradée perd de l'autonomie et peut nécessiter un remplacement coûteux (5 000 à 15 000 € selon le modèle).</p>
     <div class="compare-card" style="border-top-color: ${risqueColor};">
-      <div class="title">🔋 État de santé batterie (SoH)</div>
+      <div class="title">État de santé batterie (SoH)</div>
       <div class="big">${pct(soh)}</div>
       <div class="per">Risque évalué&nbsp;: <strong>${niveau_risque}</strong></div>
       <div class="breakdown">
@@ -2011,12 +2096,12 @@ function calcMode3() {
     <p class="lead">L'avantage d'usage du VE reste fort, même en occasion. Pour vos ${km.toLocaleString('fr-FR')} km/an&nbsp;:</p>
     <div class="compare-cards">
       <div class="compare-card current">
-        <div class="title">📅 Garder l'actuelle</div>
+        <div class="title">Garder l'actuelle</div>
         <div class="big">${fmtEur(a_usage_an/12)}</div>
         <div class="per">par mois (carburant + entretien + assurance)</div>
       </div>
       <div class="compare-card ve">
-        <div class="title">🔋 VE d'occasion</div>
+        <div class="title">VE d'occasion</div>
         <div class="big">${fmtEur(ve_usage_an/12)}</div>
         <div class="per">par mois · conso effective ${ve_conso_eff.toFixed(1)} kWh/100km</div>
       </div>
@@ -2037,7 +2122,7 @@ function calcMode3() {
       : payback === null
         ? `<div class="fr-callout fr-callout--orange-terre-battue fr-callout--sm"><p class="fr-callout__text"><strong>Jamais rentabilisé</strong> sur l'usage seul.</p></div>`
         : `<div class="compare-card" style="text-align:center; max-width: 25rem; margin: 0 auto;">
-            <div class="title">⏱ Temps de retour</div>
+            <div class="title">Temps de retour</div>
             <div class="big">${payback.toFixed(1)} ans</div>
             <div class="per">${fmtEur(apport_net)} d'apport ÷ ${fmtEur(eco_usage_an)} d'économie/an</div>
           </div>`}
@@ -2047,11 +2132,11 @@ function calcMode3() {
     <h2><span class="step-num">5</span>Le bilan à ${N} ans</h2>
     <div class="compare-cards">
       <div class="compare-card current">
-        <div class="title">📅 Garder l'actuelle</div>
+        <div class="title">Garder l'actuelle</div>
         <div class="big">${fmtEur(total_A)}</div>
       </div>
       <div class="compare-card ve">
-        <div class="title">🔋 VE d'occasion</div>
+        <div class="title">VE d'occasion</div>
         <div class="big">${fmtEur(total_B_clean)}</div>
       </div>
     </div>
@@ -2062,15 +2147,15 @@ function calcMode3() {
   const ecartRel = Math.abs(diff) / Math.max(total_A, total_B_clean);
   if (ecartRel < 0.05) {
     verdictVariant = 'fr-callout--brown-caramel';
-    headline = '⚖ Match nul';
+    headline = 'Match nul';
     detail = `L'écart est trop faible (${fmtEur(Math.abs(diff))}) pour être conclusif compte tenu de l'incertitude batterie.`;
   } else if (diff > 0) {
     verdictVariant = 'fr-callout--green-emeraude';
-    headline = `🔋 Le VE d'occasion est financièrement intéressant (+${fmtEur(diff)} sur ${N} ans)`;
+    headline = `Le VE d'occasion est financièrement intéressant (+${fmtEur(diff)} sur ${N} ans)`;
     detail = `À pondérer par le niveau de risque batterie ${niveau_risque}. Plus l'état de santé est élevé, plus ce verdict est fiable.`;
   } else {
     verdictVariant = 'fr-callout--orange-terre-battue';
-    headline = `📅 Garder votre voiture actuelle reste plus économique`;
+    headline = `Garder votre voiture actuelle reste plus économique`;
     detail = `Sur ce prix et ce kilométrage, l'opération ne se rentabilise pas en ${N} ans. Soit visez une occasion moins chère, soit un kilométrage plus élevé.`;
   }
   out += `<div class="fr-callout ${verdictVariant} fr-mt-3w">
@@ -2096,7 +2181,7 @@ function calcMode3() {
 // Sources communes
 function sourcesHTML() {
   return `<details class="fr-mt-3w">
-    <summary>📚 Sources & méthodologie</summary>
+    <summary>Sources & méthodologie</summary>
     <div class="fr-mt-1w fr-text--sm" style="color: var(--text-mention-grey)">
       <ul>
         <li><strong>Prime CEE "coup de pouce VPE"</strong> 2026 : economie.gouv.fr · ecologie.gouv.fr (montants liés au cours des CEE, indicatifs).</li>
@@ -2128,9 +2213,23 @@ document.querySelectorAll('#app input, #app select').forEach(el => {
 // ====================================================
 // WIZARD — Surcouche guidée pour usager final
 // ====================================================
+// Libellés courts pour le stepper (cohérents avec le contenu de chaque étape)
+const WIZARD_STEP_LABELS = {
+  welcome:     'Mode',
+  usage:       'Usage',
+  ve_target:   'VE',
+  th_target:   'Thermique',
+  current_car: 'Actuelle',
+  ve_used:     'VE occas.',
+  fiscal:      'Fiscal',
+  recharge:    'Recharge',
+  recap:       'Bilan',
+};
+
 const wizard = {
   mode: null,
   step: 0,
+  maxStep: 0, // plus haute étape atteinte (pour le clic direct dans le stepper)
   answers: {},
 
   getSteps() {
@@ -2143,11 +2242,49 @@ const wizard = {
 
   start() {
     this.step = 0;
+    this.maxStep = 0;
     this.mode = null;
     this.answers = {};
     $('landing').classList.remove('show');
     $('wizard').classList.add('show');
     this.render();
+  },
+
+  // Saut direct à une étape (clic sur le stepper). Refusé pour les étapes futures.
+  goToStep(target) {
+    if (target < 0 || target >= this.getSteps().length) return;
+    if (target > this.maxStep) return;
+    this.step = target;
+    this.render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  },
+
+  renderStepper() {
+    const root = $('wizardStepper');
+    if (!root) return;
+    const steps = this.getSteps();
+    root.innerHTML = steps.map((name, i) => {
+      const lbl = WIZARD_STEP_LABELS[name] || name;
+      const isCurrent = i === this.step;
+      const isVisited = i < this.step || (i <= this.maxStep && i !== this.step);
+      const isFuture = i > this.maxStep;
+      const cls = isCurrent ? 'vw-step--current'
+                : isFuture  ? 'vw-step--future'
+                : 'vw-step--visited';
+      return `
+        <button type="button" class="vw-step ${cls}"
+                role="tab" aria-selected="${isCurrent}"
+                aria-disabled="${isFuture}"
+                ${isFuture ? 'tabindex="-1"' : ''}
+                data-step="${i}"
+                title="${lbl}${isFuture ? ' (non encore atteinte)' : ''}">
+          <span class="vw-step__dot" aria-hidden="true">${isVisited && !isCurrent ? '✓' : (i + 1)}</span>
+          <span class="vw-step__lbl">${lbl}</span>
+        </button>`;
+    }).join('');
+    root.querySelectorAll('.vw-step').forEach((btn) => {
+      btn.addEventListener('click', () => this.goToStep(parseInt(btn.dataset.step, 10)));
+    });
   },
 
   finish() {
@@ -2164,6 +2301,7 @@ const wizard = {
     const steps = this.getSteps();
     if (this.step < steps.length - 1) {
       this.step++;
+      if (this.step > this.maxStep) this.maxStep = this.step;
       this.render();
       window.scrollTo({top: 0, behavior: 'smooth'});
     } else {
@@ -2182,8 +2320,8 @@ const wizard = {
   render() {
     const steps = this.getSteps();
     const stepName = steps[this.step];
-    $('wizardCounter').textContent = `Étape ${this.step + 1} / ${steps.length}`;
-    $('wizardBar').style.width = `${((this.step + 1) / steps.length) * 100}%`;
+    if (this.step > this.maxStep) this.maxStep = this.step;
+    this.renderStepper();
     $('wizardCard').innerHTML = this.renderStep(stepName);
     this.attachStepHandlers(stepName);
   },
@@ -2246,21 +2384,21 @@ const wizard = {
         <h2 class="question">Quelle est votre situation&nbsp;?</h2>
         <div class="choice-grid">
           <button class="choice-btn ${s===1?'selected':''}" data-choice="1">
-            <span class="icon">🚗</span>
+            <span class="icon fr-icon-car-fill" aria-hidden="true"></span>
             <span>
               <span class="label">J'achète une voiture neuve, j'hésite entre les deux</span>
               <span class="desc">Vous voulez comparer le coût d'un VE neuf à un thermique neuf équivalent.</span>
             </span>
           </button>
           <button class="choice-btn ${s===2?'selected':''}" data-choice="2">
-            <span class="icon">🔄</span>
+            <span class="icon fr-icon-refresh-line" aria-hidden="true"></span>
             <span>
               <span class="label">J'ai déjà une voiture, je veux la revendre pour un VE neuf</span>
               <span class="desc">Vous évaluez si le changement vaut le coup, en tenant compte de la revente.</span>
             </span>
           </button>
           <button class="choice-btn ${s===3?'selected':''}" data-choice="3">
-            <span class="icon">🛒</span>
+            <span class="icon fr-icon-shopping-cart-2-line" aria-hidden="true"></span>
             <span>
               <span class="label">J'ai déjà une voiture, je veux passer à un VE d'occasion</span>
               <span class="desc">Plus accessible, mais sans aide nationale et avec un risque batterie à évaluer.</span>
@@ -2294,10 +2432,10 @@ const wizard = {
           <div class="slider-bounds"><span>3 000</span><span>40 000</span></div>
         </div>
         <div class="pill-group" id="kmPresets">
-          <button class="pill" data-km="6000">🏘 Petit rouleur — 6 000 km</button>
-          <button class="pill" data-km="13000">🚗 Moyen — 13 000 km</button>
-          <button class="pill" data-km="20000">🛣 Gros rouleur — 20 000 km</button>
-          <button class="pill" data-km="30000">📈 Très gros — 30 000 km</button>
+          <button class="pill" data-km="6000">Petit rouleur — 6 000 km</button>
+          <button class="pill" data-km="13000">Moyen — 13 000 km</button>
+          <button class="pill" data-km="20000">Gros rouleur — 20 000 km</button>
+          <button class="pill" data-km="30000">Très gros — 30 000 km</button>
         </div>
 
         <h2 class="question">Combien d'années comptez-vous garder cette voiture&nbsp;?</h2>
@@ -2325,8 +2463,8 @@ const wizard = {
 
         <h2 class="question">Quel carburant utilise-t-elle&nbsp;?</h2>
         <div class="pill-group" id="carbuPills">
-          <button class="pill ${carbu==='essence'?'selected':''}" data-carbu="essence">⛽ Essence</button>
-          <button class="pill ${carbu==='diesel'?'selected':''}" data-carbu="diesel">🛢 Diesel</button>
+          <button class="pill ${carbu==='essence'?'selected':''}" data-carbu="essence">Essence</button>
+          <button class="pill ${carbu==='diesel'?'selected':''}" data-carbu="diesel">Diesel</button>
         </div>
 
         <h2 class="question">Combien consomme-t-elle&nbsp;?</h2>
@@ -2402,8 +2540,8 @@ const wizard = {
 
         <h2 class="question">Quel carburant&nbsp;?</h2>
         <div class="pill-group" id="thCarbuPills">
-          <button class="pill ${carbu==='essence'?'selected':''}" data-carbu="essence">⛽ Essence</button>
-          <button class="pill ${carbu==='diesel'?'selected':''}" data-carbu="diesel">🛢 Diesel</button>
+          <button class="pill ${carbu==='essence'?'selected':''}" data-carbu="essence">Essence</button>
+          <button class="pill ${carbu==='diesel'?'selected':''}" data-carbu="diesel">Diesel</button>
         </div>
 
         <h2 class="question">Prix catalogue&nbsp;?</h2>
@@ -2496,21 +2634,21 @@ const wizard = {
         <p class="hint">Vous le trouvez en page 2 ou 3 de votre avis d'imposition. C'est le RFR divisé par le nombre de parts du foyer.</p>
         <div class="choice-grid" id="rfrChoices">
           <button class="choice-btn ${rfr==5700?'selected':''}" data-rfr="5700">
-            <span class="icon">💰</span>
+            <span class="icon fr-icon-money-euro-circle-line" aria-hidden="true"></span>
             <span>
               <span class="label">≤ 16 300 € par part</span>
               <span class="desc">Ménages modestes ou en précarité → aide jusqu'à 5 700 €</span>
             </span>
           </button>
           <button class="choice-btn ${rfr==4700?'selected':''}" data-rfr="4700">
-            <span class="icon">💰</span>
+            <span class="icon fr-icon-money-euro-circle-line" aria-hidden="true"></span>
             <span>
               <span class="label">Entre 16 301 € et 26 300 € par part</span>
               <span class="desc">Ménages intermédiaires → aide jusqu'à 4 700 €</span>
             </span>
           </button>
           <button class="choice-btn ${rfr==3500?'selected':''}" data-rfr="3500">
-            <span class="icon">💰</span>
+            <span class="icon fr-icon-money-euro-circle-line" aria-hidden="true"></span>
             <span>
               <span class="label">&gt; 26 300 € par part</span>
               <span class="desc">Autres ménages → aide jusqu'à 3 500 €</span>
@@ -2521,9 +2659,9 @@ const wizard = {
         <h2 class="question">Le modèle visé a-t-il une batterie européenne&nbsp;?</h2>
         <p class="hint">Un surbonus de 1 200 à 2 000 € est accordé pour les batteries fabriquées en Europe. La plupart des Renault, Peugeot, Citroën et Stellantis y sont éligibles. Vérifiez la liste ADEME.</p>
         <div class="pill-group" id="surbonusPills">
-          <button class="pill ${surbonus==1500?'selected':''}" data-surbonus="1500">✅ Oui (1 500 €)</button>
-          <button class="pill ${surbonus==2000?'selected':''}" data-surbonus="2000">✅ Oui (2 000 €)</button>
-          <button class="pill ${surbonus==0?'selected':''}" data-surbonus="0">❌ Non éligible</button>
+          <button class="pill ${surbonus==1500?'selected':''}" data-surbonus="1500">Oui (1 500 €)</button>
+          <button class="pill ${surbonus==2000?'selected':''}" data-surbonus="2000">Oui (2 000 €)</button>
+          <button class="pill ${surbonus==0?'selected':''}" data-surbonus="0">Non éligible</button>
         </div>
 
         <div class="wizard-actions">
@@ -2542,28 +2680,28 @@ const wizard = {
 
         <div class="choice-grid" id="rechargeChoices">
           <button class="choice-btn ${profil==='hc_dominant'?'selected':''}" data-recharge="hc_dominant">
-            <span class="icon">🌙</span>
+            <span class="icon fr-icon-moon-line" aria-hidden="true"></span>
             <span>
               <span class="label">À domicile, surtout en heures creuses</span>
               <span class="desc">Le plus économique. Vous programmez la recharge la nuit. ~0,18 €/kWh.</span>
             </span>
           </button>
           <button class="choice-btn ${profil==='mix_optimal'?'selected':''}" data-recharge="mix_optimal">
-            <span class="icon">🏠</span>
+            <span class="icon fr-icon-home-4-line" aria-hidden="true"></span>
             <span>
               <span class="label">À domicile, sans toujours optimiser</span>
               <span class="desc">Recharge à la maison majoritairement, parfois HP. ~0,20 €/kWh moyen.</span>
             </span>
           </button>
           <button class="choice-btn ${profil==='mix_public'?'selected':''}" data-recharge="mix_public">
-            <span class="icon">🔌</span>
+            <span class="icon fr-icon-plug-line" aria-hidden="true"></span>
             <span>
               <span class="label">Mix domicile + bornes publiques</span>
               <span class="desc">Vous avez la borne à domicile mais des longs trajets réguliers. ~0,25 €/kWh moyen.</span>
             </span>
           </button>
           <button class="choice-btn ${profil==='public_dominant'?'selected':''}" data-recharge="public_dominant">
-            <span class="icon">⚡</span>
+            <span class="icon fr-icon-flashlight-fill" aria-hidden="true"></span>
             <span>
               <span class="label">Surtout en borne publique</span>
               <span class="desc">Pas de borne à domicile (copropriété, parking public). Avertissement : économies très réduites.</span>
@@ -2646,7 +2784,7 @@ const wizard = {
 
         <div class="wizard-actions">
           <button class="fr-btn fr-btn--secondary" id="wBack">Retour</button>
-          <button class="fr-btn" id="wNext">🚀 Lancer la simulation</button>
+          <button class="fr-btn" id="wNext">Lancer la simulation</button>
         </div>
       `;
     }
@@ -2833,6 +2971,18 @@ $('landingGuided').addEventListener('click', () => wizard.start());
 $('landingExpert').addEventListener('click', showExpert);
 $('wizardSkip').addEventListener('click', showExpert);
 $('switchToGuided').addEventListener('click', () => wizard.start());
+
+// Raccourcis clavier dans le wizard (← → Esc).
+// Actifs uniquement quand le wizard est visible et qu'on n'est pas dans un champ saisissable.
+document.addEventListener('keydown', (e) => {
+  const wizardVisible = $('wizard') && $('wizard').classList.contains('show');
+  if (!wizardVisible) return;
+  const tag = (e.target.tagName || '').toLowerCase();
+  if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+  if (e.key === 'ArrowRight') { e.preventDefault(); wizard.next(); }
+  else if (e.key === 'ArrowLeft')  { e.preventDefault(); wizard.back(); }
+  else if (e.key === 'Escape')     { e.preventDefault(); showExpert(); }
+});
 
 // Pré-calcul pour que la vue expert soit prête au switch
 recalc();

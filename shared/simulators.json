@@ -48,7 +48,7 @@
       "title": "100 territoires d'électrification",
       "tagline": "Mesure 1 du Plan — carte interactive des territoires accompagnés par l'État, engagements à 2030, financements mobilisés. Données simulées tant que la DGEC n'a pas publié la liste.",
       "status": "beta",
-      "tags": ["territoires", "plan gouvernemental", "cartographie"]
+      "tags": ["territoires", "cartographie"]
     },
     {
       "slug": "dashboard",
