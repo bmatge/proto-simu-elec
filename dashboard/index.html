@@ -239,14 +239,13 @@
             <p class="viz-question">Comment se chauffent les logements diagnostiqués depuis juillet 2021 ?</p>
             <!--
               Dataset ADEME réel : meg-83tjwtg8dyz4vv7h1dqe (« dpe-v2-logements-existants » n'existe pas)
-              Champ : type_energie_principale_chauffage
-              Snapshot servi localement car le CSP de prod n'autorise pas data.ademe.fr
-              dans connect-src (seuls *.gouv.fr et *.opendatasoft.com sont autorisés).
-              Rafraîchir périodiquement via :
-                curl 'https://data.ademe.fr/data-fair/api/v1/datasets/meg-83tjwtg8dyz4vv7h1dqe/values_agg?field=type_energie_principale_chauffage&agg_size=10&size=0&sort=-count' > dashboard/data/dpe-chauffage.json
+              Champ : type_energie_principale_chauffage ; size=0 + agg_size piloté.
+              use-proxy : data.ademe.fr n'est pas dans le CSP connect-src de la prod ;
+              dsfr-data tunnel la requête via chartsbuilder.matge.com/cors-proxy (autorisé).
             -->
             <dsfr-data-source id="dpe-chauffage"
-              url="/dashboard/data/dpe-chauffage.json"
+              url="https://data.ademe.fr/data-fair/api/v1/datasets/meg-83tjwtg8dyz4vv7h1dqe/values_agg?field=type_energie_principale_chauffage&agg_size=10&size=0&sort=-count"
+              use-proxy
               transform="aggs">
             </dsfr-data-source>
             <dsfr-data-chart id="ch-chauffage" source="dpe-chauffage" type="pie"
@@ -267,12 +266,11 @@
             <p class="viz-question">Quelle part des logements diagnostiqués sont des passoires (F-G) ?</p>
             <!--
               Champ : etiquette_dpe ; sort=key trie alphabétiquement (A→G).
-              Snapshot servi localement (cf. dpe-chauffage ci-dessus).
-              Rafraîchir via :
-                curl 'https://data.ademe.fr/data-fair/api/v1/datasets/meg-83tjwtg8dyz4vv7h1dqe/values_agg?field=etiquette_dpe&agg_size=7&size=0&sort=key' > dashboard/data/dpe-classe.json
+              use-proxy : cf. dpe-chauffage ci-dessus.
             -->
             <dsfr-data-source id="dpe-classe"
-              url="/dashboard/data/dpe-classe.json"
+              url="https://data.ademe.fr/data-fair/api/v1/datasets/meg-83tjwtg8dyz4vv7h1dqe/values_agg?field=etiquette_dpe&agg_size=7&size=0&sort=key"
+              use-proxy
               transform="aggs">
             </dsfr-data-source>
             <dsfr-data-chart id="ch-classe" source="dpe-classe" type="bar"
