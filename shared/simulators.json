@@ -2,20 +2,21 @@
   "$schema": "Manifest of all simulators. Each entry drives the home page list AND the cross-simulator dropdown in the portal bar. `kind` regroupe sur la home : 'carte' | 'dashboard' | 'simulateur'.",
   "simulators": [
     {
+      "slug": "passer-a-electrique",
+      "kind": "simulateur",
+      "featured": true,
+      "title": "Aide à passer à l'électrique",
+      "tagline": "Pour un foyer : tout ce qui est possible et combien on gagne (mobilité, chauffage, rénovation, solaire) — aides État + économies récurrentes.",
+      "status": "draft",
+      "tags": ["ménages", "synthèse", "aides"]
+    },
+    {
       "slug": "voiture",
       "kind": "simulateur",
       "title": "Achat d'une voiture électrique",
       "tagline": "Comparer le coût total d'une voiture électrique vs thermique sur la durée de détention.",
       "status": "draft",
       "tags": ["mobilité", "ménages"]
-    },
-    {
-      "slug": "poids-lourd",
-      "kind": "simulateur",
-      "title": "Poids lourd électrique vs diesel",
-      "tagline": "TCO d'un poids lourd électrique vs diesel selon le kilométrage, avec l'aide jusqu'à 100 000 € (Mesure 12 du Plan).",
-      "status": "beta",
-      "tags": ["mobilité", "transporteurs", "TCO"]
     },
     {
       "slug": "pompe-a-chaleur",
@@ -26,13 +27,12 @@
       "tags": ["bâtiment", "ménages"]
     },
     {
-      "slug": "passer-a-electrique",
+      "slug": "poids-lourd",
       "kind": "simulateur",
-      "featured": true,
-      "title": "Aide à passer à l'électrique",
-      "tagline": "Pour un foyer : tout ce qui est possible et combien on gagne (mobilité, chauffage, rénovation, solaire) — aides État + économies récurrentes.",
-      "status": "draft",
-      "tags": ["ménages", "synthèse", "aides"]
+      "title": "Poids lourd électrique vs diesel",
+      "tagline": "TCO d'un poids lourd électrique vs diesel selon le kilométrage, avec l'aide jusqu'à 100 000 € (Mesure 12 du Plan).",
+      "status": "beta",
+      "tags": ["mobilité", "transporteurs", "TCO"]
     },
     {
       "slug": "bornes-ve",
