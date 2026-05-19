@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="fr" data-fr-scheme="system">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000091">
+  <title>Suivi du Plan d'électrification — 22 mesures</title>
+  <meta name="description" content="Suivi de la mise en œuvre du Plan d'électrification de la France (Avril 2026) : avancement de chacune des 22 mesures, indicateurs et calendrier.">
+
+  <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/apple-touch-icon.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/utility/utility.min.css">
+
+  <style>
+    /* KPIs */
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 1.5rem 0 2rem; }
+    @media (max-width: 768px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+    .kpi {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      padding: 1rem 1.25rem;
+      border-left: 4px solid #000091;
+    }
+    .kpi__label { font-size: .8125rem; color: #666; margin: 0 0 .25rem; text-transform: uppercase; letter-spacing: .5px; font-weight: 500; }
+    .kpi__value { font-size: 2rem; font-weight: 700; color: #161616; line-height: 1; }
+    .kpi__hint { font-size: .8125rem; color: #666; margin-top: .25rem; }
+    .kpi--info { border-left-color: #0063cb; }
+    .kpi--warn { border-left-color: #b34000; }
+    .kpi--ok { border-left-color: #18753c; }
+
+    /* Timeline / calendrier */
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      border: 1px solid #e5e5e5;
+      background: #fff;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 900px) { .cal-grid { grid-template-columns: 1fr; } }
+    .cal-col { padding: 1rem .75rem; border-right: 1px solid #e5e5e5; min-height: 240px; }
+    .cal-col:last-child { border-right: none; }
+    @media (max-width: 900px) { .cal-col { border-right: none; border-bottom: 1px solid #e5e5e5; min-height: auto; } }
+    .cal-col h3 {
+      font-size: .8125rem;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: #000091;
+      margin: 0 0 .75rem;
+      padding-bottom: .5rem;
+      border-bottom: 2px solid #000091;
+    }
+    .cal-item {
+      display: flex;
+      gap: .5rem;
+      align-items: flex-start;
+      font-size: .8125rem;
+      padding: .375rem 0;
+      border-bottom: 1px dashed #eee;
+      cursor: pointer;
+      color: #161616;
+      text-decoration: none;
+    }
+    .cal-item:hover { background: #f6f6f6; }
+    .cal-item:last-child { border-bottom: none; }
+    .cal-item__num {
+      flex: 0 0 auto;
+      font-family: ui-monospace, monospace;
+      font-size: .6875rem;
+      background: #e3e3fd;
+      color: #000091;
+      padding: 2px 6px;
+      border-radius: 2px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .cal-item__label { flex: 1; line-height: 1.3; }
+    .cal-item__status {
+      flex: 0 0 auto;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      margin-top: 5px;
+    }
+
+    /* Status colors (reused for badges, dots, progress bars) */
+    .st-attente     { background: #6a6af4; }
+    .st-preparation { background: #a558a0; }
+    .st-lancee      { background: #009081; }
+    .st-encours     { background: #d1b781; }
+    .st-atteinte    { background: #18753c; }
+    .st-retard      { background: #ce0500; }
+
+    /* Measure cards */
+    .measure {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-top: 4px solid #000091;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .measure__head { display: flex; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+    .measure__num {
+      background: #000091; color: #fff;
+      font-family: ui-monospace, monospace;
+      font-weight: 700; font-size: .875rem;
+      padding: .25rem .625rem;
+      border-radius: 2px;
+      flex: 0 0 auto;
+    }
+    .measure__title { flex: 1; font-size: 1.0625rem; font-weight: 700; margin: 0; color: #161616; min-width: 200px; }
+    .measure__meta { font-size: .8125rem; color: #666; margin: .5rem 0 1rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+    .measure__meta b { color: #161616; font-weight: 600; }
+
+    .progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin: .5rem 0 1rem;
+    }
+    .progress-bar {
+      flex: 1;
+      height: 8px;
+      background: #f0f0f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-bar__fill {
+      height: 100%;
+      transition: width .3s;
+    }
+    .progress-pct { font-size: .8125rem; font-weight: 600; color: #161616; min-width: 38px; text-align: right; font-family: ui-monospace, monospace; }
+
+    .indicators { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .75rem; margin: 1rem 0; }
+    .indicator {
+      background: #f9f9fc;
+      border: 1px solid #ececf2;
+      padding: .625rem .75rem;
+    }
+    .indicator__label { font-size: .8125rem; color: #666; margin: 0 0 .25rem; line-height: 1.3; }
+    .indicator__values { font-size: 1.125rem; font-weight: 700; color: #161616; font-family: ui-monospace, monospace; }
+    .indicator__sep { color: #999; font-weight: 400; }
+    .indicator__target { font-weight: 400; color: #666; }
+    .indicator__mini {
+      height: 4px; background: #e5e5e5; margin-top: .375rem; border-radius: 2px; overflow: hidden;
+    }
+    .indicator__mini-fill { height: 100%; background: #000091; transition: width .3s; }
+
+    .measure__needed {
+      background: #fef7da;
+      border-left: 3px solid #b34000;
+      padding: .5rem .75rem;
+      font-size: .8125rem;
+      margin-top: .5rem;
+      color: #5a4f25;
+    }
+    .measure__needed strong { color: #716043; }
+    .measure__needed summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: #716043;
+      padding: 0;
+    }
+    .measure__needed[open] { padding-bottom: .75rem; }
+    .measure__needed-body { margin-top: .5rem; }
+
+    /* Status badge */
+    .stbadge {
+      display: inline-flex;
+      align-items: center;
+      gap: .375rem;
+      font-size: .75rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      font-size: .8125rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+      padding: .75rem 1rem;
+      background: #f6f6f6;
+      border-left: 3px solid #000091;
+    }
+    .legend__item { display: flex; align-items: center; gap: .375rem; }
+    .legend__dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+    /* Callout invented */
+    .callout-info {
+      background: #e8edff;
+      padding: 1rem 1.25rem;
+      border-left: 4px solid #000091;
+      margin-bottom: 1.5rem;
+      font-size: .9375rem;
+    }
+    .callout-info h3 { margin: 0 0 .5rem; color: #000091; font-size: 1rem; }
+    .callout-info p { margin: 0; line-height: 1.55; }
+
+    /* Sources table */
+    .src-table { width: 100%; font-size: .8125rem; border-collapse: collapse; background: #fff; }
+    .src-table th, .src-table td { padding: 8px 12px; border-bottom: 1px solid #e5e5e5; text-align: left; vertical-align: top; }
+    .src-table th { background: #f6f6f6; font-weight: 600; color: #161616; }
+    .src-table td code { background: #eee; padding: 1px 4px; font-size: .75rem; }
+  </style>
+  <link rel="stylesheet" href="/shared/portal-bar.css">
+  <script src="/shared/portal-bar.js" defer></script>
+</head>
+<body>
+
+<a class="fr-skiplink" href="#contenu">Contenu</a>
+
+<header role="banner" class="fr-header">
+  <div class="fr-header__body">
+    <div class="fr-container">
+      <div class="fr-header__body-row">
+        <div class="fr-header__brand fr-enlarge-link">
+          <div class="fr-header__brand-top">
+            <div class="fr-header__logo">
+              <p class="fr-logo">République<br>Française</p>
+            </div>
+          </div>
+          <div class="fr-header__service">
+            <a href="/plan-electrification/" title="Suivi du Plan d'électrification">
+              <p class="fr-header__service-title">Suivi du Plan d'électrification de la France</p>
+            </a>
+            <p class="fr-header__service-tagline">22 mesures · Annoncé en avril 2026 · Prototype</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main role="main" id="contenu">
+  <div class="fr-container fr-mt-4w fr-mb-6w">
+
+    <h1>Plan d'électrification — où en est-on&nbsp;?</h1>
+    <p class="fr-text--lead">
+      Suivi opérationnel des <strong>22 mesures</strong> annoncées par le Gouvernement en avril 2026
+      pour accélérer la sortie des énergies fossiles : avancement de chaque mesure, indicateurs cibles
+      et calendrier de mise en œuvre.
+    </p>
+
+    <div class="callout-info">
+      <h3>⚠️ Prototype — valeurs courantes simulées</h3>
+      <p>
+        Ce tableau de bord est un <strong>prototype</strong>. Les valeurs cibles (« Quel objectif&nbsp;? »)
+        et les échéances (« Quand&nbsp;? ») sont issues directement du dossier de presse d'avril 2026.
+        En revanche, les <strong>valeurs courantes</strong> de chaque indicateur sont simulées tant que
+        les remontées officielles ne sont pas branchées. Voir la section
+        <a href="#methodologie">Méthodologie & sources</a> en bas de page pour le détail des
+        sources de données qui seraient nécessaires pour piloter ce dashboard pour de vrai.
+      </p>
+    </div>
+
+    <!-- Global KPIs -->
+    <div class="kpi-grid" id="kpi-grid">
+      <!-- injected by JS -->
+    </div>
+
+    <div class="legend">
+      <span><strong>Légende&nbsp;:</strong></span>
+      <span class="legend__item"><span class="legend__dot st-attente"></span>En attente</span>
+      <span class="legend__item"><span class="legend__dot st-preparation"></span>En préparation</span>
+      <span class="legend__item"><span class="legend__dot st-lancee"></span>Lancée / opérationnelle</span>
+      <span class="legend__item"><span class="legend__dot st-encours"></span>En cours (résultats partiels)</span>
+      <span class="legend__item"><span class="legend__dot st-atteinte"></span>Cible atteinte</span>
+      <span class="legend__item"><span class="legend__dot st-retard"></span>En retard</span>
+    </div>
+
+    <!-- Calendrier -->
+    <h2 class="fr-mt-5w">Calendrier de mise en œuvre</h2>
+    <p class="fr-text--sm">
+      Mesures positionnées sur leur principale échéance opérationnelle (publication du texte,
+      ouverture du dispositif ou entrée en vigueur). Plusieurs mesures ont des jalons intermédiaires&nbsp;:
+      seul le plus structurant figure ici.
+    </p>
+    <div class="cal-grid" id="cal-grid">
+      <!-- injected by JS -->
+    </div>
+
+    <!-- Détail par mesure -->
+    <h2 class="fr-mt-5w">Détail par mesure</h2>
+    <div class="fr-tabs" id="measure-tabs">
+      <ul class="fr-tabs__list" role="tablist" aria-label="Mesures par axe">
+        <li role="presentation"><button id="tab-transversal" class="fr-tabs__tab" tabindex="0" role="tab" aria-selected="true" aria-controls="panel-transversal">Transversal (3)</button></li>
+        <li role="presentation"><button id="tab-batiments" class="fr-tabs__tab" tabindex="-1" role="tab" aria-selected="false" aria-controls="panel-batiments">Bâtiments (5)</button></li>
+        <li role="presentation"><button id="tab-mobilites" class="fr-tabs__tab" tabindex="-1" role="tab" aria-selected="false" aria-controls="panel-mobilites">Mobilités (6)</button></li>
+        <li role="presentation"><button id="tab-industrie" class="fr-tabs__tab" tabindex="-1" role="tab" aria-selected="false" aria-controls="panel-industrie">Industrie, artisanat, agriculture (8)</button></li>
+      </ul>
+      <div id="panel-transversal" class="fr-tabs__panel fr-tabs__panel--selected" role="tabpanel" aria-labelledby="tab-transversal" tabindex="0"></div>
+      <div id="panel-batiments" class="fr-tabs__panel" role="tabpanel" aria-labelledby="tab-batiments" tabindex="0"></div>
+      <div id="panel-mobilites" class="fr-tabs__panel" role="tabpanel" aria-labelledby="tab-mobilites" tabindex="0"></div>
+      <div id="panel-industrie" class="fr-tabs__panel" role="tabpanel" aria-labelledby="tab-industrie" tabindex="0"></div>
+    </div>
+
+    <!-- Méthodologie -->
+    <h2 class="fr-mt-5w" id="methodologie">Méthodologie & sources</h2>
+    <p>
+      Ce prototype synthétise les <strong>cibles et échéances officielles</strong> du dossier de presse
+      « <em>Pour une énergie moins chère, plus souveraine et plus durable</em> » (avril 2026), et les
+      confronte à des indicateurs de suivi. Trois colonnes&nbsp;:
+    </p>
+    <ul>
+      <li><strong>Valeurs courantes</strong> — toutes simulées pour le prototype. Reflètent un état plausible
+        mi-mai 2026, environ 1 mois après l'annonce du plan&nbsp;: la plupart des mesures sont en préparation
+        réglementaire, quelques-unes (M02 piquage, M11/M12 fiches CEE, M17 AAP engins agricoles) sont déjà actives.</li>
+      <li><strong>Cibles & échéances</strong> — extraites directement du dossier de presse,
+        sections « Quel objectif&nbsp;? » et « Quand&nbsp;? » de chaque mesure.</li>
+      <li><strong>Données nécessaires pour suivre en réel</strong> — explicitées dans chaque carte de mesure
+        sous « Données à brancher ». Synthèse dans le tableau ci-dessous.</li>
+    </ul>
+
+    <h3 class="fr-mt-3w">Sources de données qui permettraient un suivi temps réel</h3>
+    <div style="overflow-x:auto;">
+      <table class="src-table" id="src-table">
+        <thead>
+          <tr><th>Famille de données</th><th>Producteur</th><th>Format / accès</th><th>Mesures concernées</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Aides à l'achat de véhicules (VP/VUL/PL)</td>
+            <td>ASP, DGEC</td>
+            <td>Remontées de l'Agence de services et de paiement — pas d'API publique aujourd'hui</td>
+            <td>M09, M10, M11, M12, M13</td>
+          </tr>
+          <tr>
+            <td>Immatriculations VE</td>
+            <td>SDES (MTE), AAA Data</td>
+            <td>Bulletin SDES mensuel · <code>data.gouv.fr</code> immatriculations</td>
+            <td>M09, M10, M11, M12, M13</td>
+          </tr>
+          <tr>
+            <td>Bornes de recharge publiques</td>
+            <td>Avere-France / GIREVE / IRVE</td>
+            <td>Base nationale IRVE (<code>data.gouv.fr</code>, mise à jour quotidienne)</td>
+            <td>M14</td>
+          </tr>
+          <tr>
+            <td>Pompes à chaleur installées</td>
+            <td>Observ'ER, Uniclima, AFPAC</td>
+            <td>Études annuelles, pas de flux temps réel — passage par registre CEE possible</td>
+            <td>M04, M18, M20</td>
+          </tr>
+          <tr>
+            <td>Certificats d'économie d'énergie (CEE)</td>
+            <td>DGEC — registre EMMY (PNCEE)</td>
+            <td>Registre EMMY (export public mensuel)</td>
+            <td>M04, M11, M12, M15, M16, M17, M18, M19, M20</td>
+          </tr>
+          <tr>
+            <td>MaPrimeRénov' & rénovation</td>
+            <td>ANAH</td>
+            <td>Bilan trimestriel ANAH, données ouvertes partielles</td>
+            <td>M06</td>
+          </tr>
+          <tr>
+            <td>Bâtiments / chaudières installées</td>
+            <td>Sit@del, CSTB, Observatoire BBC</td>
+            <td>Sit@del (déclarations PC), pas de granularité énergie sans croisement DPE</td>
+            <td>M05, M06, M07, M08</td>
+          </tr>
+          <tr>
+            <td>Raccordement réseau / file d'attente</td>
+            <td>RTE, Enedis</td>
+            <td>Bilan prévisionnel RTE annuel · <code>opendata.rte-france.com</code></td>
+            <td>M02</td>
+          </tr>
+          <tr>
+            <td>Décrets, arrêtés, fiches CEE</td>
+            <td>Légifrance, JORF</td>
+            <td>API Légifrance (<code>piste.gouv.fr</code>), flux RSS JO</td>
+            <td>M03, M05, M06, M07, M08, M11, M12, M13, M18, M19, M20</td>
+          </tr>
+          <tr>
+            <td>Bâtiments de l'État</td>
+            <td>DIE (Direction de l'immobilier de l'État), OSFi</td>
+            <td>Pas de portail public — données internes</td>
+            <td>M07, M13</td>
+          </tr>
+          <tr>
+            <td>Appels à projets décarbonation industrie</td>
+            <td>Ademe, DGE</td>
+            <td>Annonces des lauréats publiées au cas par cas</td>
+            <td>M15, M16, M21</td>
+          </tr>
+          <tr>
+            <td>Engins agricoles, navires de pêche</td>
+            <td>Ministère de l'Agriculture, FranceAgriMer, DPMA</td>
+            <td>Pas de portail dédié à l'électrification — données à construire</td>
+            <td>M17, M19</td>
+          </tr>
+          <tr>
+            <td>Territoires d'électrification</td>
+            <td>DGEC, ANCT</td>
+            <td>Liste à publier sur <code>ecologie.gouv.fr</code> — pas de plateforme dédiée à ce stade</td>
+            <td>M01</td>
+          </tr>
+          <tr>
+            <td>Contrats d'électricité long terme</td>
+            <td>CRE, EDF</td>
+            <td>Annonces ad-hoc, à formaliser</td>
+            <td>M22</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="fr-text--sm fr-mt-3w" style="color:#666;">
+      <strong>Limites de ce prototype.</strong> Les valeurs courantes simulées visent à montrer ce
+      à quoi <em>ressemblerait</em> un suivi opérationnel — elles ne reflètent pas un état réel.
+      Brancher chacune des familles de données ci-dessus impliquerait un travail d'intégration spécifique
+      (formats hétérogènes, fréquences variables, certaines données absentes du domaine public).
+      Pour un déploiement réel, il faudrait probablement&nbsp;: (1) prioriser 3-5 mesures à fort enjeu politique
+      pour démarrer ; (2) cadrer avec chaque producteur de données le mode de transmission ; (3) prévoir
+      un dispositif manuel de remontée pour les mesures dont les indicateurs n'ont pas de source numérique
+      existante (territoires, AAP en cours d'instruction, etc.).
+    </p>
+  </div>
+</main>
+
+<footer class="fr-footer" role="contentinfo">
+  <div class="fr-container">
+    <div class="fr-footer__body">
+      <div class="fr-footer__brand fr-enlarge-link">
+        <p class="fr-logo">République<br>Française</p>
+      </div>
+      <div class="fr-footer__content">
+        <p class="fr-footer__content-desc">
+          Prototype de suivi du Plan d'électrification — Direction générale de l'énergie et du climat.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   DONNÉES — 22 mesures du Plan d'électrification (avril 2026)
+   Cibles et échéances : sources officielles (dossier de presse 04/2026).
+   Valeurs courantes : SIMULÉES pour ce prototype.
+   ===================================================================== */
+const STATUS_LABEL = {
+  attente:     "En attente",
+  preparation: "En préparation",
+  lancee:      "Lancée",
+  encours:     "En cours",
+  atteinte:    "Cible atteinte",
+  retard:      "En retard"
+};
+
+const MEASURES = [
+  // ============ TRANSVERSAL ============
+  {n:1, axis:"transversal", title:"Lancer 100 territoires d'électrification",
+   status:"preparation", progress:8, deadline:"Été 2026", period:"2026-Q3",
+   target:"100 territoires sélectionnés d'ici l'été 2026, accompagnés sur des objectifs chiffrés.",
+   indicators:[
+     {label:"Territoires sélectionnés", cur:0, tgt:100, unit:""},
+     {label:"Manifestations d'intérêt reçues", cur:42, tgt:null, unit:""}
+   ],
+   needed:"Liste publique des territoires lauréats (DGEC, publication prévue été 2026). Une plateforme de candidature avec compteur public de manifestations d'intérêt n'existe pas à ce jour — à créer pour le suivi temps réel."
+  },
+  {n:2, axis:"transversal", title:"Faciliter l'accès au réseau électrique",
+   status:"lancee", progress:25, deadline:"Avril 2026 → fin 2026", period:"2026-Q2",
+   target:"Piquage 400 kV opérationnel, surréservation déployée, règle « premier prêt premier servi » en délibération CRE avant fin 2026.",
+   indicators:[
+     {label:"Demandes en file d'attente RTE", cur:30, tgt:null, unit:" GW", hint:"3× la conso actuelle de l'industrie"},
+     {label:"Délai moyen raccordement industriel", cur:18, tgt:12, unit:" mois"},
+     {label:"Projets en piquage instruits par RTE", cur:2, tgt:null, unit:""}
+   ],
+   needed:"Bilan prévisionnel RTE (annuel, public). Pour un suivi mensuel : remontée RTE/Enedis du délai moyen et de la file d'attente. Projets en piquage : déclaration RTE au cas par cas."
+  },
+  {n:3, axis:"transversal", title:"Interdire la publicité pour les énergies fossiles",
+   status:"preparation", progress:15, deadline:"Décret avant fin 2026", period:"2026-Q4",
+   target:"Décret pris en application de la loi Climat & Résilience (2021).",
+   indicators:[
+     {label:"Statut du décret", cur:"Rédaction", tgt:"Publié", unit:"", text:true},
+     {label:"Annonceurs sanctionnés (post-décret)", cur:0, tgt:null, unit:""}
+   ],
+   needed:"Suivi Légifrance via API piste.gouv.fr. Post-publication : remontée DGCCRF des sanctions appliquées."
+  },
+
+  // ============ AXE 1 — BÂTIMENTS ============
+  {n:4, axis:"batiments", title:"Offre « clés en main » de pompes à chaleur",
+   status:"preparation", progress:12, deadline:"Labellisation à l'automne 2026", period:"2026-Q3",
+   target:"25 000 ménages bénéficiaires (court terme). 1 000 000 PAC installées en 2030.",
+   indicators:[
+     {label:"Acteurs labellisés", cur:0, tgt:null, unit:""},
+     {label:"Ménages bénéficiaires de l'offre", cur:0, tgt:25000, unit:""},
+     {label:"PAC installées (annuel)", cur:180000, tgt:1000000, unit:"", hint:"cible 2030"}
+   ],
+   needed:"Liste DGEC des acteurs labellisés (à publier). Remontée des bénéficiaires par les acteurs labellisés (à mettre en place). PAC installées : Observ'ER (annuel) ou registre CEE EMMY (mensuel)."
+  },
+  {n:5, axis:"batiments", title:"Fin du gaz dans la construction neuve",
+   status:"preparation", progress:20, deadline:"1er janvier 2027 (logements)", period:"2027",
+   target:"Aucun bâtiment neuf consommant du gaz à compter de 2030.",
+   indicators:[
+     {label:"Logements neufs sans gaz (chauffage principal)", cur:89, tgt:100, unit:" %"},
+     {label:"Statut du texte réglementaire", cur:"Rédaction", tgt:"En vigueur", unit:"", text:true}
+   ],
+   needed:"Sit@del (déclarations de PC) croisé avec déclaration RE2020 énergie. Pas de portail public à ce jour pour cette granularité — passage par le CSTB ou l'Observatoire BBC."
+  },
+  {n:6, axis:"batiments", title:"Flécher les aides à la rénovation vers l'électrification",
+   status:"preparation", progress:25, deadline:"1er sept 2026 (MPR) / 1er janv 2027 (éco-PLS)", period:"2026-Q3",
+   target:"Plus aucune rénovation d'ampleur aidée MPR conduisant à conserver un chauffage gaz.",
+   indicators:[
+     {label:"Rénovations d'ampleur MPR sans gaz à l'issue", cur:72, tgt:100, unit:" %"},
+     {label:"Statut arrêté MPR modifié", cur:"Préparation", tgt:"En vigueur", unit:"", text:true}
+   ],
+   needed:"ANAH bilan trimestriel MPR (publication partielle aujourd'hui — granularité énergie finale à demander). Légifrance pour le statut de l'arrêté."
+  },
+  {n:7, axis:"batiments", title:"Rendre les bâtiments de l'État exemplaires",
+   status:"preparation", progress:10, deadline:"Décret d'ici été 2026", period:"2026-Q3",
+   target:"≈ 80 GWh/an d'achats de gaz évités (5 % des achats de l'État). 20 sites prioritaires en étude.",
+   indicators:[
+     {label:"Sites prioritaires en étude", cur:0, tgt:20, unit:""},
+     {label:"GWh/an de gaz évités", cur:0, tgt:80, unit:" GWh"},
+     {label:"Statut décret seuil 140 k€", cur:"Rédaction", tgt:"Publié", unit:"", text:true}
+   ],
+   needed:"Direction de l'immobilier de l'État (DIE) — données non publiques aujourd'hui. Programme CEE PEPITE pourrait servir de canal pour les remontées."
+  },
+  {n:8, axis:"batiments", title:"Limiter les nouveaux raccordements gaz pour les bâtiments",
+   status:"preparation", progress:18, deadline:"1er janvier 2027", period:"2027",
+   target:"Aucune nouvelle consommation de gaz pour les bâtiments à terme.",
+   indicators:[
+     {label:"Nouveaux raccordements gaz (rythme annuel)", cur:18000, tgt:null, unit:"", hint:"baisse forte attendue dès 2027"},
+     {label:"Statut décret", cur:"Rédaction", tgt:"Publié", unit:"", text:true}
+   ],
+   needed:"GRDF / Enedis pour les compteurs de raccordement nouveaux. Pas d'open data temps réel à ce jour — passage par le rapport annuel GRDF ou ouverture spécifique."
+  },
+
+  // ============ AXE 2 — MOBILITÉS ============
+  {n:9, axis:"mobilites", title:"50 000 véhicules électriques en location sociale (« leasing »)",
+   status:"preparation", progress:30, deadline:"Mi-juillet 2026 (ouverture commandes)", period:"2026-Q3",
+   target:"50 000 véhicules électriques neufs loués à des ménages modestes en 2026.",
+   indicators:[
+     {label:"Véhicules loués (édition 2026)", cur:0, tgt:50000, unit:""},
+     {label:"Offres concessionnaires disponibles", cur:0, tgt:null, unit:""},
+     {label:"Statut dispositif", cur:"Préparation appel d'offres", tgt:"Ouvert", unit:"", text:true}
+   ],
+   needed:"Pilote ASP/DGEC : remontée mensuelle du nombre de contrats signés. Pour les éditions précédentes (2024/2025), le compteur public était mis à jour irrégulièrement — à fiabiliser."
+  },
+  {n:10, axis:"mobilites", title:"Soutien à l'achat pour les « gros rouleurs »",
+   status:"preparation", progress:20, deadline:"Septembre 2026 → 31 décembre 2026", period:"2026-Q3",
+   target:"50 000 véhicules électriques additionnels achetés d'ici fin 2026.",
+   indicators:[
+     {label:"Aides versées « gros rouleurs »", cur:0, tgt:50000, unit:""},
+     {label:"Aide unitaire max", cur:7700, tgt:7700, unit:" €", hint:"VE éco-scoré + batterie EU"},
+     {label:"Statut dispositif", cur:"Préparation", tgt:"Effectif", unit:"", text:true}
+   ],
+   needed:"ASP : remontée des bonus versés conditionnés au critère « gros rouleur ». Croisement avec déclaration de kilométrage annuel (≥ 12 000 km/an) — modalités à définir."
+  },
+  {n:11, axis:"mobilites", title:"Renforcer le soutien à l'achat de VUL électriques",
+   status:"preparation", progress:35, deadline:"1er juin 2026 (nouvelles fiches CEE)", period:"2026-Q2",
+   target:"50 000 VUL électriques en 2026, 70 000 en 2027.",
+   indicators:[
+     {label:"VUL électriques immatriculés 2026 (cumul)", cur:8200, tgt:50000, unit:""},
+     {label:"Part de marché VUL électriques", cur:10, tgt:24, unit:" %"},
+     {label:"Aide max par véhicule", cur:9500, tgt:9500, unit:" €", hint:"très grand VUL fabriqué EU"}
+   ],
+   needed:"SDES (bulletin mensuel immatriculations) pour les volumes et la part de marché. Registre CEE EMMY pour le suivi des fiches bonifiées versées."
+  },
+  {n:12, axis:"mobilites", title:"Renforcer le soutien à l'achat de poids lourds électriques",
+   status:"preparation", progress:35, deadline:"1er juin 2026 (nouvelles fiches CEE)", period:"2026-Q2",
+   target:"2 000 poids lourds neufs électriques en 2026, 4 000 en 2027.",
+   indicators:[
+     {label:"PL électriques immatriculés 2026 (cumul)", cur:300, tgt:2000, unit:""},
+     {label:"Part de marché PL électriques", cur:2, tgt:8, unit:" %"},
+     {label:"Aide max tracteur routier", cur:100000, tgt:100000, unit:" €"}
+   ],
+   needed:"SDES bulletin mensuel. Pour le suivi fin : registre CEE EMMY (fiche bonifiée poids lourds) et croisement avec immatriculations TRM."
+  },
+  {n:13, axis:"mobilites", title:"Rendre les flottes de l'État exemplaires",
+   status:"preparation", progress:15, deadline:"1er janvier 2027 (circulaire)", period:"2027",
+   target:"100 % des renouvellements de l'État en VE dès que possible. ≈ 60 000 véhicules concernés.",
+   indicators:[
+     {label:"Part VE dans renouvellements État 2026", cur:24, tgt:37, unit:" %", hint:"cible loi C&R 2026"},
+     {label:"Renouvellements annuels", cur:6000, tgt:6000, unit:""},
+     {label:"Statut circulaire", cur:"Rédaction", tgt:"Applicable", unit:"", text:true}
+   ],
+   needed:"DAE (Direction des achats de l'État) — données aujourd'hui en interne. Le rapport annuel SPE recense partiellement mais avec retard. À fiabiliser pour suivi infra-annuel."
+  },
+  {n:14, axis:"mobilites", title:"Planifier les bornes de recharge sur le réseau routier national",
+   status:"lancee", progress:22, deadline:"Schéma directeur actif · cibles 2035", period:"longterme",
+   target:"22 000 points VL sur 900 aires d'ici 2035 (×5). 8 000 points PL sur 560 aires.",
+   indicators:[
+     {label:"Points VL réseau routier national", cur:4500, tgt:22000, unit:""},
+     {label:"Aires équipées (VL)", cur:420, tgt:900, unit:""},
+     {label:"Points PL", cur:80, tgt:8000, unit:""},
+     {label:"Points de recharge publics (total France)", cur:185501, tgt:400000, unit:"", hint:"cible 2030"}
+   ],
+   needed:"Base nationale IRVE sur data.gouv.fr (mise à jour quotidienne). Filtrage par réseau (autoroutes / RN) via croisement géographique avec le réseau structurant DIR."
+  },
+
+  // ============ AXE 3 — INDUSTRIE / ARTISANAT / AGRICULTURE ============
+  {n:15, axis:"industrie", title:"Soutenir l'électrification des artisans (fours, rôtisseries, cabines)",
+   status:"preparation", progress:30, deadline:"Prêt Bpifrance 1er mai 2026 · AAP été 2026", period:"2026-Q2",
+   target:"1 000 projets artisans financés via DECARB FLASH (enveloppe 16 M€).",
+   indicators:[
+     {label:"Projets artisans financés", cur:0, tgt:1000, unit:""},
+     {label:"Statut prêt « Action élec ta boîte »", cur:"Préparation", tgt:"Distribué", unit:"", text:true},
+     {label:"Statut guichet DECARB FLASH artisans", cur:"Préparation", tgt:"Ouvert", unit:"", text:true}
+   ],
+   needed:"Ademe (résultats AAP DECARB FLASH publiés au fil de l'eau). Bpifrance (volume de prêts décaissés — bilan mensuel à demander)."
+  },
+  {n:16, axis:"industrie", title:"Accompagner l'électrification des engins de chantier",
+   status:"preparation", progress:25, deadline:"1re relève juin 2026 (10 M€) · 2e relève fin 2026 (40 M€)", period:"2026-Q2",
+   target:"1 000 engins de chantier électriques fabriqués en Europe.",
+   indicators:[
+     {label:"Engins de chantier financés", cur:0, tgt:1000, unit:""},
+     {label:"Enveloppe ouverte cumulée", cur:0, tgt:50, unit:" M€"},
+     {label:"Statut 1re relève AAP", cur:"Préparation", tgt:"Lancée", unit:"", text:true}
+   ],
+   needed:"Ademe — annonce des lauréats à chaque relève. Données fabricant (engins livrés) : pas de portail dédié, remontée à organiser."
+  },
+  {n:17, axis:"industrie", title:"Développer l'offre d'engins agricoles électriques",
+   status:"encours", progress:45, deadline:"AAP en cours jusqu'à juin · 2e relève fin 2026", period:"2026-Q2",
+   target:"150 engins agricoles électriques fabriqués en Europe (phase exploratoire).",
+   indicators:[
+     {label:"Engins agricoles soutenus", cur:6, tgt:150, unit:""},
+     {label:"Enveloppe E-Trans (agri)", cur:10, tgt:10, unit:" M€"},
+     {label:"Statut AAP en cours", cur:"Ouvert", tgt:"Ouvert", unit:"", text:true}
+   ],
+   needed:"Ademe (programme E-Trans, résultats publiés AAP par AAP). Cartographie des bénéficiaires annoncée — à exposer en open data."
+  },
+  {n:18, axis:"industrie", title:"Pompes à chaleur pour serres maraîchères et horticoles",
+   status:"preparation", progress:15, deadline:"Révision fiche CEE d'ici septembre 2026", period:"2026-Q3",
+   target:"400 ha de serres équipées en PAC d'ici 2030 (≈ 20 % du potentiel).",
+   indicators:[
+     {label:"Surface serres équipées PAC", cur:68, tgt:400, unit:" ha"},
+     {label:"Statut révision fiche CEE", cur:"Rédaction", tgt:"Publiée", unit:"", text:true}
+   ],
+   needed:"FranceAgriMer + Ademe (suivi des PAC installées en serres). Registre CEE EMMY filtré sur la fiche dédiée serres."
+  },
+  {n:19, axis:"industrie", title:"Favoriser l'électrification des navires de pêche",
+   status:"preparation", progress:5, deadline:"Fiche CEE déployée fin 2026", period:"2026-Q4",
+   target:"500 navires de pêche équipés d'ici 2030.",
+   indicators:[
+     {label:"Navires équipés", cur:0, tgt:500, unit:""},
+     {label:"Statut fiche CEE", cur:"Préparation", tgt:"Déployée", unit:"", text:true}
+   ],
+   needed:"DPMA (Direction des pêches maritimes et de l'aquaculture). Registre CEE EMMY post-publication de la fiche."
+  },
+  {n:20, axis:"industrie", title:"Renforcer les aides PAC / chaudières élec. / CMV industrielles",
+   status:"preparation", progress:30, deadline:"Mai 2026 (PAC) · Juillet (chaudières) · Octobre (CMV)", period:"2026-Q2",
+   target:"≈ 10 TWhc/an pour les PAC industrielles.",
+   indicators:[
+     {label:"PAC industrielles (TWhc/an)", cur:2.1, tgt:10, unit:""},
+     {label:"Fiche CEE PAC industrielle", cur:"Rédaction", tgt:"Publiée", unit:"", text:true},
+     {label:"Fiche CEE chaudière électrique", cur:"Préparation", tgt:"Publiée", unit:"", text:true},
+     {label:"Fiche CEE CMV", cur:"Préparation", tgt:"Publiée", unit:"", text:true}
+   ],
+   needed:"Registre CEE EMMY (export public mensuel) pour les volumes TWhc cumulés par fiche. Légifrance pour le statut des fiches."
+  },
+  {n:21, axis:"industrie", title:"Décarboner et électrifier les grands sites industriels",
+   status:"encours", progress:40, deadline:"Lancement AAP été 2026 · lauréats fin 2026", period:"2026-Q4",
+   target:"≈ 2 TWh électrifiés d'ici 2030 (AO GPID + DECARB-IND).",
+   indicators:[
+     {label:"TWh/an électrifiés (engagés)", cur:0.6, tgt:2, unit:""},
+     {label:"Sites soutenus 1re relève GPID", cur:12, tgt:null, unit:""},
+     {label:"Statut 2e relève GPID", cur:"Préparation", tgt:"Lauréats désignés", unit:"", text:true}
+   ],
+   needed:"DGE + Ademe — annonces des lauréats au fil de l'eau (déjà partiellement public). Pour un suivi en temps réel : portail centralisé à créer."
+  },
+  {n:22, axis:"industrie", title:"Nouveaux contrats d'électricité long terme (8 à 10 ans)",
+   status:"attente", progress:5, deadline:"Mise en vente premiers volumes 2027", period:"2027",
+   target:"D'abord dizaines de MW, puis 1 GW dans les prochaines années.",
+   indicators:[
+     {label:"Capacité ouverte (MW)", cur:0, tgt:1000, unit:""},
+     {label:"Statut dispositif", cur:"Préparation", tgt:"Premiers volumes en vente", unit:"", text:true}
+   ],
+   needed:"CRE + EDF — annonces ad-hoc. Pour le suivi : portail ou bulletin CRE à formaliser."
+  }
+];
+
+/* =====================================================================
+   RENDU
+   ===================================================================== */
+const AXIS_LABEL = {
+  transversal: "Transversal",
+  batiments:   "Bâtiments",
+  mobilites:   "Mobilités",
+  industrie:   "Industrie, artisanat, agriculture"
+};
+const PERIOD_LABEL = {
+  "2026-Q2":   "2026 · Q2 (mai-juin)",
+  "2026-Q3":   "2026 · Q3 (juil-sept)",
+  "2026-Q4":   "2026 · Q4 (oct-déc)",
+  "2027":      "2027",
+  "longterme": "2030 → 2035 (long terme)"
+};
+const PERIOD_ORDER = ["2026-Q2","2026-Q3","2026-Q4","2027","longterme"];
+
+function el(tag, cls, html) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (html != null) e.innerHTML = html;
+  return e;
+}
+
+/* ---------- KPIs ---------- */
+function renderKPIs() {
+  const grid = document.getElementById("kpi-grid");
+  const counts = MEASURES.reduce((acc, m) => {
+    acc.total++;
+    acc[m.status] = (acc[m.status] || 0) + 1;
+    return acc;
+  }, {total:0});
+  const tiles = [
+    { label:"Mesures au total",  value: counts.total,           hint:"3 transversales + 19 sectorielles", cls:"" },
+    { label:"En préparation",    value: counts.preparation || 0, hint:"décrets, arrêtés, consultations", cls:"kpi--info" },
+    { label:"Lancées / en cours",value: (counts.lancee||0) + (counts.encours||0), hint:"dispositifs opérationnels", cls:"kpi--warn" },
+    { label:"Cibles atteintes",  value: counts.atteinte || 0,   hint:"ras à mi-mai 2026", cls:"kpi--ok" }
+  ];
+  tiles.forEach(t => {
+    const k = el("div", "kpi " + t.cls);
+    k.appendChild(el("p", "kpi__label", t.label));
+    k.appendChild(el("p", "kpi__value", t.value));
+    k.appendChild(el("p", "kpi__hint", t.hint));
+    grid.appendChild(k);
+  });
+}
+
+/* ---------- Calendrier ---------- */
+function renderCalendar() {
+  const grid = document.getElementById("cal-grid");
+  PERIOD_ORDER.forEach(p => {
+    const col = el("div", "cal-col");
+    col.appendChild(el("h3", null, PERIOD_LABEL[p]));
+    const ms = MEASURES.filter(m => m.period === p).sort((a,b)=>a.n-b.n);
+    if (!ms.length) {
+      col.appendChild(el("p", "fr-text--sm", "<em style='color:#999'>Aucune mesure</em>"));
+    } else {
+      ms.forEach(m => {
+        const a = el("a", "cal-item");
+        a.href = "#m" + m.n;
+        a.innerHTML =
+          `<span class="cal-item__num">M${String(m.n).padStart(2,'0')}</span>
+           <span class="cal-item__label">${m.title}</span>
+           <span class="cal-item__status st-${m.status}" title="${STATUS_LABEL[m.status]}"></span>`;
+        col.appendChild(a);
+      });
+    }
+    grid.appendChild(col);
+  });
+}
+
+/* ---------- Carte mesure ---------- */
+function renderMeasure(m) {
+  const card = el("article", "measure");
+  card.id = "m" + m.n;
+
+  // Head
+  const head = el("div", "measure__head");
+  head.appendChild(el("span", "measure__num", "M" + String(m.n).padStart(2,'0')));
+  head.appendChild(el("h3", "measure__title", m.title));
+  const badge = el("span", "stbadge st-" + m.status, STATUS_LABEL[m.status]);
+  head.appendChild(badge);
+  card.appendChild(head);
+
+  // Meta
+  const meta = el("div", "measure__meta");
+  meta.innerHTML =
+    `<span>📅 <b>Échéance&nbsp;:</b> ${m.deadline}</span>
+     <span>🎯 <b>Objectif&nbsp;:</b> ${m.target}</span>`;
+  card.appendChild(meta);
+
+  // Progress
+  const pw = el("div", "progress-wrap");
+  const bar = el("div", "progress-bar");
+  const fill = el("div", "progress-bar__fill st-" + m.status);
+  fill.style.width = m.progress + "%";
+  bar.appendChild(fill);
+  pw.appendChild(bar);
+  pw.appendChild(el("span", "progress-pct", m.progress + "%"));
+  card.appendChild(pw);
+
+  // Indicators
+  const inds = el("div", "indicators");
+  m.indicators.forEach(i => {
+    const card2 = el("div", "indicator");
+    card2.appendChild(el("p", "indicator__label", i.label + (i.hint ? ` <em style='color:#999;font-weight:400;font-size:.75rem'>(${i.hint})</em>` : "")));
+    if (i.text) {
+      card2.appendChild(el("p", "indicator__values",
+        `<span style="font-size:.9375rem">${i.cur}</span> <span class="indicator__sep">→</span> <span class="indicator__target" style="font-size:.9375rem">${i.tgt}</span>`));
+    } else {
+      const curFmt = formatNum(i.cur) + (i.unit||"");
+      const tgtFmt = i.tgt == null ? "—" : formatNum(i.tgt) + (i.unit||"");
+      card2.appendChild(el("p", "indicator__values",
+        `${curFmt} <span class="indicator__sep">/</span> <span class="indicator__target">${tgtFmt}</span>`));
+      if (i.tgt != null && typeof i.cur === "number") {
+        const ratio = Math.min(100, Math.round((i.cur / i.tgt) * 100));
+        const mini = el("div", "indicator__mini");
+        const mfill = el("div", "indicator__mini-fill");
+        mfill.style.width = ratio + "%";
+        mini.appendChild(mfill);
+        card2.appendChild(mini);
+      }
+    }
+    inds.appendChild(card2);
+  });
+  card.appendChild(inds);
+
+  // Needed data
+  const det = el("details", "measure__needed");
+  det.innerHTML = `<summary>Données à brancher pour suivre en réel</summary>
+                   <div class="measure__needed-body">${m.needed}</div>`;
+  card.appendChild(det);
+
+  return card;
+}
+
+function formatNum(n) {
+  if (typeof n !== "number") return String(n);
+  if (n >= 1000) return n.toLocaleString("fr-FR");
+  if (Number.isInteger(n)) return String(n);
+  return n.toLocaleString("fr-FR", {maximumFractionDigits: 2});
+}
+
+function renderPanels() {
+  ["transversal","batiments","mobilites","industrie"].forEach(axis => {
+    const panel = document.getElementById("panel-" + axis);
+    MEASURES.filter(m => m.axis === axis)
+      .sort((a,b) => a.n - b.n)
+      .forEach(m => panel.appendChild(renderMeasure(m)));
+  });
+}
+
+/* ---------- Init ---------- */
+document.addEventListener("DOMContentLoaded", () => {
+  renderKPIs();
+  renderCalendar();
+  renderPanels();
+
+  // Anchor clicks from calendar → switch tab + scroll
+  document.querySelectorAll(".cal-item").forEach(a => {
+    a.addEventListener("click", (e) => {
+      const target = a.getAttribute("href").slice(1); // "m4"
+      const n = parseInt(target.slice(1), 10);
+      const m = MEASURES.find(x => x.n === n);
+      if (!m) return;
+      e.preventDefault();
+      // switch tab
+      const tab = document.getElementById("tab-" + m.axis);
+      if (tab) tab.click();
+      // scroll
+      setTimeout(() => {
+        const el = document.getElementById(target);
+        if (el) el.scrollIntoView({behavior:"smooth", block:"start"});
+      }, 200);
+    });
+  });
+});
+</script>
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.module.min.js"></script>
+<script type="text/javascript" nomodule src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.nomodule.min.js"></script>
+</body>
+</html>

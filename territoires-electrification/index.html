@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="fr" data-fr-scheme="system">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000091">
+  <title>Carte des 100 territoires d'électrification — Mesure 1 du Plan</title>
+  <meta name="description" content="Carte interactive des 100 territoires d'électrification annoncés par le Plan d'électrification de la France (avril 2026, Mesure 1). Statut, engagements chiffrés, financements mobilisés.">
+
+  <link rel="icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/utility/utility.min.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/dsfr-data@0.7.1/dist/dsfr-data.umd.js"></script>
+
+  <style>
+    /* Custom element block (sinon le contenu en fr-grid-row ne s'étire pas) */
+    dsfr-data-facets { display: block; }
+    dsfr-data-facets .fr-grid-row > [class^="fr-col-"] { margin-bottom: 1rem; }
+
+    /* 3 facettes en fr-col-3 avec fr-col-offset-1 devant chaque (1+3+1+3+1+3 = 12) */
+    dsfr-data-facets .fr-grid-row > .fr-col-3 { margin-left: 8.33333%; }
+
+    /* KPI grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0 2rem;
+    }
+    @media (max-width: 992px) { .kpi-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 600px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+    .kpi {
+      background: #fff;
+      border: 1px solid var(--border-default-grey, #e5e5e5);
+      border-left: 4px solid var(--background-action-high-blue-france, #000091);
+      padding: .875rem 1rem;
+    }
+    .kpi__lbl { font-size: .75rem; color: var(--text-mention-grey, #666); text-transform: uppercase; letter-spacing: .5px; font-weight: 500; }
+    .kpi__val { font-size: 1.625rem; font-weight: 700; line-height: 1.1; margin: .375rem 0 .25rem; font-variant-numeric: tabular-nums; color: var(--text-action-high-blue-france, #000091); }
+    .kpi__hint { font-size: .75rem; color: var(--text-mention-grey, #666); }
+
+    /* Facets panel */
+    .filters-panel {
+      background: var(--background-alt-grey, #f6f6f6);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Map */
+    #terr-map { height: 640px; }
+
+    /* Tooltip Leaflet en style DSFR — bleu france, marianne, plus visible */
+    .leaflet-tooltip {
+      background: var(--background-action-high-blue-france, #000091);
+      color: #fff;
+      font-family: Marianne, Arial, sans-serif;
+      font-weight: 600;
+      font-size: .875rem;
+      padding: 4px 10px;
+      border: none;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, .25);
+      white-space: nowrap;
+    }
+    .leaflet-tooltip-top::before  { border-top-color:    var(--background-action-high-blue-france, #000091); }
+    .leaflet-tooltip-bottom::before { border-bottom-color: var(--background-action-high-blue-france, #000091); }
+    .leaflet-tooltip-left::before  { border-left-color:  var(--background-action-high-blue-france, #000091); }
+    .leaflet-tooltip-right::before { border-right-color: var(--background-action-high-blue-france, #000091); }
+
+    /* ============ Side panel territoires (DSFR rich) ============ */
+    .terr-panel { font-family: Marianne, Arial, sans-serif; }
+
+    /* Header zone */
+    .terr-panel__head {
+      background: var(--background-contrast-blue-france, #e3e3fd);
+      margin: -1rem -1rem 1rem;  /* override panel-body padding */
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border-default-grey, #ddd);
+    }
+    .terr-badges { display: flex; gap: .375rem; flex-wrap: wrap; margin-bottom: .625rem; }
+    .terr-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: .6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .terr-badge--type {
+      background: #fff;
+      color: var(--text-default-grey, #3a3a3a);
+      border: 1px solid var(--border-default-grey, #ddd);
+    }
+    .terr-badge--statut { color: #fff; }
+
+    .terr-panel__loc, .terr-panel__pop {
+      margin: .25rem 0 0;
+      font-size: .875rem;
+      color: var(--text-default-grey, #3a3a3a);
+      display: flex;
+      align-items: center;
+      gap: .375rem;
+    }
+    .terr-panel__pop strong { color: var(--text-title-grey, #161616); font-weight: 700; }
+    .terr-panel__loc [class^="fr-icon-"],
+    .terr-panel__pop [class^="fr-icon-"] {
+      color: var(--text-action-high-blue-france, #000091);
+      --icon-size: 1rem;
+    }
+
+    /* Progression globale */
+    .terr-progress {
+      background: var(--background-default-grey, #fff);
+      border: 1px solid var(--border-default-grey, #ddd);
+      padding: .625rem .875rem;
+      margin: 0 0 1.25rem;
+    }
+    .terr-progress__head {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-size: .8125rem; color: var(--text-mention-grey, #666);
+    }
+    .terr-progress__head strong { font-size: 1.125rem; color: var(--text-title-grey, #161616); font-variant-numeric: tabular-nums; }
+    .terr-progress__bar {
+      height: 8px; background: #e5e5e5; border-radius: 4px; overflow: hidden; margin: .375rem 0;
+    }
+    .terr-progress__fill { height: 100%; transition: width .3s; }
+    .terr-progress__meta { font-size: .75rem; color: var(--text-mention-grey, #666); margin: .125rem 0 0; }
+
+    /* Section heading */
+    .terr-panel__h {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-action-high-blue-france, #000091);
+      margin: 1.25rem 0 .625rem;
+      padding-bottom: .25rem;
+      border-bottom: 2px solid var(--background-action-high-blue-france, #000091);
+      font-weight: 700;
+    }
+
+    /* Pilotage field */
+    .terr-field {
+      display: flex; align-items: flex-start; gap: .625rem;
+      margin: .5rem 0;
+      font-size: .875rem;
+      line-height: 1.4;
+    }
+    .terr-field [class^="fr-icon-"] {
+      color: var(--text-action-high-blue-france, #000091);
+      flex: 0 0 auto;
+      margin-top: 2px;
+      --icon-size: 1rem;
+    }
+    .terr-field b { display: block; font-size: .75rem; color: var(--text-mention-grey, #666); font-weight: 600; text-transform: uppercase; letter-spacing: .25px; }
+
+    /* Axes tags */
+    .terr-axes { display: flex; gap: .375rem; flex-wrap: wrap; padding: 0; margin: 0; list-style: none; }
+
+    /* Engagement card */
+    .terr-engage {
+      background: var(--background-default-grey, #fff);
+      border-left: 3px solid var(--background-action-high-blue-france, #000091);
+      padding: .625rem .75rem;
+      margin: .625rem 0;
+    }
+    .terr-engage__head {
+      display: flex; align-items: center; gap: .5rem; margin-bottom: .375rem;
+    }
+    .terr-engage__head [class^="fr-icon-"] {
+      color: var(--text-action-high-blue-france, #000091);
+      --icon-size: 1rem;
+      flex: 0 0 auto;
+    }
+    .terr-engage__lbl { flex: 1; font-size: .8125rem; font-weight: 600; color: var(--text-title-grey, #161616); }
+    .terr-engage__pct { font-size: .8125rem; font-weight: 700; color: var(--text-action-high-blue-france, #000091); font-variant-numeric: tabular-nums; min-width: 3em; text-align: right; }
+    .terr-engage__bar { height: 6px; background: #e5e5e5; border-radius: 3px; overflow: hidden; margin-bottom: .25rem; }
+    .terr-engage__fill { height: 100%; background: var(--background-action-high-blue-france, #000091); transition: width .3s; }
+    .terr-engage__num { font-size: .75rem; color: var(--text-mention-grey, #666); font-variant-numeric: tabular-nums; margin: 0; }
+
+    /* Financements */
+    .terr-finance {
+      background: var(--background-contrast-blue-france, #e3e3fd);
+      padding: .75rem .875rem;
+    }
+    .terr-finance__total {
+      display: flex; align-items: baseline; gap: .5rem;
+      margin-bottom: .625rem; padding-bottom: .5rem;
+      border-bottom: 1px solid rgba(0,0,145,.15);
+    }
+    .terr-finance__total-val { font-size: 1.5rem; font-weight: 800; color: var(--text-action-high-blue-france, #000091); font-variant-numeric: tabular-nums; }
+    .terr-finance__total-lbl { font-size: .75rem; color: var(--text-mention-grey, #666); text-transform: uppercase; letter-spacing: .5px; }
+    .terr-finance__line {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-size: .8125rem; padding: 3px 0;
+    }
+    .terr-finance__line:not(:last-child) { border-bottom: 1px dotted rgba(0,0,145,.15); }
+    .terr-finance__dispositif { color: var(--text-default-grey, #3a3a3a); }
+    .terr-finance__montant { font-weight: 600; color: var(--text-action-high-blue-france, #000091); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+    /* Jalons timeline */
+    .terr-jalon {
+      display: grid; grid-template-columns: 16px 1fr; gap: .75rem;
+      margin: .5rem 0; padding: .5rem 0;
+      position: relative;
+    }
+    .terr-jalon__dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      margin-top: 5px;
+      background: var(--background-action-high-blue-france, #000091);
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1px var(--background-action-high-blue-france, #000091);
+    }
+    .terr-jalon--future .terr-jalon__dot { background: #fff; }
+    .terr-jalon b { font-size: .6875rem; color: var(--text-mention-grey, #666); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
+    .terr-jalon p { margin: .125rem 0 0; font-size: .875rem; color: var(--text-default-grey, #3a3a3a); line-height: 1.4; }
+
+    /* CTA */
+    .terr-panel__cta { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-default-grey, #ddd); }
+
+    /* Méthodologie */
+    .methodo {
+      background: var(--background-alt-grey, #f6f6f6);
+      padding: 1.5rem;
+      font-size: .875rem;
+      line-height: 1.6;
+    }
+    .methodo table { width: 100%; border-collapse: collapse; margin-top: .5rem; }
+    .methodo th, .methodo td { padding: .5rem .5rem; text-align: left; border-bottom: 1px solid #ddd; vertical-align: top; }
+    .methodo th { background: #fff; font-weight: 600; }
+    .methodo code { background: #e5e5e5; padding: 1px 5px; font-size: .8125rem; }
+
+    .callout-info {
+      background: #e8edff;
+      padding: 1rem 1.25rem;
+      border-left: 4px solid #000091;
+      margin-bottom: 1.5rem;
+      font-size: .9375rem;
+    }
+    .callout-info h3 { margin: 0 0 .5rem; color: #000091; font-size: 1rem; }
+    .callout-info p { margin: 0; line-height: 1.55; }
+  </style>
+  <link rel="stylesheet" href="/shared/portal-bar.css">
+  <script src="/shared/portal-bar.js" defer></script>
+</head>
+<body>
+
+<a class="fr-skiplink" href="#contenu">Contenu</a>
+
+<header role="banner" class="fr-header">
+  <div class="fr-header__body">
+    <div class="fr-container fr-container--xl">
+      <div class="fr-header__body-row">
+        <div class="fr-header__brand fr-enlarge-link">
+          <div class="fr-header__brand-top">
+            <div class="fr-header__logo"><p class="fr-logo">République<br>Française</p></div>
+          </div>
+          <div class="fr-header__service">
+            <a href="/territoires-electrification/" title="Carte des 100 territoires d'électrification">
+              <p class="fr-header__service-title">100 territoires d'électrification</p>
+            </a>
+            <p class="fr-header__service-tagline">Mesure 1 du Plan d'électrification · prototype carto · données simulées</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main role="main" id="contenu" class="fr-container fr-container--xl fr-py-3w">
+
+  <h1 class="fr-h2 fr-mb-1w">100 territoires d'électrification — carte interactive</h1>
+  <p class="fr-text--lead fr-mb-2w">
+    Les territoires (communes, EPCI, départements pilotes) volontaires pour accélérer
+    l'électrification de leurs usages (transports, bâtiments, ménages). Sélection
+    progressive d'ici l'été 2026, avec accompagnement État et engagements chiffrés à 2030.
+  </p>
+
+  <div class="callout-info">
+    <h3>⚠️ Prototype — données simulées</h3>
+    <p>
+      La DGEC publiera la liste réelle des 100 territoires <strong>d'ici l'été 2026</strong>.
+      En attendant, ce prototype <strong>simule l'API</strong> avec un fichier JSON statique
+      <code>/data/territoires.json</code> (100 entrées plausibles, distribution réaliste par région).
+      Quand la vraie liste sortira, il suffira de remplacer le contenu du JSON — le pipeline
+      <code>dsfr-data</code> reste inchangé. Voir la section <em>Méthodologie & sources</em>.
+    </p>
+  </div>
+
+  <!-- ============ PIPELINE DSFR-DATA ============ -->
+
+  <!-- Source : JSON statique servi comme une API generique -->
+  <dsfr-data-source id="terr-data" url="/territoires-electrification/data/territoires.json"></dsfr-data-source>
+
+  <!-- ============ KPIs ============ -->
+  <div class="kpi-grid" id="kpi-grid"><!-- injected --></div>
+
+  <!-- ============ FILTRES ============ -->
+  <div class="filters-panel">
+    <details>
+      <summary class="fr-text--md fr-text--bold">
+        <span class="fr-icon-filter-line" aria-hidden="true"></span> Filtres
+      </summary>
+      <div class="fr-mt-2w">
+        <dsfr-data-facets id="terr-facets" source="terr-data"
+          fields="region,statut_label,type"
+          labels="region:Région | statut_label:Statut | type:Type de territoire"
+          display="region:multiselect | statut_label:multiselect | type:multiselect"
+          cols="3"
+          searchable="region"
+          max-values="6"></dsfr-data-facets>
+      </div>
+    </details>
+  </div>
+
+  <!-- ============ CARTE ============ -->
+  <dsfr-data-map id="terr-map" center="46.6,2.3" zoom="6" min-zoom="3" max-zoom="14"
+                 tiles="ign-plan" height="640px">
+    <dsfr-data-map-layer id="layer-territoires" source="terr-facets" type="marker"
+      lat-field="lat" lon-field="lon"
+      color-field="statut"
+      color-map="candidat:#6a6af4,retenu:#0063cb,conventionné:#c98d00,en_oeuvre:#18753c,abouti:#169B62"
+      tooltip-field="nom"
+      cluster cluster-radius="35"></dsfr-data-map-layer>
+
+    <!-- Le contenu est généré par JS (override de _renderTemplate, cf. fin de page) -->
+    <dsfr-data-map-popup id="terr-popup" for="layer-territoires"
+                         mode="panel-right" title-field="nom" width="460px"></dsfr-data-map-popup>
+  </dsfr-data-map>
+
+  <!-- ============ MÉTHODOLOGIE ============ -->
+  <section class="methodo fr-mt-5w">
+    <h2 class="fr-h4">Méthodologie & sources de données</h2>
+
+    <p>
+      Ce prototype <strong>simule un endpoint API</strong> avec un fichier JSON statique
+      servi à <code>/territoires-electrification/data/territoires.json</code>.
+      Côté composants, c'est strictement la même chose qu'une vraie API&nbsp;:
+      <code>&lt;dsfr-data-source url="..."&gt;</code> fetch le JSON, le distribue aux facettes,
+      à la carte, aux KPIs via le bus <em>data-bridge</em>.
+    </p>
+
+    <p>
+      <strong>Pour passer en production</strong> il suffirait de remplacer le contenu du JSON
+      (ou pointer <code>url</code> vers un endpoint DGEC). Aucun changement sur les composants.
+    </p>
+
+    <h3 class="fr-h5">Schéma des données (100 entrées)</h3>
+    <div style="overflow-x: auto;">
+      <table>
+        <thead>
+          <tr><th>Champ</th><th>Type</th><th>Source réelle envisageable</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>id, code_insee</code></td><td>String</td><td>DGEC (liste lauréats, été 2026) + INSEE</td></tr>
+          <tr><td><code>nom, type, region, departement</code></td><td>String</td><td>geo.api.gouv.fr — référentiel administratif</td></tr>
+          <tr><td><code>lat, lon, population</code></td><td>Number</td><td>INSEE (centroids communaux / EPCI)</td></tr>
+          <tr><td><code>statut, date_selection, progression_pct</code></td><td>String / Number</td><td>DGEC — convention État-territoire (à formaliser)</td></tr>
+          <tr><td><code>axe_mobilite, axe_fioul, axe_gaz, ...</code></td><td>Bool</td><td>DGEC — axes prioritaires choisis par le territoire</td></tr>
+          <tr><td><code>elu_referent, direction_etat</code></td><td>String</td><td>DGEC / Préfectures de région</td></tr>
+          <tr><td><code>bornes_cible / actuel</code></td><td>Number</td><td>Cible&nbsp;: convention. Actuel&nbsp;: <a href="https://www.data.gouv.fr/datasets/fichier-consolide-des-bornes-de-recharge-pour-vehicules-electriques/" target="_blank">Base IRVE</a> filtrée par code INSEE</td></tr>
+          <tr><td><code>pac_cible / actuel</code></td><td>Number</td><td>Cible&nbsp;: convention. Actuel&nbsp;: Registre CEE EMMY filtré par dispositif PAC et géolocalisation bénéficiaire</td></tr>
+          <tr><td><code>logements_fioul_*</code></td><td>Number</td><td>Cible&nbsp;: convention. Actuel&nbsp;: ANAH (MaPrimeRénov' parcours sortie fioul) ou France Rénov'</td></tr>
+          <tr><td><code>ve_part_*_pct</code></td><td>Number</td><td>SDES / AAA Data (immatriculations VP/VUL agrégées par EPCI)</td></tr>
+          <tr><td><code>financements[]</code></td><td>Array</td><td>Agrégation Ademe + ANAH + Bpifrance + DGE — pas de portail unifié à ce jour</td></tr>
+          <tr><td><code>convention_url, dernier_jalon, prochain_jalon</code></td><td>String</td><td>DGEC — publication conventions sur ecologie.gouv.fr</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="fr-h5">Limites du prototype</h3>
+    <ul>
+      <li>Les coordonnées sont approchées (centroids communaux/EPCI publics + bruit ±0,05°).</li>
+      <li>Les engagements chiffrés sont générés <strong>proportionnellement à la population</strong>
+        (0,8-2,5 PDC/1000 hab pour les bornes, 8-18 PAC/1000 hab, etc.) — réaliste pour un POC mais à
+        confronter aux conventions réelles.</li>
+      <li>Le statut et la progression suivent une distribution réaliste mi-2026
+        (41 candidats, 37 retenus, 16 conventionnés, 6 en œuvre).</li>
+      <li>Les financements sont des montants plausibles (2-40 €/hab) — un mix réel impliquerait
+        croiser plusieurs sources (Ademe AAP DECARB FLASH, ANAH MPR, Programme Advenir…).</li>
+    </ul>
+
+    <h3 class="fr-h5">Reproduction</h3>
+    <p>
+      Le générateur de données est versionné dans <code>scripts/generate-data.py</code> à côté de cette
+      page. <code>python3 scripts/generate-data.py</code> re-génère le JSON avec une graine aléatoire
+      fixe (reproductible). Pour faire évoluer le schéma, modifier le générateur et relancer.
+    </p>
+  </section>
+
+</main>
+
+<footer class="fr-footer" role="contentinfo">
+  <div class="fr-container">
+    <div class="fr-footer__body">
+      <div class="fr-footer__brand fr-enlarge-link">
+        <p class="fr-logo">République<br>Française</p>
+      </div>
+      <div class="fr-footer__content">
+        <p class="fr-footer__content-desc">
+          Prototype — Direction générale de l'énergie et du climat. Données simulées tant que la DGEC
+          n'a pas publié la liste officielle des 100 territoires.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ KPIs calculés en JS depuis les données chargées ============ -->
+<script>
+(function () {
+  'use strict';
+
+  const NUM = (n) => Number(n || 0).toLocaleString('fr-FR');
+  const KEUR = (n) => Math.round(Number(n || 0) / 1000).toLocaleString('fr-FR') + ' k€';
+  const MEUR = (n) => (Number(n || 0) / 1e6).toLocaleString('fr-FR', { maximumFractionDigits: 1 }) + ' M€';
+  const POP = (n) => {
+    const v = Number(n || 0);
+    if (v >= 1e6) return (v / 1e6).toLocaleString('fr-FR', { maximumFractionDigits: 1 }) + ' M hab';
+    if (v >= 1e3) return Math.round(v / 1e3).toLocaleString('fr-FR') + ' k hab';
+    return v.toLocaleString('fr-FR') + ' hab';
+  };
+
+  function renderKPIs(data) {
+    const total = data.length;
+    const selectionnes = data.filter(d => d.statut !== 'candidat').length;
+    const sum = (field) => data.reduce((a, d) => a + Number(d[field] || 0), 0);
+    const totalPop      = sum('population');
+    const bornesCible   = sum('bornes_cible');
+    const pacCible      = sum('pac_cible');
+    const finEngages    = sum('financement_total_eur');
+
+    const tiles = [
+      { lbl: 'Territoires',            val: `${selectionnes} / ${total}`, hint: 'sélectionnés (candidats inclus)' },
+      { lbl: 'Population couverte',    val: POP(totalPop),                hint: `${total} territoires` },
+      { lbl: 'Bornes IRVE cible',      val: NUM(bornesCible) + ' PDC',    hint: 'cumulé sur l\'ensemble des conventions' },
+      { lbl: 'Pompes à chaleur cible', val: NUM(pacCible),                hint: 'PAC résidentielles, horizon 2030' },
+      { lbl: 'Financements engagés',   val: MEUR(finEngages),             hint: 'tous dispositifs cumulés' }
+    ];
+
+    document.getElementById('kpi-grid').innerHTML = tiles.map(t => `
+      <div class="kpi">
+        <div class="kpi__lbl">${t.lbl}</div>
+        <div class="kpi__val">${t.val}</div>
+        <div class="kpi__hint">${t.hint}</div>
+      </div>
+    `).join('');
+  }
+
+  // Écoute le chargement de la source — réagit aussi aux filtrages côté facets
+  const facets = document.getElementById('terr-facets');
+  const source = document.getElementById('terr-data');
+
+  // Recalcule à chaque changement de filtres : on s'abonne via l'event du bus data-bridge
+  // si dispo, sinon on lit la source à 'dsfr-data-loaded' puis on recalcule via _data interne.
+  function readAndRender() {
+    // Préférer les données filtrées si facets est branché
+    const filtered = (facets && typeof facets.getData === 'function') ? facets.getData() : null;
+    const raw      = (source && typeof source.getData === 'function') ? source.getData() : null;
+    const data = (filtered && filtered.length) ? filtered : (raw || []);
+    if (data.length) renderKPIs(data);
+  }
+
+  source.addEventListener('dsfr-data-loaded', readAndRender);
+  if (facets) {
+    // Le composant émet un event quand les sélections changent
+    facets.addEventListener('dsfr-data-loaded', readAndRender);
+    facets.addEventListener('change', readAndRender);
+  }
+
+  // Init si la source a déjà fini de charger avant qu'on s'abonne
+  setTimeout(readAndRender, 800);
+})();
+</script>
+
+<!-- ============ Override custom du panneau latéral DSFR ============ -->
+<!--
+  Le composant <dsfr-data-map-popup> capte son <template> dans connectedCallback,
+  qui s'exécute AVANT que le parser HTML ait inséré les enfants → _templateEl reste null
+  et le panel retombe sur _buildAutoTable (tableau brut clé/valeur).
+
+  On override _renderTemplate avec une fonction JS qui produit un HTML riche
+  DSFR-conformant (badges, barres de progression, icônes fr-icon-*, timeline jalons).
+-->
+<script>
+(function () {
+  'use strict';
+
+  const STATUT_INFO = {
+    candidat:     { color: '#6a6af4', label: 'Candidature déposée' },
+    retenu:       { color: '#0063cb', label: 'Retenu' },
+    conventionné: { color: '#c98d00', label: 'Conventionné' },
+    en_oeuvre:    { color: '#18753c', label: 'En œuvre' },
+    abouti:       { color: '#169B62', label: 'Objectif atteint' },
+  };
+  const AXE_LABEL = {
+    mobilite: 'Mobilité', fioul: 'Sortie fioul', gaz: 'Sortie gaz',
+    industrie: 'Industrie', agriculture: 'Agriculture',
+  };
+
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
+  const fmtNum = (n) => Number(n || 0).toLocaleString('fr-FR');
+  const fmtMeur = (n) => {
+    const v = Number(n || 0) / 1e6;
+    return v.toLocaleString('fr-FR', { maximumFractionDigits: v < 1 ? 2 : 1 }) + ' M€';
+  };
+  const fmtKeur = (n) => Math.round(Number(n || 0) / 1000).toLocaleString('fr-FR') + ' k€';
+  const fmtDate = (iso) => {
+    if (!iso) return '';
+    try {
+      return new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+    } catch { return iso; }
+  };
+
+  const ENGAGEMENTS = [
+    { key: 'bornes',           icon: 'fr-icon-flashlight-line', label: 'Bornes de recharge IRVE',     unite: 'PDC' },
+    { key: 'pac',              icon: 'fr-icon-home-4-line',     label: 'Pompes à chaleur résidentielles', unite: 'PAC' },
+    { key: 'logements_fioul',  icon: 'fr-icon-drop-line',       label: 'Logements sortis du fioul',   unite: 'logements' },
+    { key: 've',               icon: 'fr-icon-car-line',        label: 'Part de VE dans la flotte',   unite: '', isPct: true },
+  ];
+
+  function buildPanelHTML(t) {
+    if (!t) return '';
+    const s = STATUT_INFO[t.statut] || { color: '#999', label: t.statut_label || '' };
+    const axes = String(t.axes_codes || '').split(',').filter(Boolean).map(c => AXE_LABEL[c] || c);
+
+    const engageBlocks = ENGAGEMENTS.map(e => {
+      const pct     = Number(t[`${e.key}_pct`] || 0);
+      const actuel  = e.isPct ? t.ve_part_actuel_pct : t[`${e.key}_actuel`];
+      const cible   = e.isPct ? t.ve_part_cible_pct  : t[`${e.key}_cible`];
+      const numLine = e.isPct
+        ? `${actuel}% atteint &middot; cible <strong>${cible}%</strong>`
+        : `<strong>${fmtNum(actuel)}</strong> / ${fmtNum(cible)} ${e.unite}`;
+      return `
+        <div class="terr-engage">
+          <div class="terr-engage__head">
+            <span class="${e.icon}" aria-hidden="true"></span>
+            <span class="terr-engage__lbl">${esc(e.label)}</span>
+            <span class="terr-engage__pct">${pct}%</span>
+          </div>
+          <div class="terr-engage__bar"><div class="terr-engage__fill" style="width:${pct}%"></div></div>
+          <p class="terr-engage__num">${numLine}</p>
+        </div>`;
+    }).join('');
+
+    const financeLines = (t.financements || []).map(f => `
+      <div class="terr-finance__line">
+        <span class="terr-finance__dispositif">${esc(f.dispositif)}</span>
+        <span class="terr-finance__montant">${fmtKeur(f.montant)}</span>
+      </div>
+    `).join('');
+
+    return `
+      <div class="terr-panel">
+        <div class="terr-panel__head">
+          <div class="terr-badges">
+            <span class="terr-badge terr-badge--type">${esc(t.type)}</span>
+            <span class="terr-badge terr-badge--statut" style="background:${s.color}">${esc(s.label)}</span>
+          </div>
+          <p class="terr-panel__loc">
+            <span class="fr-icon-map-pin-2-line" aria-hidden="true"></span>
+            ${esc(t.departement)} (${esc(t.dep_code)}) &middot; ${esc(t.region)}
+          </p>
+          <p class="terr-panel__pop">
+            <span class="fr-icon-account-line" aria-hidden="true"></span>
+            <strong>${fmtNum(t.population)}</strong>&nbsp;habitants
+          </p>
+        </div>
+
+        <div class="terr-progress">
+          <div class="terr-progress__head">
+            <span>Avancement global</span>
+            <strong>${t.progression_pct}%</strong>
+          </div>
+          <div class="terr-progress__bar">
+            <div class="terr-progress__fill" style="width:${t.progression_pct}%;background:${s.color}"></div>
+          </div>
+          <p class="terr-progress__meta">Sélectionné le ${fmtDate(t.date_selection)}</p>
+        </div>
+
+        <h4 class="terr-panel__h">Pilotage</h4>
+        <div class="terr-field">
+          <span class="fr-icon-user-line" aria-hidden="true"></span>
+          <div><b>Référent local</b>${esc(t.elu_referent)}</div>
+        </div>
+        <div class="terr-field">
+          <span class="fr-icon-bank-line" aria-hidden="true"></span>
+          <div><b>Pilotage État</b>${esc(t.direction_etat)}</div>
+        </div>
+
+        <h4 class="terr-panel__h">Axes prioritaires</h4>
+        <ul class="terr-axes">
+          ${axes.map(a => `<li class="fr-tag fr-tag--sm">${esc(a)}</li>`).join('')}
+        </ul>
+
+        <h4 class="terr-panel__h">Engagements à 2030</h4>
+        ${engageBlocks}
+
+        <h4 class="terr-panel__h">Financements mobilisés</h4>
+        <div class="terr-finance">
+          <div class="terr-finance__total">
+            <span class="terr-finance__total-val">${fmtMeur(t.financement_total_eur)}</span>
+            <span class="terr-finance__total-lbl">engagés</span>
+          </div>
+          ${financeLines}
+        </div>
+
+        <h4 class="terr-panel__h">Jalons</h4>
+        <div class="terr-jalon terr-jalon--past">
+          <span class="terr-jalon__dot"></span>
+          <div><b>Dernier jalon</b><p>${esc(t.dernier_jalon)}</p></div>
+        </div>
+        <div class="terr-jalon terr-jalon--future">
+          <span class="terr-jalon__dot"></span>
+          <div><b>Prochain jalon</b><p>${esc(t.prochain_jalon)}</p></div>
+        </div>
+
+        <div class="terr-panel__cta">
+          <a class="fr-btn fr-btn--sm fr-btn--secondary fr-icon-arrow-right-line fr-btn--icon-right"
+             href="${esc(t.convention_url)}" target="_blank" rel="noopener">
+            Voir la convention
+          </a>
+        </div>
+      </div>
+    `;
+  }
+
+  // Override la méthode _renderTemplate du composant (cf. dsfr-data 0.7.1).
+  // Le panneau utilise notre HTML au lieu du fallback _buildAutoTable.
+  window.addEventListener('DOMContentLoaded', () => {
+    const popup = document.getElementById('terr-popup');
+    if (popup) popup._renderTemplate = buildPanelHTML;
+  });
+})();
+</script>
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.module.min.js"></script>
+<script nomodule       src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.nomodule.min.js"></script>
+</body>
+</html>

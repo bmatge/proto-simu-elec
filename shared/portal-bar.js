@@ -55,12 +55,26 @@
     return bar;
   }
 
+  function publishHeight(bar) {
+    const update = () => {
+      const h = bar.offsetHeight || 0;
+      document.documentElement.style.setProperty("--portal-bar-height", h + "px");
+    };
+    update();
+    if (typeof ResizeObserver !== "undefined") {
+      new ResizeObserver(update).observe(bar);
+    } else {
+      window.addEventListener("resize", update);
+    }
+  }
+
   function mount() {
     fetch("/shared/simulators.json", { cache: "no-cache" })
       .then((r) => r.json())
       .then((manifest) => {
         const bar = buildBar(manifest, currentSlug());
         document.body.insertBefore(bar, document.body.firstChild);
+        publishHeight(bar);
       })
       .catch(() => {
         /* portal manifest unavailable — skip injection silently */

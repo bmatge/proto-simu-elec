@@ -1,12 +1,70 @@
 {
-  "$schema": "Manifest of all simulators. Each entry drives the home page list AND the cross-simulator dropdown in the portal bar.",
+  "$schema": "Manifest of all simulators. Each entry drives the home page list AND the cross-simulator dropdown in the portal bar. `kind` regroupe sur la home : 'carte' | 'dashboard' | 'simulateur'.",
   "simulators": [
     {
       "slug": "voiture",
+      "kind": "simulateur",
       "title": "Achat d'une voiture électrique",
       "tagline": "Comparer le coût total d'une voiture électrique vs thermique sur la durée de détention.",
       "status": "draft",
       "tags": ["mobilité", "ménages"]
+    },
+    {
+      "slug": "poids-lourd",
+      "kind": "simulateur",
+      "title": "Poids lourd électrique vs diesel",
+      "tagline": "TCO d'un poids lourd électrique vs diesel selon le kilométrage, avec l'aide jusqu'à 100 000 € (Mesure 12 du Plan).",
+      "status": "beta",
+      "tags": ["mobilité", "transporteurs", "TCO"]
+    },
+    {
+      "slug": "pompe-a-chaleur",
+      "kind": "simulateur",
+      "title": "Simulateur pompe à chaleur",
+      "tagline": "Estimer le coût réel d'une pompe à chaleur après aides (MaPrimeRénov', CEE) et son amortissement.",
+      "status": "draft",
+      "tags": ["bâtiment", "ménages"]
+    },
+    {
+      "slug": "passer-a-electrique",
+      "kind": "simulateur",
+      "featured": true,
+      "title": "Aide à passer à l'électrique",
+      "tagline": "Pour un foyer : tout ce qui est possible et combien on gagne (mobilité, chauffage, rénovation, solaire) — aides État + économies récurrentes.",
+      "status": "draft",
+      "tags": ["ménages", "synthèse", "aides"]
+    },
+    {
+      "slug": "bornes-ve",
+      "kind": "carte",
+      "title": "Carte des bornes de recharge IRVE",
+      "tagline": "Visualisation cartographique des points de recharge publics en France à partir de la base IRVE.",
+      "status": "draft",
+      "tags": ["mobilité", "cartographie"]
+    },
+    {
+      "slug": "territoires-electrification",
+      "kind": "carte",
+      "title": "100 territoires d'électrification",
+      "tagline": "Mesure 1 du Plan — carte interactive des territoires accompagnés par l'État, engagements à 2030, financements mobilisés. Données simulées tant que la DGEC n'a pas publié la liste.",
+      "status": "beta",
+      "tags": ["territoires", "plan gouvernemental", "cartographie"]
+    },
+    {
+      "slug": "dashboard",
+      "kind": "dashboard",
+      "title": "Tableau de bord — Électrification de la France",
+      "tagline": "Mix électrique, mobilité, bâtiment, cap 2050 : quatre angles éditoriaux confrontés aux données opendata officielles.",
+      "status": "beta",
+      "tags": ["macro", "données ouvertes"]
+    },
+    {
+      "slug": "plan-electrification",
+      "kind": "dashboard",
+      "title": "Suivi du Plan d'électrification",
+      "tagline": "Avancement des 22 mesures annoncées en avril 2026, indicateurs cibles et calendrier de mise en œuvre.",
+      "status": "beta",
+      "tags": ["pilotage", "plan gouvernemental"]
     }
   ]
 }

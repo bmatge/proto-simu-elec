@@ -1,0 +1,6242 @@
+[
+  {
+    "id": "T001",
+    "nom": "Métropole du Grand Paris",
+    "type": "métropole",
+    "code_insee": "2060992979",
+    "lat": 48.8163,
+    "lon": 2.3869,
+    "region": "Île-de-France",
+    "departement": "Paris",
+    "dep_code": "75",
+    "population": 7100000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-05-18",
+    "progression_pct": 16,
+    "axes_codes": "mobilite,gaz",
+    "axes_label": "Mobilité, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Laurent Leroy, Président de la métropole",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 13847,
+    "bornes_actuel": 2111,
+    "bornes_pct": 15,
+    "pac_cible": 120144,
+    "pac_actuel": 13799,
+    "pac_pct": 11,
+    "logements_fioul_cible": 20527,
+    "logements_fioul_actuel": 2729,
+    "logements_fioul_pct": 13,
+    "ve_part_cible_pct": 45,
+    "ve_part_actuel_pct": 7.6,
+    "ve_pct": 17,
+    "financement_total_eur": 493593000,
+    "financement_total_keur": 493593,
+    "financements": [
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 218926000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 57276000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 128221000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 89170000
+      }
+    ],
+    "financements_resume": "Prêt Action élec ta boîte 218926 k€ · AAP DECARB FLASH 57276 k€ · CEE Transports 128221 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t001",
+    "dernier_jalon": "Convention CEE signée avec un obligé — 2026-06-26",
+    "prochain_jalon": "Audit énergétique du parc public lancé — Q1/2027"
+  },
+  {
+    "id": "T002",
+    "nom": "EPT Plaine Commune",
+    "type": "EPCI",
+    "code_insee": "2060929647",
+    "lat": 48.9125,
+    "lon": 2.4005,
+    "region": "Île-de-France",
+    "departement": "Seine-Saint-Denis",
+    "dep_code": "93",
+    "population": 430000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-05-20",
+    "progression_pct": 16,
+    "axes_codes": "mobilite,fioul,agriculture",
+    "axes_label": "Mobilité, Sortie fioul, Agriculture",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 1,
+    "elu_referent": "M. Philippe Petit, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 950,
+    "bornes_actuel": 159,
+    "bornes_pct": 17,
+    "pac_cible": 6099,
+    "pac_actuel": 1095,
+    "pac_pct": 18,
+    "logements_fioul_cible": 2742,
+    "logements_fioul_actuel": 319,
+    "logements_fioul_pct": 12,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 5.6,
+    "ve_pct": 19,
+    "financement_total_eur": 56096000,
+    "financement_total_keur": 56096,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 6665000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 11811000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 12328000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 12029000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 2027000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 11236000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 6665 k€ · Programme Advenir 11811 k€ · AO Grands Projets Industriels 12328 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t002",
+    "dernier_jalon": "AMO France Rénov' mobilisée — 2026-06-02",
+    "prochain_jalon": "Plan local de déploiement IRVE adopté — Q4/2027"
+  },
+  {
+    "id": "T003",
+    "nom": "EPT Est Ensemble",
+    "type": "EPCI",
+    "code_insee": "2016323852",
+    "lat": 48.918,
+    "lon": 2.4173,
+    "region": "Île-de-France",
+    "departement": "Seine-Saint-Denis",
+    "dep_code": "93",
+    "population": 423000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-06-12",
+    "progression_pct": 15,
+    "axes_codes": "mobilite,gaz",
+    "axes_label": "Mobilité, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Nathalie Robert, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 917,
+    "bornes_actuel": 171,
+    "bornes_pct": 19,
+    "pac_cible": 5080,
+    "pac_actuel": 792,
+    "pac_pct": 16,
+    "logements_fioul_cible": 1183,
+    "logements_fioul_actuel": 200,
+    "logements_fioul_pct": 17,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 4.9,
+    "ve_pct": 16,
+    "financement_total_eur": 54355000,
+    "financement_total_keur": 54355,
+    "financements": [
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 12854000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 7733000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 10226000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 6665000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 16877000
+      }
+    ],
+    "financements_resume": "CEE Transports 12854 k€ · CEE Bâtiment 7733 k€ · AO Grands Projets Industriels 10226 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t003",
+    "dernier_jalon": "Plan local de déploiement IRVE adopté — 2026-08-09",
+    "prochain_jalon": "Réunion publique d'information tenue — Q1/2027"
+  },
+  {
+    "id": "T004",
+    "nom": "CA Versailles Grand Parc",
+    "type": "EPCI",
+    "code_insee": "2060185867",
+    "lat": 48.8277,
+    "lon": 2.134,
+    "region": "Île-de-France",
+    "departement": "Yvelines",
+    "dep_code": "78",
+    "population": 267000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-06-08",
+    "progression_pct": 4,
+    "axes_codes": "fioul",
+    "axes_label": "Sortie fioul",
+    "axe_mobilite": 0,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Christophe Petit, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 426,
+    "bornes_actuel": 21,
+    "bornes_pct": 5,
+    "pac_cible": 2807,
+    "pac_actuel": 124,
+    "pac_pct": 4,
+    "logements_fioul_cible": 1332,
+    "logements_fioul_actuel": 40,
+    "logements_fioul_pct": 3,
+    "ve_part_cible_pct": 45,
+    "ve_part_actuel_pct": 2.1,
+    "ve_pct": 5,
+    "financement_total_eur": 32837000,
+    "financement_total_keur": 32837,
+    "financements": [
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 10395000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 8265000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 5685000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 1614000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 6878000
+      }
+    ],
+    "financements_resume": "Fonds chaleur 10395 k€ · CEE Bâtiment 8265 k€ · Programme Advenir 5685 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t004",
+    "dernier_jalon": "AMO France Rénov' mobilisée — 2026-09-03",
+    "prochain_jalon": "Convention CEE signée avec un obligé — Q2/2027"
+  },
+  {
+    "id": "T005",
+    "nom": "CA Cergy-Pontoise",
+    "type": "EPCI",
+    "code_insee": "2097225156",
+    "lat": 49.0353,
+    "lon": 2.1184,
+    "region": "Île-de-France",
+    "departement": "Val-d'Oise",
+    "dep_code": "95",
+    "population": 208000,
+    "statut": "conventionné",
+    "statut_label": "Conventionné",
+    "date_selection": "2026-08-07",
+    "progression_pct": 20,
+    "axes_codes": "mobilite,fioul,agriculture",
+    "axes_label": "Mobilité, Sortie fioul, Agriculture",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 1,
+    "elu_referent": "M. Laurent Robert, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 477,
+    "bornes_actuel": 70,
+    "bornes_pct": 15,
+    "pac_cible": 3393,
+    "pac_actuel": 832,
+    "pac_pct": 25,
+    "logements_fioul_cible": 807,
+    "logements_fioul_actuel": 204,
+    "logements_fioul_pct": 25,
+    "ve_part_cible_pct": 25,
+    "ve_part_actuel_pct": 5.7,
+    "ve_pct": 23,
+    "financement_total_eur": 25594000,
+    "financement_total_keur": 25594,
+    "financements": [
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 4587000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 5211000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 8038000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 7758000
+      }
+    ],
+    "financements_resume": "Prêt Action élec ta boîte 4587 k€ · AAP DECARB FLASH 5211 k€ · CEE Bâtiment 8038 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t005",
+    "dernier_jalon": "Convention CEE signée avec un obligé — 2026-09-30",
+    "prochain_jalon": "Recensement des chaudières fioul ménages — Q4/2027"
+  },
+  {
+    "id": "T006",
+    "nom": "CA Saint-Quentin-en-Yvelines",
+    "type": "EPCI",
+    "code_insee": "2064038913",
+    "lat": 48.8028,
+    "lon": 2.0001,
+    "region": "Île-de-France",
+    "departement": "Yvelines",
+    "dep_code": "78",
+    "population": 227000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-06-15",
+    "progression_pct": 8,
+    "axes_codes": "mobilite",
+    "axes_label": "Mobilité",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Nathalie Durand, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 270,
+    "bornes_actuel": 23,
+    "bornes_pct": 9,
+    "pac_cible": 2315,
+    "pac_actuel": 155,
+    "pac_pct": 7,
+    "logements_fioul_cible": 640,
+    "logements_fioul_actuel": 63,
+    "logements_fioul_pct": 10,
+    "ve_part_cible_pct": 35,
+    "ve_part_actuel_pct": 2.1,
+    "ve_pct": 6,
+    "financement_total_eur": 11666000,
+    "financement_total_keur": 11666,
+    "financements": [
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 2096000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 1290000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 4172000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 4108000
+      }
+    ],
+    "financements_resume": "Prêt Action élec ta boîte 2096 k€ · CEE Bâtiment 1290 k€ · Programme Advenir 4172 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t006",
+    "dernier_jalon": "Réunion publique d'information tenue — 2026-04-14",
+    "prochain_jalon": "Audit énergétique du parc public lancé — Q1/2027"
+  },
+  {
+    "id": "T007",
+    "nom": "CA Plaine Vallée",
+    "type": "EPCI",
+    "code_insee": "2035487660",
+    "lat": 49.0047,
+    "lon": 2.3469,
+    "region": "Île-de-France",
+    "departement": "Val-d'Oise",
+    "dep_code": "95",
+    "population": 182000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-09",
+    "progression_pct": 1,
+    "axes_codes": "mobilite,fioul,agriculture",
+    "axes_label": "Mobilité, Sortie fioul, Agriculture",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 1,
+    "elu_referent": "M. Philippe Richard, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 222,
+    "bornes_actuel": 2,
+    "bornes_pct": 1,
+    "pac_cible": 3136,
+    "pac_actuel": 32,
+    "pac_pct": 1,
+    "logements_fioul_cible": 817,
+    "logements_fioul_actuel": 5,
+    "logements_fioul_pct": 1,
+    "ve_part_cible_pct": 45,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 4,
+    "financement_total_eur": 24949000,
+    "financement_total_keur": 24949,
+    "financements": [
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 2985000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 7178000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 2198000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 5787000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 3511000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 3290000
+      }
+    ],
+    "financements_resume": "Prêt Action élec ta boîte 2985 k€ · Programme Advenir 7178 k€ · CEE Bâtiment 2198 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t007",
+    "dernier_jalon": "AMO France Rénov' mobilisée — 2026-09-17",
+    "prochain_jalon": "Réunion publique d'information tenue — Q2/2027"
+  },
+  {
+    "id": "T008",
+    "nom": "CA Roissy Pays de France",
+    "type": "EPCI",
+    "code_insee": "2045650176",
+    "lat": 48.9996,
+    "lon": 2.5822,
+    "region": "Île-de-France",
+    "departement": "Val-d'Oise",
+    "dep_code": "95",
+    "population": 351000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-07-23",
+    "progression_pct": 5,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Stéphane Dubois, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 789,
+    "bornes_actuel": 29,
+    "bornes_pct": 4,
+    "pac_cible": 3360,
+    "pac_actuel": 136,
+    "pac_pct": 4,
+    "logements_fioul_cible": 2395,
+    "logements_fioul_actuel": 126,
+    "logements_fioul_pct": 5,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 3.0,
+    "ve_pct": 6,
+    "financement_total_eur": 29331000,
+    "financement_total_keur": 29331,
+    "financements": [
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 8487000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 7675000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 13169000
+      }
+    ],
+    "financements_resume": "CEE Bâtiment 8487 k€ · Programme Advenir 7675 k€ · AO Grands Projets Industriels 13169 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t008",
+    "dernier_jalon": "Convention CEE signée avec un obligé — 2026-09-19",
+    "prochain_jalon": "Cartographie des bâtiments publics au gaz — Q2/2027"
+  },
+  {
+    "id": "T009",
+    "nom": "CA Grand Paris Sud",
+    "type": "EPCI",
+    "code_insee": "2047816686",
+    "lat": 48.6105,
+    "lon": 2.4718,
+    "region": "Île-de-France",
+    "departement": "Essonne",
+    "dep_code": "91",
+    "population": 354000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-25",
+    "progression_pct": 0,
+    "axes_codes": "gaz",
+    "axes_label": "Sortie gaz",
+    "axe_mobilite": 0,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Caroline Laurent, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 882,
+    "bornes_actuel": 0,
+    "bornes_pct": 0,
+    "pac_cible": 3091,
+    "pac_actuel": 0,
+    "pac_pct": 0,
+    "logements_fioul_cible": 1224,
+    "logements_fioul_actuel": 0,
+    "logements_fioul_pct": 0,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 7,
+    "financement_total_eur": 18113000,
+    "financement_total_keur": 18113,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 13338000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 2514000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 2261000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 13338 k€ · AO Grands Projets Industriels 2514 k€ · MaPrimeRénov' 2261 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t009",
+    "dernier_jalon": "Audit énergétique du parc public lancé — 2026-08-20",
+    "prochain_jalon": "Plan local de déploiement IRVE adopté — Q3/2027"
+  },
+  {
+    "id": "T010",
+    "nom": "CA Marne et Gondoire",
+    "type": "EPCI",
+    "code_insee": "2015354599",
+    "lat": 48.9199,
+    "lon": 2.751,
+    "region": "Île-de-France",
+    "departement": "Seine-et-Marne",
+    "dep_code": "77",
+    "population": 113000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-18",
+    "progression_pct": 4,
+    "axes_codes": "mobilite,gaz",
+    "axes_label": "Mobilité, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Pierre Petit, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 249,
+    "bornes_actuel": 7,
+    "bornes_pct": 3,
+    "pac_cible": 953,
+    "pac_actuel": 49,
+    "pac_pct": 5,
+    "logements_fioul_cible": 452,
+    "logements_fioul_actuel": 14,
+    "logements_fioul_pct": 3,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 5,
+    "financement_total_eur": 7399000,
+    "financement_total_keur": 7399,
+    "financements": [
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 3810000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 2727000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 862000
+      }
+    ],
+    "financements_resume": "CEE Transports 3810 k€ · AAP DECARB FLASH 2727 k€ · MaPrimeRénov' 862 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t010",
+    "dernier_jalon": "Plan local de déploiement IRVE adopté — 2026-04-11",
+    "prochain_jalon": "Recensement des chaudières fioul ménages — Q3/2027"
+  },
+  {
+    "id": "T011",
+    "nom": "Ville de Meaux",
+    "type": "commune",
+    "code_insee": "77508",
+    "lat": 48.9431,
+    "lon": 2.9147,
+    "region": "Île-de-France",
+    "departement": "Seine-et-Marne",
+    "dep_code": "77",
+    "population": 54000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-04-28",
+    "progression_pct": 2,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Philippe Moreau, Maire",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 132,
+    "bornes_actuel": 1,
+    "bornes_pct": 1,
+    "pac_cible": 869,
+    "pac_actuel": 19,
+    "pac_pct": 2,
+    "logements_fioul_cible": 349,
+    "logements_fioul_actuel": 6,
+    "logements_fioul_pct": 2,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 5,
+    "financement_total_eur": 4135000,
+    "financement_total_keur": 4135,
+    "financements": [
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 564000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 1784000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 1053000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 734000
+      }
+    ],
+    "financements_resume": "CEE Bâtiment 564 k€ · Programme Advenir 1784 k€ · MaPrimeRénov' 1053 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t011",
+    "dernier_jalon": "Convention CEE signée avec un obligé — 2026-05-28",
+    "prochain_jalon": "Délibération adoptée par le conseil — Q2/2027"
+  },
+  {
+    "id": "T012",
+    "nom": "Ville d'Évry-Courcouronnes",
+    "type": "commune",
+    "code_insee": "91541",
+    "lat": 48.5863,
+    "lon": 2.458,
+    "region": "Île-de-France",
+    "departement": "Essonne",
+    "dep_code": "91",
+    "population": 67000,
+    "statut": "en_oeuvre",
+    "statut_label": "En œuvre",
+    "date_selection": "2026-09-10",
+    "progression_pct": 62,
+    "axes_codes": "fioul,gaz",
+    "axes_label": "Sortie fioul, Sortie gaz",
+    "axe_mobilite": 0,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Patrick Girard, Maire",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 66,
+    "bornes_actuel": 52,
+    "bornes_pct": 79,
+    "pac_cible": 1186,
+    "pac_actuel": 631,
+    "pac_pct": 53,
+    "logements_fioul_cible": 221,
+    "logements_fioul_actuel": 104,
+    "logements_fioul_pct": 47,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 22.5,
+    "ve_pct": 56,
+    "financement_total_eur": 2860000,
+    "financement_total_keur": 2860,
+    "financements": [
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 783000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 1939000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 138000
+      }
+    ],
+    "financements_resume": "Fonds chaleur 783 k€ · AAP DECARB FLASH 1939 k€ · CEE Bâtiment 138 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t012",
+    "dernier_jalon": "AMO France Rénov' mobilisée — 2026-09-23",
+    "prochain_jalon": "Convention CEE signée avec un obligé — Q3/2027"
+  },
+  {
+    "id": "T013",
+    "nom": "Ville de Mantes-la-Jolie",
+    "type": "commune",
+    "code_insee": "78623",
+    "lat": 48.9873,
+    "lon": 1.7568,
+    "region": "Île-de-France",
+    "departement": "Yvelines",
+    "dep_code": "78",
+    "population": 45000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-25",
+    "progression_pct": 5,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Bernard Lefebvre, Maire",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 60,
+    "bornes_actuel": 2,
+    "bornes_pct": 3,
+    "pac_cible": 673,
+    "pac_actuel": 36,
+    "pac_pct": 5,
+    "logements_fioul_cible": 224,
+    "logements_fioul_actuel": 10,
+    "logements_fioul_pct": 4,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 3.1,
+    "ve_pct": 6,
+    "financement_total_eur": 3117000,
+    "financement_total_keur": 3117,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 825000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 1082000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 1210000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 825 k€ · CEE Transports 1082 k€ · CEE Bâtiment 1210 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t013",
+    "dernier_jalon": "Réunion publique d'information tenue — 2026-07-23",
+    "prochain_jalon": "Réunion publique d'information tenue — Q2/2027"
+  },
+  {
+    "id": "T014",
+    "nom": "Ville de Melun",
+    "type": "commune",
+    "code_insee": "77783",
+    "lat": 48.5431,
+    "lon": 2.6659,
+    "region": "Île-de-France",
+    "departement": "Seine-et-Marne",
+    "dep_code": "77",
+    "population": 41000,
+    "statut": "conventionné",
+    "statut_label": "Conventionné",
+    "date_selection": "2026-06-22",
+    "progression_pct": 22,
+    "axes_codes": "fioul,gaz,industrie",
+    "axes_label": "Sortie fioul, Sortie gaz, Industrie",
+    "axe_mobilite": 0,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 1,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Stéphane Durand, Maire",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 79,
+    "bornes_actuel": 12,
+    "bornes_pct": 15,
+    "pac_cible": 420,
+    "pac_actuel": 78,
+    "pac_pct": 19,
+    "logements_fioul_cible": 139,
+    "logements_fioul_actuel": 30,
+    "logements_fioul_pct": 22,
+    "ve_part_cible_pct": 25,
+    "ve_part_actuel_pct": 5.4,
+    "ve_pct": 22,
+    "financement_total_eur": 5975000,
+    "financement_total_keur": 5975,
+    "financements": [
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 1295000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 423000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 1335000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 1166000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 806000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 950000
+      }
+    ],
+    "financements_resume": "Prêt Action élec ta boîte 1295 k€ · Programme Advenir 423 k€ · CEE Bâtiment 1335 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t014",
+    "dernier_jalon": "Audit énergétique du parc public lancé — 2026-07-26",
+    "prochain_jalon": "Plan local de déploiement IRVE adopté — Q4/2027"
+  },
+  {
+    "id": "T015",
+    "nom": "Ville de Trappes",
+    "type": "commune",
+    "code_insee": "78525",
+    "lat": 48.7317,
+    "lon": 2.0252,
+    "region": "Île-de-France",
+    "departement": "Yvelines",
+    "dep_code": "78",
+    "population": 32000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-06-10",
+    "progression_pct": 4,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Nathalie Thomas, Maire",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 66,
+    "bornes_actuel": 2,
+    "bornes_pct": 3,
+    "pac_cible": 407,
+    "pac_actuel": 17,
+    "pac_pct": 4,
+    "logements_fioul_cible": 117,
+    "logements_fioul_actuel": 5,
+    "logements_fioul_pct": 4,
+    "ve_part_cible_pct": 45,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 4,
+    "financement_total_eur": 2550000,
+    "financement_total_keur": 2550,
+    "financements": [
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 232000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 345000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 908000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 923000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 142000
+      }
+    ],
+    "financements_resume": "Programme Advenir 232 k€ · CEE Transports 345 k€ · Fonds chaleur 908 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t015",
+    "dernier_jalon": "Première phase de leasing social livrée — 2026-06-24",
+    "prochain_jalon": "AMO France Rénov' mobilisée — Q4/2027"
+  },
+  {
+    "id": "T016",
+    "nom": "CC du Pays Houdanais",
+    "type": "EPCI",
+    "code_insee": "2062884503",
+    "lat": 48.7992,
+    "lon": 1.6163,
+    "region": "Île-de-France",
+    "departement": "Yvelines",
+    "dep_code": "78",
+    "population": 29000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-06-28",
+    "progression_pct": 5,
+    "axes_codes": "gaz",
+    "axes_label": "Sortie gaz",
+    "axe_mobilite": 0,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Philippe David, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 23,
+    "bornes_actuel": 1,
+    "bornes_pct": 4,
+    "pac_cible": 334,
+    "pac_actuel": 21,
+    "pac_pct": 6,
+    "logements_fioul_cible": 170,
+    "logements_fioul_actuel": 8,
+    "logements_fioul_pct": 5,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 2.9,
+    "ve_pct": 6,
+    "financement_total_eur": 3076000,
+    "financement_total_keur": 3076,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 487000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 795000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 938000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 856000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 487 k€ · Programme Advenir 795 k€ · Fonds chaleur 938 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t016",
+    "dernier_jalon": "Réunion publique d'information tenue — 2026-05-03",
+    "prochain_jalon": "Plan climat-air-énergie territorial révisé — Q1/2027"
+  },
+  {
+    "id": "T017",
+    "nom": "CC Pays de l'Ourcq",
+    "type": "EPCI",
+    "code_insee": "2044392446",
+    "lat": 49.0767,
+    "lon": 3.0168,
+    "region": "Île-de-France",
+    "departement": "Seine-et-Marne",
+    "dep_code": "77",
+    "population": 18000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-06-08",
+    "progression_pct": 1,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Laurent Bernard, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 20,
+    "bornes_actuel": 0,
+    "bornes_pct": 0,
+    "pac_cible": 202,
+    "pac_actuel": 2,
+    "pac_pct": 1,
+    "logements_fioul_cible": 106,
+    "logements_fioul_actuel": 1,
+    "logements_fioul_pct": 1,
+    "ve_part_cible_pct": 35,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 6,
+    "financement_total_eur": 1170000,
+    "financement_total_keur": 1170,
+    "financements": [
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 686000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 172000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 50000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 140000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 122000
+      }
+    ],
+    "financements_resume": "Programme Advenir 686 k€ · AO Grands Projets Industriels 172 k€ · MaPrimeRénov' 50 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t017",
+    "dernier_jalon": "Audit énergétique du parc public lancé — 2026-08-23",
+    "prochain_jalon": "Convention CEE signée avec un obligé — Q4/2027"
+  },
+  {
+    "id": "T018",
+    "nom": "Département de l'Essonne",
+    "type": "département",
+    "code_insee": "91",
+    "lat": 48.5834,
+    "lon": 2.3662,
+    "region": "Île-de-France",
+    "departement": "Essonne",
+    "dep_code": "91",
+    "population": 1300000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-05-29",
+    "progression_pct": 17,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Bernard Girard, Président du Conseil départemental",
+    "direction_etat": "DGEC · ADEME Île-de-France",
+    "bornes_cible": 2312,
+    "bornes_actuel": 497,
+    "bornes_pct": 21,
+    "pac_cible": 22204,
+    "pac_actuel": 3091,
+    "pac_pct": 14,
+    "logements_fioul_cible": 5445,
+    "logements_fioul_actuel": 976,
+    "logements_fioul_pct": 18,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 7.2,
+    "ve_pct": 14,
+    "financement_total_eur": 72262000,
+    "financement_total_keur": 72262,
+    "financements": [
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 23762000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 20906000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 27594000
+      }
+    ],
+    "financements_resume": "MaPrimeRénov' 23762 k€ · CEE Transports 20906 k€ · AAP DECARB FLASH 27594 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t018",
+    "dernier_jalon": "Cartographie des bâtiments publics au gaz — 2026-04-04",
+    "prochain_jalon": "Première phase de leasing social livrée — Q4/2027"
+  },
+  {
+    "id": "T019",
+    "nom": "Métropole de Lyon",
+    "type": "métropole",
+    "code_insee": "2021490777",
+    "lat": 45.7381,
+    "lon": 4.8263,
+    "region": "Auvergne-Rhône-Alpes",
+    "departement": "Rhône",
+    "dep_code": "69",
+    "population": 1411000,
+    "statut": "conventionné",
+    "statut_label": "Conventionné",
+    "date_selection": "2026-07-29",
+    "progression_pct": 24,
+    "axes_codes": "fioul,gaz",
+    "axes_label": "Sortie fioul, Sortie gaz",
+    "axe_mobilite": 0,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Nathalie Dubois, Présidente de la métropole",
+    "direction_etat": "DGEC · ADEME Auvergne-Rhône-Alpes",
+    "bornes_cible": 3334,
+    "bornes_actuel": 956,
+    "bornes_pct": 29,
+    "pac_cible": 22218,
+    "pac_actuel": 5628,
+    "pac_pct": 25,
+    "logements_fioul_cible": 6479,
+    "logements_fioul_actuel": 1389,
+    "logements_fioul_pct": 21,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 8.6,
+    "ve_pct": 29,
+    "financement_total_eur": 170100000,
+    "financement_total_keur": 170100,
+    "financements": [
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 28963000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 21847000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 16674000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 17817000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 34787000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 50012000
+      }
+    ],
+    "financements_resume": "Fonds chaleur 28963 k€ · CEE Transports 21847 k€ · MaPrimeRénov' 16674 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t019",
+    "dernier_jalon": "AMO France Rénov' mobilisée — 2026-04-03",
+    "prochain_jalon": "AMO France Rénov' mobilisée — Q2/2027"
+  },
+  {
+    "id": "T020",
+    "nom": "Grenoble-Alpes Métropole",
+    "type": "métropole",
+    "code_insee": "2047111151",
+    "lat": 45.211,
+    "lon": 5.7722,
+    "region": "Auvergne-Rhône-Alpes",
+    "departement": "Isère",
+    "dep_code": "38",
+    "population": 445000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-06-14",
+    "progression_pct": 16,
+    "axes_codes": "fioul,gaz",
+    "axes_label": "Sortie fioul, Sortie gaz",
+    "axe_mobilite": 0,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Laurent Simon, Président de la métropole",
+    "direction_etat": "DGEC · ADEME Auvergne-Rhône-Alpes",
+    "bornes_cible": 369,
+    "bornes_actuel": 49,
+    "bornes_pct": 13,
+    "pac_cible": 4869,
+    "pac_actuel": 855,
+    "pac_pct": 18,
+    "logements_fioul_cible": 1922,
+    "logements_fioul_actuel": 283,
+    "logements_fioul_pct": 15,
+    "ve_part_cible_pct": 45,
+    "ve_part_actuel_pct": 7.3,
+    "ve_pct": 16,
+    "financement_total_eur": 33719000,
+    "financement_total_keur": 33719,
+    "financements": [
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 2930000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 4147000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 2912000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 9951000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 13779000
+      }
+    ],
+    "financements_resume": "Prêt Action élec ta boîte 2930 k€ · CEE Transports 4147 k€ · Fonds chaleur 2912 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t020",
+    "dernier_jalon": "Plan local de déploiement IRVE adopté — 2026-05-20",
+    "prochain_jalon": "Convention CEE signée avec un obligé — Q4/2027"
+  },
+  {
+    "id": "T021",
+    "nom": "Saint-Étienne Métropole",
+    "type": "métropole",
+    "code_insee": "2030364454",
+    "lat": 45.4046,
+    "lon": 4.3935,
+    "region": "Auvergne-Rhône-Alpes",
+    "departement": "Loire",
+    "dep_code": "42",
+    "population": 408000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-06-20",
+    "progression_pct": 6,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Jean Martin, Président de la métropole",
+    "direction_etat": "DGEC · ADEME Auvergne-Rhône-Alpes",
+    "bornes_cible": 336,
+    "bornes_actuel": 25,
+    "bornes_pct": 7,
+    "pac_cible": 5443,
+    "pac_actuel": 337,
+    "pac_pct": 6,
+    "logements_fioul_cible": 1523,
+    "logements_fioul_actuel": 102,
+    "logements_fioul_pct": 7,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 7,
+    "financement_total_eur": 39105000,
+    "financement_total_keur": 39105,
+    "financements": [
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 15785000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 4730000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 14176000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 2585000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 1829000
+      }
+    ],
+    "financements_resume": "Prêt Action élec ta boîte 15785 k€ · Programme Advenir 4730 k€ · Fonds chaleur 14176 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t021",
+    "dernier_jalon": "Réunion publique d'information tenue — 2026-04-19",
+    "prochain_jalon": "Plan climat-air-énergie territorial révisé — Q1/2027"
+  },
+  {
+    "id": "T022",
+    "nom": "Clermont Auvergne Métropole",
+    "type": "métropole",
+    "code_insee": "2019553585",
+    "lat": 45.7959,
+    "lon": 3.1294,
+    "region": "Auvergne-Rhône-Alpes",
+    "departement": "Puy-de-Dôme",
+    "dep_code": "63",
+    "population": 292000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-16",
+    "progression_pct": 0,
+    "axes_codes": "mobilite,fioul",
+    "axes_label": "Mobilité, Sortie fioul",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Philippe Durand, Président de la métropole",
+    "direction_etat": "DGEC · ADEME Auvergne-Rhône-Alpes",
+    "bornes_cible": 422,
+    "bornes_actuel": 0,
+    "bornes_pct": 0,
+    "pac_cible": 4988,
+    "pac_actuel": 0,
+    "pac_pct": 0,
+    "logements_fioul_cible": 1120,
+    "logements_fioul_actuel": 0,
+    "logements_fioul_pct": 0,
+    "ve_part_cible_pct": 25,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 8,
+    "financement_total_eur": 22415000,
+    "financement_total_keur": 22415,
+    "financements": [
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 2321000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 5117000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 8233000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 5798000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 946000
+      }
+    ],
+    "financements_resume": "CEE Bâtiment 2321 k€ · Prêt Action élec ta boîte 5117 k€ · Fonds chaleur 8233 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t022",
+    "dernier_jalon": "Recensement des chaudières fioul ménages — 2026-09-28",
+    "prochain_jalon": "Recensement des chaudières fioul ménages — Q4/2027"
+  },
+  {
+    "id": "T023",
+    "nom": "Grand Annecy",
+    "type": "EPCI",
+    "code_insee": "2087342561",
+    "lat": 45.8532,
+    "lon": 6.155,
+    "region": "Auvergne-Rhône-Alpes",
+    "departement": "Haute-Savoie",
+    "dep_code": "74",
+    "population": 213000,
+    "statut": "conventionné",
+    "statut_label": "Conventionné",
+    "date_selection": "2026-08-20",
+    "progression_pct": 38,
+    "axes_codes": "mobilite,fioul,industrie",
+    "axes_label": "Mobilité, Sortie fioul, Industrie",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 1,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Olivier Petit, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Auvergne-Rhône-Alpes",
+    "bornes_cible": 404,
+    "bornes_actuel": 114,
+    "bornes_pct": 28,
+    "pac_cible": 3638,
+    "pac_actuel": 1105,
+    "pac_pct": 30,
+    "logements_fioul_cible": 1324,
+    "logements_fioul_actuel": 445,
+    "logements_fioul_pct": 34,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 22.7,
+    "ve_pct": 45,
+    "financement_total_eur": 12401000,
+    "financement_total_keur": 12401,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 1077000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 749000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 3923000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 3035000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 2452000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 1165000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 1077 k€ · AO Grands Projets Industriels 749 k€ · Programme Advenir 3923 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t023",
+    "dernier_jalon": "Plan climat-air-énergie territorial révisé — 2026-08-29",
+    "prochain_jalon": "Délibération adoptée par le conseil — Q3/2027"
+  },
+  {
+    "id": "T024",
+    "nom": "Grand Chambéry",
+    "type": "EPCI",
+    "code_insee": "2065465150",
+    "lat": 45.52,
+    "lon": 5.9196,
+    "region": "Auvergne-Rhône-Alpes",
+    "departement": "Savoie",
+    "dep_code": "73",
+    "population": 138000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-07-10",
+    "progression_pct": 9,
+    "axes_codes": "gaz",
+    "axes_label": "Sortie gaz",
+    "axe_mobilite": 0,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Bernard Lefebvre, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Auvergne-Rhône-Alpes",
+    "bornes_cible": 301,
+    "bornes_actuel": 25,
+    "bornes_pct": 8,
+    "pac_cible": 2441,
+    "pac_actuel": 196,
+    "pac_pct": 8,
+    "logements_fioul_cible": 636,
+    "logements_fioul_actuel": 43,
+    "logements_fioul_pct": 7,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 2.4,
+    "ve_pct": 8,
+    "financement_total_eur": 6811000,
+    "financement_total_keur": 6811,
+    "financements": [
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 1600000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 884000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 4327000
+      }
+    ],
+    "financements_resume": "Prêt Action élec ta boîte 1600 k€ · MaPrimeRénov' 884 k€ · CEE Transports 4327 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t024",
+    "dernier_jalon": "AMO France Rénov' mobilisée — 2026-04-01",
+    "prochain_jalon": "AMO France Rénov' mobilisée — Q4/2027"
+  },
+  {
+    "id": "T025",
+    "nom": "Valence Romans Agglo",
+    "type": "EPCI",
+    "code_insee": "2061484043",
+    "lat": 44.9024,
+    "lon": 4.9016,
+    "region": "Auvergne-Rhône-Alpes",
+    "departement": "Drôme",
+    "dep_code": "26",
+    "population": 220000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-07-17",
+    "progression_pct": 15,
+    "axes_codes": "mobilite,gaz",
+    "axes_label": "Mobilité, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Marie Morel, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Auvergne-Rhône-Alpes",
+    "bornes_cible": 224,
+    "bornes_actuel": 33,
+    "bornes_pct": 15,
+    "pac_cible": 2393,
+    "pac_actuel": 257,
+    "pac_pct": 11,
+    "logements_fioul_cible": 1422,
+    "logements_fioul_actuel": 229,
+    "logements_fioul_pct": 16,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 5.1,
+    "ve_pct": 17,
+    "financement_total_eur": 33272000,
+    "financement_total_keur": 33272,
+    "financements": [
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 7397000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 4606000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 6431000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 4694000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 2726000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 7418000
+      }
+    ],
+    "financements_resume": "CEE Bâtiment 7397 k€ · Prêt Action élec ta boîte 4606 k€ · MaPrimeRénov' 6431 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t025",
+    "dernier_jalon": "Réunion publique d'information tenue — 2026-06-02",
+    "prochain_jalon": "Réunion publique d'information tenue — Q2/2027"
+  },
+  {
+    "id": "T026",
+    "nom": "CA du Pays Voironnais",
+    "type": "EPCI",
+    "code_insee": "2061167978",
+    "lat": 45.3539,
+    "lon": 5.5978,
+    "region": "Auvergne-Rhône-Alpes",
+    "departement": "Isère",
+    "dep_code": "38",
+    "population": 95000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-06-01",
+    "progression_pct": 18,
+    "axes_codes": "fioul",
+    "axes_label": "Sortie fioul",
+    "axe_mobilite": 0,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Caroline David, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Auvergne-Rhône-Alpes",
+    "bornes_cible": 203,
+    "bornes_actuel": 41,
+    "bornes_pct": 20,
+    "pac_cible": 1013,
+    "pac_actuel": 219,
+    "pac_pct": 22,
+    "logements_fioul_cible": 238,
+    "logements_fioul_actuel": 44,
+    "logements_fioul_pct": 18,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 8.9,
+    "ve_pct": 18,
+    "financement_total_eur": 13243000,
+    "financement_total_keur": 13243,
+    "financements": [
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 3558000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 3329000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 3731000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 1052000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 1573000
+      }
+    ],
+    "financements_resume": "AO Grands Projets Industriels 3558 k€ · AAP DECARB FLASH 3329 k€ · Fonds chaleur 3731 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t026",
+    "dernier_jalon": "Première phase de leasing social livrée — 2026-04-12",
+    "prochain_jalon": "Cartographie des bâtiments publics au gaz — Q4/2027"
+  },
+  {
+    "id": "T027",
+    "nom": "Ville d'Aurillac",
+    "type": "commune",
+    "code_insee": "15200",
+    "lat": 44.9518,
+    "lon": 2.4662,
+    "region": "Auvergne-Rhône-Alpes",
+    "departement": "Cantal",
+    "dep_code": "15",
+    "population": 25000,
+    "statut": "conventionné",
+    "statut_label": "Conventionné",
+    "date_selection": "2026-06-20",
+    "progression_pct": 35,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Bernard Simon, Maire",
+    "direction_etat": "DGEC · ADEME Auvergne-Rhône-Alpes",
+    "bornes_cible": 38,
+    "bornes_actuel": 15,
+    "bornes_pct": 39,
+    "pac_cible": 331,
+    "pac_actuel": 109,
+    "pac_pct": 33,
+    "logements_fioul_cible": 113,
+    "logements_fioul_actuel": 43,
+    "logements_fioul_pct": 38,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 7.8,
+    "ve_pct": 26,
+    "financement_total_eur": 3526000,
+    "financement_total_keur": 3526,
+    "financements": [
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 645000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 893000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 514000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 564000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 637000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 273000
+      }
+    ],
+    "financements_resume": "CEE Bâtiment 645 k€ · Fonds chaleur 893 k€ · CEE Transports 514 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t027",
+    "dernier_jalon": "Recensement des chaudières fioul ménages — 2026-05-29",
+    "prochain_jalon": "Audit énergétique du parc public lancé — Q4/2027"
+  },
+  {
+    "id": "T028",
+    "nom": "Ville du Puy-en-Velay",
+    "type": "commune",
+    "code_insee": "43175",
+    "lat": 45.0373,
+    "lon": 3.87,
+    "region": "Auvergne-Rhône-Alpes",
+    "departement": "Haute-Loire",
+    "dep_code": "43",
+    "population": 18000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-06",
+    "progression_pct": 5,
+    "axes_codes": "mobilite,gaz",
+    "axes_label": "Mobilité, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Hélène Girard, Maire",
+    "direction_etat": "DGEC · ADEME Auvergne-Rhône-Alpes",
+    "bornes_cible": 16,
+    "bornes_actuel": 0,
+    "bornes_pct": 0,
+    "pac_cible": 208,
+    "pac_actuel": 9,
+    "pac_pct": 4,
+    "logements_fioul_cible": 79,
+    "logements_fioul_actuel": 4,
+    "logements_fioul_pct": 5,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 7,
+    "financement_total_eur": 814000,
+    "financement_total_keur": 814,
+    "financements": [
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 351000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 210000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 211000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 42000
+      }
+    ],
+    "financements_resume": "Prêt Action élec ta boîte 351 k€ · AAP DECARB FLASH 210 k€ · CEE Bâtiment 211 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t028",
+    "dernier_jalon": "Réunion publique d'information tenue — 2026-06-13",
+    "prochain_jalon": "AMO France Rénov' mobilisée — Q2/2027"
+  },
+  {
+    "id": "T029",
+    "nom": "CC du Diois",
+    "type": "EPCI",
+    "code_insee": "2098473848",
+    "lat": 44.7681,
+    "lon": 5.3337,
+    "region": "Auvergne-Rhône-Alpes",
+    "departement": "Drôme",
+    "dep_code": "26",
+    "population": 12000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-07-08",
+    "progression_pct": 16,
+    "axes_codes": "mobilite,fioul",
+    "axes_label": "Mobilité, Sortie fioul",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Bernard Martin, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Auvergne-Rhône-Alpes",
+    "bornes_cible": 27,
+    "bornes_actuel": 3,
+    "bornes_pct": 11,
+    "pac_cible": 108,
+    "pac_actuel": 15,
+    "pac_pct": 14,
+    "logements_fioul_cible": 50,
+    "logements_fioul_actuel": 8,
+    "logements_fioul_pct": 16,
+    "ve_part_cible_pct": 25,
+    "ve_part_actuel_pct": 5.1,
+    "ve_pct": 20,
+    "financement_total_eur": 897000,
+    "financement_total_keur": 897,
+    "financements": [
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 378000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 129000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 390000
+      }
+    ],
+    "financements_resume": "Prêt Action élec ta boîte 378 k€ · Fonds chaleur 129 k€ · CEE Transports 390 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t029",
+    "dernier_jalon": "Convention CEE signée avec un obligé — 2026-09-10",
+    "prochain_jalon": "Convention CEE signée avec un obligé — Q3/2027"
+  },
+  {
+    "id": "T030",
+    "nom": "Métropole Européenne de Lille",
+    "type": "métropole",
+    "code_insee": "2011868130",
+    "lat": 50.6056,
+    "lon": 3.0197,
+    "region": "Hauts-de-France",
+    "departement": "Nord",
+    "dep_code": "59",
+    "population": 1180000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-04-20",
+    "progression_pct": 2,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Anne Moreau, Présidente de la métropole",
+    "direction_etat": "DGEC · ADEME Hauts-de-France",
+    "bornes_cible": 1535,
+    "bornes_actuel": 23,
+    "bornes_pct": 1,
+    "pac_cible": 18260,
+    "pac_actuel": 373,
+    "pac_pct": 2,
+    "logements_fioul_cible": 3882,
+    "logements_fioul_actuel": 99,
+    "logements_fioul_pct": 3,
+    "ve_part_cible_pct": 45,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 4,
+    "financement_total_eur": 222166000,
+    "financement_total_keur": 222166,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 8672000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 45698000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 40929000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 34834000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 46301000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 45732000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 8672 k€ · AO Grands Projets Industriels 45698 k€ · CEE Transports 40929 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t030",
+    "dernier_jalon": "AMO France Rénov' mobilisée — 2026-07-03",
+    "prochain_jalon": "Audit énergétique du parc public lancé — Q4/2027"
+  },
+  {
+    "id": "T031",
+    "nom": "CA Amiens Métropole",
+    "type": "EPCI",
+    "code_insee": "2059796322",
+    "lat": 49.9111,
+    "lon": 2.32,
+    "region": "Hauts-de-France",
+    "departement": "Somme",
+    "dep_code": "80",
+    "population": 180000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-18",
+    "progression_pct": 4,
+    "axes_codes": "fioul,gaz,industrie",
+    "axes_label": "Sortie fioul, Sortie gaz, Industrie",
+    "axe_mobilite": 0,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 1,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Bernard Leroy, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Hauts-de-France",
+    "bornes_cible": 288,
+    "bornes_actuel": 10,
+    "bornes_pct": 3,
+    "pac_cible": 2555,
+    "pac_actuel": 108,
+    "pac_pct": 4,
+    "logements_fioul_cible": 1213,
+    "logements_fioul_actuel": 52,
+    "logements_fioul_pct": 4,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 2.4,
+    "ve_pct": 5,
+    "financement_total_eur": 7197000,
+    "financement_total_keur": 7197,
+    "financements": [
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 2442000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 3730000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 1025000
+      }
+    ],
+    "financements_resume": "CEE Transports 2442 k€ · MaPrimeRénov' 3730 k€ · Fonds chaleur 1025 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t031",
+    "dernier_jalon": "AMO France Rénov' mobilisée — 2026-05-05",
+    "prochain_jalon": "Première phase de leasing social livrée — Q4/2027"
+  },
+  {
+    "id": "T032",
+    "nom": "CA d'Arras",
+    "type": "EPCI",
+    "code_insee": "2016788532",
+    "lat": 50.3216,
+    "lon": 2.7555,
+    "region": "Hauts-de-France",
+    "departement": "Pas-de-Calais",
+    "dep_code": "62",
+    "population": 108000,
+    "statut": "en_oeuvre",
+    "statut_label": "En œuvre",
+    "date_selection": "2026-10-16",
+    "progression_pct": 49,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Laurent Michel, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Hauts-de-France",
+    "bornes_cible": 258,
+    "bornes_actuel": 104,
+    "bornes_pct": 40,
+    "pac_cible": 1166,
+    "pac_actuel": 552,
+    "pac_pct": 47,
+    "logements_fioul_cible": 605,
+    "logements_fioul_actuel": 249,
+    "logements_fioul_pct": 41,
+    "ve_part_cible_pct": 35,
+    "ve_part_actuel_pct": 13.0,
+    "ve_pct": 37,
+    "financement_total_eur": 11899000,
+    "financement_total_keur": 11899,
+    "financements": [
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 4190000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 4111000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 3598000
+      }
+    ],
+    "financements_resume": "Fonds chaleur 4190 k€ · CEE Transports 4111 k€ · CEE Bâtiment 3598 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t032",
+    "dernier_jalon": "Audit énergétique du parc public lancé — 2026-09-17",
+    "prochain_jalon": "Convention CEE signée avec un obligé — Q1/2027"
+  },
+  {
+    "id": "T033",
+    "nom": "CA du Boulonnais",
+    "type": "EPCI",
+    "code_insee": "2066500369",
+    "lat": 50.729,
+    "lon": 1.6395,
+    "region": "Hauts-de-France",
+    "departement": "Pas-de-Calais",
+    "dep_code": "62",
+    "population": 117000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-06-26",
+    "progression_pct": 1,
+    "axes_codes": "gaz",
+    "axes_label": "Sortie gaz",
+    "axe_mobilite": 0,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Michel Petit, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Hauts-de-France",
+    "bornes_cible": 136,
+    "bornes_actuel": 1,
+    "bornes_pct": 1,
+    "pac_cible": 1953,
+    "pac_actuel": 24,
+    "pac_pct": 1,
+    "logements_fioul_cible": 465,
+    "logements_fioul_actuel": 3,
+    "logements_fioul_pct": 1,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 7,
+    "financement_total_eur": 6711000,
+    "financement_total_keur": 6711,
+    "financements": [
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 3746000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 1292000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 1673000
+      }
+    ],
+    "financements_resume": "CEE Transports 3746 k€ · MaPrimeRénov' 1292 k€ · Prêt Action élec ta boîte 1673 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t033",
+    "dernier_jalon": "Plan local de déploiement IRVE adopté — 2026-06-07",
+    "prochain_jalon": "Délibération adoptée par le conseil — Q2/2027"
+  },
+  {
+    "id": "T034",
+    "nom": "CA de Saint-Quentinois",
+    "type": "EPCI",
+    "code_insee": "2023311507",
+    "lat": 49.8773,
+    "lon": 3.249,
+    "region": "Hauts-de-France",
+    "departement": "Aisne",
+    "dep_code": "02",
+    "population": 80000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-06-30",
+    "progression_pct": 13,
+    "axes_codes": "mobilite,fioul",
+    "axes_label": "Mobilité, Sortie fioul",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Patrick Petit, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Hauts-de-France",
+    "bornes_cible": 69,
+    "bornes_actuel": 9,
+    "bornes_pct": 13,
+    "pac_cible": 1266,
+    "pac_actuel": 160,
+    "pac_pct": 13,
+    "logements_fioul_cible": 512,
+    "logements_fioul_actuel": 85,
+    "logements_fioul_pct": 17,
+    "ve_part_cible_pct": 25,
+    "ve_part_actuel_pct": 4.2,
+    "ve_pct": 17,
+    "financement_total_eur": 10161000,
+    "financement_total_keur": 10161,
+    "financements": [
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 544000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 2058000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 1940000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 2325000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 1318000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 1976000
+      }
+    ],
+    "financements_resume": "Prêt Action élec ta boîte 544 k€ · MaPrimeRénov' 2058 k€ · Fonds chaleur 1940 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t034",
+    "dernier_jalon": "Recensement des chaudières fioul ménages — 2026-07-26",
+    "prochain_jalon": "AMO France Rénov' mobilisée — Q4/2027"
+  },
+  {
+    "id": "T035",
+    "nom": "CA de la Région de Compiègne",
+    "type": "EPCI",
+    "code_insee": "2099927658",
+    "lat": 49.3801,
+    "lon": 2.8114,
+    "region": "Hauts-de-France",
+    "departement": "Oise",
+    "dep_code": "60",
+    "population": 83000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-07-24",
+    "progression_pct": 16,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Jean Thomas, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Hauts-de-France",
+    "bornes_cible": 183,
+    "bornes_actuel": 25,
+    "bornes_pct": 14,
+    "pac_cible": 994,
+    "pac_actuel": 141,
+    "pac_pct": 14,
+    "logements_fioul_cible": 480,
+    "logements_fioul_actuel": 65,
+    "logements_fioul_pct": 14,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 5.3,
+    "ve_pct": 18,
+    "financement_total_eur": 7143000,
+    "financement_total_keur": 7143,
+    "financements": [
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 2496000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 2726000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 1921000
+      }
+    ],
+    "financements_resume": "Fonds chaleur 2496 k€ · MaPrimeRénov' 2726 k€ · AO Grands Projets Industriels 1921 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t035",
+    "dernier_jalon": "Plan climat-air-énergie territorial révisé — 2026-08-22",
+    "prochain_jalon": "AMO France Rénov' mobilisée — Q3/2027"
+  },
+  {
+    "id": "T036",
+    "nom": "Ville de Maubeuge",
+    "type": "commune",
+    "code_insee": "59679",
+    "lat": 50.2943,
+    "lon": 3.9292,
+    "region": "Hauts-de-France",
+    "departement": "Nord",
+    "dep_code": "59",
+    "population": 30000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-07-08",
+    "progression_pct": 18,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Catherine Leroy, Maire",
+    "direction_etat": "DGEC · ADEME Hauts-de-France",
+    "bornes_cible": 53,
+    "bornes_actuel": 7,
+    "bornes_pct": 13,
+    "pac_cible": 303,
+    "pac_actuel": 41,
+    "pac_pct": 14,
+    "logements_fioul_cible": 163,
+    "logements_fioul_actuel": 35,
+    "logements_fioul_pct": 21,
+    "ve_part_cible_pct": 35,
+    "ve_part_actuel_pct": 4.8,
+    "ve_pct": 14,
+    "financement_total_eur": 2412000,
+    "financement_total_keur": 2412,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 372000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 929000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 1111000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 372 k€ · MaPrimeRénov' 929 k€ · CEE Bâtiment 1111 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t036",
+    "dernier_jalon": "Cartographie des bâtiments publics au gaz — 2026-04-02",
+    "prochain_jalon": "Plan local de déploiement IRVE adopté — Q2/2027"
+  },
+  {
+    "id": "T037",
+    "nom": "Ville de Soissons",
+    "type": "commune",
+    "code_insee": "02325",
+    "lat": 49.3709,
+    "lon": 3.3335,
+    "region": "Hauts-de-France",
+    "departement": "Aisne",
+    "dep_code": "02",
+    "population": 28000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-05-18",
+    "progression_pct": 6,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Jean Moreau, Maire",
+    "direction_etat": "DGEC · ADEME Hauts-de-France",
+    "bornes_cible": 29,
+    "bornes_actuel": 2,
+    "bornes_pct": 7,
+    "pac_cible": 311,
+    "pac_actuel": 19,
+    "pac_pct": 6,
+    "logements_fioul_cible": 110,
+    "logements_fioul_actuel": 8,
+    "logements_fioul_pct": 7,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 7,
+    "financement_total_eur": 2948000,
+    "financement_total_keur": 2948,
+    "financements": [
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 285000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 601000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 423000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 174000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 778000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 687000
+      }
+    ],
+    "financements_resume": "Fonds chaleur 285 k€ · Programme Advenir 601 k€ · AAP DECARB FLASH 423 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t037",
+    "dernier_jalon": "AMO France Rénov' mobilisée — 2026-09-18",
+    "prochain_jalon": "Recensement des chaudières fioul ménages — Q1/2027"
+  },
+  {
+    "id": "T038",
+    "nom": "CC Cœur d'Ostrevent",
+    "type": "EPCI",
+    "code_insee": "2012799319",
+    "lat": 50.4166,
+    "lon": 3.2072,
+    "region": "Hauts-de-France",
+    "departement": "Nord",
+    "dep_code": "59",
+    "population": 72000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-23",
+    "progression_pct": 1,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Marie Leroy, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Hauts-de-France",
+    "bornes_cible": 118,
+    "bornes_actuel": 1,
+    "bornes_pct": 1,
+    "pac_cible": 886,
+    "pac_actuel": 7,
+    "pac_pct": 1,
+    "logements_fioul_cible": 221,
+    "logements_fioul_actuel": 2,
+    "logements_fioul_pct": 1,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 4,
+    "financement_total_eur": 5517000,
+    "financement_total_keur": 5517,
+    "financements": [
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 1719000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 1713000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 2085000
+      }
+    ],
+    "financements_resume": "Prêt Action élec ta boîte 1719 k€ · MaPrimeRénov' 1713 k€ · CEE Transports 2085 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t038",
+    "dernier_jalon": "Première phase de leasing social livrée — 2026-06-14",
+    "prochain_jalon": "Audit énergétique du parc public lancé — Q4/2027"
+  },
+  {
+    "id": "T039",
+    "nom": "Eurométropole de Strasbourg",
+    "type": "métropole",
+    "code_insee": "2085663295",
+    "lat": 48.5994,
+    "lon": 7.747,
+    "region": "Grand Est",
+    "departement": "Bas-Rhin",
+    "dep_code": "67",
+    "population": 504000,
+    "statut": "en_oeuvre",
+    "statut_label": "En œuvre",
+    "date_selection": "2026-10-26",
+    "progression_pct": 63,
+    "axes_codes": "mobilite",
+    "axes_label": "Mobilité",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Laurent Bertrand, Président de la métropole",
+    "direction_etat": "DGEC · ADEME Grand Est",
+    "bornes_cible": 907,
+    "bornes_actuel": 506,
+    "bornes_pct": 56,
+    "pac_cible": 6672,
+    "pac_actuel": 3798,
+    "pac_pct": 57,
+    "logements_fioul_cible": 2157,
+    "logements_fioul_actuel": 1222,
+    "logements_fioul_pct": 57,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 14.1,
+    "ve_pct": 47,
+    "financement_total_eur": 26677000,
+    "financement_total_keur": 26677,
+    "financements": [
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 5533000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 3813000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 4786000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 12545000
+      }
+    ],
+    "financements_resume": "AO Grands Projets Industriels 5533 k€ · CEE Transports 3813 k€ · Prêt Action élec ta boîte 4786 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t039",
+    "dernier_jalon": "Audit énergétique du parc public lancé — 2026-05-16",
+    "prochain_jalon": "Réunion publique d'information tenue — Q4/2027"
+  },
+  {
+    "id": "T040",
+    "nom": "Métropole du Grand Nancy",
+    "type": "métropole",
+    "code_insee": "2091202508",
+    "lat": 48.6897,
+    "lon": 6.1495,
+    "region": "Grand Est",
+    "departement": "Meurthe-et-Moselle",
+    "dep_code": "54",
+    "population": 257000,
+    "statut": "en_oeuvre",
+    "statut_label": "En œuvre",
+    "date_selection": "2026-11-22",
+    "progression_pct": 60,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Christine Thomas, Présidente de la métropole",
+    "direction_etat": "DGEC · ADEME Grand Est",
+    "bornes_cible": 410,
+    "bornes_actuel": 259,
+    "bornes_pct": 63,
+    "pac_cible": 3678,
+    "pac_actuel": 2010,
+    "pac_pct": 55,
+    "logements_fioul_cible": 1563,
+    "logements_fioul_actuel": 698,
+    "logements_fioul_pct": 45,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 23.3,
+    "ve_pct": 58,
+    "financement_total_eur": 23437000,
+    "financement_total_keur": 23437,
+    "financements": [
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 5927000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 8247000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 9263000
+      }
+    ],
+    "financements_resume": "Fonds chaleur 5927 k€ · Programme Advenir 8247 k€ · AAP DECARB FLASH 9263 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t040",
+    "dernier_jalon": "Réunion publique d'information tenue — 2026-08-25",
+    "prochain_jalon": "Convention CEE signée avec un obligé — Q3/2027"
+  },
+  {
+    "id": "T041",
+    "nom": "Eurométropole de Metz",
+    "type": "métropole",
+    "code_insee": "2088213973",
+    "lat": 49.1357,
+    "lon": 6.2174,
+    "region": "Grand Est",
+    "departement": "Moselle",
+    "dep_code": "57",
+    "population": 221000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-04-28",
+    "progression_pct": 2,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Pierre Simon, Président de la métropole",
+    "direction_etat": "DGEC · ADEME Grand Est",
+    "bornes_cible": 341,
+    "bornes_actuel": 5,
+    "bornes_pct": 1,
+    "pac_cible": 2739,
+    "pac_actuel": 50,
+    "pac_pct": 2,
+    "logements_fioul_cible": 1072,
+    "logements_fioul_actuel": 18,
+    "logements_fioul_pct": 2,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 5,
+    "financement_total_eur": 15487000,
+    "financement_total_keur": 15487,
+    "financements": [
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 6139000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 2828000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 6520000
+      }
+    ],
+    "financements_resume": "AO Grands Projets Industriels 6139 k€ · MaPrimeRénov' 2828 k€ · AAP DECARB FLASH 6520 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t041",
+    "dernier_jalon": "Plan climat-air-énergie territorial révisé — 2026-05-09",
+    "prochain_jalon": "Cartographie des bâtiments publics au gaz — Q1/2027"
+  },
+  {
+    "id": "T042",
+    "nom": "Mulhouse Alsace Agglomération",
+    "type": "EPCI",
+    "code_insee": "2020356922",
+    "lat": 47.7304,
+    "lon": 7.3647,
+    "region": "Grand Est",
+    "departement": "Haut-Rhin",
+    "dep_code": "68",
+    "population": 273000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-06-04",
+    "progression_pct": 1,
+    "axes_codes": "mobilite,fioul",
+    "axes_label": "Mobilité, Sortie fioul",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Laurent Michel, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Grand Est",
+    "bornes_cible": 517,
+    "bornes_actuel": 5,
+    "bornes_pct": 1,
+    "pac_cible": 3080,
+    "pac_actuel": 39,
+    "pac_pct": 1,
+    "logements_fioul_cible": 839,
+    "logements_fioul_actuel": 10,
+    "logements_fioul_pct": 1,
+    "ve_part_cible_pct": 45,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 4,
+    "financement_total_eur": 22998000,
+    "financement_total_keur": 22998,
+    "financements": [
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 10413000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 4091000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 8494000
+      }
+    ],
+    "financements_resume": "AO Grands Projets Industriels 10413 k€ · CEE Transports 4091 k€ · CEE Bâtiment 8494 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t042",
+    "dernier_jalon": "Convention CEE signée avec un obligé — 2026-05-28",
+    "prochain_jalon": "Plan local de déploiement IRVE adopté — Q2/2027"
+  },
+  {
+    "id": "T043",
+    "nom": "Grand Reims",
+    "type": "EPCI",
+    "code_insee": "2061254050",
+    "lat": 49.2586,
+    "lon": 4.0236,
+    "region": "Grand Est",
+    "departement": "Marne",
+    "dep_code": "51",
+    "population": 290000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-07-23",
+    "progression_pct": 18,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Isabelle Dubois, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Grand Est",
+    "bornes_cible": 536,
+    "bornes_actuel": 78,
+    "bornes_pct": 15,
+    "pac_cible": 4052,
+    "pac_actuel": 813,
+    "pac_pct": 20,
+    "logements_fioul_cible": 926,
+    "logements_fioul_actuel": 179,
+    "logements_fioul_pct": 19,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 6.1,
+    "ve_pct": 20,
+    "financement_total_eur": 44976000,
+    "financement_total_keur": 44976,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 3216000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 11221000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 9224000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 10542000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 2718000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 8055000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 3216 k€ · Fonds chaleur 11221 k€ · AO Grands Projets Industriels 9224 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t043",
+    "dernier_jalon": "Plan climat-air-énergie territorial révisé — 2026-07-22",
+    "prochain_jalon": "Réunion publique d'information tenue — Q3/2027"
+  },
+  {
+    "id": "T044",
+    "nom": "CA Troyes Champagne Métropole",
+    "type": "EPCI",
+    "code_insee": "2061830338",
+    "lat": 48.3468,
+    "lon": 4.0619,
+    "region": "Grand Est",
+    "departement": "Aube",
+    "dep_code": "10",
+    "population": 170000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-10",
+    "progression_pct": 4,
+    "axes_codes": "fioul,agriculture",
+    "axes_label": "Sortie fioul, Agriculture",
+    "axe_mobilite": 0,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 1,
+    "elu_referent": "M. Michel Leroy, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Grand Est",
+    "bornes_cible": 388,
+    "bornes_actuel": 18,
+    "bornes_pct": 5,
+    "pac_cible": 2302,
+    "pac_actuel": 111,
+    "pac_pct": 5,
+    "logements_fioul_cible": 503,
+    "logements_fioul_actuel": 17,
+    "logements_fioul_pct": 3,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 7,
+    "financement_total_eur": 15426000,
+    "financement_total_keur": 15426,
+    "financements": [
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 6055000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 6351000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 3020000
+      }
+    ],
+    "financements_resume": "Programme Advenir 6055 k€ · Fonds chaleur 6351 k€ · Prêt Action élec ta boîte 3020 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t044",
+    "dernier_jalon": "Première phase de leasing social livrée — 2026-08-07",
+    "prochain_jalon": "Cartographie des bâtiments publics au gaz — Q2/2027"
+  },
+  {
+    "id": "T045",
+    "nom": "Ville de Charleville-Mézières",
+    "type": "commune",
+    "code_insee": "08835",
+    "lat": 49.7358,
+    "lon": 4.7126,
+    "region": "Grand Est",
+    "departement": "Ardennes",
+    "dep_code": "08",
+    "population": 46000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-04-27",
+    "progression_pct": 5,
+    "axes_codes": "mobilite,gaz,agriculture",
+    "axes_label": "Mobilité, Sortie gaz, Agriculture",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 1,
+    "elu_referent": "Mme Émilie Bertrand, Maire",
+    "direction_etat": "DGEC · ADEME Grand Est",
+    "bornes_cible": 91,
+    "bornes_actuel": 4,
+    "bornes_pct": 4,
+    "pac_cible": 431,
+    "pac_actuel": 15,
+    "pac_pct": 3,
+    "logements_fioul_cible": 261,
+    "logements_fioul_actuel": 9,
+    "logements_fioul_pct": 3,
+    "ve_part_cible_pct": 35,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 6,
+    "financement_total_eur": 5332000,
+    "financement_total_keur": 5332,
+    "financements": [
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 175000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 826000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 1480000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 891000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 286000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 1674000
+      }
+    ],
+    "financements_resume": "CEE Bâtiment 175 k€ · Fonds chaleur 826 k€ · CEE Transports 1480 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t045",
+    "dernier_jalon": "Plan climat-air-énergie territorial révisé — 2026-08-16",
+    "prochain_jalon": "Délibération adoptée par le conseil — Q2/2027"
+  },
+  {
+    "id": "T046",
+    "nom": "CC du Pays de Bitche",
+    "type": "EPCI",
+    "code_insee": "2057284777",
+    "lat": 49.0546,
+    "lon": 7.4614,
+    "region": "Grand Est",
+    "departement": "Moselle",
+    "dep_code": "57",
+    "population": 30000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-06-14",
+    "progression_pct": 14,
+    "axes_codes": "mobilite,gaz",
+    "axes_label": "Mobilité, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Isabelle Moreau, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Grand Est",
+    "bornes_cible": 42,
+    "bornes_actuel": 6,
+    "bornes_pct": 14,
+    "pac_cible": 526,
+    "pac_actuel": 73,
+    "pac_pct": 14,
+    "logements_fioul_cible": 148,
+    "logements_fioul_actuel": 14,
+    "logements_fioul_pct": 9,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 4.1,
+    "ve_pct": 10,
+    "financement_total_eur": 2125000,
+    "financement_total_keur": 2125,
+    "financements": [
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 453000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 896000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 776000
+      }
+    ],
+    "financements_resume": "AO Grands Projets Industriels 453 k€ · Fonds chaleur 896 k€ · MaPrimeRénov' 776 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t046",
+    "dernier_jalon": "Plan climat-air-énergie territorial révisé — 2026-06-25",
+    "prochain_jalon": "Plan local de déploiement IRVE adopté — Q1/2027"
+  },
+  {
+    "id": "T047",
+    "nom": "Métropole Aix-Marseille-Provence",
+    "type": "métropole",
+    "code_insee": "2076599269",
+    "lat": 43.3157,
+    "lon": 5.3565,
+    "region": "Provence-Alpes-Côte d'Azur",
+    "departement": "Bouches-du-Rhône",
+    "dep_code": "13",
+    "population": 1880000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-06-13",
+    "progression_pct": 5,
+    "axes_codes": "mobilite,gaz,agriculture",
+    "axes_label": "Mobilité, Sortie gaz, Agriculture",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 1,
+    "elu_referent": "M. Bernard Bernard, Président de la métropole",
+    "direction_etat": "DGEC · ADEME Provence-Alpes-Côte d'Azur",
+    "bornes_cible": 1622,
+    "bornes_actuel": 99,
+    "bornes_pct": 6,
+    "pac_cible": 18829,
+    "pac_actuel": 837,
+    "pac_pct": 4,
+    "logements_fioul_cible": 11392,
+    "logements_fioul_actuel": 504,
+    "logements_fioul_pct": 4,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 2.6,
+    "ve_pct": 6,
+    "financement_total_eur": 151458000,
+    "financement_total_keur": 151458,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 23279000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 60865000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 34976000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 32338000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 23279 k€ · CEE Transports 60865 k€ · MaPrimeRénov' 34976 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t047",
+    "dernier_jalon": "Réunion publique d'information tenue — 2026-07-08",
+    "prochain_jalon": "Cartographie des bâtiments publics au gaz — Q2/2027"
+  },
+  {
+    "id": "T048",
+    "nom": "Métropole Nice Côte d'Azur",
+    "type": "métropole",
+    "code_insee": "2041674763",
+    "lat": 43.7381,
+    "lon": 7.2486,
+    "region": "Provence-Alpes-Côte d'Azur",
+    "departement": "Alpes-Maritimes",
+    "dep_code": "06",
+    "population": 537000,
+    "statut": "conventionné",
+    "statut_label": "Conventionné",
+    "date_selection": "2026-07-05",
+    "progression_pct": 22,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Christophe Girard, Président de la métropole",
+    "direction_etat": "DGEC · ADEME Provence-Alpes-Côte d'Azur",
+    "bornes_cible": 722,
+    "bornes_actuel": 140,
+    "bornes_pct": 19,
+    "pac_cible": 4725,
+    "pac_actuel": 1103,
+    "pac_pct": 23,
+    "logements_fioul_cible": 2939,
+    "logements_fioul_actuel": 617,
+    "logements_fioul_pct": 21,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 10.6,
+    "ve_pct": 21,
+    "financement_total_eur": 67271000,
+    "financement_total_keur": 67271,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 11544000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 16376000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 4339000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 1709000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 18392000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 14911000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 11544 k€ · AO Grands Projets Industriels 16376 k€ · MaPrimeRénov' 4339 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t048",
+    "dernier_jalon": "Réunion publique d'information tenue — 2026-04-09",
+    "prochain_jalon": "Plan local de déploiement IRVE adopté — Q1/2027"
+  },
+  {
+    "id": "T049",
+    "nom": "Toulon Provence Méditerranée",
+    "type": "EPCI",
+    "code_insee": "2018715975",
+    "lat": 43.1292,
+    "lon": 5.907,
+    "region": "Provence-Alpes-Côte d'Azur",
+    "departement": "Var",
+    "dep_code": "83",
+    "population": 448000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-06-26",
+    "progression_pct": 0,
+    "axes_codes": "fioul,gaz",
+    "axes_label": "Sortie fioul, Sortie gaz",
+    "axe_mobilite": 0,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Anne David, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Provence-Alpes-Côte d'Azur",
+    "bornes_cible": 641,
+    "bornes_actuel": 0,
+    "bornes_pct": 0,
+    "pac_cible": 7002,
+    "pac_actuel": 0,
+    "pac_pct": 0,
+    "logements_fioul_cible": 2277,
+    "logements_fioul_actuel": 0,
+    "logements_fioul_pct": 0,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 7,
+    "financement_total_eur": 58505000,
+    "financement_total_keur": 58505,
+    "financements": [
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 5758000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 16498000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 9258000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 2984000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 15415000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 8592000
+      }
+    ],
+    "financements_resume": "CEE Bâtiment 5758 k€ · CEE Transports 16498 k€ · Fonds chaleur 9258 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t049",
+    "dernier_jalon": "Réunion publique d'information tenue — 2026-04-23",
+    "prochain_jalon": "Cartographie des bâtiments publics au gaz — Q3/2027"
+  },
+  {
+    "id": "T050",
+    "nom": "CA du Grand Avignon",
+    "type": "EPCI",
+    "code_insee": "2052550733",
+    "lat": 43.9635,
+    "lon": 4.8005,
+    "region": "Provence-Alpes-Côte d'Azur",
+    "departement": "Vaucluse",
+    "dep_code": "84",
+    "population": 195000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-05",
+    "progression_pct": 5,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Michel Girard, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Provence-Alpes-Côte d'Azur",
+    "bornes_cible": 196,
+    "bornes_actuel": 11,
+    "bornes_pct": 6,
+    "pac_cible": 1951,
+    "pac_actuel": 69,
+    "pac_pct": 4,
+    "logements_fioul_cible": 609,
+    "logements_fioul_actuel": 31,
+    "logements_fioul_pct": 5,
+    "ve_part_cible_pct": 35,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 6,
+    "financement_total_eur": 17799000,
+    "financement_total_keur": 17799,
+    "financements": [
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 7797000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 5717000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 4285000
+      }
+    ],
+    "financements_resume": "CEE Bâtiment 7797 k€ · CEE Transports 5717 k€ · Programme Advenir 4285 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t050",
+    "dernier_jalon": "Première phase de leasing social livrée — 2026-08-26",
+    "prochain_jalon": "Audit énergétique du parc public lancé — Q2/2027"
+  },
+  {
+    "id": "T051",
+    "nom": "CA Cannes Pays de Lérins",
+    "type": "EPCI",
+    "code_insee": "2089431184",
+    "lat": 43.597,
+    "lon": 6.9828,
+    "region": "Provence-Alpes-Côte d'Azur",
+    "departement": "Alpes-Maritimes",
+    "dep_code": "06",
+    "population": 159000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-06-28",
+    "progression_pct": 7,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Laurent Laurent, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Provence-Alpes-Côte d'Azur",
+    "bornes_cible": 373,
+    "bornes_actuel": 20,
+    "bornes_pct": 5,
+    "pac_cible": 1360,
+    "pac_actuel": 76,
+    "pac_pct": 6,
+    "logements_fioul_cible": 486,
+    "logements_fioul_actuel": 30,
+    "logements_fioul_pct": 6,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 2.9,
+    "ve_pct": 6,
+    "financement_total_eur": 12166000,
+    "financement_total_keur": 12166,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 6096000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 1976000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 4094000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 6096 k€ · CEE Bâtiment 1976 k€ · AO Grands Projets Industriels 4094 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t051",
+    "dernier_jalon": "Plan climat-air-énergie territorial révisé — 2026-08-15",
+    "prochain_jalon": "Audit énergétique du parc public lancé — Q2/2027"
+  },
+  {
+    "id": "T052",
+    "nom": "Ville d'Aubagne",
+    "type": "commune",
+    "code_insee": "13233",
+    "lat": 43.3186,
+    "lon": 5.5718,
+    "region": "Provence-Alpes-Côte d'Azur",
+    "departement": "Bouches-du-Rhône",
+    "dep_code": "13",
+    "population": 46000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-07-31",
+    "progression_pct": 10,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Bernard Laurent, Maire",
+    "direction_etat": "DGEC · ADEME Provence-Alpes-Côte d'Azur",
+    "bornes_cible": 110,
+    "bornes_actuel": 9,
+    "bornes_pct": 8,
+    "pac_cible": 722,
+    "pac_actuel": 75,
+    "pac_pct": 10,
+    "logements_fioul_cible": 169,
+    "logements_fioul_actuel": 18,
+    "logements_fioul_pct": 11,
+    "ve_part_cible_pct": 25,
+    "ve_part_actuel_pct": 2.5,
+    "ve_pct": 10,
+    "financement_total_eur": 3816000,
+    "financement_total_keur": 3816,
+    "financements": [
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 220000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 197000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 860000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 938000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 449000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 1152000
+      }
+    ],
+    "financements_resume": "Programme Advenir 220 k€ · Fonds chaleur 197 k€ · AO Grands Projets Industriels 860 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t052",
+    "dernier_jalon": "Cartographie des bâtiments publics au gaz — 2026-06-21",
+    "prochain_jalon": "Cartographie des bâtiments publics au gaz — Q4/2027"
+  },
+  {
+    "id": "T053",
+    "nom": "CC Sisteronais-Buëch",
+    "type": "EPCI",
+    "code_insee": "2016530784",
+    "lat": 44.1488,
+    "lon": 5.944,
+    "region": "Provence-Alpes-Côte d'Azur",
+    "departement": "Hautes-Alpes",
+    "dep_code": "05",
+    "population": 24000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-15",
+    "progression_pct": 3,
+    "axes_codes": "fioul",
+    "axes_label": "Sortie fioul",
+    "axe_mobilite": 0,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Christophe Durand, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Provence-Alpes-Côte d'Azur",
+    "bornes_cible": 23,
+    "bornes_actuel": 0,
+    "bornes_pct": 0,
+    "pac_cible": 261,
+    "pac_actuel": 6,
+    "pac_pct": 2,
+    "logements_fioul_cible": 101,
+    "logements_fioul_actuel": 3,
+    "logements_fioul_pct": 3,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 7,
+    "financement_total_eur": 1889000,
+    "financement_total_keur": 1889,
+    "financements": [
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 850000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 502000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 130000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 407000
+      }
+    ],
+    "financements_resume": "Prêt Action élec ta boîte 850 k€ · AAP DECARB FLASH 502 k€ · Programme Advenir 130 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t053",
+    "dernier_jalon": "Réunion publique d'information tenue — 2026-06-01",
+    "prochain_jalon": "Convention CEE signée avec un obligé — Q3/2027"
+  },
+  {
+    "id": "T054",
+    "nom": "Toulouse Métropole",
+    "type": "métropole",
+    "code_insee": "2077119320",
+    "lat": 43.5585,
+    "lon": 1.3981,
+    "region": "Occitanie",
+    "departement": "Haute-Garonne",
+    "dep_code": "31",
+    "population": 815000,
+    "statut": "conventionné",
+    "statut_label": "Conventionné",
+    "date_selection": "2026-08-23",
+    "progression_pct": 35,
+    "axes_codes": "mobilite,gaz",
+    "axes_label": "Mobilité, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Hélène Bertrand, Présidente de la métropole",
+    "direction_etat": "DGEC · ADEME Occitanie",
+    "bornes_cible": 1874,
+    "bornes_actuel": 603,
+    "bornes_pct": 32,
+    "pac_cible": 12449,
+    "pac_actuel": 4097,
+    "pac_pct": 33,
+    "logements_fioul_cible": 4838,
+    "logements_fioul_actuel": 1764,
+    "logements_fioul_pct": 36,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 9.6,
+    "ve_pct": 32,
+    "financement_total_eur": 139756000,
+    "financement_total_keur": 139756,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 31828000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 13829000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 26248000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 12131000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 30709000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 25011000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 31828 k€ · Fonds chaleur 13829 k€ · Prêt Action élec ta boîte 26248 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t054",
+    "dernier_jalon": "Convention CEE signée avec un obligé — 2026-09-02",
+    "prochain_jalon": "AMO France Rénov' mobilisée — Q4/2027"
+  },
+  {
+    "id": "T055",
+    "nom": "Montpellier Méditerranée Métropole",
+    "type": "métropole",
+    "code_insee": "2097991930",
+    "lat": 43.6391,
+    "lon": 3.9043,
+    "region": "Occitanie",
+    "departement": "Hérault",
+    "dep_code": "34",
+    "population": 500000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-07-14",
+    "progression_pct": 13,
+    "axes_codes": "mobilite,gaz",
+    "axes_label": "Mobilité, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Bernard David, Président de la métropole",
+    "direction_etat": "DGEC · ADEME Occitanie",
+    "bornes_cible": 921,
+    "bornes_actuel": 136,
+    "bornes_pct": 15,
+    "pac_cible": 4812,
+    "pac_actuel": 550,
+    "pac_pct": 11,
+    "logements_fioul_cible": 3478,
+    "logements_fioul_actuel": 407,
+    "logements_fioul_pct": 12,
+    "ve_part_cible_pct": 45,
+    "ve_part_actuel_pct": 6.0,
+    "ve_pct": 13,
+    "financement_total_eur": 18842000,
+    "financement_total_keur": 18842,
+    "financements": [
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 3082000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 8914000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 6846000
+      }
+    ],
+    "financements_resume": "AO Grands Projets Industriels 3082 k€ · CEE Transports 8914 k€ · Prêt Action élec ta boîte 6846 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t055",
+    "dernier_jalon": "Délibération adoptée par le conseil — 2026-08-31",
+    "prochain_jalon": "Réunion publique d'information tenue — Q3/2027"
+  },
+  {
+    "id": "T056",
+    "nom": "Nîmes Métropole",
+    "type": "EPCI",
+    "code_insee": "2081555103",
+    "lat": 43.8209,
+    "lon": 4.3455,
+    "region": "Occitanie",
+    "departement": "Gard",
+    "dep_code": "30",
+    "population": 259000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-05-21",
+    "progression_pct": 14,
+    "axes_codes": "fioul,gaz,industrie",
+    "axes_label": "Sortie fioul, Sortie gaz, Industrie",
+    "axe_mobilite": 0,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 1,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Stéphane David, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Occitanie",
+    "bornes_cible": 221,
+    "bornes_actuel": 22,
+    "bornes_pct": 10,
+    "pac_cible": 4527,
+    "pac_actuel": 562,
+    "pac_pct": 12,
+    "logements_fioul_cible": 775,
+    "logements_fioul_actuel": 85,
+    "logements_fioul_pct": 11,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 5.8,
+    "ve_pct": 12,
+    "financement_total_eur": 21606000,
+    "financement_total_keur": 21606,
+    "financements": [
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 6038000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 10342000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 5226000
+      }
+    ],
+    "financements_resume": "CEE Transports 6038 k€ · AAP DECARB FLASH 10342 k€ · CEE Bâtiment 5226 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t056",
+    "dernier_jalon": "Première phase de leasing social livrée — 2026-06-20",
+    "prochain_jalon": "Plan local de déploiement IRVE adopté — Q4/2027"
+  },
+  {
+    "id": "T057",
+    "nom": "Perpignan Méditerranée Métropole",
+    "type": "EPCI",
+    "code_insee": "2069374716",
+    "lat": 42.7042,
+    "lon": 2.9193,
+    "region": "Occitanie",
+    "departement": "Pyrénées-Orientales",
+    "dep_code": "66",
+    "population": 273000,
+    "statut": "conventionné",
+    "statut_label": "Conventionné",
+    "date_selection": "2026-09-01",
+    "progression_pct": 40,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Isabelle Morel, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Occitanie",
+    "bornes_cible": 347,
+    "bornes_actuel": 178,
+    "bornes_pct": 51,
+    "pac_cible": 2998,
+    "pac_actuel": 1394,
+    "pac_pct": 46,
+    "logements_fioul_cible": 1839,
+    "logements_fioul_actuel": 826,
+    "logements_fioul_pct": 45,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 22.5,
+    "ve_pct": 45,
+    "financement_total_eur": 29236000,
+    "financement_total_keur": 29236,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 9839000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 4639000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 4126000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 8566000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 2066000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 9839 k€ · MaPrimeRénov' 4639 k€ · Prêt Action élec ta boîte 4126 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t057",
+    "dernier_jalon": "Délibération adoptée par le conseil — 2026-06-13",
+    "prochain_jalon": "Audit énergétique du parc public lancé — Q3/2027"
+  },
+  {
+    "id": "T058",
+    "nom": "CA du Pays de l'Or",
+    "type": "EPCI",
+    "code_insee": "2096690951",
+    "lat": 43.5395,
+    "lon": 4.0555,
+    "region": "Occitanie",
+    "departement": "Hérault",
+    "dep_code": "34",
+    "population": 46000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-06-22",
+    "progression_pct": 2,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Jean Robert, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Occitanie",
+    "bornes_cible": 94,
+    "bornes_actuel": 2,
+    "bornes_pct": 2,
+    "pac_cible": 478,
+    "pac_actuel": 7,
+    "pac_pct": 1,
+    "logements_fioul_cible": 125,
+    "logements_fioul_actuel": 2,
+    "logements_fioul_pct": 2,
+    "ve_part_cible_pct": 25,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 8,
+    "financement_total_eur": 4280000,
+    "financement_total_keur": 4280,
+    "financements": [
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 1726000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 1627000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 927000
+      }
+    ],
+    "financements_resume": "CEE Transports 1726 k€ · Programme Advenir 1627 k€ · AO Grands Projets Industriels 927 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t058",
+    "dernier_jalon": "Convention CEE signée avec un obligé — 2026-06-13",
+    "prochain_jalon": "Cartographie des bâtiments publics au gaz — Q3/2027"
+  },
+  {
+    "id": "T059",
+    "nom": "CA Castres-Mazamet",
+    "type": "EPCI",
+    "code_insee": "2035878707",
+    "lat": 43.6373,
+    "lon": 2.2245,
+    "region": "Occitanie",
+    "departement": "Tarn",
+    "dep_code": "81",
+    "population": 80000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-06-13",
+    "progression_pct": 13,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Émilie Girard, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Occitanie",
+    "bornes_cible": 87,
+    "bornes_actuel": 10,
+    "bornes_pct": 11,
+    "pac_cible": 1375,
+    "pac_actuel": 178,
+    "pac_pct": 13,
+    "logements_fioul_cible": 558,
+    "logements_fioul_actuel": 91,
+    "logements_fioul_pct": 16,
+    "ve_part_cible_pct": 35,
+    "ve_part_actuel_pct": 5.6,
+    "ve_pct": 16,
+    "financement_total_eur": 6640000,
+    "financement_total_keur": 6640,
+    "financements": [
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 3167000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 1812000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 1661000
+      }
+    ],
+    "financements_resume": "AO Grands Projets Industriels 3167 k€ · CEE Transports 1812 k€ · Programme Advenir 1661 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t059",
+    "dernier_jalon": "Plan local de déploiement IRVE adopté — 2026-08-08",
+    "prochain_jalon": "Réunion publique d'information tenue — Q3/2027"
+  },
+  {
+    "id": "T060",
+    "nom": "Ville de Cahors",
+    "type": "commune",
+    "code_insee": "46367",
+    "lat": 44.4629,
+    "lon": 1.4601,
+    "region": "Occitanie",
+    "departement": "Lot",
+    "dep_code": "46",
+    "population": 19000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-06-16",
+    "progression_pct": 16,
+    "axes_codes": "gaz",
+    "axes_label": "Sortie gaz",
+    "axe_mobilite": 0,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Sophie Richard, Maire",
+    "direction_etat": "DGEC · ADEME Occitanie",
+    "bornes_cible": 24,
+    "bornes_actuel": 4,
+    "bornes_pct": 17,
+    "pac_cible": 280,
+    "pac_actuel": 48,
+    "pac_pct": 17,
+    "logements_fioul_cible": 64,
+    "logements_fioul_actuel": 9,
+    "logements_fioul_pct": 14,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 6.5,
+    "ve_pct": 16,
+    "financement_total_eur": 1743000,
+    "financement_total_keur": 1743,
+    "financements": [
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 226000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 208000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 582000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 727000
+      }
+    ],
+    "financements_resume": "Prêt Action élec ta boîte 226 k€ · CEE Transports 208 k€ · CEE Bâtiment 582 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t060",
+    "dernier_jalon": "Recensement des chaudières fioul ménages — 2026-08-28",
+    "prochain_jalon": "Plan climat-air-énergie territorial révisé — Q1/2027"
+  },
+  {
+    "id": "T061",
+    "nom": "CC Causses & Vallée de la Dordogne",
+    "type": "EPCI",
+    "code_insee": "2032083803",
+    "lat": 44.7828,
+    "lon": 1.782,
+    "region": "Occitanie",
+    "departement": "Lot",
+    "dep_code": "46",
+    "population": 29000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-04-30",
+    "progression_pct": 3,
+    "axes_codes": "fioul,gaz",
+    "axes_label": "Sortie fioul, Sortie gaz",
+    "axe_mobilite": 0,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Patrick Morel, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Occitanie",
+    "bornes_cible": 54,
+    "bornes_actuel": 1,
+    "bornes_pct": 2,
+    "pac_cible": 504,
+    "pac_actuel": 19,
+    "pac_pct": 4,
+    "logements_fioul_cible": 120,
+    "logements_fioul_actuel": 3,
+    "logements_fioul_pct": 2,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 5,
+    "financement_total_eur": 2996000,
+    "financement_total_keur": 2996,
+    "financements": [
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 550000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 834000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 144000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 680000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 126000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 662000
+      }
+    ],
+    "financements_resume": "Programme Advenir 550 k€ · Fonds chaleur 834 k€ · CEE Bâtiment 144 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t061",
+    "dernier_jalon": "AMO France Rénov' mobilisée — 2026-05-22",
+    "prochain_jalon": "Plan climat-air-énergie territorial révisé — Q2/2027"
+  },
+  {
+    "id": "T062",
+    "nom": "Bordeaux Métropole",
+    "type": "métropole",
+    "code_insee": "2064877191",
+    "lat": 44.8058,
+    "lon": -0.6157,
+    "region": "Nouvelle-Aquitaine",
+    "departement": "Gironde",
+    "dep_code": "33",
+    "population": 814000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-11",
+    "progression_pct": 5,
+    "axes_codes": "mobilite,fioul",
+    "axes_label": "Mobilité, Sortie fioul",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Marie Durand, Présidente de la métropole",
+    "direction_etat": "DGEC · ADEME Nouvelle-Aquitaine",
+    "bornes_cible": 1278,
+    "bornes_actuel": 46,
+    "bornes_pct": 4,
+    "pac_cible": 10689,
+    "pac_actuel": 522,
+    "pac_pct": 5,
+    "logements_fioul_cible": 3708,
+    "logements_fioul_actuel": 219,
+    "logements_fioul_pct": 6,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 4,
+    "financement_total_eur": 45151000,
+    "financement_total_keur": 45151,
+    "financements": [
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 23292000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 18367000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 3492000
+      }
+    ],
+    "financements_resume": "MaPrimeRénov' 23292 k€ · Programme Advenir 18367 k€ · CEE Transports 3492 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t062",
+    "dernier_jalon": "Audit énergétique du parc public lancé — 2026-07-30",
+    "prochain_jalon": "Délibération adoptée par le conseil — Q3/2027"
+  },
+  {
+    "id": "T063",
+    "nom": "Limoges Métropole",
+    "type": "EPCI",
+    "code_insee": "2030820038",
+    "lat": 45.8112,
+    "lon": 1.3048,
+    "region": "Nouvelle-Aquitaine",
+    "departement": "Haute-Vienne",
+    "dep_code": "87",
+    "population": 208000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-07-07",
+    "progression_pct": 10,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Catherine Martin, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Nouvelle-Aquitaine",
+    "bornes_cible": 407,
+    "bornes_actuel": 44,
+    "bornes_pct": 11,
+    "pac_cible": 3040,
+    "pac_actuel": 276,
+    "pac_pct": 9,
+    "logements_fioul_cible": 1024,
+    "logements_fioul_actuel": 82,
+    "logements_fioul_pct": 8,
+    "ve_part_cible_pct": 45,
+    "ve_part_actuel_pct": 4.2,
+    "ve_pct": 9,
+    "financement_total_eur": 13282000,
+    "financement_total_keur": 13282,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 6100000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 3768000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 3414000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 6100 k€ · Programme Advenir 3768 k€ · AO Grands Projets Industriels 3414 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t063",
+    "dernier_jalon": "Convention CEE signée avec un obligé — 2026-06-03",
+    "prochain_jalon": "Réunion publique d'information tenue — Q3/2027"
+  },
+  {
+    "id": "T064",
+    "nom": "CA Pau Béarn Pyrénées",
+    "type": "EPCI",
+    "code_insee": "2046930534",
+    "lat": 43.2512,
+    "lon": -0.3259,
+    "region": "Nouvelle-Aquitaine",
+    "departement": "Pyrénées-Atlantiques",
+    "dep_code": "64",
+    "population": 162000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-05-29",
+    "progression_pct": 5,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Pierre Robert, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Nouvelle-Aquitaine",
+    "bornes_cible": 157,
+    "bornes_actuel": 8,
+    "bornes_pct": 5,
+    "pac_cible": 1350,
+    "pac_actuel": 49,
+    "pac_pct": 4,
+    "logements_fioul_cible": 840,
+    "logements_fioul_actuel": 48,
+    "logements_fioul_pct": 6,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 5,
+    "financement_total_eur": 21821000,
+    "financement_total_keur": 21821,
+    "financements": [
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 3879000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 5080000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 5362000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 1782000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 5718000
+      }
+    ],
+    "financements_resume": "Programme Advenir 3879 k€ · Fonds chaleur 5080 k€ · AO Grands Projets Industriels 5362 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t064",
+    "dernier_jalon": "AMO France Rénov' mobilisée — 2026-05-27",
+    "prochain_jalon": "Première phase de leasing social livrée — Q3/2027"
+  },
+  {
+    "id": "T065",
+    "nom": "Grand Poitiers",
+    "type": "EPCI",
+    "code_insee": "2081891784",
+    "lat": 46.6027,
+    "lon": 0.3094,
+    "region": "Nouvelle-Aquitaine",
+    "departement": "Vienne",
+    "dep_code": "86",
+    "population": 194000,
+    "statut": "conventionné",
+    "statut_label": "Conventionné",
+    "date_selection": "2026-09-25",
+    "progression_pct": 25,
+    "axes_codes": "fioul,gaz,agriculture",
+    "axes_label": "Sortie fioul, Sortie gaz, Agriculture",
+    "axe_mobilite": 0,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 1,
+    "elu_referent": "M. Philippe Dubois, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Nouvelle-Aquitaine",
+    "bornes_cible": 465,
+    "bornes_actuel": 103,
+    "bornes_pct": 22,
+    "pac_cible": 2854,
+    "pac_actuel": 677,
+    "pac_pct": 24,
+    "logements_fioul_cible": 1171,
+    "logements_fioul_actuel": 231,
+    "logements_fioul_pct": 20,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 8.1,
+    "ve_pct": 20,
+    "financement_total_eur": 17461000,
+    "financement_total_keur": 17461,
+    "financements": [
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 7523000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 4496000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 1377000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 2178000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 1887000
+      }
+    ],
+    "financements_resume": "CEE Transports 7523 k€ · Fonds chaleur 4496 k€ · Programme Advenir 1377 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t065",
+    "dernier_jalon": "Audit énergétique du parc public lancé — 2026-07-25",
+    "prochain_jalon": "Cartographie des bâtiments publics au gaz — Q1/2027"
+  },
+  {
+    "id": "T066",
+    "nom": "CA La Rochelle",
+    "type": "EPCI",
+    "code_insee": "2072546007",
+    "lat": 46.119,
+    "lon": -1.1036,
+    "region": "Nouvelle-Aquitaine",
+    "departement": "Charente-Maritime",
+    "dep_code": "17",
+    "population": 170000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-04-20",
+    "progression_pct": 0,
+    "axes_codes": "gaz",
+    "axes_label": "Sortie gaz",
+    "axe_mobilite": 0,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Nathalie Dubois, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Nouvelle-Aquitaine",
+    "bornes_cible": 297,
+    "bornes_actuel": 0,
+    "bornes_pct": 0,
+    "pac_cible": 2174,
+    "pac_actuel": 0,
+    "pac_pct": 0,
+    "logements_fioul_cible": 1090,
+    "logements_fioul_actuel": 0,
+    "logements_fioul_pct": 0,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 7,
+    "financement_total_eur": 14597000,
+    "financement_total_keur": 14597,
+    "financements": [
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 5350000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 2799000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 3787000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 2661000
+      }
+    ],
+    "financements_resume": "Fonds chaleur 5350 k€ · CEE Bâtiment 2799 k€ · AAP DECARB FLASH 3787 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t066",
+    "dernier_jalon": "Recensement des chaudières fioul ménages — 2026-07-02",
+    "prochain_jalon": "AMO France Rénov' mobilisée — Q4/2027"
+  },
+  {
+    "id": "T067",
+    "nom": "CA Grand Angoulême",
+    "type": "EPCI",
+    "code_insee": "2099686372",
+    "lat": 45.6033,
+    "lon": 0.1069,
+    "region": "Nouvelle-Aquitaine",
+    "departement": "Charente",
+    "dep_code": "16",
+    "population": 142000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-06-24",
+    "progression_pct": 8,
+    "axes_codes": "mobilite,fioul",
+    "axes_label": "Mobilité, Sortie fioul",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Émilie Dubois, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Nouvelle-Aquitaine",
+    "bornes_cible": 167,
+    "bornes_actuel": 16,
+    "bornes_pct": 10,
+    "pac_cible": 1343,
+    "pac_actuel": 112,
+    "pac_pct": 8,
+    "logements_fioul_cible": 521,
+    "logements_fioul_actuel": 39,
+    "logements_fioul_pct": 7,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 7,
+    "financement_total_eur": 17054000,
+    "financement_total_keur": 17054,
+    "financements": [
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 4238000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 2184000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 1039000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 3233000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 1277000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 5083000
+      }
+    ],
+    "financements_resume": "AO Grands Projets Industriels 4238 k€ · CEE Transports 2184 k€ · Programme Advenir 1039 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t067",
+    "dernier_jalon": "Délibération adoptée par le conseil — 2026-08-13",
+    "prochain_jalon": "Délibération adoptée par le conseil — Q1/2027"
+  },
+  {
+    "id": "T068",
+    "nom": "Ville de Périgueux",
+    "type": "commune",
+    "code_insee": "24482",
+    "lat": 45.2299,
+    "lon": 0.7177,
+    "region": "Nouvelle-Aquitaine",
+    "departement": "Dordogne",
+    "dep_code": "24",
+    "population": 30000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-14",
+    "progression_pct": 0,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Christine Morel, Maire",
+    "direction_etat": "DGEC · ADEME Nouvelle-Aquitaine",
+    "bornes_cible": 55,
+    "bornes_actuel": 0,
+    "bornes_pct": 0,
+    "pac_cible": 440,
+    "pac_actuel": 0,
+    "pac_pct": 0,
+    "logements_fioul_cible": 158,
+    "logements_fioul_actuel": 0,
+    "logements_fioul_pct": 0,
+    "ve_part_cible_pct": 45,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 4,
+    "financement_total_eur": 1521000,
+    "financement_total_keur": 1521,
+    "financements": [
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 182000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 170000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 230000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 279000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 660000
+      }
+    ],
+    "financements_resume": "MaPrimeRénov' 182 k€ · AAP DECARB FLASH 170 k€ · AO Grands Projets Industriels 230 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t068",
+    "dernier_jalon": "Cartographie des bâtiments publics au gaz — 2026-06-08",
+    "prochain_jalon": "Première phase de leasing social livrée — Q1/2027"
+  },
+  {
+    "id": "T069",
+    "nom": "CC Médoc Atlantique",
+    "type": "EPCI",
+    "code_insee": "2034072553",
+    "lat": 45.3929,
+    "lon": -1.0886,
+    "region": "Nouvelle-Aquitaine",
+    "departement": "Gironde",
+    "dep_code": "33",
+    "population": 23000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-13",
+    "progression_pct": 2,
+    "axes_codes": "mobilite,gaz,agriculture",
+    "axes_label": "Mobilité, Sortie gaz, Agriculture",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 1,
+    "elu_referent": "M. Jean Bertrand, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Nouvelle-Aquitaine",
+    "bornes_cible": 33,
+    "bornes_actuel": 0,
+    "bornes_pct": 0,
+    "pac_cible": 293,
+    "pac_actuel": 4,
+    "pac_pct": 1,
+    "logements_fioul_cible": 123,
+    "logements_fioul_actuel": 2,
+    "logements_fioul_pct": 2,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 4,
+    "financement_total_eur": 1371000,
+    "financement_total_keur": 1371,
+    "financements": [
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 822000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 462000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 87000
+      }
+    ],
+    "financements_resume": "Programme Advenir 822 k€ · CEE Bâtiment 462 k€ · AO Grands Projets Industriels 87 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t069",
+    "dernier_jalon": "Audit énergétique du parc public lancé — 2026-09-23",
+    "prochain_jalon": "Recensement des chaudières fioul ménages — Q1/2027"
+  },
+  {
+    "id": "T070",
+    "nom": "CC Lacq-Orthez",
+    "type": "EPCI",
+    "code_insee": "2075847681",
+    "lat": 43.4628,
+    "lon": -0.7647,
+    "region": "Nouvelle-Aquitaine",
+    "departement": "Pyrénées-Atlantiques",
+    "dep_code": "64",
+    "population": 53000,
+    "statut": "en_oeuvre",
+    "statut_label": "En œuvre",
+    "date_selection": "2026-11-28",
+    "progression_pct": 49,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Jean Bertrand, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Nouvelle-Aquitaine",
+    "bornes_cible": 93,
+    "bornes_actuel": 50,
+    "bornes_pct": 54,
+    "pac_cible": 724,
+    "pac_actuel": 363,
+    "pac_pct": 50,
+    "logements_fioul_cible": 335,
+    "logements_fioul_actuel": 152,
+    "logements_fioul_pct": 45,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 19.2,
+    "ve_pct": 38,
+    "financement_total_eur": 7045000,
+    "financement_total_keur": 7045,
+    "financements": [
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 792000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 1655000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 2029000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 905000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 1664000
+      }
+    ],
+    "financements_resume": "MaPrimeRénov' 792 k€ · Prêt Action élec ta boîte 1655 k€ · Programme Advenir 2029 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t070",
+    "dernier_jalon": "Délibération adoptée par le conseil — 2026-09-10",
+    "prochain_jalon": "Recensement des chaudières fioul ménages — Q4/2027"
+  },
+  {
+    "id": "T071",
+    "nom": "Rennes Métropole",
+    "type": "métropole",
+    "code_insee": "2023863742",
+    "lat": 48.0699,
+    "lon": -1.6924,
+    "region": "Bretagne",
+    "departement": "Ille-et-Vilaine",
+    "dep_code": "35",
+    "population": 457000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-08",
+    "progression_pct": 5,
+    "axes_codes": "mobilite,fioul",
+    "axes_label": "Mobilité, Sortie fioul",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Sophie Thomas, Présidente de la métropole",
+    "direction_etat": "DGEC · ADEME Bretagne",
+    "bornes_cible": 595,
+    "bornes_actuel": 25,
+    "bornes_pct": 4,
+    "pac_cible": 4782,
+    "pac_actuel": 221,
+    "pac_pct": 5,
+    "logements_fioul_cible": 1293,
+    "logements_fioul_actuel": 75,
+    "logements_fioul_pct": 6,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 7,
+    "financement_total_eur": 19255000,
+    "financement_total_keur": 19255,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 14136000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 2689000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 2430000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 14136 k€ · Programme Advenir 2689 k€ · CEE Transports 2430 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t071",
+    "dernier_jalon": "Première phase de leasing social livrée — 2026-07-24",
+    "prochain_jalon": "AMO France Rénov' mobilisée — Q4/2027"
+  },
+  {
+    "id": "T072",
+    "nom": "Brest Métropole",
+    "type": "métropole",
+    "code_insee": "2071453148",
+    "lat": 48.3512,
+    "lon": -4.5055,
+    "region": "Bretagne",
+    "departement": "Finistère",
+    "dep_code": "29",
+    "population": 214000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-06-30",
+    "progression_pct": 2,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Christine David, Présidente de la métropole",
+    "direction_etat": "DGEC · ADEME Bretagne",
+    "bornes_cible": 202,
+    "bornes_actuel": 5,
+    "bornes_pct": 2,
+    "pac_cible": 3640,
+    "pac_actuel": 75,
+    "pac_pct": 2,
+    "logements_fioul_cible": 1406,
+    "logements_fioul_actuel": 22,
+    "logements_fioul_pct": 2,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 5,
+    "financement_total_eur": 11747000,
+    "financement_total_keur": 11747,
+    "financements": [
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 3852000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 4366000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 1054000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 2475000
+      }
+    ],
+    "financements_resume": "CEE Bâtiment 3852 k€ · Prêt Action élec ta boîte 4366 k€ · Programme Advenir 1054 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t072",
+    "dernier_jalon": "Convention CEE signée avec un obligé — 2026-09-08",
+    "prochain_jalon": "Réunion publique d'information tenue — Q2/2027"
+  },
+  {
+    "id": "T073",
+    "nom": "CA Lorient Agglomération",
+    "type": "EPCI",
+    "code_insee": "2049101812",
+    "lat": 47.7813,
+    "lon": -3.4133,
+    "region": "Bretagne",
+    "departement": "Morbihan",
+    "dep_code": "56",
+    "population": 205000,
+    "statut": "en_oeuvre",
+    "statut_label": "En œuvre",
+    "date_selection": "2026-09-24",
+    "progression_pct": 64,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Christophe Laurent, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Bretagne",
+    "bornes_cible": 451,
+    "bornes_actuel": 254,
+    "bornes_pct": 56,
+    "pac_cible": 2974,
+    "pac_actuel": 2021,
+    "pac_pct": 68,
+    "logements_fioul_cible": 1060,
+    "logements_fioul_actuel": 757,
+    "logements_fioul_pct": 71,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 22.7,
+    "ve_pct": 57,
+    "financement_total_eur": 26198000,
+    "financement_total_keur": 26198,
+    "financements": [
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 1297000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 4802000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 5023000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 4660000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 5721000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 4695000
+      }
+    ],
+    "financements_resume": "Programme Advenir 1297 k€ · CEE Transports 4802 k€ · Prêt Action élec ta boîte 5023 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t073",
+    "dernier_jalon": "Réunion publique d'information tenue — 2026-09-29",
+    "prochain_jalon": "Convention CEE signée avec un obligé — Q4/2027"
+  },
+  {
+    "id": "T074",
+    "nom": "CA Quimper Bretagne Occidentale",
+    "type": "EPCI",
+    "code_insee": "2096838849",
+    "lat": 48.0073,
+    "lon": -4.0912,
+    "region": "Bretagne",
+    "departement": "Finistère",
+    "dep_code": "29",
+    "population": 100000,
+    "statut": "conventionné",
+    "statut_label": "Conventionné",
+    "date_selection": "2026-09-10",
+    "progression_pct": 33,
+    "axes_codes": "mobilite,fioul",
+    "axes_label": "Mobilité, Sortie fioul",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Patrick Morel, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Bretagne",
+    "bornes_cible": 191,
+    "bornes_actuel": 46,
+    "bornes_pct": 24,
+    "pac_cible": 1515,
+    "pac_actuel": 647,
+    "pac_pct": 43,
+    "logements_fioul_cible": 605,
+    "logements_fioul_actuel": 197,
+    "logements_fioul_pct": 33,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 13.5,
+    "ve_pct": 34,
+    "financement_total_eur": 6748000,
+    "financement_total_keur": 6748,
+    "financements": [
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 2457000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 3675000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 616000
+      }
+    ],
+    "financements_resume": "AO Grands Projets Industriels 2457 k€ · Prêt Action élec ta boîte 3675 k€ · AAP DECARB FLASH 616 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t074",
+    "dernier_jalon": "Convention CEE signée avec un obligé — 2026-09-16",
+    "prochain_jalon": "Cartographie des bâtiments publics au gaz — Q2/2027"
+  },
+  {
+    "id": "T075",
+    "nom": "CC du Pays de Dol et Baie du Mont Saint-Michel",
+    "type": "EPCI",
+    "code_insee": "2056748074",
+    "lat": 48.5426,
+    "lon": -1.7562,
+    "region": "Bretagne",
+    "departement": "Ille-et-Vilaine",
+    "dep_code": "35",
+    "population": 20000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-07-05",
+    "progression_pct": 17,
+    "axes_codes": "mobilite,fioul,agriculture",
+    "axes_label": "Mobilité, Sortie fioul, Agriculture",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 1,
+    "elu_referent": "M. Laurent Robert, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Bretagne",
+    "bornes_cible": 23,
+    "bornes_actuel": 4,
+    "bornes_pct": 17,
+    "pac_cible": 309,
+    "pac_actuel": 43,
+    "pac_pct": 14,
+    "logements_fioul_cible": 100,
+    "logements_fioul_actuel": 15,
+    "logements_fioul_pct": 15,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 7.9,
+    "ve_pct": 20,
+    "financement_total_eur": 2417000,
+    "financement_total_keur": 2417,
+    "financements": [
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 740000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 105000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 672000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 595000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 305000
+      }
+    ],
+    "financements_resume": "MaPrimeRénov' 740 k€ · Programme Advenir 105 k€ · Prêt Action élec ta boîte 672 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t075",
+    "dernier_jalon": "Cartographie des bâtiments publics au gaz — 2026-07-26",
+    "prochain_jalon": "Convention CEE signée avec un obligé — Q4/2027"
+  },
+  {
+    "id": "T076",
+    "nom": "Nantes Métropole",
+    "type": "métropole",
+    "code_insee": "2082060023",
+    "lat": 47.1871,
+    "lon": -1.571,
+    "region": "Pays de la Loire",
+    "departement": "Loire-Atlantique",
+    "dep_code": "44",
+    "population": 653000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-06-24",
+    "progression_pct": 6,
+    "axes_codes": "mobilite,gaz,agriculture",
+    "axes_label": "Mobilité, Sortie gaz, Agriculture",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 1,
+    "elu_referent": "M. Olivier Dubois, Président de la métropole",
+    "direction_etat": "DGEC · ADEME Pays de la Loire",
+    "bornes_cible": 1241,
+    "bornes_actuel": 96,
+    "bornes_pct": 8,
+    "pac_cible": 9645,
+    "pac_actuel": 489,
+    "pac_pct": 5,
+    "logements_fioul_cible": 2115,
+    "logements_fioul_actuel": 102,
+    "logements_fioul_pct": 5,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 7,
+    "financement_total_eur": 75302000,
+    "financement_total_keur": 75302,
+    "financements": [
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 19604000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 23219000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 12462000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 11965000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 1416000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 6636000
+      }
+    ],
+    "financements_resume": "CEE Transports 19604 k€ · CEE Bâtiment 23219 k€ · AO Grands Projets Industriels 12462 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t076",
+    "dernier_jalon": "Recensement des chaudières fioul ménages — 2026-09-28",
+    "prochain_jalon": "Audit énergétique du parc public lancé — Q1/2027"
+  },
+  {
+    "id": "T077",
+    "nom": "Angers Loire Métropole",
+    "type": "métropole",
+    "code_insee": "2066779304",
+    "lat": 47.447,
+    "lon": -0.5496,
+    "region": "Pays de la Loire",
+    "departement": "Maine-et-Loire",
+    "dep_code": "49",
+    "population": 300000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-06-17",
+    "progression_pct": 15,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Michel Simon, Président de la métropole",
+    "direction_etat": "DGEC · ADEME Pays de la Loire",
+    "bornes_cible": 539,
+    "bornes_actuel": 86,
+    "bornes_pct": 16,
+    "pac_cible": 3443,
+    "pac_actuel": 613,
+    "pac_pct": 18,
+    "logements_fioul_cible": 1891,
+    "logements_fioul_actuel": 318,
+    "logements_fioul_pct": 17,
+    "ve_part_cible_pct": 35,
+    "ve_part_actuel_pct": 6.6,
+    "ve_pct": 19,
+    "financement_total_eur": 17615000,
+    "financement_total_keur": 17615,
+    "financements": [
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 2687000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 8505000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 6423000
+      }
+    ],
+    "financements_resume": "Programme Advenir 2687 k€ · CEE Transports 8505 k€ · MaPrimeRénov' 6423 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t077",
+    "dernier_jalon": "Première phase de leasing social livrée — 2026-08-31",
+    "prochain_jalon": "Plan local de déploiement IRVE adopté — Q4/2027"
+  },
+  {
+    "id": "T078",
+    "nom": "Le Mans Métropole",
+    "type": "EPCI",
+    "code_insee": "2086868379",
+    "lat": 47.9675,
+    "lon": 0.2271,
+    "region": "Pays de la Loire",
+    "departement": "Sarthe",
+    "dep_code": "72",
+    "population": 210000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-06-06",
+    "progression_pct": 13,
+    "axes_codes": "fioul,agriculture",
+    "axes_label": "Sortie fioul, Agriculture",
+    "axe_mobilite": 0,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 1,
+    "elu_referent": "M. Olivier Leroy, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Pays de la Loire",
+    "bornes_cible": 468,
+    "bornes_actuel": 77,
+    "bornes_pct": 16,
+    "pac_cible": 2980,
+    "pac_actuel": 383,
+    "pac_pct": 13,
+    "logements_fioul_cible": 1342,
+    "logements_fioul_actuel": 142,
+    "logements_fioul_pct": 11,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 6.6,
+    "ve_pct": 16,
+    "financement_total_eur": 19502000,
+    "financement_total_keur": 19502,
+    "financements": [
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 4932000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 6771000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 2180000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 681000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 2214000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 2724000
+      }
+    ],
+    "financements_resume": "Fonds chaleur 4932 k€ · AO Grands Projets Industriels 6771 k€ · Programme Advenir 2180 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t078",
+    "dernier_jalon": "Réunion publique d'information tenue — 2026-08-23",
+    "prochain_jalon": "Réunion publique d'information tenue — Q1/2027"
+  },
+  {
+    "id": "T079",
+    "nom": "CA La Roche-sur-Yon Agglomération",
+    "type": "EPCI",
+    "code_insee": "2081441519",
+    "lat": 46.6481,
+    "lon": -1.4225,
+    "region": "Pays de la Loire",
+    "departement": "Vendée",
+    "dep_code": "85",
+    "population": 100000,
+    "statut": "conventionné",
+    "statut_label": "Conventionné",
+    "date_selection": "2026-07-17",
+    "progression_pct": 37,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Sophie Dubois, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Pays de la Loire",
+    "bornes_cible": 97,
+    "bornes_actuel": 31,
+    "bornes_pct": 32,
+    "pac_cible": 1630,
+    "pac_actuel": 783,
+    "pac_pct": 48,
+    "logements_fioul_cible": 588,
+    "logements_fioul_actuel": 210,
+    "logements_fioul_pct": 36,
+    "ve_part_cible_pct": 35,
+    "ve_part_actuel_pct": 15.8,
+    "ve_pct": 45,
+    "financement_total_eur": 5150000,
+    "financement_total_keur": 5150,
+    "financements": [
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 2605000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 831000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 729000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 985000
+      }
+    ],
+    "financements_resume": "AO Grands Projets Industriels 2605 k€ · Fonds chaleur 831 k€ · Prêt Action élec ta boîte 729 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t079",
+    "dernier_jalon": "Convention CEE signée avec un obligé — 2026-04-16",
+    "prochain_jalon": "Plan climat-air-énergie territorial révisé — Q3/2027"
+  },
+  {
+    "id": "T080",
+    "nom": "CA de Saumur Val de Loire",
+    "type": "EPCI",
+    "code_insee": "2075504221",
+    "lat": 47.2433,
+    "lon": -0.1291,
+    "region": "Pays de la Loire",
+    "departement": "Maine-et-Loire",
+    "dep_code": "49",
+    "population": 97000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-22",
+    "progression_pct": 2,
+    "axes_codes": "mobilite,gaz,agriculture",
+    "axes_label": "Mobilité, Sortie gaz, Agriculture",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 1,
+    "elu_referent": "Mme Hélène David, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Pays de la Loire",
+    "bornes_cible": 229,
+    "bornes_actuel": 3,
+    "bornes_pct": 1,
+    "pac_cible": 1738,
+    "pac_actuel": 42,
+    "pac_pct": 2,
+    "logements_fioul_cible": 620,
+    "logements_fioul_actuel": 10,
+    "logements_fioul_pct": 2,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 4,
+    "financement_total_eur": 8365000,
+    "financement_total_keur": 8365,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 1860000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 2530000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 3438000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 537000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 1860 k€ · AO Grands Projets Industriels 2530 k€ · Programme Advenir 3438 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t080",
+    "dernier_jalon": "AMO France Rénov' mobilisée — 2026-06-11",
+    "prochain_jalon": "Cartographie des bâtiments publics au gaz — Q4/2027"
+  },
+  {
+    "id": "T081",
+    "nom": "Ville de Cholet",
+    "type": "commune",
+    "code_insee": "49538",
+    "lat": 47.0292,
+    "lon": -0.859,
+    "region": "Pays de la Loire",
+    "departement": "Maine-et-Loire",
+    "dep_code": "49",
+    "population": 53000,
+    "statut": "conventionné",
+    "statut_label": "Conventionné",
+    "date_selection": "2026-09-02",
+    "progression_pct": 22,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Olivier Simon, Maire",
+    "direction_etat": "DGEC · ADEME Pays de la Loire",
+    "bornes_cible": 78,
+    "bornes_actuel": 17,
+    "bornes_pct": 22,
+    "pac_cible": 937,
+    "pac_actuel": 184,
+    "pac_pct": 20,
+    "logements_fioul_cible": 329,
+    "logements_fioul_actuel": 62,
+    "logements_fioul_pct": 19,
+    "ve_part_cible_pct": 45,
+    "ve_part_actuel_pct": 10.4,
+    "ve_pct": 23,
+    "financement_total_eur": 3073000,
+    "financement_total_keur": 3073,
+    "financements": [
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 1685000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 1032000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 356000
+      }
+    ],
+    "financements_resume": "MaPrimeRénov' 1685 k€ · Prêt Action élec ta boîte 1032 k€ · AO Grands Projets Industriels 356 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t081",
+    "dernier_jalon": "Plan local de déploiement IRVE adopté — 2026-07-22",
+    "prochain_jalon": "Réunion publique d'information tenue — Q1/2027"
+  },
+  {
+    "id": "T082",
+    "nom": "Métropole Rouen Normandie",
+    "type": "métropole",
+    "code_insee": "2019506414",
+    "lat": 49.4161,
+    "lon": 1.0582,
+    "region": "Normandie",
+    "departement": "Seine-Maritime",
+    "dep_code": "76",
+    "population": 490000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-23",
+    "progression_pct": 1,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Sophie Martin, Présidente de la métropole",
+    "direction_etat": "DGEC · ADEME Normandie",
+    "bornes_cible": 701,
+    "bornes_actuel": 6,
+    "bornes_pct": 1,
+    "pac_cible": 8348,
+    "pac_actuel": 73,
+    "pac_pct": 1,
+    "logements_fioul_cible": 1589,
+    "logements_fioul_actuel": 17,
+    "logements_fioul_pct": 1,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 7,
+    "financement_total_eur": 33918000,
+    "financement_total_keur": 33918,
+    "financements": [
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 5192000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 13641000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 1153000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 13932000
+      }
+    ],
+    "financements_resume": "Prêt Action élec ta boîte 5192 k€ · MaPrimeRénov' 13641 k€ · CEE Bâtiment 1153 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t082",
+    "dernier_jalon": "Audit énergétique du parc public lancé — 2026-07-18",
+    "prochain_jalon": "Plan local de déploiement IRVE adopté — Q4/2027"
+  },
+  {
+    "id": "T083",
+    "nom": "Caen la Mer",
+    "type": "EPCI",
+    "code_insee": "2084275638",
+    "lat": 49.193,
+    "lon": -0.3486,
+    "region": "Normandie",
+    "departement": "Calvados",
+    "dep_code": "14",
+    "population": 267000,
+    "statut": "conventionné",
+    "statut_label": "Conventionné",
+    "date_selection": "2026-06-14",
+    "progression_pct": 30,
+    "axes_codes": "mobilite,fioul",
+    "axes_label": "Mobilité, Sortie fioul",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Philippe Robert, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Normandie",
+    "bornes_cible": 582,
+    "bornes_actuel": 193,
+    "bornes_pct": 33,
+    "pac_cible": 4470,
+    "pac_actuel": 993,
+    "pac_pct": 22,
+    "logements_fioul_cible": 1438,
+    "logements_fioul_actuel": 447,
+    "logements_fioul_pct": 31,
+    "ve_part_cible_pct": 45,
+    "ve_part_actuel_pct": 14.7,
+    "ve_pct": 33,
+    "financement_total_eur": 35099000,
+    "financement_total_keur": 35099,
+    "financements": [
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 8168000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 6516000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 4430000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 10307000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 3725000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 1953000
+      }
+    ],
+    "financements_resume": "Prêt Action élec ta boîte 8168 k€ · Fonds chaleur 6516 k€ · CEE Bâtiment 4430 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t083",
+    "dernier_jalon": "Recensement des chaudières fioul ménages — 2026-09-13",
+    "prochain_jalon": "Audit énergétique du parc public lancé — Q2/2027"
+  },
+  {
+    "id": "T084",
+    "nom": "Le Havre Seine Métropole",
+    "type": "EPCI",
+    "code_insee": "2038956527",
+    "lat": 49.4484,
+    "lon": 0.0639,
+    "region": "Normandie",
+    "departement": "Seine-Maritime",
+    "dep_code": "76",
+    "population": 271000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-04-18",
+    "progression_pct": 5,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Pierre Michel, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Normandie",
+    "bornes_cible": 241,
+    "bornes_actuel": 12,
+    "bornes_pct": 5,
+    "pac_cible": 4601,
+    "pac_actuel": 176,
+    "pac_pct": 4,
+    "logements_fioul_cible": 1841,
+    "logements_fioul_actuel": 92,
+    "logements_fioul_pct": 5,
+    "ve_part_cible_pct": 45,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 4,
+    "financement_total_eur": 25886000,
+    "financement_total_keur": 25886,
+    "financements": [
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 6168000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 2321000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 5393000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 10710000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 1294000
+      }
+    ],
+    "financements_resume": "CEE Transports 6168 k€ · Programme Advenir 2321 k€ · AAP DECARB FLASH 5393 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t084",
+    "dernier_jalon": "Plan climat-air-énergie territorial révisé — 2026-04-18",
+    "prochain_jalon": "Délibération adoptée par le conseil — Q3/2027"
+  },
+  {
+    "id": "T085",
+    "nom": "CA du Cotentin",
+    "type": "EPCI",
+    "code_insee": "2092181084",
+    "lat": 49.6446,
+    "lon": -1.6412,
+    "region": "Normandie",
+    "departement": "Manche",
+    "dep_code": "50",
+    "population": 179000,
+    "statut": "conventionné",
+    "statut_label": "Conventionné",
+    "date_selection": "2026-08-04",
+    "progression_pct": 29,
+    "axes_codes": "fioul,gaz",
+    "axes_label": "Sortie fioul, Sortie gaz",
+    "axe_mobilite": 0,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Isabelle Lefebvre, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Normandie",
+    "bornes_cible": 265,
+    "bornes_actuel": 60,
+    "bornes_pct": 23,
+    "pac_cible": 2578,
+    "pac_actuel": 560,
+    "pac_pct": 22,
+    "logements_fioul_cible": 880,
+    "logements_fioul_actuel": 190,
+    "logements_fioul_pct": 22,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 11.2,
+    "ve_pct": 37,
+    "financement_total_eur": 12191000,
+    "financement_total_keur": 12191,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 5323000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 6116000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 752000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 5323 k€ · AO Grands Projets Industriels 6116 k€ · Programme Advenir 752 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t085",
+    "dernier_jalon": "Audit énergétique du parc public lancé — 2026-07-21",
+    "prochain_jalon": "Audit énergétique du parc public lancé — Q4/2027"
+  },
+  {
+    "id": "T086",
+    "nom": "Ville d'Évreux",
+    "type": "commune",
+    "code_insee": "27261",
+    "lat": 49.0024,
+    "lon": 1.1103,
+    "region": "Normandie",
+    "departement": "Eure",
+    "dep_code": "27",
+    "population": 46000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-06-06",
+    "progression_pct": 6,
+    "axes_codes": "mobilite",
+    "axes_label": "Mobilité",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Jean Martin, Maire",
+    "direction_etat": "DGEC · ADEME Normandie",
+    "bornes_cible": 49,
+    "bornes_actuel": 3,
+    "bornes_pct": 6,
+    "pac_cible": 806,
+    "pac_actuel": 54,
+    "pac_pct": 7,
+    "logements_fioul_cible": 223,
+    "logements_fioul_actuel": 10,
+    "logements_fioul_pct": 4,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 2.1,
+    "ve_pct": 7,
+    "financement_total_eur": 4273000,
+    "financement_total_keur": 4273,
+    "financements": [
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 1337000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 1100000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 227000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 888000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 721000
+      }
+    ],
+    "financements_resume": "Fonds chaleur 1337 k€ · CEE Transports 1100 k€ · AAP DECARB FLASH 227 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t086",
+    "dernier_jalon": "Réunion publique d'information tenue — 2026-08-24",
+    "prochain_jalon": "Plan local de déploiement IRVE adopté — Q3/2027"
+  },
+  {
+    "id": "T087",
+    "nom": "Dijon Métropole",
+    "type": "métropole",
+    "code_insee": "2053929586",
+    "lat": 47.2806,
+    "lon": 5.0372,
+    "region": "Bourgogne-Franche-Comté",
+    "departement": "Côte-d'Or",
+    "dep_code": "21",
+    "population": 254000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-05-29",
+    "progression_pct": 8,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Christophe Dubois, Président de la métropole",
+    "direction_etat": "DGEC · ADEME Bourgogne-Franche-Comté",
+    "bornes_cible": 406,
+    "bornes_actuel": 40,
+    "bornes_pct": 10,
+    "pac_cible": 3004,
+    "pac_actuel": 291,
+    "pac_pct": 10,
+    "logements_fioul_cible": 806,
+    "logements_fioul_actuel": 66,
+    "logements_fioul_pct": 8,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 4.6,
+    "ve_pct": 9,
+    "financement_total_eur": 44776000,
+    "financement_total_keur": 44776,
+    "financements": [
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 5354000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 9214000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 2239000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 8271000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 9981000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 9717000
+      }
+    ],
+    "financements_resume": "AO Grands Projets Industriels 5354 k€ · CEE Transports 9214 k€ · MaPrimeRénov' 2239 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t087",
+    "dernier_jalon": "Audit énergétique du parc public lancé — 2026-07-29",
+    "prochain_jalon": "Recensement des chaudières fioul ménages — Q3/2027"
+  },
+  {
+    "id": "T088",
+    "nom": "Grand Besançon Métropole",
+    "type": "EPCI",
+    "code_insee": "2015892193",
+    "lat": 47.2799,
+    "lon": 6.0638,
+    "region": "Bourgogne-Franche-Comté",
+    "departement": "Doubs",
+    "dep_code": "25",
+    "population": 196000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-05-22",
+    "progression_pct": 4,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Philippe Morel, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Bourgogne-Franche-Comté",
+    "bornes_cible": 480,
+    "bornes_actuel": 21,
+    "bornes_pct": 4,
+    "pac_cible": 3523,
+    "pac_actuel": 144,
+    "pac_pct": 4,
+    "logements_fioul_cible": 1174,
+    "logements_fioul_actuel": 55,
+    "logements_fioul_pct": 5,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 7,
+    "financement_total_eur": 12565000,
+    "financement_total_keur": 12565,
+    "financements": [
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 1166000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 4338000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 2166000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 4057000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 838000
+      }
+    ],
+    "financements_resume": "MaPrimeRénov' 1166 k€ · CEE Transports 4338 k€ · Prêt Action élec ta boîte 2166 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t088",
+    "dernier_jalon": "Plan local de déploiement IRVE adopté — 2026-09-30",
+    "prochain_jalon": "Recensement des chaudières fioul ménages — Q1/2027"
+  },
+  {
+    "id": "T089",
+    "nom": "CA du Grand Belfort",
+    "type": "EPCI",
+    "code_insee": "2045568761",
+    "lat": 47.6732,
+    "lon": 6.8218,
+    "region": "Bourgogne-Franche-Comté",
+    "departement": "Territoire de Belfort",
+    "dep_code": "90",
+    "population": 100000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-07-01",
+    "progression_pct": 12,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Isabelle Simon, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Bourgogne-Franche-Comté",
+    "bornes_cible": 147,
+    "bornes_actuel": 19,
+    "bornes_pct": 13,
+    "pac_cible": 1391,
+    "pac_actuel": 129,
+    "pac_pct": 9,
+    "logements_fioul_cible": 278,
+    "logements_fioul_actuel": 29,
+    "logements_fioul_pct": 10,
+    "ve_part_cible_pct": 35,
+    "ve_part_actuel_pct": 5.3,
+    "ve_pct": 15,
+    "financement_total_eur": 6736000,
+    "financement_total_keur": 6736,
+    "financements": [
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 614000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 601000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 1908000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 1393000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 659000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 1561000
+      }
+    ],
+    "financements_resume": "AAP DECARB FLASH 614 k€ · CEE Bâtiment 601 k€ · MaPrimeRénov' 1908 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t089",
+    "dernier_jalon": "Convention CEE signée avec un obligé — 2026-07-25",
+    "prochain_jalon": "Recensement des chaudières fioul ménages — Q4/2027"
+  },
+  {
+    "id": "T090",
+    "nom": "CC Bresse Louhannaise Intercom",
+    "type": "EPCI",
+    "code_insee": "2059961172",
+    "lat": 46.6486,
+    "lon": 5.2638,
+    "region": "Bourgogne-Franche-Comté",
+    "departement": "Saône-et-Loire",
+    "dep_code": "71",
+    "population": 30000,
+    "statut": "conventionné",
+    "statut_label": "Conventionné",
+    "date_selection": "2026-07-09",
+    "progression_pct": 39,
+    "axes_codes": "fioul,industrie",
+    "axes_label": "Sortie fioul, Industrie",
+    "axe_mobilite": 0,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 1,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Laurent Dubois, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Bourgogne-Franche-Comté",
+    "bornes_cible": 73,
+    "bornes_actuel": 25,
+    "bornes_pct": 34,
+    "pac_cible": 358,
+    "pac_actuel": 166,
+    "pac_pct": 46,
+    "logements_fioul_cible": 81,
+    "logements_fioul_actuel": 25,
+    "logements_fioul_pct": 31,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 18.9,
+    "ve_pct": 47,
+    "financement_total_eur": 1278000,
+    "financement_total_keur": 1278,
+    "financements": [
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 198000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 130000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 950000
+      }
+    ],
+    "financements_resume": "Prêt Action élec ta boîte 198 k€ · MaPrimeRénov' 130 k€ · CEE Bâtiment 950 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t090",
+    "dernier_jalon": "Convention CEE signée avec un obligé — 2026-05-04",
+    "prochain_jalon": "Convention CEE signée avec un obligé — Q4/2027"
+  },
+  {
+    "id": "T091",
+    "nom": "Orléans Métropole",
+    "type": "métropole",
+    "code_insee": "2065296657",
+    "lat": 47.9412,
+    "lon": 1.9018,
+    "region": "Centre-Val de Loire",
+    "departement": "Loiret",
+    "dep_code": "45",
+    "population": 292000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-06-29",
+    "progression_pct": 2,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Patrick Lefebvre, Président de la métropole",
+    "direction_etat": "DGEC · ADEME Centre-Val de Loire",
+    "bornes_cible": 554,
+    "bornes_actuel": 13,
+    "bornes_pct": 2,
+    "pac_cible": 4699,
+    "pac_actuel": 111,
+    "pac_pct": 2,
+    "logements_fioul_cible": 850,
+    "logements_fioul_actuel": 13,
+    "logements_fioul_pct": 2,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 5,
+    "financement_total_eur": 28124000,
+    "financement_total_keur": 28124,
+    "financements": [
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 2966000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 2661000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 3689000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 10386000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 968000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 7454000
+      }
+    ],
+    "financements_resume": "MaPrimeRénov' 2966 k€ · Programme Advenir 2661 k€ · AO Grands Projets Industriels 3689 k€ · +3 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t091",
+    "dernier_jalon": "Convention CEE signée avec un obligé — 2026-09-13",
+    "prochain_jalon": "Recensement des chaudières fioul ménages — Q4/2027"
+  },
+  {
+    "id": "T092",
+    "nom": "Tours Métropole Val de Loire",
+    "type": "métropole",
+    "code_insee": "2023439803",
+    "lat": 47.3689,
+    "lon": 0.6589,
+    "region": "Centre-Val de Loire",
+    "departement": "Indre-et-Loire",
+    "dep_code": "37",
+    "population": 300000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-06-03",
+    "progression_pct": 1,
+    "axes_codes": "mobilite,gaz",
+    "axes_label": "Mobilité, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Christophe Lefebvre, Président de la métropole",
+    "direction_etat": "DGEC · ADEME Centre-Val de Loire",
+    "bornes_cible": 649,
+    "bornes_actuel": 7,
+    "bornes_pct": 1,
+    "pac_cible": 4784,
+    "pac_actuel": 43,
+    "pac_pct": 1,
+    "logements_fioul_cible": 2085,
+    "logements_fioul_actuel": 21,
+    "logements_fioul_pct": 1,
+    "ve_part_cible_pct": 40,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 5,
+    "financement_total_eur": 30375000,
+    "financement_total_keur": 30375,
+    "financements": [
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 934000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 9842000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 3803000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 9819000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 5977000
+      }
+    ],
+    "financements_resume": "CEE Transports 934 k€ · MaPrimeRénov' 9842 k€ · Prêt Action élec ta boîte 3803 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t092",
+    "dernier_jalon": "Cartographie des bâtiments publics au gaz — 2026-08-28",
+    "prochain_jalon": "Convention CEE signée avec un obligé — Q2/2027"
+  },
+  {
+    "id": "T093",
+    "nom": "CA Bourges Plus",
+    "type": "EPCI",
+    "code_insee": "2010091737",
+    "lat": 47.0642,
+    "lon": 2.4102,
+    "region": "Centre-Val de Loire",
+    "departement": "Cher",
+    "dep_code": "18",
+    "population": 105000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-05-22",
+    "progression_pct": 17,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Stéphane Fournier, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Centre-Val de Loire",
+    "bornes_cible": 260,
+    "bornes_actuel": 39,
+    "bornes_pct": 15,
+    "pac_cible": 1022,
+    "pac_actuel": 198,
+    "pac_pct": 19,
+    "logements_fioul_cible": 374,
+    "logements_fioul_actuel": 58,
+    "logements_fioul_pct": 16,
+    "ve_part_cible_pct": 45,
+    "ve_part_actuel_pct": 5.5,
+    "ve_pct": 12,
+    "financement_total_eur": 5318000,
+    "financement_total_keur": 5318,
+    "financements": [
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 1443000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 2167000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 570000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 1138000
+      }
+    ],
+    "financements_resume": "Programme Advenir 1443 k€ · Fonds chaleur 2167 k€ · Prêt Action élec ta boîte 570 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t093",
+    "dernier_jalon": "Convention CEE signée avec un obligé — 2026-04-06",
+    "prochain_jalon": "AMO France Rénov' mobilisée — Q4/2027"
+  },
+  {
+    "id": "T094",
+    "nom": "Ville de Châteauroux",
+    "type": "commune",
+    "code_insee": "36487",
+    "lat": 46.7915,
+    "lon": 1.7106,
+    "region": "Centre-Val de Loire",
+    "departement": "Indre",
+    "dep_code": "36",
+    "population": 44000,
+    "statut": "conventionné",
+    "statut_label": "Conventionné",
+    "date_selection": "2026-07-14",
+    "progression_pct": 25,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Sophie Simon, Maire",
+    "direction_etat": "DGEC · ADEME Centre-Val de Loire",
+    "bornes_cible": 87,
+    "bornes_actuel": 22,
+    "bornes_pct": 25,
+    "pac_cible": 414,
+    "pac_actuel": 95,
+    "pac_pct": 23,
+    "logements_fioul_cible": 131,
+    "logements_fioul_actuel": 24,
+    "logements_fioul_pct": 18,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 15.8,
+    "ve_pct": 32,
+    "financement_total_eur": 6149000,
+    "financement_total_keur": 6149,
+    "financements": [
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 1173000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 379000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 1708000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 1248000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 1641000
+      }
+    ],
+    "financements_resume": "AO Grands Projets Industriels 1173 k€ · CEE Bâtiment 379 k€ · Fonds chaleur 1708 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t094",
+    "dernier_jalon": "Cartographie des bâtiments publics au gaz — 2026-05-28",
+    "prochain_jalon": "Plan climat-air-énergie territorial révisé — Q2/2027"
+  },
+  {
+    "id": "T095",
+    "nom": "CA du Pays Ajaccien",
+    "type": "EPCI",
+    "code_insee": "2061799600",
+    "lat": 41.913,
+    "lon": 8.7306,
+    "region": "Corse",
+    "departement": "Corse-du-Sud",
+    "dep_code": "2A",
+    "population": 84000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-04-15",
+    "progression_pct": 5,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Isabelle Richard, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Corse",
+    "bornes_cible": 198,
+    "bornes_actuel": 10,
+    "bornes_pct": 5,
+    "pac_cible": 1484,
+    "pac_actuel": 93,
+    "pac_pct": 6,
+    "logements_fioul_cible": 293,
+    "logements_fioul_actuel": 11,
+    "logements_fioul_pct": 4,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 4,
+    "financement_total_eur": 2364000,
+    "financement_total_keur": 2364,
+    "financements": [
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 1015000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 965000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 384000
+      }
+    ],
+    "financements_resume": "AO Grands Projets Industriels 1015 k€ · Programme Advenir 965 k€ · MaPrimeRénov' 384 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t095",
+    "dernier_jalon": "Recensement des chaudières fioul ménages — 2026-04-28",
+    "prochain_jalon": "Délibération adoptée par le conseil — Q1/2027"
+  },
+  {
+    "id": "T096",
+    "nom": "CA Cap Excellence",
+    "type": "EPCI",
+    "code_insee": "2017188130",
+    "lat": 16.2013,
+    "lon": -61.5734,
+    "region": "Guadeloupe",
+    "departement": "Guadeloupe",
+    "dep_code": "971",
+    "population": 100000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-06-06",
+    "progression_pct": 3,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Sophie Thomas, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Guadeloupe",
+    "bornes_cible": 214,
+    "bornes_actuel": 5,
+    "bornes_pct": 2,
+    "pac_cible": 1378,
+    "pac_actuel": 40,
+    "pac_pct": 3,
+    "logements_fioul_cible": 591,
+    "logements_fioul_actuel": 20,
+    "logements_fioul_pct": 3,
+    "ve_part_cible_pct": 25,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 8,
+    "financement_total_eur": 13738000,
+    "financement_total_keur": 13738,
+    "financements": [
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 1484000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 3944000
+      },
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 3594000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 2877000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 1839000
+      }
+    ],
+    "financements_resume": "CEE Transports 1484 k€ · Programme Advenir 3944 k€ · CEE Bâtiment 3594 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t096",
+    "dernier_jalon": "Plan local de déploiement IRVE adopté — 2026-09-03",
+    "prochain_jalon": "Première phase de leasing social livrée — Q2/2027"
+  },
+  {
+    "id": "T097",
+    "nom": "CA du Centre de la Martinique",
+    "type": "EPCI",
+    "code_insee": "2022232184",
+    "lat": 14.6179,
+    "lon": -61.0901,
+    "region": "Martinique",
+    "departement": "Martinique",
+    "dep_code": "972",
+    "population": 159000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-06-24",
+    "progression_pct": 5,
+    "axes_codes": "mobilite,fioul,gaz",
+    "axes_label": "Mobilité, Sortie fioul, Sortie gaz",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Stéphane David, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Martinique",
+    "bornes_cible": 153,
+    "bornes_actuel": 7,
+    "bornes_pct": 5,
+    "pac_cible": 1896,
+    "pac_actuel": 69,
+    "pac_pct": 4,
+    "logements_fioul_cible": 790,
+    "logements_fioul_actuel": 27,
+    "logements_fioul_pct": 3,
+    "ve_part_cible_pct": 25,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 8,
+    "financement_total_eur": 14590000,
+    "financement_total_keur": 14590,
+    "financements": [
+      {
+        "dispositif": "CEE Bâtiment",
+        "montant": 4174000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 6221000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 3179000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 1016000
+      }
+    ],
+    "financements_resume": "CEE Bâtiment 4174 k€ · MaPrimeRénov' 6221 k€ · Prêt Action élec ta boîte 3179 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t097",
+    "dernier_jalon": "Première phase de leasing social livrée — 2026-07-30",
+    "prochain_jalon": "Réunion publique d'information tenue — Q3/2027"
+  },
+  {
+    "id": "T098",
+    "nom": "CA du Centre Littoral",
+    "type": "EPCI",
+    "code_insee": "2062989744",
+    "lat": 4.9627,
+    "lon": -52.2921,
+    "region": "Guyane",
+    "departement": "Guyane",
+    "dep_code": "973",
+    "population": 137000,
+    "statut": "candidat",
+    "statut_label": "Candidature déposée",
+    "date_selection": "2026-06-02",
+    "progression_pct": 2,
+    "axes_codes": "mobilite",
+    "axes_label": "Mobilité",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "M. Patrick Fournier, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME Guyane",
+    "bornes_cible": 217,
+    "bornes_actuel": 3,
+    "bornes_pct": 1,
+    "pac_cible": 1405,
+    "pac_actuel": 32,
+    "pac_pct": 2,
+    "logements_fioul_cible": 508,
+    "logements_fioul_actuel": 11,
+    "logements_fioul_pct": 2,
+    "ve_part_cible_pct": 25,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 8,
+    "financement_total_eur": 13048000,
+    "financement_total_keur": 13048,
+    "financements": [
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 2453000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 3062000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 4787000
+      },
+      {
+        "dispositif": "AAP DECARB FLASH",
+        "montant": 2746000
+      }
+    ],
+    "financements_resume": "MaPrimeRénov' 2453 k€ · Fonds chaleur 3062 k€ · Programme Advenir 4787 k€ · +1 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t098",
+    "dernier_jalon": "Convention CEE signée avec un obligé — 2026-07-31",
+    "prochain_jalon": "Recensement des chaudières fioul ménages — Q1/2027"
+  },
+  {
+    "id": "T099",
+    "nom": "CA du Territoire de la Côte Ouest",
+    "type": "EPCI",
+    "code_insee": "2025102023",
+    "lat": -21.0505,
+    "lon": 55.1941,
+    "region": "La Réunion",
+    "departement": "La Réunion",
+    "dep_code": "974",
+    "population": 218000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-07-20",
+    "progression_pct": 17,
+    "axes_codes": "mobilite,gaz,agriculture",
+    "axes_label": "Mobilité, Sortie gaz, Agriculture",
+    "axe_mobilite": 1,
+    "axe_fioul": 0,
+    "axe_gaz": 1,
+    "axe_industrie": 0,
+    "axe_agriculture": 1,
+    "elu_referent": "M. Michel Girard, Président d'EPCI",
+    "direction_etat": "DGEC · ADEME La Réunion",
+    "bornes_cible": 238,
+    "bornes_actuel": 47,
+    "bornes_pct": 20,
+    "pac_cible": 3889,
+    "pac_actuel": 512,
+    "pac_pct": 13,
+    "logements_fioul_cible": 1498,
+    "logements_fioul_actuel": 242,
+    "logements_fioul_pct": 16,
+    "ve_part_cible_pct": 50,
+    "ve_part_actuel_pct": 8.2,
+    "ve_pct": 16,
+    "financement_total_eur": 30361000,
+    "financement_total_keur": 30361,
+    "financements": [
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 5045000
+      },
+      {
+        "dispositif": "Prêt Action élec ta boîte (Bpifrance)",
+        "montant": 5009000
+      },
+      {
+        "dispositif": "MaPrimeRénov' (ANAH)",
+        "montant": 7532000
+      },
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 4741000
+      },
+      {
+        "dispositif": "Programme Advenir",
+        "montant": 8034000
+      }
+    ],
+    "financements_resume": "AO Grands Projets Industriels 5045 k€ · Prêt Action élec ta boîte 5009 k€ · MaPrimeRénov' 7532 k€ · +2 autres",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t099",
+    "dernier_jalon": "Délibération adoptée par le conseil — 2026-09-27",
+    "prochain_jalon": "Plan climat-air-énergie territorial révisé — Q4/2027"
+  },
+  {
+    "id": "T100",
+    "nom": "CC du Centre Ouest",
+    "type": "EPCI",
+    "code_insee": "2051734908",
+    "lat": -12.849,
+    "lon": 45.1662,
+    "region": "Mayotte",
+    "departement": "Mayotte",
+    "dep_code": "976",
+    "population": 35000,
+    "statut": "retenu",
+    "statut_label": "Retenu",
+    "date_selection": "2026-05-27",
+    "progression_pct": 6,
+    "axes_codes": "mobilite,fioul",
+    "axes_label": "Mobilité, Sortie fioul",
+    "axe_mobilite": 1,
+    "axe_fioul": 1,
+    "axe_gaz": 0,
+    "axe_industrie": 0,
+    "axe_agriculture": 0,
+    "elu_referent": "Mme Émilie Lefebvre, Présidente d'EPCI",
+    "direction_etat": "DGEC · ADEME Mayotte",
+    "bornes_cible": 80,
+    "bornes_actuel": 5,
+    "bornes_pct": 6,
+    "pac_cible": 587,
+    "pac_actuel": 36,
+    "pac_pct": 6,
+    "logements_fioul_cible": 129,
+    "logements_fioul_actuel": 7,
+    "logements_fioul_pct": 5,
+    "ve_part_cible_pct": 30,
+    "ve_part_actuel_pct": 2.0,
+    "ve_pct": 7,
+    "financement_total_eur": 2743000,
+    "financement_total_keur": 2743,
+    "financements": [
+      {
+        "dispositif": "Fonds chaleur (Ademe)",
+        "montant": 386000
+      },
+      {
+        "dispositif": "CEE Transports (E-Trans)",
+        "montant": 1062000
+      },
+      {
+        "dispositif": "AO Grands Projets Industriels (GPID)",
+        "montant": 1295000
+      }
+    ],
+    "financements_resume": "Fonds chaleur 386 k€ · CEE Transports 1062 k€ · AO Grands Projets Industriels 1295 k€",
+    "convention_url": "https://www.ecologie.gouv.fr/territoires-electrification/t100",
+    "dernier_jalon": "Cartographie des bâtiments publics au gaz — 2026-04-06",
+    "prochain_jalon": "Cartographie des bâtiments publics au gaz — Q3/2027"
+  }
+]

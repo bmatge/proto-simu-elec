@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr" data-fr-scheme="system">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000091">
+  <title>Tableau de bord — Électrification de la France</title>
+  <meta name="description" content="Tableau de bord public de l'électrification française : mix électrique, mobilité, bâtiment et trajectoire 2050. Données opendata RTE, ADEME, Ecolab.">
+
+  <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/apple-touch-icon.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.ico" type="image/x-icon">
+  <link rel="manifest" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/manifest.webmanifest" crossorigin="use-credentials">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/utility/utility.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr-chart@2.0.4/dist/DSFRChart/DSFRChart.css">
+
+  <style>
+    .viz-card { background:#fff; padding:1.25rem 1.5rem; margin-bottom:1.5rem; border:1px solid #e5e5e5; border-radius:0; }
+    .viz-card h3 { color:#000091; font-size:1rem; margin:0 0 .25rem; }
+    .viz-card .viz-question { font-size:.875rem; color:#666; margin:0 0 .75rem; font-style:italic; }
+    .viz-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    @media (max-width: 768px) { .viz-grid-2 { grid-template-columns:1fr; } }
+    .src-table { width:100%; font-size:.8125rem; border-collapse:collapse; }
+    .src-table th, .src-table td { padding:6px 10px; border-bottom:1px solid #e5e5e5; text-align:left; vertical-align:top; }
+    .src-table th { background:#f6f6f6; color:#161616; font-weight:500; }
+    .src-table code { background:#eee; padding:1px 4px; font-size:.75rem; }
+    .brief-section { margin-bottom:2rem; }
+    .brief-section h3 { color:#000091; border-bottom:2px solid #000091; padding-bottom:.25rem; }
+    .tag-pill { display:inline-block; background:#e3e3fd; color:#000091; padding:2px 8px; border-radius:10px; font-size:.75rem; margin:2px 4px 2px 0; }
+    .callout-note { background:#fef7da; padding:1rem 1.25rem; border-left:4px solid #b34000; margin-bottom:1.5rem; }
+    .callout-note h3 { color:#716043; margin-top:0; }
+    .callout-info { background:#e8edff; padding:1rem 1.25rem; border-left:4px solid #000091; margin-bottom:1.5rem; }
+    dsfr-data-chart { display:block; min-height:300px; }
+  </style>
+  <link rel="stylesheet" href="/shared/portal-bar.css">
+  <script src="/shared/portal-bar.js" defer></script>
+</head>
+<body>
+
+  <a class="fr-skiplink" href="#contenu">Contenu</a>
+
+  <header role="banner" class="fr-header">
+    <div class="fr-header__body">
+      <div class="fr-container">
+        <div class="fr-header__body-row">
+          <div class="fr-header__brand fr-enlarge-link">
+            <div class="fr-header__brand-top">
+              <div class="fr-header__logo">
+                <p class="fr-logo">République<br>Française</p>
+              </div>
+            </div>
+            <div class="fr-header__service">
+              <a href="/" title="Accueil — Tableau de bord Électrification">
+                <p class="fr-header__service-title">Tableau de bord — Électrification de la France</p>
+              </a>
+              <p class="fr-header__service-tagline">Démonstrateur ChartsBuilder · Pôle Vauban / MIWEB · v0.2</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main role="main" id="contenu">
+    <div class="fr-container fr-mt-4w fr-mb-6w">
+
+      <h1>Électrification de la France</h1>
+      <p class="fr-text--lead">Quatre angles éditoriaux confrontés aux données opendata officielles : la décarbonation du mix, la bascule de la mobilité, l'électrification du bâtiment et la trajectoire 2050.</p>
+
+      <div class="fr-tabs" id="dash-tabs">
+        <ul class="fr-tabs__list" role="tablist" aria-label="Onglets du tableau de bord">
+          <li role="presentation"><button id="tab-mix" class="fr-tabs__tab" tabindex="0" role="tab" aria-selected="true" aria-controls="panel-mix">Mix électrique</button></li>
+          <li role="presentation"><button id="tab-mob" class="fr-tabs__tab" tabindex="-1" role="tab" aria-selected="false" aria-controls="panel-mob">Mobilité</button></li>
+          <li role="presentation"><button id="tab-bat" class="fr-tabs__tab" tabindex="-1" role="tab" aria-selected="false" aria-controls="panel-bat">Bâtiment</button></li>
+          <li role="presentation"><button id="tab-cap" class="fr-tabs__tab" tabindex="-1" role="tab" aria-selected="false" aria-controls="panel-cap">Cap 2050</button></li>
+          <li role="presentation"><button id="tab-brf" class="fr-tabs__tab" tabindex="-1" role="tab" aria-selected="false" aria-controls="panel-brf">Brief &amp; sources</button></li>
+        </ul>
+
+        <!-- =================== ONGLET 1 : MIX ÉLECTRIQUE =================== -->
+        <div id="panel-mix" class="fr-tabs__panel fr-tabs__panel--selected" role="tabpanel" aria-labelledby="tab-mix" tabindex="0">
+          <h2 class="fr-h4">Le mix électrique se décarbone-t-il ?</h2>
+
+          <!--
+            Note : le dataset eco2mix-national-tr contient des enregistrements futurs
+            où seules les prévisions sont renseignées (toutes les autres valeurs sont null).
+            On filtre donc systématiquement sur `taux_co2 is not null` pour ne récupérer
+            que les pas de temps avec mesures temps réel disponibles.
+          -->
+
+          <!-- Source 1 : dernière mesure consolidée pour les KPI temps réel -->
+          <dsfr-data-source id="mix-now" api-type="opendatasoft"
+            base-url="https://odre.opendatasoft.com"
+            dataset-id="eco2mix-national-tr"
+            where="taux_co2 is not null"
+            order-by="date_heure desc"
+            limit="1">
+          </dsfr-data-source>
+
+          <!-- Source 2 : 24h glissantes en ordre chronologique pour le line chart -->
+          <dsfr-data-source id="mix-24h" api-type="opendatasoft"
+            base-url="https://odre.opendatasoft.com"
+            dataset-id="eco2mix-national-tr"
+            where="date_heure > now(hours=-24) and taux_co2 is not null"
+            order-by="date_heure"
+            limit="400">
+          </dsfr-data-source>
+
+          <!-- Source 3 : parc ENR annuel (champs réels : parc_installe_eolien, parc_installe_solaire) -->
+          <dsfr-data-source id="enr-park" api-type="opendatasoft"
+            base-url="https://odre.opendatasoft.com"
+            dataset-id="parc-national-annuel-prod-eolien-solaire"
+            order-by="annee asc"
+            limit="30">
+          </dsfr-data-source>
+
+          <div class="viz-card">
+            <h3>Indicateurs temps réel</h3>
+            <p class="viz-question">Quelle est l'intensité carbone du kWh produit en ce moment ?</p>
+            <dsfr-data-kpi-group cols="3">
+              <dsfr-data-kpi source="mix-now" valeur="taux_co2" label="Intensité CO₂ (gCO₂/kWh)" couleur="vert" icone="ri-leaf-line" col="4"></dsfr-data-kpi>
+              <dsfr-data-kpi source="mix-now" valeur="nucleaire" label="Production nucléaire (MW)" couleur="bleu" icone="ri-flashlight-line" col="4"></dsfr-data-kpi>
+              <dsfr-data-kpi source="mix-now" valeur="consommation" label="Consommation France (MW)" couleur="bleu" icone="ri-plug-line" col="4"></dsfr-data-kpi>
+            </dsfr-data-kpi-group>
+          </div>
+
+          <div class="viz-card">
+            <h3>Production par filière sur 24 heures</h3>
+            <p class="viz-question">Comment se compose le mix en ce moment, filière par filière ?</p>
+            <dsfr-data-chart id="ch-mix24" source="mix-24h" type="line"
+              label-field="date_heure"
+              value-field="nucleaire"
+              value-fields="eolien,solaire,hydraulique,gaz"
+              name='["Nucléaire","Éolien","Solaire","Hydraulique","Gaz"]'
+              selected-palette="categorical"
+              databox
+              databox-title="Production électrique par filière — 24h glissantes"
+              databox-source="RTE / eCO2mix via ODRÉ"
+              databox-date="Temps réel"
+              databox-download>
+            </dsfr-data-chart>
+            <dsfr-data-a11y for="ch-mix24" source="mix-24h" description="Évolution de la production par filière sur les 24 dernières heures, pas de 15 minutes."></dsfr-data-a11y>
+          </div>
+
+          <div class="viz-card">
+            <h3>Parc ENR installé en France (2000–2024)</h3>
+            <p class="viz-question">À quel rythme l'éolien et le solaire ont-ils été raccordés ?</p>
+            <dsfr-data-chart id="ch-enr" source="enr-park" type="bar"
+              label-field="annee"
+              value-field="parc_installe_eolien"
+              value-fields="parc_installe_solaire"
+              name='["Éolien terrestre (MW)","Solaire photovoltaïque (MW)"]'
+              selected-palette="categorical"
+              stacked
+              databox
+              databox-title="Parc national éolien + solaire — capacité installée (MW)"
+              databox-source="RTE via ODRÉ — parc-national-annuel-prod-eolien-solaire"
+              databox-date="Série annuelle"
+              databox-download>
+            </dsfr-data-chart>
+            <dsfr-data-a11y for="ch-enr" source="enr-park" description="Évolution annuelle de la capacité installée en éolien terrestre et solaire photovoltaïque depuis 2000."></dsfr-data-a11y>
+          </div>
+
+          <p class="fr-text--xs" style="color:#666;">↻ Données mises à jour automatiquement à chaque ouverture de l'onglet · Licence Etalab 2.0</p>
+        </div>
+
+        <!-- =================== ONGLET 2 : MOBILITÉ =================== -->
+        <div id="panel-mob" class="fr-tabs__panel" role="tabpanel" aria-labelledby="tab-mob" tabindex="0">
+          <h2 class="fr-h4">La mobilité bascule-t-elle vers l'électrique ?</h2>
+
+          <dsfr-data-source id="irve-total" api-type="opendatasoft"
+            base-url="https://odre.opendatasoft.com"
+            dataset-id="bornes-irve"
+            select="count(*) as total"
+            limit="1">
+          </dsfr-data-source>
+
+          <dsfr-data-source id="irve-by-puiss" api-type="opendatasoft"
+            base-url="https://odre.opendatasoft.com"
+            dataset-id="bornes-irve"
+            select="puissance_nominale, count(*) as nb"
+            group-by="puissance_nominale"
+            order-by="nb desc"
+            limit="10">
+          </dsfr-data-source>
+
+          <dsfr-data-source id="irve-by-op" api-type="opendatasoft"
+            base-url="https://odre.opendatasoft.com"
+            dataset-id="bornes-irve"
+            select="nom_operateur, count(*) as nb"
+            group-by="nom_operateur"
+            order-by="nb desc"
+            limit="10">
+          </dsfr-data-source>
+
+          <div class="viz-card">
+            <h3>État du déploiement</h3>
+            <p class="viz-question">Combien de bornes de recharge sont opérationnelles en France ?</p>
+            <dsfr-data-kpi source="irve-total" valeur="total" label="Points de recharge IRVE (référentiel consolidé)" couleur="bleu" icone="ri-charging-pile-2-line"></dsfr-data-kpi>
+          </div>
+
+          <div class="viz-grid-2">
+            <div class="viz-card">
+              <h3>Bornes par opérateur</h3>
+              <p class="viz-question">Qui exploite l'infrastructure ?</p>
+              <dsfr-data-chart id="ch-irve-op" source="irve-by-op" type="bar"
+                label-field="nom_operateur"
+                value-field="nb"
+                selected-palette="sequentialDescending"
+                horizontal>
+              </dsfr-data-chart>
+              <dsfr-data-a11y for="ch-irve-op" source="irve-by-op" description="Top 10 des opérateurs de bornes IRVE par nombre de points de recharge."></dsfr-data-a11y>
+            </div>
+            <div class="viz-card">
+              <h3>Bornes par puissance</h3>
+              <p class="viz-question">Quelle est la répartition par niveau de puissance ?</p>
+              <dsfr-data-chart id="ch-irve-puiss" source="irve-by-puiss" type="bar"
+                label-field="puissance_nominale"
+                value-field="nb"
+                selected-palette="sequentialAscending">
+              </dsfr-data-chart>
+              <dsfr-data-a11y for="ch-irve-puiss" source="irve-by-puiss" description="Distribution des bornes par puissance nominale en kW."></dsfr-data-a11y>
+            </div>
+          </div>
+
+          <div class="callout-note">
+            <h3>À ajouter en phase 2</h3>
+            <p class="fr-text--sm" style="margin:0;">Carte choroplèthe départementale (Ecolab : part de VP Crit'Air E) + ratio bornes/VE + podium régional. Ces datasets sont en CSV statique sur <code>static.data.gouv.fr</code>, à intégrer via <code>dsfr-data-source</code> avec parseur CSV ou rebascule vers Tabular API.</p>
+          </div>
+        </div>
+
+        <!-- =================== ONGLET 3 : BÂTIMENT =================== -->
+        <div id="panel-bat" class="fr-tabs__panel" role="tabpanel" aria-labelledby="tab-bat" tabindex="0">
+          <h2 class="fr-h4">Le bâtiment s'électrifie-t-il ?</h2>
+
+          <div class="viz-card">
+            <h3>Répartition du chauffage dans le parc DPE</h3>
+            <p class="viz-question">Comment se chauffent les logements diagnostiqués depuis juillet 2021 ?</p>
+            <!--
+              Dataset ADEME réel : meg-83tjwtg8dyz4vv7h1dqe (« dpe-v2-logements-existants » n'existe pas)
+              Champ réel en snake_case sans accent : type_energie_principale_chauffage
+              size=0 évite de charger les sous-résultats (réponse 100x plus légère) ; agg_size pilote le nombre de valeurs.
+            -->
+            <dsfr-data-source id="dpe-chauffage"
+              url="https://data.ademe.fr/data-fair/api/v1/datasets/meg-83tjwtg8dyz4vv7h1dqe/values_agg?field=type_energie_principale_chauffage&agg_size=10&size=0&sort=-count"
+              transform="aggs">
+            </dsfr-data-source>
+            <dsfr-data-chart id="ch-chauffage" source="dpe-chauffage" type="pie"
+              label-field="value"
+              value-field="total"
+              selected-palette="categorical"
+              databox
+              databox-title="Mode de chauffage principal — DPE logements existants"
+              databox-source="ADEME · data.ademe.fr"
+              databox-date="Depuis juillet 2021">
+            </dsfr-data-chart>
+            <dsfr-data-a11y for="ch-chauffage" source="dpe-chauffage" description="Répartition des modes de chauffage principal dans les DPE des logements existants."></dsfr-data-a11y>
+            <p class="fr-text--xs" style="color:#666; margin-top:.5rem;">Note de lecture : le DPE n'est pas représentatif du parc total (surreprésentation des mutations et rénovations). À coupler avec le recensement INSEE pour une photo nationale.</p>
+          </div>
+
+          <div class="viz-card">
+            <h3>Distribution des classes énergétiques</h3>
+            <p class="viz-question">Quelle part des logements diagnostiqués sont des passoires (F-G) ?</p>
+            <!--
+              Champ réel : etiquette_dpe (et non Etiquette_DPE)
+              sort=key trie alphabétiquement (A→G) au lieu de par fréquence.
+            -->
+            <dsfr-data-source id="dpe-classe"
+              url="https://data.ademe.fr/data-fair/api/v1/datasets/meg-83tjwtg8dyz4vv7h1dqe/values_agg?field=etiquette_dpe&agg_size=7&size=0&sort=key"
+              transform="aggs">
+            </dsfr-data-source>
+            <dsfr-data-chart id="ch-classe" source="dpe-classe" type="bar"
+              label-field="value"
+              value-field="total"
+              selected-palette="divergentDescending"
+              databox
+              databox-title="Classes énergétiques (étiquette DPE)"
+              databox-source="ADEME · data.ademe.fr"
+              databox-date="DPE logements existants">
+            </dsfr-data-chart>
+            <dsfr-data-a11y for="ch-classe" source="dpe-classe" description="Distribution des classes énergétiques A à G dans les DPE des logements existants."></dsfr-data-a11y>
+          </div>
+        </div>
+
+        <!-- =================== ONGLET 4 : CAP 2050 =================== -->
+        <div id="panel-cap" class="fr-tabs__panel" role="tabpanel" aria-labelledby="tab-cap" tabindex="0">
+          <h2 class="fr-h4">Où en est-on par rapport aux objectifs 2050 ?</h2>
+
+          <div class="viz-card">
+            <h3>Tableau de suivi des écarts</h3>
+            <p class="viz-question">Sur quels indicateurs sommes-nous en avance, en retard, conformes ?</p>
+            <div class="fr-table fr-table--bordered" style="margin:0;">
+              <table>
+                <caption class="fr-sr-only">Suivi des indicateurs d'électrification face aux cibles 2030 et 2050</caption>
+                <thead>
+                  <tr><th scope="col">Indicateur</th><th scope="col">Valeur actuelle</th><th scope="col">Cible 2030</th><th scope="col">Cible 2050</th><th scope="col">Statut</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Part bas-carbone du mix</td><td>~92 %</td><td>95 %</td><td>100 %</td><td><span class="fr-badge fr-badge--success fr-badge--sm">en route</span></td></tr>
+                  <tr><td>Capacité solaire installée</td><td>~25 GW</td><td>54-60 GW (PPE2)</td><td>100-200 GW (ADEME)</td><td><span class="fr-badge fr-badge--warning fr-badge--sm">à accélérer</span></td></tr>
+                  <tr><td>Capacité éolienne terrestre</td><td>~24 GW</td><td>33-35 GW</td><td>~50 GW</td><td><span class="fr-badge fr-badge--warning fr-badge--sm">à accélérer</span></td></tr>
+                  <tr><td>Part VE dans le parc VP</td><td>~3 %</td><td>15 %</td><td>~100 % (UE 2035)</td><td><span class="fr-badge fr-badge--warning fr-badge--sm">à accélérer</span></td></tr>
+                  <tr><td>Bornes IRVE installées</td><td>~220 000</td><td>400 000 (cible)</td><td>—</td><td><span class="fr-badge fr-badge--warning fr-badge--sm">à accélérer</span></td></tr>
+                  <tr><td>Pompes à chaleur installées/an</td><td>~600 000</td><td>1 M/an</td><td>—</td><td><span class="fr-badge fr-badge--info fr-badge--sm">à confirmer</span></td></tr>
+                  <tr><td>Intensité carbone kWh</td><td>~40 gCO₂/kWh</td><td>~30</td><td>~10</td><td><span class="fr-badge fr-badge--success fr-badge--sm">en route</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="fr-text--xs" style="color:#666; margin-top:.75rem;">Sources cibles : PPE 2 (avril 2020), Stratégie Nationale Bas-Carbone, scénarios Transition(s) 2050 ADEME, Règlement UE 2023/851. Valeurs courantes : eCO2mix, ODRÉ, Ecolab.</p>
+          </div>
+
+          <div class="callout-info">
+            <h3 class="fr-h6">Lecture</h3>
+            <p class="fr-text--sm" style="margin-bottom:0;">La France est sur la trajectoire de décarbonation côté production (l'intensité du kWh est déjà parmi les plus basses d'Europe), mais le rythme de déploiement des ENR, des VE et des PAC reste en retard sur les cibles intermédiaires. La <strong>production</strong> est gagnée, l'<strong>électrification des usages</strong> reste à accélérer.</p>
+          </div>
+
+          <div class="callout-note">
+            <h3>À ajouter en phase 2</h3>
+            <p class="fr-text--sm" style="margin:0;">Visualisations confrontant les séries observées aux trajectoires des 4 scénarios ADEME Transition(s) 2050 (S1 génération frugale → S4 pari réparateur). Données disponibles en CSV sur data.gouv.fr (id <code>61f3ba1456816c41f28c43ac</code>).</p>
+          </div>
+        </div>
+
+        <!-- =================== ONGLET 5 : BRIEF & SOURCES =================== -->
+        <div id="panel-brf" class="fr-tabs__panel" role="tabpanel" aria-labelledby="tab-brf" tabindex="0">
+
+          <div class="brief-section">
+            <h3>Objectif éditorial</h3>
+            <p class="fr-text--sm">Tableau de bord public confrontant quatre angles de l'électrification française : (1) la décarbonation du mix électrique, (2) la bascule du parc roulant, (3) l'électrification du bâtiment, (4) la trajectoire vers les cibles 2050. Chaque onglet est autonome (lecture indépendante), mais partage un bandeau de KPI nationaux. Toutes les sources sont opendata et accessibles en API REST.</p>
+          </div>
+
+          <div class="brief-section">
+            <h3>Stack technique</h3>
+            <p class="fr-text--sm">
+              <span class="tag-pill">DSFR 1.14</span>
+              <span class="tag-pill">dsfr-data web components</span>
+              <span class="tag-pill">dsfr-chart 2.0</span>
+              <span class="tag-pill">ODS v2.1</span>
+              <span class="tag-pill">data-fair API (ADEME)</span>
+              <span class="tag-pill">Etalab 2.0</span>
+            </p>
+            <p class="fr-text--sm">Toutes les visualisations utilisent <code>dsfr-data-source</code> avec <code>api-type="opendatasoft"</code> ou le mode <code>generic</code> (data-fair ADEME) pour déléguer agrégations et pagination au serveur. Accessibilité via <code>dsfr-data-a11y</code> (objectif RGAA niveau AA).</p>
+          </div>
+
+          <div class="brief-section">
+            <h3>Sources de données effectivement câblées (v0.2)</h3>
+            <div class="fr-table" style="margin:0;">
+              <table>
+                <caption class="fr-sr-only">Sources de données effectivement utilisées dans cette version</caption>
+                <thead><tr><th scope="col">Source</th><th scope="col">Dataset ID</th><th scope="col">Endpoint</th><th scope="col">Champs utilisés</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td>eCO2mix temps réel (RTE)</td>
+                    <td><code>eco2mix-national-tr</code></td>
+                    <td>ODRÉ ODS v2.1</td>
+                    <td><code>date_heure</code>, <code>taux_co2</code>, <code>nucleaire</code>, <code>consommation</code>, <code>eolien</code>, <code>solaire</code>, <code>hydraulique</code>, <code>gaz</code></td>
+                  </tr>
+                  <tr>
+                    <td>Parc ENR annuel</td>
+                    <td><code>parc-national-annuel-prod-eolien-solaire</code></td>
+                    <td>ODRÉ ODS v2.1</td>
+                    <td><code>annee</code>, <code>parc_installe_eolien</code>, <code>parc_installe_solaire</code></td>
+                  </tr>
+                  <tr>
+                    <td>Bornes IRVE</td>
+                    <td><code>bornes-irve</code></td>
+                    <td>ODRÉ ODS v2.1</td>
+                    <td><code>nom_operateur</code>, <code>puissance_nominale</code>, agrégat <code>count(*)</code></td>
+                  </tr>
+                  <tr>
+                    <td>DPE logements existants</td>
+                    <td><code>meg-83tjwtg8dyz4vv7h1dqe</code></td>
+                    <td>ADEME data-fair (<code>values_agg</code>)</td>
+                    <td><code>type_energie_principale_chauffage</code>, <code>etiquette_dpe</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="brief-section">
+            <h3>Sources à intégrer en phase 2+</h3>
+            <ul class="fr-text--sm">
+              <li>Ecolab — part VP Crit'Air E, immat. VUL/PL VE-H2, puissance solaire (CSV statique <code>static.data.gouv.fr</code>)</li>
+              <li>RTE eCO2mix régional consolidé (carte par région)</li>
+              <li>EDF — Historique 1948 et indisponibilités centrales</li>
+              <li>ADEME — RGE, Audits énergétiques (depuis sept. 2023)</li>
+              <li>Enedis — Agrégats consommation régionale</li>
+              <li>MTE — Conso énergie locale (commune/IRIS)</li>
+              <li>Transition(s) 2050 ADEME — Scénarios prospectifs (CSV statiques)</li>
+            </ul>
+          </div>
+
+          <div class="brief-section">
+            <h3>Endpoints clés</h3>
+            <p class="fr-text--sm"><strong>Base ODRÉ</strong> : <code>https://odre.opendatasoft.com/api/explore/v2.1/catalog/datasets/{slug}/records</code></p>
+            <p class="fr-text--sm"><strong>Base ADEME DPE</strong> : <code>https://data.ademe.fr/data-fair/api/v1/datasets/meg-83tjwtg8dyz4vv7h1dqe/values_agg?field={champ}&amp;agg_size={N}&amp;size=0</code></p>
+            <p class="fr-text--sm"><strong>À retenir sur data-fair</strong> : utiliser <code>agg_size</code> pour le nombre de valeurs distinctes retournées (pas <code>size</code>) et <code>size=0</code> pour ne pas embarquer les sous-résultats. <code>sort=-count</code> pour le tri par fréquence, <code>sort=key</code> pour l'ordre alphabétique (utile sur les étiquettes DPE A→G).</p>
+          </div>
+
+          <div class="brief-section">
+            <h3>Trous identifiés</h3>
+            <ul class="fr-text--sm">
+              <li>Prix de l'électricité ménages/industrie : non trouvé sur data.gouv → Eurostat <code>nrg_pc_204</code> ou CRE</li>
+              <li>Stock annuel PAC installées : aucune série dédiée → reconstruction via DPE post-rénovation ou AFPAC</li>
+              <li>Bonus écologique / leasing social : pas en opendata → demander à l'ASP</li>
+              <li>Projets hydrogène : quasi inexistant → repli sur scénarios ADEME 2050 uniquement</li>
+            </ul>
+          </div>
+
+          <div class="brief-section">
+            <h3>Composants ChartsBuilder utilisés</h3>
+            <p class="fr-text--sm">
+              <span class="tag-pill">dsfr-data-source × 7</span>
+              <span class="tag-pill">dsfr-data-chart × 6</span>
+              <span class="tag-pill">dsfr-data-kpi × 4</span>
+              <span class="tag-pill">dsfr-data-kpi-group × 1</span>
+              <span class="tag-pill">dsfr-data-a11y × 6</span>
+              <span class="tag-pill">databox × 4</span>
+            </p>
+            <p class="fr-text--sm">À ajouter en phase 2-3 : <code>dsfr-data-map</code>, <code>dsfr-data-facets</code>, <code>dsfr-data-podium</code>, <code>dsfr-data-join</code>, <code>dsfr-data-list</code>.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="fr-footer" role="contentinfo" id="footer">
+    <div class="fr-container">
+      <div class="fr-footer__body">
+        <div class="fr-footer__brand fr-enlarge-link">
+          <p class="fr-logo">République<br>Française</p>
+        </div>
+        <div class="fr-footer__content">
+          <p class="fr-footer__content-desc">Démonstrateur réalisé par le Pôle Vauban / MIWEB (SNUM-MEFSIN) à partir de données opendata. Ce tableau de bord est un travail exploratoire et ne constitue pas une publication officielle.</p>
+          <ul class="fr-footer__content-list">
+            <li class="fr-footer__content-item"><a class="fr-footer__content-link" href="https://www.legifrance.gouv.fr">legifrance.gouv.fr</a></li>
+            <li class="fr-footer__content-item"><a class="fr-footer__content-link" href="https://www.info.gouv.fr">info.gouv.fr</a></li>
+            <li class="fr-footer__content-item"><a class="fr-footer__content-link" href="https://www.service-public.fr">service-public.fr</a></li>
+            <li class="fr-footer__content-item"><a class="fr-footer__content-link" href="https://www.data.gouv.fr">data.gouv.fr</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="fr-footer__bottom">
+        <ul class="fr-footer__bottom-list">
+          <li class="fr-footer__bottom-item"><a class="fr-footer__bottom-link" href="#">Accessibilité : non conforme</a></li>
+          <li class="fr-footer__bottom-item"><a class="fr-footer__bottom-link" href="#">Mentions légales</a></li>
+          <li class="fr-footer__bottom-item"><a class="fr-footer__bottom-link" href="#">Données personnelles</a></li>
+          <li class="fr-footer__bottom-item"><a class="fr-footer__bottom-link" href="#">Gestion des cookies</a></li>
+        </ul>
+        <div class="fr-footer__bottom-copy">
+          <p>Sauf mention contraire, tous les contenus de ce site sont sous <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener external" title="Licence ouverte - nouvelle fenêtre">licence Etalab 2.0</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.module.min.js"></script>
+  <script type="text/javascript" nomodule src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.nomodule.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr-chart@2.0.4/dist/DSFRChart/DSFRChart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dsfr-data@0/dist/dsfr-data.core.umd.js"></script>
+
+</body>
+</html>

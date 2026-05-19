@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Portail simulateurs — Énergie / Électricité</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Portail regroupant des simulateurs autour de l'électricité et de l'énergie (DGEC).">
+  <meta name="description" content="Portail regroupant simulateurs, cartes et tableaux de bord autour de l'électricité et de l'énergie (DGEC).">
 
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.min.css">
@@ -16,13 +16,91 @@
   <link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.ico" type="image/x-icon">
 
   <style>
+    /* Section header par catégorie */
+    .cat-section { margin-top: 3rem; }
+    .cat-section:first-of-type { margin-top: 0; }
+    .cat-section__head {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: .5rem;
+      padding-bottom: .5rem;
+      border-bottom: 2px solid var(--background-action-high-blue-france, #000091);
+    }
+    .cat-section__icon {
+      width: 40px; height: 40px;
+      border-radius: 4px;
+      background: var(--background-contrast-blue-france, #e3e3fd);
+      color: var(--text-action-high-blue-france, #000091);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+    /* Override DSFR icon default margin inside our square badge */
+    .cat-section__icon::before { margin: 0; }
+    .cat-section__head h2 {
+      margin: 0;
+      font-size: 1.375rem;
+      color: var(--text-title-blue-france, #000091);
+    }
+    .cat-section__count {
+      font-size: .875rem;
+      color: var(--text-mention-grey, #666);
+      font-weight: 400;
+      margin-left: .25rem;
+    }
+    .cat-section__intro {
+      margin: 0 0 1.5rem;
+      color: var(--text-default-grey, #3a3a3a);
+      font-size: .9375rem;
+      line-height: 1.55;
+    }
+
+    /* Cartes */
     .simu-card { height: 100%; }
-    .simu-card .fr-card__title { font-size: 1.125rem; }
-    .simu-grid { margin-top: 2rem; }
-    .simu-status {
-      display: inline-block;
-      margin-left: 0.5rem;
-      vertical-align: middle;
+    .simu-card .fr-card__title { font-size: 1.0625rem; }
+
+    /* Featured horizontal card */
+    .featured-card { border-top: 4px solid var(--background-action-high-blue-france, #000091); }
+    .featured-card .fr-card__title { font-size: 1.25rem; }
+    .featured-card .fr-card__desc { font-size: .9375rem; }
+    .featured-card .fr-card__header { background: var(--background-contrast-blue-france, #e3e3fd); }
+    .featured-card .featured-visual {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+    }
+    .featured-card .featured-visual svg { width: 100%; height: auto; max-height: 200px; display: block; }
+    /* En mobile, l'image passe au-dessus */
+    @media (max-width: 768px) {
+      .featured-card .featured-visual svg { max-height: 160px; }
+    }
+
+    /* KPI bandeau global */
+    .home-kpis {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0 0;
+    }
+    @media (max-width: 768px) { .home-kpis { grid-template-columns: repeat(2, 1fr); } }
+    .home-kpi {
+      background: var(--background-contrast-blue-france, #e3e3fd);
+      padding: .875rem 1.125rem;
+      border-left: 3px solid var(--background-action-high-blue-france, #000091);
+    }
+    .home-kpi__num {
+      font-size: 1.625rem;
+      font-weight: 700;
+      color: var(--text-action-high-blue-france, #000091);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .home-kpi__lbl {
+      font-size: .8125rem;
+      color: var(--text-default-grey, #3a3a3a);
+      margin-top: .25rem;
     }
   </style>
 </head>
@@ -35,7 +113,7 @@
             <div class="fr-header__brand-top">
               <div class="fr-header__logo">
                 <p class="fr-logo">
-                  Ministère<br>de l'économie<br>des finances<br>et de la souveraineté<br>industrielle<br>et numérique
+                  République<br>Française
                 </p>
               </div>
             </div>
@@ -43,7 +121,7 @@
               <a href="/" title="Accueil — Portail simulateurs">
                 <p class="fr-header__service-title">Portail simulateurs</p>
               </a>
-              <p class="fr-header__service-tagline">Énergie · Électricité · DGEC</p>
+              <p class="fr-header__service-tagline">Électrifions la france</p>
             </div>
           </div>
         </div>
@@ -53,18 +131,21 @@
 
   <main role="main" id="contenu">
     <div class="fr-container fr-py-6w">
-      <h1>Simulateurs disponibles</h1>
+      <h1>Simulateurs, cartes et tableaux de bord</h1>
       <p class="fr-text--lead">
-        Une collection de simulateurs autour des sujets énergie et électricité.
-        Chaque simulateur est indépendant et peut être ouvert dans son contexte propre.
+        Une collection d'outils interactifs autour de l'électrification, structurés par type d'usage&nbsp;:
+        <strong>simulateurs</strong> pour calculer ou comparer, <strong>cartes</strong> pour
+        explorer le territoire, <strong>tableaux de bord</strong> pour piloter et suivre.
       </p>
 
-      <div class="fr-grid-row fr-grid-row--gutters simu-grid" id="simu-list">
-        <!-- Cartes injectées par JS depuis /shared/simulators.json -->
-      </div>
+      <!-- KPIs globaux -->
+      <div class="home-kpis" id="home-kpis"><!-- injected --></div>
+
+      <!-- Sections par catégorie -->
+      <div id="cat-sections" class="fr-mt-5w"><!-- injected --></div>
 
       <p id="simu-empty" class="fr-text--sm fr-mt-4w" hidden>
-        Aucun simulateur n'est encore référencé.
+        Aucun outil n'est encore référencé.
       </p>
     </div>
   </main>
@@ -99,47 +180,207 @@
 
   <script>
     (function () {
-      const STATUS_LABELS = {
-        draft: { text: "Brouillon", cls: "fr-badge--warning" },
-        beta: { text: "Bêta", cls: "fr-badge--info" },
-        published: { text: "Publié", cls: "fr-badge--success" },
-        archived: { text: "Archivé", cls: "fr-badge--grey" }
+      // Visuel SVG pour les cartes "featured" (clé = slug).
+      // Foyer électrifié : maison + panneaux solaires + borne + VE.
+      const FEATURED_VISUALS = {
+        "passer-a-electrique": `
+          <svg viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="Illustration d'un foyer électrifié : maison avec panneaux solaires, borne de recharge et véhicule électrique">
+            <!-- Soleil -->
+            <circle cx="200" cy="32" r="14" fill="#ffd05a"/>
+            <g stroke="#ffd05a" stroke-width="2.5" stroke-linecap="round">
+              <line x1="200" y1="10" x2="200" y2="4"/>
+              <line x1="200" y1="54" x2="200" y2="60"/>
+              <line x1="178" y1="32" x2="172" y2="32"/>
+              <line x1="222" y1="32" x2="228" y2="32"/>
+              <line x1="184" y1="16" x2="180" y2="12"/>
+              <line x1="216" y1="16" x2="220" y2="12"/>
+              <line x1="184" y1="48" x2="180" y2="52"/>
+              <line x1="216" y1="48" x2="220" y2="52"/>
+            </g>
+
+            <!-- Maison : murs -->
+            <rect x="65" y="78" width="110" height="65" fill="#ffffff" stroke="#000091" stroke-width="2.5"/>
+            <!-- Toit -->
+            <polygon points="60,80 120,42 180,80" fill="#000091"/>
+
+            <!-- Panneau solaire sur le toit (incliné) -->
+            <g transform="translate(85,57) rotate(-32)">
+              <rect width="40" height="16" fill="#6066ff" stroke="#fff" stroke-width="1"/>
+              <line x1="13.3" y1="0" x2="13.3" y2="16" stroke="#fff" stroke-width="1"/>
+              <line x1="26.6" y1="0" x2="26.6" y2="16" stroke="#fff" stroke-width="1"/>
+              <line x1="0" y1="8" x2="40" y2="8" stroke="#fff" stroke-width="1"/>
+            </g>
+
+            <!-- Cheminée -->
+            <rect x="148" y="50" width="10" height="20" fill="#1212ff"/>
+
+            <!-- Fenêtres -->
+            <rect x="75" y="90" width="22" height="22" fill="#a8c9ff" stroke="#000091" stroke-width="2"/>
+            <line x1="86" y1="90" x2="86" y2="112" stroke="#000091" stroke-width="1.5"/>
+            <line x1="75" y1="101" x2="97" y2="101" stroke="#000091" stroke-width="1.5"/>
+            <rect x="143" y="90" width="22" height="22" fill="#a8c9ff" stroke="#000091" stroke-width="2"/>
+            <line x1="154" y1="90" x2="154" y2="112" stroke="#000091" stroke-width="1.5"/>
+            <line x1="143" y1="101" x2="165" y2="101" stroke="#000091" stroke-width="1.5"/>
+
+            <!-- Porte -->
+            <rect x="110" y="105" width="20" height="38" fill="#000091"/>
+            <circle cx="124" cy="125" r="1.5" fill="#ffd05a"/>
+
+            <!-- Sol -->
+            <line x1="0" y1="143" x2="240" y2="143" stroke="#000091" stroke-width="1.5"/>
+
+            <!-- Borne de recharge -->
+            <g transform="translate(193,113)">
+              <rect width="14" height="30" fill="#000091" rx="2"/>
+              <rect x="2.5" y="3" width="9" height="7" fill="#a8c9ff"/>
+              <circle cx="7" cy="20" r="1.5" fill="#fff"/>
+              <circle cx="7" cy="25" r="1.5" fill="#fff"/>
+            </g>
+
+            <!-- Voiture électrique -->
+            <g transform="translate(15,113)">
+              <path d="M 5 12 L 8 4 Q 9 2 11 2 L 35 2 Q 37 2 38 4 L 41 12 L 43 12 Q 45 12 45 14 L 45 22 Q 45 24 43 24 L 2 24 Q 0 24 0 22 L 0 14 Q 0 12 2 12 Z" fill="#000091"/>
+              <path d="M 10 11 L 12 5 L 22 5 L 22 11 Z M 23 5 L 33 5 L 35 11 L 23 11 Z" fill="#a8c9ff"/>
+              <circle cx="11" cy="25" r="4.5" fill="#3a3a3a"/>
+              <circle cx="11" cy="25" r="2" fill="#a8c9ff"/>
+              <circle cx="34" cy="25" r="4.5" fill="#3a3a3a"/>
+              <circle cx="34" cy="25" r="2" fill="#a8c9ff"/>
+            </g>
+
+            <!-- Câble entre la borne et la voiture -->
+            <path d="M 193 132 Q 130 152 60 138" stroke="#000091" stroke-width="2" fill="none"/>
+
+            <!-- Petit éclair sur le câble -->
+            <g transform="translate(118,142)">
+              <polygon points="3,0 0,5 4,5 1,11 8,4 4,4 7,0" fill="#ffd05a" stroke="#000091" stroke-width="0.5"/>
+            </g>
+          </svg>`
       };
 
+      // Catégories : ordre d'affichage + picto DSFR (fr-icon-*) + intro
+      const CATEGORIES = [
+        {
+          kind: "simulateur",
+          label: "Simulateurs",
+          iconClass: "fr-icon-calculator-line",
+          intro: "Outils de calcul interactifs : entrez vos paramètres, obtenez un coût, un gain, un seuil de rentabilité. Conçus pour répondre à une question concrète (ménage, transporteur, artisan…)."
+        },
+        {
+          kind: "carte",
+          label: "Cartes",
+          iconClass: "fr-icon-road-map-line",
+          intro: "Visualisation cartographique de données géographiques nationales (bornes IRVE, sites industriels…)."
+        },
+        {
+          kind: "dashboard",
+          label: "Tableaux de bord",
+          iconClass: "fr-icon-line-chart-line",
+          intro: "Vues d'ensemble et suivi : confrontation aux données opendata officielles, avancement des mesures du Plan d'électrification."
+        }
+      ];
+
+      function tagsHTML(s) {
+        return (s.tags || [])
+          .map(t => `<li><p class="fr-tag fr-tag--sm">${t}</p></li>`)
+          .join("");
+      }
+
+      function cardHTML(s) {
+        const tags = tagsHTML(s);
+        return `
+          <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+            <div class="fr-card fr-enlarge-link simu-card">
+              <div class="fr-card__body">
+                <div class="fr-card__content">
+                  <h3 class="fr-card__title">
+                    <a href="/${s.slug}/">${s.title}</a>
+                  </h3>
+                  <p class="fr-card__desc">${s.tagline || ""}</p>
+                  ${tags ? `<div class="fr-card__end"><ul class="fr-tags-group">${tags}</ul></div>` : ""}
+                </div>
+              </div>
+            </div>
+          </div>`;
+      }
+
+      function featuredCardHTML(s) {
+        const tags = tagsHTML(s);
+        const visual = FEATURED_VISUALS[s.slug] || "";
+        return `
+          <div class="fr-col-12">
+            <div class="fr-card fr-card--horizontal fr-enlarge-link featured-card">
+              <div class="fr-card__body">
+                <div class="fr-card__content">
+                  <h3 class="fr-card__title">
+                    <a href="/${s.slug}/">${s.title}</a>
+                  </h3>
+                  <p class="fr-card__desc">${s.tagline || ""}</p>
+                  ${tags ? `<div class="fr-card__end"><ul class="fr-tags-group">${tags}</ul></div>` : ""}
+                </div>
+              </div>
+              <div class="fr-card__header">
+                <div class="fr-card__img featured-visual">${visual}</div>
+              </div>
+            </div>
+          </div>`;
+      }
+
+      function renderKPIs(simulators) {
+        const counts = simulators.reduce((acc, s) => {
+          acc.total++;
+          acc[s.kind || "autre"] = (acc[s.kind || "autre"] || 0) + 1;
+          return acc;
+        }, { total: 0 });
+        const tiles = [
+          { num: counts.total,                     lbl: "Outils au total" },
+          { num: counts.simulateur || 0,           lbl: "Simulateurs" },
+          { num: counts.carte || 0,                lbl: "Cartes" },
+          { num: counts.dashboard || 0,            lbl: "Tableaux de bord" }
+        ];
+        document.getElementById("home-kpis").innerHTML = tiles.map(t => `
+          <div class="home-kpi">
+            <div class="home-kpi__num">${t.num}</div>
+            <div class="home-kpi__lbl">${t.lbl}</div>
+          </div>
+        `).join("");
+      }
+
+      function renderSections(simulators) {
+        const container = document.getElementById("cat-sections");
+        const html = CATEGORIES
+          .map(cat => {
+            const items = simulators.filter(s => (s.kind || "simulateur") === cat.kind);
+            if (!items.length) return "";
+            // Featured d'abord (carte horizontale col-12), puis le reste en col-md-6 col-lg-4
+            const featured = items.filter(s => s.featured).map(featuredCardHTML).join("");
+            const standard = items.filter(s => !s.featured).map(cardHTML).join("");
+            return `
+              <section class="cat-section" id="cat-${cat.kind}" aria-labelledby="h-${cat.kind}">
+                <div class="cat-section__head">
+                  <span class="cat-section__icon ${cat.iconClass}" aria-hidden="true"></span>
+                  <h2 id="h-${cat.kind}">${cat.label}
+                    <span class="cat-section__count">(${items.length})</span>
+                  </h2>
+                </div>
+                <p class="cat-section__intro">${cat.intro}</p>
+                <div class="fr-grid-row fr-grid-row--gutters">${featured}${standard}</div>
+              </section>`;
+          })
+          .join("");
+        container.innerHTML = html;
+      }
+
       fetch("/shared/simulators.json", { cache: "no-cache" })
-        .then((r) => r.json())
-        .then((manifest) => {
-          const list = document.getElementById("simu-list");
-          const empty = document.getElementById("simu-empty");
-          const simulators = (manifest.simulators || []).filter(
-            (s) => s.status !== "archived"
-          );
+        .then(r => r.json())
+        .then(manifest => {
+          const simulators = (manifest.simulators || []).filter(s => s.status !== "archived");
           if (!simulators.length) {
-            empty.hidden = false;
+            document.getElementById("simu-empty").hidden = false;
             return;
           }
-          simulators.forEach((s) => {
-            const status = STATUS_LABELS[s.status] || null;
-            const tags = (s.tags || [])
-              .map((t) => `<li><p class="fr-tag fr-tag--sm">${t}</p></li>`)
-              .join("");
-            const col = document.createElement("div");
-            col.className = "fr-col-12 fr-col-md-6 fr-col-lg-4";
-            col.innerHTML = `
-              <div class="fr-card fr-enlarge-link simu-card">
-                <div class="fr-card__body">
-                  <div class="fr-card__content">
-                    <h3 class="fr-card__title">
-                      <a href="/${s.slug}/">${s.title}</a>
-                      ${status ? `<span class="fr-badge fr-badge--sm ${status.cls} simu-status">${status.text}</span>` : ""}
-                    </h3>
-                    <p class="fr-card__desc">${s.tagline || ""}</p>
-                    ${tags ? `<div class="fr-card__end"><ul class="fr-tags-group">${tags}</ul></div>` : ""}
-                  </div>
-                </div>
-              </div>`;
-            list.appendChild(col);
-          });
+          renderKPIs(simulators);
+          renderSections(simulators);
         })
         .catch(() => {
           document.getElementById("simu-empty").hidden = false;

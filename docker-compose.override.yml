@@ -1,11 +1,12 @@
 # Development — `docker compose up`
-# Mounts the working copy in read-only so editing files locally is reflected
-# immediately (just refresh the browser, no rebuild).
+# Mount the entire working copy in read-only so any new simulator folder
+# is picked up automatically (no compose edit needed when adding a simu).
+# Hidden files (.git, .claude…) and dev plumbing are blocked by nginx.conf.
 services:
   web:
     ports:
       - "8080:80"
     volumes:
-      - ./index.html:/usr/share/nginx/html/index.html:ro
-      - ./shared:/usr/share/nginx/html/shared:ro
-      - ./voiture:/usr/share/nginx/html/voiture:ro
+      - .:/usr/share/nginx/html:ro
+      # Hot-reload nginx config: edit local nginx.conf → `docker compose exec web nginx -s reload`
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
