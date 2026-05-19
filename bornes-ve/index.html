@@ -352,15 +352,18 @@
     group-by="dep_code, dep_name"
     limit="120"></dsfr-data-source>
 
+  <!-- Contours géo servis localement (CSP connect-src 'self' ; le CDN jsdelivr
+       est autorisé pour script/style/font mais pas pour les fetch XHR en prod).
+       Source : gregoiredavid/france-geojson@master, contours IGN/INSEE 2018. -->
   <dsfr-data-source id="geo-reg-raw"
-    url="https://cdn.jsdelivr.net/gh/gregoiredavid/france-geojson@master/regions.geojson"
+    url="data/regions.geojson"
     transform="features"></dsfr-data-source>
   <dsfr-data-normalize id="geo-reg" source="geo-reg-raw"
     flatten="properties"
     rename="geometry:geo_shape | code:reg_code"></dsfr-data-normalize>
 
   <dsfr-data-source id="geo-dep-raw"
-    url="https://cdn.jsdelivr.net/gh/gregoiredavid/france-geojson@master/departements.geojson"
+    url="data/departements.geojson"
     transform="features"></dsfr-data-source>
   <dsfr-data-normalize id="geo-dep" source="geo-dep-raw"
     flatten="properties"
