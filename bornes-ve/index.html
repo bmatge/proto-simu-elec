@@ -354,16 +354,18 @@
 
   <!-- Contours géo servis localement (CSP connect-src 'self' ; le CDN jsdelivr
        est autorisé pour script/style/font mais pas pour les fetch XHR en prod).
-       Source : gregoiredavid/france-geojson@master, contours IGN/INSEE 2018. -->
+       Source : gregoiredavid/france-geojson@master, contours IGN/INSEE 2018.
+       URLs absolues obligatoires : dsfr-data résout via `new URL(this.url, origin)`,
+       donc une URL relative se résout depuis la racine du domaine, pas depuis la page. -->
   <dsfr-data-source id="geo-reg-raw"
-    url="data/regions.geojson"
+    url="/bornes-ve/data/regions.geojson"
     transform="features"></dsfr-data-source>
   <dsfr-data-normalize id="geo-reg" source="geo-reg-raw"
     flatten="properties"
     rename="geometry:geo_shape | code:reg_code"></dsfr-data-normalize>
 
   <dsfr-data-source id="geo-dep-raw"
-    url="data/departements.geojson"
+    url="/bornes-ve/data/departements.geojson"
     transform="features"></dsfr-data-source>
   <dsfr-data-normalize id="geo-dep" source="geo-dep-raw"
     flatten="properties"
