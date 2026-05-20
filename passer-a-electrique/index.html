@@ -633,6 +633,9 @@
       background: linear-gradient(135deg, #169B62 0%, #0a7a4a 100%);
       color: #fff;
     }
+    .wizard-tally.loss {
+      background: linear-gradient(135deg, #c12d2d 0%, #8b1a1a 100%);
+    }
     .wizard-tally .tally-row {
       display: flex; justify-content: space-between;
       font-size: 0.95rem; padding: 0.25rem 0;
@@ -1694,9 +1697,10 @@
     wizardMaxStep: 1, // plus haute étape visitée (pour autoriser le clic direct dans le stepper)
     wizardTotalSteps: 6,
     // Solutions cochées en mode guidé + leur année de démarrage (1..horizon).
-    // Ordre par défaut suggéré : rénovation → PAC → VE → PV.
+    // Par défaut tout démarre an 1 : message « agissez maintenant » + alignement
+    // des chiffres entre étape 6, étape 5 et mode expert.
     solutions: { pac: false, ve: false, reno: false, pv: false },
-    solutionsYear: { reno: 1, pac: 2, ve: 3, pv: 4 },
+    solutionsYear: { reno: 1, pac: 1, ve: 1, pv: 1 },
   };
 
   /* ========================================================================
@@ -2169,15 +2173,26 @@
     const aidesTotales = mob.total + logP.total + (pv ? pv.total : 0);
     const economieAn = mob.economieAn + log.economieAn + (pv ? pv.economieAn : 0);
     const horizon = state.horizon;
-    const gainTotal = aidesTotales + economieAn * horizon;
+
+    // Coût « projet » pris en compte dans le gain net : travaux logement + borne + surcoût VE
+    // (on suppose le ménage achète un véhicule de toute façon — surcoût vs thermique seulement).
+    const coutProjetMob =
+      (state.mobilite.borne === 'oui' && state.mobilite.projet !== 'aucun_mob' ? COUT_BORNE_DOMICILE : 0)
+      + (state.mobilite.projet === 've_neuf' ? SURCOUT_VE_VS_TH : 0);
+    const coutProjetTotal = coutProjetLog + coutProjetMob;
+
+    // Gain net = aides reçues + économies cumulées − coût des projets engagés
+    // (formule alignée avec l'étape 5 et l'étape 6 du wizard guidé).
+    const gainTotal = aidesTotales + economieAn * horizon - coutProjetTotal;
 
     // KPIs
     document.getElementById('horizon_label').textContent = horizon;
     document.getElementById('kpi_total').textContent = fmt(gainTotal);
     document.getElementById('kpi_aides').textContent = fmt(aidesTotales);
     document.getElementById('kpi_eco').textContent = fmt(economieAn) + '/an';
-    document.getElementById('kpi_total_hint').textContent =
-      `Aides ${fmt(aidesTotales)} + ${horizon} × économie annuelle (${fmt(economieAn)}/an).`;
+    document.getElementById('kpi_total_hint').textContent = coutProjetTotal > 0
+      ? `${fmt(aidesTotales)} d'aides + ${horizon} × ${fmt(economieAn)}/an − ${fmt(coutProjetTotal)} de coût projet.`
+      : `${fmt(aidesTotales)} d'aides + ${horizon} × économie annuelle (${fmt(economieAn)}/an).`;
 
     // Détails
     renderLignes(document.getElementById('bd_mob'), mob.lignes);
@@ -2219,10 +2234,8 @@
     renderLignes(document.getElementById('bd_eco'), ecoLignes);
 
     // --- Courbe d'amortissement ---
-    // Investissement net : coût projet logement + coût borne - toutes les aides
-    const coutProjetMob = (state.mobilite.borne === 'oui' && state.mobilite.projet !== 'aucun_mob') ? COUT_BORNE_DOMICILE : 0;
-    const investBrut = coutProjetLog + coutProjetMob;
-    const investNet = Math.max(0, investBrut - aidesTotales);
+    // Même périmètre de coût que le KPI Gain total (travaux + borne + surcoût VE).
+    const investNet = Math.max(0, coutProjetTotal - aidesTotales);
     const points = calcCourbeAmortissement(horizon, actuel.total, economieAn, investNet);
     drawAmortChart(points, horizon, investNet);
     document.getElementById('chart_horizon').textContent = horizon;
@@ -2543,8 +2556,13 @@
    * WIZARD — mode guidé en 5 étapes
    * ====================================================================== */
 
-  // Prix moyen d'un VE neuf (hypothèse pour B1, à exposer dans accordéon plus tard).
+  // Prix moyen d'un VE neuf et d'un thermique équivalent (cf. défauts simulateur `voiture/`).
+  // On compte comme « coût » d'une bascule VE le SURCOÛT vs thermique : on part du
+  // principe que le ménage devra de toute façon racheter un véhicule. Compter le prix
+  // complet du VE surestime massivement l'investissement et écrase le gain net.
   const PRIX_VE_NEUF_MOYEN = 32000;
+  const PRIX_TH_NEUF_MOYEN = 23000;
+  const SURCOUT_VE_VS_TH   = PRIX_VE_NEUF_MOYEN - PRIX_TH_NEUF_MOYEN; // 9 000 €
 
   // Libellés courts pour le stepper (cohérents avec les eyebrows des étapes)
   const WIZARD_STEPS_LABELS = ['Foyer', 'Logement', 'Mobilité', 'Situation', 'Solutions', 'Bilan'];
@@ -2665,7 +2683,7 @@
   function wizardStep1Foyer() {
     const profil = profilAnah(state.foyer.rfr, state.foyer.personnes, state.foyer.zone);
     return `
-      <p class="pae-wizard__eyebrow">Étape 1 sur 5 — votre foyer</p>
+      <p class="pae-wizard__eyebrow">Étape 1 sur 6 — votre foyer</p>
       <h2 id="wizard-title">Qui compose votre foyer ?</h2>
       <p class="pae-wizard__lede">
         Ces informations déterminent votre <strong>profil de revenus Anah</strong>
@@ -2735,7 +2753,7 @@
   // --- Étape 2 : Logement --------------------------------------------
   function wizardStep2Logement() {
     return `
-      <p class="pae-wizard__eyebrow">Étape 2 sur 5 — votre logement</p>
+      <p class="pae-wizard__eyebrow">Étape 2 sur 6 — votre logement</p>
       <h2 id="wizard-title">Où vivez-vous ?</h2>
       <p class="pae-wizard__lede">
         Le DPE et le mode de chauffage actuels déterminent le potentiel d'économies
@@ -2825,7 +2843,7 @@
   // --- Étape 3 : Mobilité ---------------------------------------------
   function wizardStep3Mobilite() {
     return `
-      <p class="pae-wizard__eyebrow">Étape 3 sur 5 — votre mobilité</p>
+      <p class="pae-wizard__eyebrow">Étape 3 sur 6 — votre mobilité</p>
       <h2 id="wizard-title">Comment vous déplacez-vous ?</h2>
       <p class="pae-wizard__lede">
         Si vous avez un véhicule thermique aujourd'hui, le passage à l'électrique
@@ -2895,7 +2913,7 @@
     const wCarb = (a.coutCarburant / maxBar * 100).toFixed(0);
     const pctClass = a.pctRevenu > 15 ? 'élevée' : (a.pctRevenu > 8 ? 'significative' : 'modérée');
     return `
-      <p class="pae-wizard__eyebrow">Étape 4 sur 5 — votre situation actuelle</p>
+      <p class="pae-wizard__eyebrow">Étape 4 sur 6 — votre situation actuelle</p>
       <h2 id="wizard-title">Voici ce que vous payez aujourd'hui</h2>
       <p class="pae-wizard__lede">
         Avant d'examiner les solutions, voyons combien votre énergie vous coûte
@@ -2963,7 +2981,10 @@
         if (state.mobilite.actuel === 'aucun') return { ...result, eligible: false, reason: 'Pas de véhicule actuel' };
         state.mobilite.projet = 've_neuf';
         const mob = calcMobilite(profil);
-        result = { aides: mob.total, ecoAn: mob.economieAn, cout: PRIX_VE_NEUF_MOYEN, eligible: true };
+        // Coût VE = surcoût vs thermique + coût borne si installée (sinon asymétrie
+        // avec le crédit d'impôt borne déjà compté dans `mob.total`).
+        const coutBorne = state.mobilite.borne === 'oui' ? COUT_BORNE_DOMICILE : 0;
+        result = { aides: mob.total, ecoAn: mob.economieAn, cout: SURCOUT_VE_VS_TH + coutBorne, eligible: true };
       } else if (type === 'reno') {
         if (state.logement.statut === 'loc') return { ...result, eligible: false, reason: 'Vous êtes locataire' };
         if (['A','B','C'].includes(state.logement.dpe)) return { ...result, eligible: false, reason: 'DPE déjà performant' };
@@ -3054,9 +3075,14 @@
       }
     });
     const totalNet = Math.max(0, totalCout - totalAides);
+    const gainNetCumule = totalAides + totalEco * state.horizon - totalCout;
+    const tallyClass = gainNetCumule < 0 ? 'wizard-tally loss' : 'wizard-tally';
+    const gainLabel = gainNetCumule < 0
+      ? `Perte nette cumulée sur ${state.horizon} ans`
+      : `Gain net cumulé sur ${state.horizon} ans`;
 
     return `
-      <p class="pae-wizard__eyebrow">Étape 5 sur 5 — vos solutions</p>
+      <p class="pae-wizard__eyebrow">Étape 5 sur 6 — vos solutions</p>
       <h2 id="wizard-title">Voici ce que vous pouvez faire</h2>
       <p class="pae-wizard__lede">
         Chaque solution est indépendante : cliquez sur « J'inclus » pour celles qui vous intéressent.
@@ -3070,12 +3096,12 @@
         ${card('pv')}
       </div>
 
-      <div class="wizard-tally">
+      <div class="${tallyClass}">
         <div class="tally-row"><span>Aides publiques totales</span><span>${fmt(totalAides)}</span></div>
         <div class="tally-row"><span>Économies annuelles</span><span>${fmt(totalEco)}/an</span></div>
         <div class="tally-row"><span>Coût total des projets</span><span>${fmt(totalCout)}</span></div>
         <div class="tally-row"><span>Reste à charge global</span><span>${fmt(totalNet)}</span></div>
-        <div class="tally-row total"><span>Gain net cumulé sur ${state.horizon} ans</span><span>${fmt(totalAides + totalEco * state.horizon - totalCout)}</span></div>
+        <div class="tally-row total"><span>${gainLabel}</span><span>${fmt(Math.abs(gainNetCumule))}</span></div>
       </div>
     `;
   }
