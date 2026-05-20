@@ -1,5 +1,5 @@
 {
-  "$schema": "Manifest of all simulators. Each entry drives the home page list AND the cross-simulator dropdown in the portal bar. `kind` regroupe sur la home : 'carte' | 'dashboard' | 'simulateur'.",
+  "$schema": "Manifest of all simulators. Each entry drives the home page list AND the cross-simulator dropdown in the portal bar. `kind` regroupe sur la home : 'carte' | 'dashboard' | 'doc' | 'simulateur'.",
   "simulators": [
     {
       "slug": "passer-a-electrique",
@@ -65,6 +65,14 @@
       "tagline": "Avancement des 22 mesures annoncées en avril 2026, indicateurs cibles et calendrier de mise en œuvre.",
       "status": "beta",
       "tags": ["pilotage", "plan gouvernemental"]
+    },
+    {
+      "slug": "offres-partenaires",
+      "kind": "doc",
+      "title": "Modèle de données — Offres partenaires",
+      "tagline": "Cadre de saisie pour les offres privées (EDF, Renault, Volvo…) déclarées via téléservice et greffées sur les simulateurs sans transformation JS.",
+      "status": "draft",
+      "tags": ["méthodologie", "partenariats", "données"]
     }
   ]
 }

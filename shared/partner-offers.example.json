@@ -1,0 +1,145 @@
+{
+  "$schema": "Exemple illustratif du modèle de données 'offres partenaires'. Trois offres remplies pour les trois types de partenaires-cibles (énergéticien / constructeur VE / constructeur PL). Ce fichier n'est PAS consommé par les simulateurs en v1 — il sert à matérialiser le schéma. Voir /offres-partenaires/ pour la documentation complète.",
+  "version": "1.0.0-draft",
+  "offres": [
+    {
+      "id": "edf-pac-serenite-2026q3",
+      "partenaire": {
+        "nom": "EDF",
+        "siret": "552081317",
+        "logo_url": "/shared/logos/edf.svg",
+        "site_url": "https://particuliers.edf.fr/fr/accueil/economies-energie/pompe-a-chaleur.html"
+      },
+      "produit": "pompe-a-chaleur",
+      "label": "Forfait Sérénité PAC",
+      "description_courte": "Installation PAC air/eau ou géothermique clé en main, contractualisée chez un installateur RGE partenaire EDF.",
+
+      "type_offre": "remise_fixe",
+      "montant": 2000,
+      "unite": "EUR",
+      "cumul_aides_etat": true,
+      "plafond_cumul_etat": null,
+
+      "eligibilite": {
+        "geo": { "zones": ["FR"], "departements": [], "exclusions": ["971", "972", "973", "974", "976"] },
+        "foyer": { "rfr_part_max": 24000, "profil_anah": ["bleu", "jaune", "violet"] },
+        "logement": {
+          "statut": ["po"],
+          "type": ["maison", "appartement"],
+          "dpe": ["D", "E", "F", "G"],
+          "energie_actuelle": ["fioul", "gaz", "propane"]
+        },
+        "vehicule": null,
+        "poids_lourd": null
+      },
+
+      "affichage": {
+        "position": "aide-spotlight-append",
+        "couleur_accent": "#0066cc",
+        "cta_label": "Activer cette offre EDF",
+        "cta_url": "https://demarches-numeriques.fr/dossier/12345/activer",
+        "conditions_url": "https://particuliers.edf.fr/fr/accueil/economies-energie/pompe-a-chaleur/forfait-serenite/conditions.html"
+      },
+
+      "validite": { "du": "2026-06-01", "au": "2026-12-31" },
+      "source": {
+        "url_declaration": "https://demarches-numeriques.fr/dossier/12345",
+        "mise_a_jour": "2026-05-15",
+        "valide_par": "DGEC"
+      }
+    },
+
+    {
+      "id": "renault-r5-bonus-reprise-2026",
+      "partenaire": {
+        "nom": "Renault",
+        "siret": "441639465",
+        "logo_url": "/shared/logos/renault.svg",
+        "site_url": "https://www.renault.fr/vehicules-electriques/r5-e-tech-electrique.html"
+      },
+      "produit": "voiture-electrique",
+      "label": "Bonus reprise R5 E-Tech",
+      "description_courte": "Bonus reprise garanti à la valeur Argus +1 500 € pour tout véhicule diesel de plus de 10 ans repris contre une R5 E-Tech neuve.",
+
+      "type_offre": "bonus_reprise",
+      "montant": 1500,
+      "unite": "EUR",
+      "cumul_aides_etat": true,
+      "plafond_cumul_etat": null,
+
+      "eligibilite": {
+        "geo": { "zones": ["FR"], "departements": [], "exclusions": [] },
+        "foyer": { "rfr_part_max": null, "profil_anah": [] },
+        "logement": null,
+        "vehicule": {
+          "carburant_actuel": ["diesel"],
+          "anciennete_min_annees": 10,
+          "modeles_eligibles": ["renault-r5-e-tech"]
+        },
+        "poids_lourd": null
+      },
+
+      "affichage": {
+        "position": "recap-ligne",
+        "couleur_accent": "#efdf00",
+        "cta_label": "Réserver chez Renault",
+        "cta_url": "https://demarches-numeriques.fr/dossier/12346/activer",
+        "conditions_url": "https://www.renault.fr/offres/bonus-reprise-2026.html"
+      },
+
+      "validite": { "du": "2026-04-01", "au": "2026-09-30" },
+      "source": {
+        "url_declaration": "https://demarches-numeriques.fr/dossier/12346",
+        "mise_a_jour": "2026-04-15",
+        "valide_par": "DGEC"
+      }
+    },
+
+    {
+      "id": "volvo-fh-electric-leasing-m12-2026",
+      "partenaire": {
+        "nom": "Volvo Trucks France",
+        "siret": "552064067",
+        "logo_url": "/shared/logos/volvo-trucks.svg",
+        "site_url": "https://www.volvotrucks.fr/fr-fr/trucks/electric-trucks/volvo-fh-electric.html"
+      },
+      "produit": "poids-lourd",
+      "label": "Leasing FH Electric Mesure 12",
+      "description_courte": "Offre leasing 60 mois à taux préférentiel sur le Volvo FH Electric pour les transporteurs éligibles à la Mesure 12 du Plan d'électrification.",
+
+      "type_offre": "financement",
+      "montant": 3.2,
+      "unite": "pct_taux_annuel",
+      "cumul_aides_etat": true,
+      "plafond_cumul_etat": 100000,
+
+      "eligibilite": {
+        "geo": { "zones": ["FR"], "departements": [], "exclusions": [] },
+        "foyer": null,
+        "logement": null,
+        "vehicule": null,
+        "poids_lourd": {
+          "type": ["tracteur"],
+          "fabrication_europe": true,
+          "usage": ["longue-distance", "regional"],
+          "km_an_min": 60000
+        }
+      },
+
+      "affichage": {
+        "position": "aide-spotlight-append",
+        "couleur_accent": "#1856a0",
+        "cta_label": "Demander une étude Volvo",
+        "cta_url": "https://demarches-numeriques.fr/dossier/12347/activer",
+        "conditions_url": "https://www.volvotrucks.fr/fr-fr/services/financial-services/conditions-leasing-m12.html"
+      },
+
+      "validite": { "du": "2026-05-01", "au": "2027-12-31" },
+      "source": {
+        "url_declaration": "https://demarches-numeriques.fr/dossier/12347",
+        "mise_a_jour": "2026-05-10",
+        "valide_par": "DGEC"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="fr" data-fr-scheme="system">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000091">
+  <title>Modèle de données — Offres partenaires</title>
+  <meta name="description" content="Recommandation DGEC : cadre de saisie pour les offres privées (EDF, Renault, Volvo…) déclarées via téléservice et greffées sur les simulateurs sans transformation JS.">
+
+  <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/apple-touch-icon.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/utility/utility.min.css">
+
+  <link rel="stylesheet" href="/shared/portal-bar.css">
+  <script src="/shared/portal-bar.js" defer></script>
+
+  <style>
+    /* Sommaire ancres */
+    .toc {
+      background: #f6f6fc;
+      border-left: 4px solid #000091;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0 2.5rem;
+    }
+    .toc h2 {
+      margin: 0 0 .5rem;
+      font-size: .8125rem;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: #000091;
+    }
+    .toc ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: .25rem .75rem;
+      counter-reset: toc;
+    }
+    .toc li { counter-increment: toc; font-size: .9375rem; }
+    .toc li::before {
+      content: counter(toc, decimal-leading-zero) " · ";
+      color: #6a6af4;
+      font-family: ui-monospace, monospace;
+      font-size: .8125rem;
+    }
+    .toc a { color: #161616; text-decoration: none; }
+    .toc a:hover { color: #000091; text-decoration: underline; }
+
+    /* KPI haut de page */
+    .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0 2.5rem; }
+    @media (max-width: 768px) { .kpi-grid { grid-template-columns: 1fr; } }
+    .kpi {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      padding: 1rem 1.25rem;
+      border-left: 4px solid #000091;
+    }
+    .kpi__label { font-size: .8125rem; color: #666; margin: 0 0 .25rem; text-transform: uppercase; letter-spacing: .5px; font-weight: 500; }
+    .kpi__value { font-size: 2rem; font-weight: 700; color: #161616; line-height: 1; font-variant-numeric: tabular-nums; }
+    .kpi__hint  { font-size: .8125rem; color: #666; margin-top: .25rem; }
+
+    /* Callout info — pattern repris des dashboards */
+    .callout-info {
+      background: #e8edff;
+      border-left: 4px solid #000091;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+    }
+    .callout-info h3 { margin: 0 0 .5rem; color: #000091; font-size: 1.0625rem; }
+    .callout-info p:last-child { margin-bottom: 0; }
+
+    .callout-warn {
+      background: #fef7da;
+      border-left: 4px solid #b34000;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+    }
+    .callout-warn h3 { margin: 0 0 .5rem; color: #5a4f25; font-size: 1.0625rem; }
+
+    /* Section heading uniforme */
+    section.doc-section { margin-top: 3rem; scroll-margin-top: 5rem; }
+    section.doc-section > h2 {
+      font-size: 1.5rem;
+      color: #000091;
+      margin: 0 0 .5rem;
+      padding-bottom: .5rem;
+      border-bottom: 2px solid #000091;
+    }
+    section.doc-section > p.section-intro {
+      color: #3a3a3a;
+      font-size: .9375rem;
+      line-height: 1.55;
+      margin: 0 0 1.5rem;
+      max-width: 60rem;
+    }
+
+    /* Bloc schéma JSON */
+    .schema-wrap {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    @media (max-width: 960px) { .schema-wrap { grid-template-columns: 1fr; } }
+
+    pre.schema-json {
+      background: #1b1b35;
+      color: #e5e5fa;
+      padding: 1.25rem 1.5rem;
+      font-size: .8125rem;
+      line-height: 1.55;
+      overflow: auto;
+      border-radius: 4px;
+      margin: 0;
+      font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    }
+    pre.schema-json .k  { color: #87c5ff; }    /* clés */
+    pre.schema-json .s  { color: #ffd05a; }    /* strings */
+    pre.schema-json .n  { color: #b4e472; }    /* nombres */
+    pre.schema-json .b  { color: #ff7eb6; }    /* booléens / null */
+    pre.schema-json .c  { color: #8a8aa3; font-style: italic; } /* commentaires */
+
+    .schema-cards { display: grid; gap: .625rem; }
+    .schema-card {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-left: 3px solid #6a6af4;
+      padding: .75rem 1rem;
+    }
+    .schema-card h4 {
+      margin: 0 0 .25rem;
+      font-size: .9375rem;
+      color: #161616;
+      font-family: ui-monospace, monospace;
+    }
+    .schema-card p {
+      margin: 0;
+      font-size: .8125rem;
+      color: #3a3a3a;
+      line-height: 1.5;
+    }
+
+    /* Tableau vocabulaire */
+    .voc-table { width: 100%; border-collapse: collapse; font-size: .875rem; background: #fff; }
+    .voc-table th, .voc-table td {
+      padding: .625rem .75rem;
+      border-bottom: 1px solid #e5e5e5;
+      text-align: left;
+      vertical-align: top;
+    }
+    .voc-table th {
+      background: #f6f6fc;
+      font-weight: 600;
+      color: #000091;
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .voc-table code {
+      background: #f0f0f4;
+      padding: 1px 4px;
+      border-radius: 2px;
+      font-size: .8125rem;
+      color: #000091;
+    }
+    .voc-table .voc-values code {
+      display: inline-block;
+      margin: 1px 2px 1px 0;
+    }
+    .voc-table a { color: #000091; }
+
+    /* Tuiles couverture par simulateur */
+    .coverage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .coverage-tile {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-top: 4px solid #000091;
+      padding: 1.25rem;
+    }
+    .coverage-tile h3 {
+      margin: 0 0 .25rem;
+      font-size: 1.0625rem;
+      color: #161616;
+    }
+    .coverage-tile .coverage-path {
+      font-family: ui-monospace, monospace;
+      font-size: .75rem;
+      color: #6a6af4;
+      margin: 0 0 .75rem;
+    }
+    .coverage-tile h4 {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: #6a6af4;
+      margin: 1rem 0 .375rem;
+      font-weight: 600;
+    }
+    .coverage-tile ul { margin: 0; padding: 0 0 0 1rem; font-size: .875rem; line-height: 1.55; color: #3a3a3a; }
+    .coverage-tile ul li code {
+      background: #f0f0f4;
+      padding: 0 4px;
+      border-radius: 2px;
+      font-size: .8125rem;
+      color: #000091;
+    }
+
+    /* === Maquettes §5 ============================================== */
+    .mockup {
+      background: #f6f6fc;
+      border: 1px dashed #c9c9e8;
+      padding: 1.5rem;
+      margin: 1.25rem 0 2rem;
+      position: relative;
+    }
+    .mockup::before {
+      content: "Maquette — rendu sur le simulateur";
+      position: absolute;
+      top: -.6rem; left: 1rem;
+      background: #6a6af4;
+      color: #fff;
+      font-size: .6875rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 2px;
+      font-weight: 600;
+    }
+    .mockup__caption {
+      font-size: .8125rem;
+      color: #666;
+      margin: 0 0 1rem;
+      font-style: italic;
+    }
+
+    /* Aide-spotlight (repris de pompe-a-chaleur/index.html) — version simplifiée */
+    .mockup .aide-spotlight {
+      background: #e3e3fd;
+      color: #3a3a3a;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,145,.06);
+    }
+    .mockup .aide-spotlight__stripe { display: flex; height: 4px; }
+    .mockup .aide-spotlight__stripe span { flex: 1; display: block; }
+    .mockup .aide-spotlight__stripe span:nth-child(1) { background: #0055a4; }
+    .mockup .aide-spotlight__stripe span:nth-child(2) { background: #ffffff; }
+    .mockup .aide-spotlight__stripe span:nth-child(3) { background: #ef4135; }
+    .mockup .aide-spotlight__body { padding: 1.25rem 1.5rem 1rem; }
+    .mockup .aide-spotlight__eyebrow {
+      margin: 0 0 .5rem;
+      font-size: .75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #000091;
+      font-weight: 600;
+    }
+    .mockup .aide-spotlight h3 {
+      margin: 0 0 .375rem;
+      font-size: 1.25rem;
+      color: #000091;
+      font-weight: 700;
+    }
+    .mockup .aide-spotlight__pct { font-size: 1.75rem; font-weight: 800; color: #000091; }
+    .mockup .aide-spotlight__sub { margin: 0 0 1rem; font-size: .875rem; line-height: 1.5; }
+    .mockup .aide-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: .5rem;
+    }
+    .mockup .aide-list li {
+      background: #ffffff;
+      border-left: 3px solid #000091;
+      padding: .5rem .75rem;
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+    .mockup .aide-list .aide-amount {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: #000091;
+      font-variant-numeric: tabular-nums;
+      min-width: 5.5rem;
+    }
+    .mockup .aide-list .aide-name { font-weight: 600; color: #161616; font-size: .875rem; }
+    .mockup .aide-list .aide-source { color: #666; font-size: .75rem; margin-left: .375rem; }
+
+    /* Tuile offre partenaire — proposition (les couleurs viennent de couleur_accent) */
+    .offer-tile {
+      background: #fff;
+      border: 2px solid var(--offer-accent, #0066cc);
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+      position: relative;
+    }
+    .offer-tile::before {
+      content: "OFFRE PARTENAIRE";
+      position: absolute;
+      top: -.6rem; left: 1rem;
+      background: var(--offer-accent, #0066cc);
+      color: #fff;
+      font-size: .625rem;
+      letter-spacing: 1.5px;
+      padding: 2px 8px;
+      font-weight: 700;
+    }
+    .offer-tile__head {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: .375rem;
+    }
+    .offer-tile__partenaire {
+      font-weight: 700;
+      color: var(--offer-accent, #0066cc);
+      font-size: 1.0625rem;
+    }
+    .offer-tile__amount {
+      font-weight: 800;
+      color: #161616;
+      font-size: 1.25rem;
+      margin-left: auto;
+      font-variant-numeric: tabular-nums;
+    }
+    .offer-tile__amount small { font-size: .75rem; color: #666; font-weight: 500; }
+    .offer-tile__label { color: #161616; font-size: .9375rem; margin: 0 0 .5rem; }
+    .offer-tile__desc { color: #3a3a3a; font-size: .8125rem; line-height: 1.5; margin: 0 0 .75rem; }
+    .offer-tile__cta {
+      display: inline-block;
+      background: var(--offer-accent, #0066cc);
+      color: #fff;
+      padding: .375rem .875rem;
+      text-decoration: none;
+      font-size: .8125rem;
+      font-weight: 600;
+    }
+    .offer-tile__cta:hover { filter: brightness(.92); }
+    .offer-tile__conditions {
+      font-size: .75rem;
+      color: #666;
+      margin: .5rem 0 0;
+    }
+    .offer-tile__conditions a { color: #666; }
+
+    /* Récap voiture (maquette) */
+    .recap-mockup {
+      background: #fff;
+      border-left: 4px solid #18753c;
+      padding: 1rem 1.25rem;
+    }
+    .recap-mockup h4 {
+      margin: 0 0 .25rem;
+      color: #18753c;
+      font-size: .75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .recap-mockup h3 { margin: 0 0 .75rem; font-size: 1.125rem; color: #161616; }
+    .recap-line {
+      display: flex;
+      justify-content: space-between;
+      padding: .375rem 0;
+      border-bottom: 1px solid #eee;
+      font-size: .9375rem;
+      color: #3a3a3a;
+    }
+    .recap-line:last-child { border-bottom: none; font-weight: 700; color: #161616; padding-top: .75rem; }
+    .recap-line.recap-line--partner {
+      background: #fff8e1;
+      margin: 0 -1.25rem;
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+      color: #745a00;
+      font-weight: 600;
+      border-bottom-color: #efdf00;
+    }
+    .recap-line.recap-line--partner em {
+      font-style: normal;
+      font-size: .75rem;
+      font-weight: 500;
+      color: #978b3a;
+      margin-left: .5rem;
+    }
+    .recap-line span:last-child { font-variant-numeric: tabular-nums; }
+
+    /* Guide partenaire (table DN ↔ JSON) */
+    .dn-table { width: 100%; border-collapse: collapse; font-size: .875rem; background: #fff; }
+    .dn-table th, .dn-table td {
+      padding: .625rem .75rem;
+      border-bottom: 1px solid #e5e5e5;
+      text-align: left;
+      vertical-align: top;
+    }
+    .dn-table th {
+      background: #f6f6fc;
+      font-weight: 600;
+      color: #000091;
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .dn-table code {
+      background: #f0f0f4;
+      padding: 1px 4px;
+      border-radius: 2px;
+      font-size: .8125rem;
+      color: #000091;
+    }
+
+    /* Exemples remplis (details) */
+    .example-details {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-left: 3px solid #000091;
+      margin: .75rem 0;
+    }
+    .example-details summary {
+      cursor: pointer;
+      padding: .75rem 1rem;
+      font-weight: 600;
+      color: #000091;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .example-details summary::-webkit-details-marker { display: none; }
+    .example-details summary::before {
+      content: "▸";
+      font-size: .75rem;
+      transition: transform .15s;
+    }
+    .example-details[open] summary::before { transform: rotate(90deg); }
+    .example-details summary .ex-tag {
+      margin-left: auto;
+      background: #e3e3fd;
+      color: #000091;
+      padding: 2px 8px;
+      font-family: ui-monospace, monospace;
+      font-size: .6875rem;
+      letter-spacing: .5px;
+    }
+    .example-details pre {
+      background: #1b1b35;
+      color: #e5e5fa;
+      padding: 1rem 1.25rem;
+      margin: 0;
+      font-size: .75rem;
+      line-height: 1.55;
+      overflow: auto;
+      font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    }
+    .example-details pre .k { color: #87c5ff; }
+    .example-details pre .s { color: #ffd05a; }
+    .example-details pre .n { color: #b4e472; }
+    .example-details pre .b { color: #ff7eb6; }
+
+    /* Schéma cycle de vie */
+    .lifecycle {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+    .lifecycle__step {
+      flex: 1;
+      min-width: 140px;
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-top: 4px solid #6a6af4;
+      padding: .875rem 1rem;
+      position: relative;
+    }
+    .lifecycle__step + .lifecycle__step { margin-left: .5rem; }
+    @media (max-width: 900px) {
+      .lifecycle__step + .lifecycle__step { margin-left: 0; margin-top: .5rem; }
+    }
+    .lifecycle__step::after {
+      content: "→";
+      position: absolute;
+      right: -.875rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #6a6af4;
+      font-size: 1.25rem;
+      font-weight: 700;
+      z-index: 2;
+      background: #fff;
+      padding: 0 .25rem;
+    }
+    .lifecycle__step:last-child::after { content: ""; }
+    @media (max-width: 900px) { .lifecycle__step::after { content: ""; } }
+    .lifecycle__num {
+      font-family: ui-monospace, monospace;
+      font-size: .6875rem;
+      color: #6a6af4;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+    .lifecycle__label {
+      font-weight: 700;
+      color: #161616;
+      font-size: .9375rem;
+      margin: .125rem 0 .25rem;
+    }
+    .lifecycle__desc {
+      font-size: .75rem;
+      color: #666;
+      line-height: 1.5;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <a class="fr-skiplink" href="#contenu">Contenu</a>
+
+  <header role="banner" class="fr-header">
+    <div class="fr-header__body">
+      <div class="fr-container">
+        <div class="fr-header__body-row">
+          <div class="fr-header__brand fr-enlarge-link">
+            <div class="fr-header__brand-top">
+              <div class="fr-header__logo">
+                <p class="fr-logo">République<br>Française</p>
+              </div>
+            </div>
+            <div class="fr-header__service">
+              <a href="/" title="Accueil — Portail simulateurs">
+                <p class="fr-header__service-title">Modèle de données — Offres partenaires</p>
+              </a>
+              <p class="fr-header__service-tagline">Cadre de saisie pour les offres privées greffées sur les simulateurs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main role="main" id="contenu">
+    <div class="fr-container fr-py-6w">
+
+      <h1>Recommandation — Modèle de données « Offres partenaires »</h1>
+      <p class="fr-text--lead">
+        Document de travail destiné à la <strong>DGEC</strong> (validation du schéma) et aux <strong>partenaires
+        privés</strong> (guide de remplissage du téléservice). Il décrit comment intégrer dès maintenant les offres
+        commerciales (EDF, Renault, Volvo, installateurs RGE, énergéticiens…) dans les simulateurs du portail
+        <strong>sans modifier leur code</strong> à chaque ajout de partenaire.
+      </p>
+
+      <!-- KPI -->
+      <div class="kpi-grid">
+        <div class="kpi">
+          <p class="kpi__label">Simulateurs concernés</p>
+          <div class="kpi__value">4</div>
+          <p class="kpi__hint">Voiture · PAC · Poids lourd · Passer à l'électrique</p>
+        </div>
+        <div class="kpi">
+          <p class="kpi__label">Types d'offres modélisés</p>
+          <div class="kpi__value">7</div>
+          <p class="kpi__hint">Remise fixe, remise %, bonus reprise, tarif énergie, aide complémentaire, financement, service inclus</p>
+        </div>
+        <div class="kpi">
+          <p class="kpi__label">Critères d'éligibilité alignés</p>
+          <div class="kpi__value">12</div>
+          <p class="kpi__hint">RFR/part, profil ANAH, DPE, statut, type logement, énergie, etc.</p>
+        </div>
+      </div>
+
+      <!-- Sommaire -->
+      <nav class="toc" aria-label="Sommaire">
+        <h2>Sommaire</h2>
+        <ol>
+          <li><a href="#motivation">Motivation</a></li>
+          <li><a href="#schema">Schéma JSON</a></li>
+          <li><a href="#vocabulaire">Vocabulaire aligné</a></li>
+          <li><a href="#couverture">Couverture par simulateur</a></li>
+          <li><a href="#demo">Démonstration visuelle</a></li>
+          <li><a href="#guide-partenaire">Guide partenaire</a></li>
+          <li><a href="#cycle">Cycle de vie d'une offre</a></li>
+          <li><a href="#limites">Limites v1 &amp; décisions à acter</a></li>
+        </ol>
+      </nav>
+
+      <!-- ============================================================ -->
+      <!-- §1 MOTIVATION                                                  -->
+      <!-- ============================================================ -->
+      <section class="doc-section" id="motivation">
+        <h2>1 · Motivation</h2>
+        <p class="section-intro">
+          Pourquoi un téléservice et un modèle stable, plutôt que des intégrations cas-par-cas avec
+          chaque partenaire.
+        </p>
+
+        <h3 style="font-size:1.0625rem;color:#161616;margin:1.25rem 0 .5rem">Le problème</h3>
+        <p>
+          Les simulateurs actuels (<a href="/voiture/">voiture</a>, <a href="/pompe-a-chaleur/">pompe à chaleur</a>,
+          <a href="/poids-lourd/">poids lourd</a>, <a href="/passer-a-electrique/">passer à l'électrique</a>) calculent
+          les coûts et les aides à partir de paramètres économiques <strong>internes</strong> (prix d'achat
+          catalogue, aides État, prix kWh, coûts d'entretien). Les <strong>offres privées</strong> qui
+          accompagnent souvent ces décisions d'achat (bonus reprise constructeur, remise installateur,
+          tarif kWh préférentiel, leasing à taux bonifié) ne sont aujourd'hui pas représentées.
+        </p>
+        <p>
+          Au-delà du sujet « afficher des offres », l'objectif politique est plus large : <strong>donner un
+          cadre aux partenaires privés</strong> pour qu'ils s'alignent sur le vocabulaire et les seuils
+          utilisés par l'État (RFR/part, profils ANAH, DPE, énergie actuelle…), et donc valoriser
+          plus simplement leurs offres dans les parcours citoyens.
+        </p>
+
+        <h3 style="font-size:1.0625rem;color:#161616;margin:1.5rem 0 .5rem">La solution proposée</h3>
+        <ol style="line-height:1.65">
+          <li>Les partenaires déclarent leurs offres dans un <strong>téléservice Démarches Numériques</strong> (ex-démarches simplifiées).</li>
+          <li>La DGEC valide les dossiers, exporte un <strong>fichier JSON</strong> consolidé <code>shared/partner-offers.json</code>.</li>
+          <li>Les simulateurs lisent ce fichier en <code>fetch()</code> et affichent les offres éligibles aux côtés des aides État.</li>
+        </ol>
+
+        <div class="callout-info">
+          <h3>Contrainte cardinale</h3>
+          <p>
+            Le vocabulaire des champs JSON doit être <strong>directement aligné</strong> sur les variables d'entrée
+            déjà utilisées par les simulateurs : <code>profil_anah</code> reprend <code>bleu/jaune/violet/rose</code>,
+            <code>dpe</code> reprend <code>A..G</code>, <code>logement.statut</code> reprend <code>po/pb/loc</code>, etc.
+            <strong>Aucune transformation JS</strong> entre la déclaration partenaire et l'usage dans le calcul.
+            Toute mauvaise modélisation maintenant = migration douloureuse plus tard.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- §2 SCHÉMA JSON                                                 -->
+      <!-- ============================================================ -->
+      <section class="doc-section" id="schema">
+        <h2>2 · Schéma JSON</h2>
+        <p class="section-intro">
+          Un objet JSON = une offre. Le téléservice produit un fichier par dossier validé (granularité
+          <em>1 dossier DN = 1 offre</em>) ; la DGEC consolide les fichiers dans
+          <code>shared/partner-offers.json</code>.
+        </p>
+
+        <div class="schema-wrap">
+          <pre class="schema-json" aria-label="Exemple JSON commenté"><span class="c">// shared/partner-offers.json — un objet par offre</span>
+{
+  <span class="k">"id"</span>: <span class="s">"edf-pac-serenite-2026q3"</span>,
+
+  <span class="k">"partenaire"</span>: {
+    <span class="k">"nom"</span>: <span class="s">"EDF"</span>,
+    <span class="k">"siret"</span>: <span class="s">"552081317"</span>,
+    <span class="k">"logo_url"</span>: <span class="s">"/shared/logos/edf.svg"</span>,
+    <span class="k">"site_url"</span>: <span class="s">"https://particuliers.edf.fr/…"</span>
+  },
+
+  <span class="k">"produit"</span>: <span class="s">"pompe-a-chaleur"</span>,
+  <span class="k">"label"</span>: <span class="s">"Forfait Sérénité PAC"</span>,
+  <span class="k">"description_courte"</span>: <span class="s">"Installation PAC clé en main…"</span>,
+
+  <span class="k">"type_offre"</span>: <span class="s">"remise_fixe"</span>,
+  <span class="k">"montant"</span>: <span class="n">2000</span>,
+  <span class="k">"unite"</span>: <span class="s">"EUR"</span>,
+  <span class="k">"cumul_aides_etat"</span>: <span class="b">true</span>,
+  <span class="k">"plafond_cumul_etat"</span>: <span class="b">null</span>,
+
+  <span class="k">"eligibilite"</span>: {
+    <span class="k">"geo"</span>: {
+      <span class="k">"zones"</span>: [<span class="s">"FR"</span>],
+      <span class="k">"departements"</span>: [],
+      <span class="k">"exclusions"</span>: [<span class="s">"971"</span>,<span class="s">"972"</span>,<span class="s">"973"</span>,<span class="s">"974"</span>,<span class="s">"976"</span>]
+    },
+    <span class="k">"foyer"</span>: {
+      <span class="k">"rfr_part_max"</span>: <span class="n">24000</span>,
+      <span class="k">"profil_anah"</span>: [<span class="s">"bleu"</span>,<span class="s">"jaune"</span>,<span class="s">"violet"</span>]
+    },
+    <span class="k">"logement"</span>: {
+      <span class="k">"statut"</span>: [<span class="s">"po"</span>],
+      <span class="k">"type"</span>: [<span class="s">"maison"</span>,<span class="s">"appartement"</span>],
+      <span class="k">"dpe"</span>: [<span class="s">"D"</span>,<span class="s">"E"</span>,<span class="s">"F"</span>,<span class="s">"G"</span>],
+      <span class="k">"energie_actuelle"</span>: [<span class="s">"fioul"</span>,<span class="s">"gaz"</span>,<span class="s">"propane"</span>]
+    },
+    <span class="k">"vehicule"</span>: <span class="b">null</span>,
+    <span class="k">"poids_lourd"</span>: <span class="b">null</span>
+  },
+
+  <span class="k">"affichage"</span>: {
+    <span class="k">"position"</span>: <span class="s">"aide-spotlight-append"</span>,
+    <span class="k">"couleur_accent"</span>: <span class="s">"#0066cc"</span>,
+    <span class="k">"cta_label"</span>: <span class="s">"Activer cette offre"</span>,
+    <span class="k">"cta_url"</span>: <span class="s">"https://demarches-numeriques.fr/…"</span>,
+    <span class="k">"conditions_url"</span>: <span class="s">"https://…"</span>
+  },
+
+  <span class="k">"validite"</span>: { <span class="k">"du"</span>: <span class="s">"2026-06-01"</span>, <span class="k">"au"</span>: <span class="s">"2026-12-31"</span> },
+  <span class="k">"source"</span>: {
+    <span class="k">"url_declaration"</span>: <span class="s">"https://demarches-numeriques.fr/dossier/12345"</span>,
+    <span class="k">"mise_a_jour"</span>: <span class="s">"2026-05-15"</span>,
+    <span class="k">"valide_par"</span>: <span class="s">"DGEC"</span>
+  }
+}</pre>
+
+          <div class="schema-cards">
+            <div class="schema-card">
+              <h4>id</h4>
+              <p>Identifiant unique de l'offre, format <code>&lt;partenaire&gt;-&lt;produit&gt;-&lt;label-kebab&gt;-&lt;periode&gt;</code>. Servira de clé de déduplication entre dossiers DN.</p>
+            </div>
+            <div class="schema-card">
+              <h4>partenaire</h4>
+              <p>Identité du déclarant : nom commercial, SIRET (pour vérification téléservice), URL logo, URL site partenaire.</p>
+            </div>
+            <div class="schema-card">
+              <h4>produit</h4>
+              <p>Énumération fermée alignée sur les simulateurs. Détermine quels simulateurs liront l'offre.</p>
+            </div>
+            <div class="schema-card">
+              <h4>type_offre + montant + unite</h4>
+              <p>Trois champs solidaires. L'unité dérive du type : <code>remise_fixe</code> → <code>EUR</code>, <code>tarif_energie</code> → <code>EUR_par_kWh</code>, <code>financement</code> → <code>pct_taux_annuel</code>.</p>
+            </div>
+            <div class="schema-card">
+              <h4>cumul_aides_etat + plafond_cumul_etat</h4>
+              <p>Si <code>true</code>, l'offre s'ajoute aux aides État (MaPrimeRénov', CEE, M12, etc.). <code>plafond_cumul_etat</code> permet de borner le total (ex. 100 000 € sur poids lourd).</p>
+            </div>
+            <div class="schema-card">
+              <h4>eligibilite</h4>
+              <p>5 sous-blocs : <code>geo</code>, <code>foyer</code>, <code>logement</code>, <code>vehicule</code>, <code>poids_lourd</code>. Chaque sous-bloc inutile pour le produit est <code>null</code>. Voir §3 pour le vocabulaire détaillé.</p>
+            </div>
+            <div class="schema-card">
+              <h4>affichage</h4>
+              <p>Indique aux simulateurs <em>où</em> et <em>comment</em> afficher l'offre. <code>position</code> est une énumération fermée alignée sur les patterns DSFR existants.</p>
+            </div>
+            <div class="schema-card">
+              <h4>validite + source</h4>
+              <p>Période d'application et traçabilité du dossier (URL DN, date de validation DGEC). Permet l'expiration automatique côté simulateur.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- §3 VOCABULAIRE                                                 -->
+      <!-- ============================================================ -->
+      <section class="doc-section" id="vocabulaire">
+        <h2>3 · Vocabulaire aligné</h2>
+        <p class="section-intro">
+          Toutes les énumérations sont fermées. Chaque valeur est reprise <strong>mot-pour-mot</strong> d'un
+          attribut existant dans un des simulateurs — pas de remapping, pas d'aliasing.
+        </p>
+
+        <div style="overflow-x:auto">
+          <table class="voc-table">
+            <thead>
+              <tr>
+                <th>Champ JSON</th>
+                <th>Valeurs autorisées</th>
+                <th>Source d'alignement</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>produit</code></td>
+                <td class="voc-values">
+                  <code>voiture-electrique</code> <code>pompe-a-chaleur</code> <code>poids-lourd</code>
+                  <code>borne-recharge</code> <code>renovation-ampleur</code> <code>solaire-pv</code>
+                </td>
+                <td><a href="/shared/simulators.json"><code>simulators.json</code></a> + solutions wizard <a href="/passer-a-electrique/">passer-a-electrique</a></td>
+              </tr>
+              <tr>
+                <td><code>type_offre</code></td>
+                <td class="voc-values">
+                  <code>remise_fixe</code> <code>remise_pct</code> <code>bonus_reprise</code>
+                  <code>tarif_energie</code> <code>aide_complementaire</code> <code>financement</code> <code>service_inclus</code>
+                </td>
+                <td>Leviers identifiés dans les 4 simulateurs (prix d'achat, énergie, financement, service)</td>
+              </tr>
+              <tr>
+                <td><code>unite</code></td>
+                <td class="voc-values">
+                  <code>EUR</code> <code>EUR_par_kWh</code> <code>pct</code> <code>pct_taux_annuel</code>
+                </td>
+                <td>Dérivée de <code>type_offre</code> (validation côté DN)</td>
+              </tr>
+              <tr>
+                <td><code>foyer.profil_anah</code></td>
+                <td class="voc-values"><code>bleu</code> <code>jaune</code> <code>violet</code> <code>rose</code></td>
+                <td><a href="/pompe-a-chaleur/"><code>pompe-a-chaleur</code></a> (<code>revenus</code>) ; <a href="/passer-a-electrique/"><code>passer-a-electrique</code></a> (profil financier)</td>
+              </tr>
+              <tr>
+                <td><code>foyer.rfr_part_max</code></td>
+                <td>Nombre (€) ou <code>null</code></td>
+                <td>Aligné sur <code>m1_rfr</code> de <a href="/voiture/"><code>voiture</code></a> et <code>foyer_rfr / foyer_personnes</code> de <code>passer-a-electrique</code></td>
+              </tr>
+              <tr>
+                <td><code>logement.statut</code></td>
+                <td class="voc-values"><code>po</code> <code>pb</code> <code>loc</code></td>
+                <td><code>passer-a-electrique</code> (<code>logement_statut</code>)</td>
+              </tr>
+              <tr>
+                <td><code>logement.type</code></td>
+                <td class="voc-values"><code>maison</code> <code>appartement</code></td>
+                <td><code>passer-a-electrique</code> (<code>logement_type</code>)</td>
+              </tr>
+              <tr>
+                <td><code>logement.dpe</code></td>
+                <td class="voc-values"><code>A</code> <code>B</code> <code>C</code> <code>D</code> <code>E</code> <code>F</code> <code>G</code></td>
+                <td><code>passer-a-electrique</code> (<code>logement_dpe</code>) ; cohérent avec <code>isolation</code> PAC (mapping passoire=F-G / moyen=D-E / bon=B-C)</td>
+              </tr>
+              <tr>
+                <td><code>logement.energie_actuelle</code></td>
+                <td class="voc-values"><code>fioul</code> <code>gaz</code> <code>propane</code> <code>electrique</code></td>
+                <td><code>pompe-a-chaleur</code> (<code>energie</code>) ; <code>passer-a-electrique</code> (<code>logement_chauffage</code>)</td>
+              </tr>
+              <tr>
+                <td><code>vehicule.carburant_actuel</code></td>
+                <td class="voc-values"><code>aucun</code> <code>essence</code> <code>diesel</code> <code>electrique</code></td>
+                <td><code>passer-a-electrique</code> (<code>mobilite_actuel</code>) ; <code>voiture</code> (<code>m1_th_carbu</code>)</td>
+              </tr>
+              <tr>
+                <td><code>poids_lourd.type</code></td>
+                <td class="voc-values"><code>tracteur</code> <code>porteur</code></td>
+                <td><a href="/poids-lourd/"><code>poids-lourd</code></a> (<code>type</code>)</td>
+              </tr>
+              <tr>
+                <td><code>affichage.position</code></td>
+                <td class="voc-values">
+                  <code>aide-spotlight-append</code> <code>recap-ligne</code>
+                  <code>bandeau-solution</code> <code>kpi-grid-extra</code>
+                </td>
+                <td>Patterns DSFR existants des 4 simulateurs (cf. §4 et §5)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout-info">
+          <h3>Règle d'or pour faire évoluer le vocabulaire</h3>
+          <p>
+            Tout ajout de valeur d'énumération <strong>nécessite une mise à jour conjointe</strong> de
+            (1) cette page, (2) l'ADR-016 (<em>Modèle de données offres partenaires v1</em>), (3) le formulaire DN,
+            (4) les simulateurs qui consomment cette énumération. C'est la contrepartie de la stabilité.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- §4 COUVERTURE PAR SIMULATEUR                                   -->
+      <!-- ============================================================ -->
+      <section class="doc-section" id="couverture">
+        <h2>4 · Couverture par simulateur</h2>
+        <p class="section-intro">
+          Pour chaque simulateur, quels <em>leviers</em> peuvent être actionnés par une offre partenaire,
+          et quels <em>critères d'éligibilité</em> sont déjà connus à l'exécution.
+        </p>
+
+        <div class="coverage-grid">
+
+          <!-- Voiture -->
+          <article class="coverage-tile">
+            <h3>Voiture électrique</h3>
+            <p class="coverage-path"><a href="/voiture/">/voiture/</a></p>
+
+            <h4>Leviers d'offre</h4>
+            <ul>
+              <li>Prix d'achat VE neuf — <code>m1_ve_prix</code></li>
+              <li>Bonus reprise diesel/essence — <code>m2_*</code></li>
+              <li>Prix kWh HC/HP/borne rapide — <code>m1_pkwh_hc/hp/dc</code></li>
+              <li>Coût installation borne — <code>m1_borne</code></li>
+              <li>Entretien annuel — <code>m1_ent_ve</code></li>
+              <li>Surbonus batterie EU — <code>m1_surbonus</code></li>
+            </ul>
+
+            <h4>Critères disponibles</h4>
+            <ul>
+              <li>RFR/part — <code>m1_rfr</code></li>
+              <li>Carburant actuel — <code>m1_th_carbu</code></li>
+              <li>Kilométrage annuel — <code>m1_km</code></li>
+              <li>Durée de détention — <code>m1_duree</code></li>
+            </ul>
+          </article>
+
+          <!-- Pompe à chaleur -->
+          <article class="coverage-tile">
+            <h3>Pompe à chaleur</h3>
+            <p class="coverage-path"><a href="/pompe-a-chaleur/">/pompe-a-chaleur/</a></p>
+
+            <h4>Leviers d'offre</h4>
+            <ul>
+              <li>Prix installation PAC — <code>COUT_PAC[pac]</code></li>
+              <li>Aide complémentaire (au-delà MPR/CEE)</li>
+              <li>Prix kWh élec (contrat dédié PAC) — <code>PRIX_KWH.elec</code></li>
+              <li>Service inclus : SAV, garantie pose, contrat entretien</li>
+            </ul>
+
+            <h4>Critères disponibles</h4>
+            <ul>
+              <li>Profil ANAH — <code>revenus</code></li>
+              <li>Énergie actuelle — <code>energie</code></li>
+              <li>Type de PAC — <code>pac</code></li>
+              <li>Zone climatique H1/H2/H3 — <code>zone</code></li>
+              <li>Isolation — <code>isolation</code></li>
+            </ul>
+          </article>
+
+          <!-- Poids lourd -->
+          <article class="coverage-tile">
+            <h3>Poids lourd</h3>
+            <p class="coverage-path"><a href="/poids-lourd/">/poids-lourd/</a></p>
+
+            <h4>Leviers d'offre</h4>
+            <ul>
+              <li>Prix d'achat camion — <code>prix-elec</code></li>
+              <li>Leasing à taux préférentiel — <code>type_offre: financement</code></li>
+              <li>Maintenance annuelle — <code>maint-elec</code></li>
+              <li>Prix kWh dépôt — <code>prix-elec-kwh</code></li>
+              <li>Cumul aide M12 (plafond 100 k€)</li>
+            </ul>
+
+            <h4>Critères disponibles</h4>
+            <ul>
+              <li>Type — <code>tracteur</code> / <code>porteur</code></li>
+              <li>Kilométrage annuel — <code>km</code></li>
+              <li>Durée de détention — <code>duree</code></li>
+            </ul>
+          </article>
+
+          <!-- Passer à l'électrique -->
+          <article class="coverage-tile">
+            <h3>Passer à l'électrique</h3>
+            <p class="coverage-path"><a href="/passer-a-electrique/">/passer-a-electrique/</a></p>
+
+            <h4>Leviers d'offre (par solution)</h4>
+            <ul>
+              <li>VE neuf — bonus reprise, prix VE</li>
+              <li>PAC — remise installateur, contrat élec</li>
+              <li>Rénovation ampleur — accompagnement, mandataire</li>
+              <li>Solaire PV — TVA, contrat surplus</li>
+              <li>Borne — coût pose, abonnement</li>
+            </ul>
+
+            <h4>Critères disponibles (transversal)</h4>
+            <ul>
+              <li>RFR + parts — <code>foyer_rfr</code>, <code>foyer_personnes</code></li>
+              <li>Statut occupant — <code>logement_statut</code></li>
+              <li>Type — <code>logement_type</code></li>
+              <li>DPE — <code>logement_dpe</code></li>
+              <li>Énergie chauffage — <code>logement_chauffage</code></li>
+              <li>Carburant véhicule — <code>mobilite_actuel</code></li>
+              <li>Zone (IDF / hors IDF) — <code>foyer_zone</code></li>
+            </ul>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- §5 DÉMONSTRATION VISUELLE                                      -->
+      <!-- ============================================================ -->
+      <section class="doc-section" id="demo">
+        <h2>5 · Démonstration visuelle</h2>
+        <p class="section-intro">
+          Deux maquettes statiques qui illustrent comment une offre partenaire s'insère dans les patterns
+          DSFR existants des simulateurs. Pas de JS — ce sont des reproductions HTML/CSS.
+        </p>
+
+        <h3 style="font-size:1.0625rem;color:#161616;margin-top:1.5rem">Cas 1 — Aide-spotlight PAC enrichi par EDF</h3>
+        <p>
+          Le pattern <code>.aide-spotlight</code> du simulateur <a href="/pompe-a-chaleur/">pompe à chaleur</a> affiche
+          « L'État finance X% de votre projet » + la liste des aides État. L'offre EDF s'ajoute en tuile
+          accolée, avec sa propre couleur d'accent (<code>affichage.couleur_accent</code>) pour ne pas être
+          confondue avec une aide État.
+        </p>
+
+        <div class="mockup">
+          <p class="mockup__caption">Rendu sur <code>/pompe-a-chaleur/</code> après filtrage des offres éligibles (profil bleu, fioul, maison DPE&nbsp;E).</p>
+
+          <aside class="aide-spotlight">
+            <div class="aide-spotlight__stripe"><span></span><span></span><span></span></div>
+            <div class="aide-spotlight__body">
+              <p class="aide-spotlight__eyebrow">République Française · Plan d'électrification</p>
+              <h3>L'État finance <span class="aide-spotlight__pct">62 %</span> de votre projet PAC</h3>
+              <p class="aide-spotlight__sub">
+                Surcoût net après aides : <strong>4 800 €</strong> sur 12 600 € d'installation initiale.
+              </p>
+              <ul class="aide-list">
+                <li>
+                  <span class="aide-amount">5 000 €</span>
+                  <div><span class="aide-name">MaPrimeRénov'</span><span class="aide-source">· ANAH</span></div>
+                </li>
+                <li>
+                  <span class="aide-amount">2 800 €</span>
+                  <div><span class="aide-name">CEE Coup de pouce chauffage</span><span class="aide-source">· DGEC</span></div>
+                </li>
+              </ul>
+            </div>
+          </aside>
+
+          <div class="offer-tile" style="--offer-accent:#0066cc">
+            <div class="offer-tile__head">
+              <span class="offer-tile__partenaire">EDF · Forfait Sérénité PAC</span>
+              <span class="offer-tile__amount">−2 000 € <small>remise fixe</small></span>
+            </div>
+            <p class="offer-tile__label">Installation PAC air/eau clé en main par un installateur RGE partenaire</p>
+            <p class="offer-tile__desc">
+              Cumulable avec MaPrimeRénov' et CEE. Réservée aux profils bleu, jaune et violet pour
+              maisons en chauffage fioul, gaz ou propane.
+            </p>
+            <a class="offer-tile__cta" href="#">Activer cette offre EDF →</a>
+            <p class="offer-tile__conditions">
+              Validité : 01/06 → 31/12/2026 · <a href="#">Conditions complètes</a>
+            </p>
+          </div>
+        </div>
+
+        <h3 style="font-size:1.0625rem;color:#161616;margin-top:1.5rem">Cas 2 — Récap voiture enrichi par Renault</h3>
+        <p>
+          Sur le simulateur <a href="/voiture/">voiture</a>, le récap final liste l'acquisition (prix
+          catalogue, bonus, prime conversion). Une ligne « offre partenaire » s'insère à la suite avec un
+          fond ambré pour la distinguer des aides État.
+        </p>
+
+        <div class="mockup">
+          <p class="mockup__caption">Rendu sur <code>/voiture/</code>, mode 2 (revente diesel → VE neuf), pour un véhicule actuel de 11&nbsp;ans.</p>
+
+          <div class="recap-mockup">
+            <h4>Étape 1 · Acquisition</h4>
+            <h3>Renault R5 E-Tech — 25 990 €</h3>
+            <div class="recap-line"><span>Prix catalogue VE</span><span>25 990 €</span></div>
+            <div class="recap-line"><span>− Bonus écologique (RFR &lt; 16 300 €/part)</span><span>−7 000 €</span></div>
+            <div class="recap-line"><span>− Prime à la conversion (diesel mis au rebut)</span><span>−1 500 €</span></div>
+            <div class="recap-line recap-line--partner">
+              <span>− Bonus reprise Renault <em>· offre partenaire</em></span>
+              <span>−1 500 €</span>
+            </div>
+            <div class="recap-line"><span>Reste à payer</span><span>15 990 €</span></div>
+          </div>
+        </div>
+
+        <div class="callout-info">
+          <h3>Convention de couleurs</h3>
+          <p>
+            Les aides État utilisent toujours le <strong>bleu France</strong> (<code>#000091</code>). Les offres
+            partenaires utilisent leur <strong>couleur d'accent propre</strong> (<code>affichage.couleur_accent</code>)
+            pour rester clairement identifiables comme commerciales. Couleurs claires recommandées
+            (jaune ambré, bleu ciel) — éviter le vert qui peut être confondu avec un signal de validation.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- §6 GUIDE PARTENAIRE                                            -->
+      <!-- ============================================================ -->
+      <section class="doc-section" id="guide-partenaire">
+        <h2>6 · Guide partenaire — Démarches Numériques</h2>
+        <p class="section-intro">
+          Cette section s'adresse aux partenaires privés qui renseignent le téléservice Démarches Numériques.
+          Chaque champ du formulaire correspond à un champ JSON consommé par les simulateurs.
+        </p>
+
+        <h3 style="font-size:1.0625rem;color:#161616;margin-top:1.5rem">Correspondance champ DN ↔ champ JSON</h3>
+        <div style="overflow-x:auto">
+          <table class="dn-table">
+            <thead>
+              <tr>
+                <th>Champ du formulaire DN</th>
+                <th>Champ JSON cible</th>
+                <th>Aide à la saisie</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Raison sociale + SIRET</td>
+                <td><code>partenaire.nom</code> + <code>partenaire.siret</code></td>
+                <td>Validés automatiquement contre le registre INSEE par le téléservice.</td>
+              </tr>
+              <tr>
+                <td>Logo (PNG/SVG)</td>
+                <td><code>partenaire.logo_url</code></td>
+                <td>Format carré recommandé, fond transparent, ≤ 100 KB. Hébergé par la DGEC après upload.</td>
+              </tr>
+              <tr>
+                <td>Produit concerné (liste déroulante)</td>
+                <td><code>produit</code></td>
+                <td>Choix unique parmi 6 valeurs (voir §3). Détermine quels simulateurs afficheront l'offre.</td>
+              </tr>
+              <tr>
+                <td>Nom commercial de l'offre</td>
+                <td><code>label</code></td>
+                <td>Court, percutant (60 caractères max).</td>
+              </tr>
+              <tr>
+                <td>Description (zone texte)</td>
+                <td><code>description_courte</code></td>
+                <td>2-3 phrases, 280 caractères max. Affiché tel quel dans la tuile.</td>
+              </tr>
+              <tr>
+                <td>Type d'avantage (liste déroulante)</td>
+                <td><code>type_offre</code></td>
+                <td>Choix parmi 7 valeurs. Conditionne les champs montant/unité affichés ensuite.</td>
+              </tr>
+              <tr>
+                <td>Montant / Taux</td>
+                <td><code>montant</code> + <code>unite</code></td>
+                <td>Le formulaire DN bascule entre € / €/kWh / % / % taux selon le type d'offre.</td>
+              </tr>
+              <tr>
+                <td>Cumulable avec aides État ?</td>
+                <td><code>cumul_aides_etat</code> + <code>plafond_cumul_etat</code></td>
+                <td>Case à cocher + champ plafond optionnel. Par défaut <code>true</code>, sauf opposition explicite des règles fiscales.</td>
+              </tr>
+              <tr>
+                <td>Sections d'éligibilité (déployées selon le produit)</td>
+                <td><code>eligibilite.*</code></td>
+                <td>Le formulaire n'affiche que les sous-blocs pertinents pour le produit (ex. pas de <code>vehicule</code> pour une offre PAC).</td>
+              </tr>
+              <tr>
+                <td>Validité (du / au)</td>
+                <td><code>validite</code></td>
+                <td>Au-delà de la date « au », l'offre disparaît automatiquement des simulateurs.</td>
+              </tr>
+              <tr>
+                <td>URL Conditions générales</td>
+                <td><code>affichage.conditions_url</code></td>
+                <td>Lien public vers le détail légal. Vérifié à l'instruction du dossier.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="font-size:1.0625rem;color:#161616;margin-top:2rem">3 exemples remplis</h3>
+        <p>
+          Ces trois fichiers JSON sont disponibles sous forme exécutable dans
+          <a href="/shared/partner-offers.example.json"><code>shared/partner-offers.example.json</code></a>.
+        </p>
+
+        <details class="example-details">
+          <summary>
+            EDF · Forfait Sérénité PAC
+            <span class="ex-tag">pompe-a-chaleur · remise_fixe</span>
+          </summary>
+          <pre>{
+  <span class="k">"id"</span>: <span class="s">"edf-pac-serenite-2026q3"</span>,
+  <span class="k">"partenaire"</span>: { <span class="k">"nom"</span>: <span class="s">"EDF"</span>, <span class="k">"siret"</span>: <span class="s">"552081317"</span> },
+  <span class="k">"produit"</span>: <span class="s">"pompe-a-chaleur"</span>,
+  <span class="k">"label"</span>: <span class="s">"Forfait Sérénité PAC"</span>,
+  <span class="k">"type_offre"</span>: <span class="s">"remise_fixe"</span>,
+  <span class="k">"montant"</span>: <span class="n">2000</span>, <span class="k">"unite"</span>: <span class="s">"EUR"</span>,
+  <span class="k">"cumul_aides_etat"</span>: <span class="b">true</span>,
+  <span class="k">"eligibilite"</span>: {
+    <span class="k">"foyer"</span>: { <span class="k">"profil_anah"</span>: [<span class="s">"bleu"</span>,<span class="s">"jaune"</span>,<span class="s">"violet"</span>] },
+    <span class="k">"logement"</span>: {
+      <span class="k">"statut"</span>: [<span class="s">"po"</span>],
+      <span class="k">"dpe"</span>: [<span class="s">"D"</span>,<span class="s">"E"</span>,<span class="s">"F"</span>,<span class="s">"G"</span>],
+      <span class="k">"energie_actuelle"</span>: [<span class="s">"fioul"</span>,<span class="s">"gaz"</span>,<span class="s">"propane"</span>]
+    }
+  },
+  <span class="k">"validite"</span>: { <span class="k">"du"</span>: <span class="s">"2026-06-01"</span>, <span class="k">"au"</span>: <span class="s">"2026-12-31"</span> }
+}</pre>
+        </details>
+
+        <details class="example-details">
+          <summary>
+            Renault · Bonus reprise R5 E-Tech
+            <span class="ex-tag">voiture-electrique · bonus_reprise</span>
+          </summary>
+          <pre>{
+  <span class="k">"id"</span>: <span class="s">"renault-r5-bonus-reprise-2026"</span>,
+  <span class="k">"partenaire"</span>: { <span class="k">"nom"</span>: <span class="s">"Renault"</span>, <span class="k">"siret"</span>: <span class="s">"441639465"</span> },
+  <span class="k">"produit"</span>: <span class="s">"voiture-electrique"</span>,
+  <span class="k">"label"</span>: <span class="s">"Bonus reprise R5 E-Tech"</span>,
+  <span class="k">"type_offre"</span>: <span class="s">"bonus_reprise"</span>,
+  <span class="k">"montant"</span>: <span class="n">1500</span>, <span class="k">"unite"</span>: <span class="s">"EUR"</span>,
+  <span class="k">"cumul_aides_etat"</span>: <span class="b">true</span>,
+  <span class="k">"eligibilite"</span>: {
+    <span class="k">"vehicule"</span>: {
+      <span class="k">"carburant_actuel"</span>: [<span class="s">"diesel"</span>],
+      <span class="k">"anciennete_min_annees"</span>: <span class="n">10</span>,
+      <span class="k">"modeles_eligibles"</span>: [<span class="s">"renault-r5-e-tech"</span>]
+    }
+  },
+  <span class="k">"validite"</span>: { <span class="k">"du"</span>: <span class="s">"2026-04-01"</span>, <span class="k">"au"</span>: <span class="s">"2026-09-30"</span> }
+}</pre>
+        </details>
+
+        <details class="example-details">
+          <summary>
+            Volvo · Leasing FH Electric Mesure 12
+            <span class="ex-tag">poids-lourd · financement</span>
+          </summary>
+          <pre>{
+  <span class="k">"id"</span>: <span class="s">"volvo-fh-electric-leasing-m12-2026"</span>,
+  <span class="k">"partenaire"</span>: { <span class="k">"nom"</span>: <span class="s">"Volvo Trucks France"</span>, <span class="k">"siret"</span>: <span class="s">"552064067"</span> },
+  <span class="k">"produit"</span>: <span class="s">"poids-lourd"</span>,
+  <span class="k">"label"</span>: <span class="s">"Leasing FH Electric Mesure 12"</span>,
+  <span class="k">"type_offre"</span>: <span class="s">"financement"</span>,
+  <span class="k">"montant"</span>: <span class="n">3.2</span>, <span class="k">"unite"</span>: <span class="s">"pct_taux_annuel"</span>,
+  <span class="k">"cumul_aides_etat"</span>: <span class="b">true</span>, <span class="k">"plafond_cumul_etat"</span>: <span class="n">100000</span>,
+  <span class="k">"eligibilite"</span>: {
+    <span class="k">"poids_lourd"</span>: {
+      <span class="k">"type"</span>: [<span class="s">"tracteur"</span>],
+      <span class="k">"fabrication_europe"</span>: <span class="b">true</span>,
+      <span class="k">"usage"</span>: [<span class="s">"longue-distance"</span>,<span class="s">"regional"</span>],
+      <span class="k">"km_an_min"</span>: <span class="n">60000</span>
+    }
+  },
+  <span class="k">"validite"</span>: { <span class="k">"du"</span>: <span class="s">"2026-05-01"</span>, <span class="k">"au"</span>: <span class="s">"2027-12-31"</span> }
+}</pre>
+        </details>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- §7 CYCLE DE VIE                                                -->
+      <!-- ============================================================ -->
+      <section class="doc-section" id="cycle">
+        <h2>7 · Cycle de vie d'une offre</h2>
+        <p class="section-intro">
+          De la déclaration à l'expiration. Validation manuelle DGEC en v1 ; automatisation possible en v2.
+        </p>
+
+        <div class="lifecycle">
+          <div class="lifecycle__step">
+            <p class="lifecycle__num">ÉTAPE 01</p>
+            <p class="lifecycle__label">Déclaration partenaire</p>
+            <p class="lifecycle__desc">Le partenaire remplit un dossier sur Démarches Numériques (un dossier = une offre). SIRET validé contre l'INSEE en temps réel.</p>
+          </div>
+          <div class="lifecycle__step">
+            <p class="lifecycle__num">ÉTAPE 02</p>
+            <p class="lifecycle__label">Instruction DGEC</p>
+            <p class="lifecycle__desc">Un instructeur vérifie le SIRET, le label, les conditions, l'absence de pratique commerciale trompeuse. Validation ou demande de complément.</p>
+          </div>
+          <div class="lifecycle__step">
+            <p class="lifecycle__num">ÉTAPE 03</p>
+            <p class="lifecycle__label">Export JSON</p>
+            <p class="lifecycle__desc">Les dossiers validés sont exportés en <code>shared/partner-offers.json</code>. Pipeline manuel en v1, automatisé en v2 (webhook DN).</p>
+          </div>
+          <div class="lifecycle__step">
+            <p class="lifecycle__num">ÉTAPE 04</p>
+            <p class="lifecycle__label">Exposition simulateurs</p>
+            <p class="lifecycle__desc">Les simulateurs lisent le JSON au chargement, filtrent par <code>produit</code> et <code>eligibilite</code>, affichent selon <code>affichage.position</code>.</p>
+          </div>
+          <div class="lifecycle__step">
+            <p class="lifecycle__num">ÉTAPE 05</p>
+            <p class="lifecycle__label">Expiration auto</p>
+            <p class="lifecycle__desc">Au-delà de <code>validite.au</code>, l'offre est ignorée. Aucune intervention manuelle nécessaire. Le partenaire peut redéclarer pour reconduction.</p>
+          </div>
+        </div>
+
+        <div class="callout-warn">
+          <h3>Gouvernance en v1</h3>
+          <p>
+            Validation 100 % humaine côté DGEC. Pas de score automatique, pas de mise en ligne directe. C'est la
+            contrepartie d'avoir un cadre stable et de pouvoir refuser une offre qui ne respecte pas les
+            principes du Plan d'électrification (par ex. promotion thermique).
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- §8 LIMITES & ADR                                               -->
+      <!-- ============================================================ -->
+      <section class="doc-section" id="limites">
+        <h2>8 · Limites v1 &amp; décisions à acter</h2>
+        <p class="section-intro">
+          Le périmètre est volontairement restreint pour la v1. Voici ce qui est <strong>hors-scope</strong> et
+          fera l'objet d'itérations ultérieures.
+        </p>
+
+        <ul style="line-height:1.7">
+          <li><strong>Granularité géographique fine</strong> — les offres sont nationales ou par département. Pas de granularité IRIS, EPCI, commune en v1. Suffisant pour les partenaires industriels nationaux.</li>
+          <li><strong>Segments véhicule</strong> — éligibilité par carburant (<code>diesel/essence</code>), pas par modèle précis (sauf via le champ libre <code>modeles_eligibles</code>). Pas de référentiel constructeur intégré.</li>
+          <li><strong>Barèmes dégressifs</strong> — une offre = un montant unique. Pas de barème par tranche (« −1 500 € jusqu'à 30 000 € de RFR, puis −800 € au-delà »). Pour ça : déclarer plusieurs offres avec critères <code>rfr_part_max</code> distincts.</li>
+          <li><strong>Cumul plafonné dynamique</strong> — <code>plafond_cumul_etat</code> est un nombre fixe, pas une formule. OK pour M12 (100 k€) ; pas suffisant si demain une aide État a un plafond fonction du prix d'achat.</li>
+          <li><strong>Stock / quotas</strong> — pas de notion de « les 1 000 premiers ». Les offres limitées en quantité doivent gérer leur retrait via <code>validite.au</code>.</li>
+          <li><strong>Pas de personnalisation A/B</strong> — l'offre s'affiche identique pour tous les utilisateurs éligibles.</li>
+          <li><strong>Ingestion non-implémentée</strong> — la consommation effective de <code>partner-offers.json</code> par les simulateurs sera une itération séparée, après validation du schéma.</li>
+        </ul>
+
+        <div class="callout-info">
+          <h3>ADR-016 à formaliser</h3>
+          <p>
+            La présente recommandation sera figée dans une ADR (« Modèle de données offres partenaires v1 »)
+            dans le vault Obsidian, projet <code>simulateurs-portail-elec</code>. Cette ADR engage : tout nouveau
+            simulateur expose ses énumérations alignées sur le schéma ; tout ajout d'énumération exige une mise
+            à jour conjointe page + ADR + schéma DN.
+          </p>
+        </div>
+
+        <p style="margin-top:2rem;color:#666;font-size:.8125rem;font-style:italic">
+          Statut : <strong>draft</strong> — En attente de validation DGEC et publication du téléservice
+          Démarches Numériques.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="fr-footer" role="contentinfo">
+    <div class="fr-container">
+      <div class="fr-footer__body">
+        <div class="fr-footer__brand fr-enlarge-link">
+          <p class="fr-logo">République<br>Française</p>
+        </div>
+        <div class="fr-footer__content">
+          <p class="fr-footer__content-desc">
+            Portail interne de simulateurs — Direction générale de l'énergie et du climat.
+          </p>
+        </div>
+      </div>
+      <div class="fr-footer__bottom">
+        <ul class="fr-footer__bottom-list">
+          <li class="fr-footer__bottom-item">
+            <a class="fr-footer__bottom-link" href="https://legifrance.gouv.fr" target="_blank" rel="noopener">legifrance.gouv.fr</a>
+          </li>
+          <li class="fr-footer__bottom-item">
+            <a class="fr-footer__bottom-link" href="https://service-public.fr" target="_blank" rel="noopener">service-public.fr</a>
+          </li>
+          <li class="fr-footer__bottom-item">
+            <a class="fr-footer__bottom-link" href="https://gouvernement.fr" target="_blank" rel="noopener">gouvernement.fr</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module"
+          src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.module.min.js"></script>
+  <script type="text/javascript" nomodule
+          src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.nomodule.min.js"></script>
+</body>
+</html>

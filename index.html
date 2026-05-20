@@ -80,11 +80,12 @@
     /* KPI bandeau global */
     .home-kpis {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 1rem;
       margin: 1.5rem 0 0;
     }
-    @media (max-width: 768px) { .home-kpis { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 1024px) { .home-kpis { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 600px)  { .home-kpis { grid-template-columns: repeat(2, 1fr); } }
     .home-kpi {
       background: var(--background-contrast-blue-france, #e3e3fd);
       padding: .875rem 1.125rem;
@@ -277,6 +278,12 @@
           label: "Tableaux de bord",
           iconClass: "fr-icon-line-chart-line",
           intro: "Vues d'ensemble et suivi : confrontation aux données opendata officielles, avancement des mesures du Plan d'électrification."
+        },
+        {
+          kind: "doc",
+          label: "Documentation & méthodologie",
+          iconClass: "fr-icon-book-2-line",
+          intro: "Cadres de saisie, modèles de données, conventions techniques. Documents de référence destinés aux équipes DGEC et aux partenaires."
         }
       ];
 
@@ -336,7 +343,8 @@
           { num: counts.total,                     lbl: "Outils au total" },
           { num: counts.simulateur || 0,           lbl: "Simulateurs" },
           { num: counts.carte || 0,                lbl: "Cartes" },
-          { num: counts.dashboard || 0,            lbl: "Tableaux de bord" }
+          { num: counts.dashboard || 0,            lbl: "Tableaux de bord" },
+          { num: counts.doc || 0,                  lbl: "Documents" }
         ];
         document.getElementById("home-kpis").innerHTML = tiles.map(t => `
           <div class="home-kpi">
