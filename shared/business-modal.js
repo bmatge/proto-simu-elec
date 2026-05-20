@@ -7,6 +7,12 @@
          "title": "Coulisses méthodo — <nom de l'outil>",
          "audience": "DGEC / pilotage du Plan d'électrification",
          "intro": "Avant de figer ce simulateur, voici les choix de modélisation, les données qu'il nous faut, et les questions ouvertes pour les acteurs métier.",
+         "specs": [
+           { "label": "Spécification (Word)",         "href": "/docs/specs-metier/<slug>/<slug>-spec.docx", "type": "docx" },
+           { "label": "Spécification (Markdown)",     "href": "/docs/specs-metier/<slug>/spec.md",          "type": "md" },
+           { "label": "Modèle économique (Excel)",    "href": "/docs/specs-metier/<slug>/<file>.xlsx",       "type": "xlsx" },
+           { "label": "Code source (HTML)",            "href": "/<slug>/index.html",                          "type": "html" }
+         ],
          "sections": {
            "perimetre":  [ "string", {"q": "...", "note": "...", "status": "todo|ok|open"} ],
            "arbitrages": [ ... ],
@@ -81,6 +87,43 @@
     return node;
   }
 
+  function buildSpecs(specs) {
+    if (!Array.isArray(specs) || specs.length === 0) return null;
+    const wrap = el("section", { class: "bm-specs", "aria-labelledby": "bm-specs-title" });
+    wrap.appendChild(
+      el("h3", {
+        class: "bm-specs__title",
+        id: "bm-specs-title",
+        text: "Spécifications du simulateur"
+      })
+    );
+    wrap.appendChild(
+      el("p", {
+        class: "bm-specs__hint",
+        text: "Documents de référence pour la validation par les experts métier — version actuelle disponible au téléchargement."
+      })
+    );
+    const ul = el("ul", { class: "bm-specs__list" });
+    specs.forEach((s) => {
+      if (!s || !s.href) return;
+      const type = (s.type || "").toLowerCase();
+      const a = el("a", {
+        class: "bm-specs__link",
+        href: s.href,
+        download: ""
+      });
+      a.appendChild(
+        el("span", { class: "bm-specs__ext bm-specs__ext--" + (type || "file"), text: (type || "file").toUpperCase() })
+      );
+      a.appendChild(el("span", { class: "bm-specs__label", text: s.label || s.href }));
+      const li = el("li");
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    wrap.appendChild(ul);
+    return wrap;
+  }
+
   function buildItem(entry) {
     const li = el("li");
     let q, note, status;
@@ -152,6 +195,8 @@
     inner.appendChild(header);
 
     const body = el("div", { class: "bm-dialog__body" });
+    const specsBlock = buildSpecs(data.specs);
+    if (specsBlock) body.appendChild(specsBlock);
     SECTIONS.forEach((def, i) => {
       const items = (data.sections && data.sections[def.key]) || [];
       body.appendChild(buildSection(def, items, i));
