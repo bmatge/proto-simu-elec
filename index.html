@@ -72,6 +72,11 @@
       padding: 1rem;
     }
     .featured-card .featured-visual svg { width: 100%; height: auto; max-height: 200px; display: block; }
+    /* Variante "premier rang" — fond contrasté plus chaud, pour les fact checkers en avant */
+    .featured-card--upgrade { border-top-color: #ffd05a; }
+    .featured-card--upgrade .fr-card__header {
+      background: linear-gradient(135deg, #ffd05a22 0%, #e3e3fd 100%);
+    }
     /* En mobile, l'image passe au-dessus */
     @media (max-width: 768px) {
       .featured-card .featured-visual svg { max-height: 160px; }
@@ -80,11 +85,11 @@
     /* KPI bandeau global */
     .home-kpis {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 1rem;
       margin: 1.5rem 0 0;
     }
-    @media (max-width: 1024px) { .home-kpis { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 1200px) { .home-kpis { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 600px)  { .home-kpis { grid-template-columns: repeat(2, 1fr); } }
     .home-kpi {
       background: var(--background-contrast-blue-france, #e3e3fd);
@@ -132,9 +137,10 @@
 
   <main role="main" id="contenu">
     <div class="fr-container fr-py-6w">
-      <h1>Simulateurs, cartes et tableaux de bord</h1>
+      <h1>Outils du portail&nbsp;: changer de regard, simuler, cartographier, piloter</h1>
       <p class="fr-text--lead">
-        Une collection d'outils interactifs autour de l'électrification, structurés par type d'usage&nbsp;:
+        Une collection d'outils interactifs autour de l'électrification, structurés par usage&nbsp;:
+        <strong>changer de regard</strong> pour confronter les idées reçues aux données,
         <strong>simulateurs</strong> pour calculer ou comparer, <strong>cartes</strong> pour
         explorer le territoire, <strong>tableaux de bord</strong> pour piloter et suivre.
       </p>
@@ -256,11 +262,77 @@
             <g transform="translate(118,142)">
               <polygon points="3,0 0,5 4,5 1,11 8,4 4,4 7,0" fill="#ffd05a" stroke="#000091" stroke-width="0.5"/>
             </g>
+          </svg>`,
+
+        // Surclassement : petite voiture compacte → berline plus grande, flèche montante + étoiles
+        "changer-de-classe": `
+          <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="Illustration de surclassement : une voiture compacte cède la place à une berline plus grande, avec étoiles et flèche montante.">
+            <!-- Trois étoiles d'upgrade en haut à droite -->
+            <g fill="#ffd05a" stroke="#000091" stroke-width="0.6">
+              <polygon points="210,18 213,26 222,26 215,31 218,40 210,35 202,40 205,31 198,26 207,26"/>
+              <polygon points="232,12 235,20 244,20 237,25 240,34 232,29 224,34 227,25 220,20 229,20"/>
+              <polygon points="254,18 257,26 266,26 259,31 262,40 254,35 246,40 249,31 242,26 251,26"/>
+            </g>
+
+            <!-- Flèche montante stylisée entre les deux voitures -->
+            <g fill="none" stroke="#000091" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 110 110 Q 140 70 175 60" />
+              <polyline points="167,55 175,60 173,69"/>
+            </g>
+
+            <!-- Sol -->
+            <line x1="0" y1="155" x2="280" y2="155" stroke="#000091" stroke-width="1.5"/>
+
+            <!-- Voiture compacte (avant) : petite, jaune pâle, à gauche-fond -->
+            <g transform="translate(30,118)">
+              <path d="M 4 14 L 7 6 Q 8 4 10 4 L 30 4 Q 32 4 33 6 L 36 14 L 38 14 Q 40 14 40 16 L 40 24 Q 40 26 38 26 L 2 26 Q 0 26 0 24 L 0 16 Q 0 14 2 14 Z"
+                    fill="#ffeaa6" stroke="#000091" stroke-width="1.6"/>
+              <path d="M 9 13 L 11 7 L 20 7 L 20 13 Z M 21 7 L 29 7 L 31 13 L 21 13 Z" fill="#a8c9ff"/>
+              <circle cx="10" cy="27" r="4" fill="#3a3a3a"/>
+              <circle cx="10" cy="27" r="1.6" fill="#fff"/>
+              <circle cx="30" cy="27" r="4" fill="#3a3a3a"/>
+              <circle cx="30" cy="27" r="1.6" fill="#fff"/>
+            </g>
+            <!-- Étiquette "avant" -->
+            <text x="50" y="115" font-family="Marianne, system-ui, sans-serif" font-size="9"
+                  fill="#666" text-anchor="middle">aujourd'hui</text>
+
+            <!-- Berline électrique (après) : plus grande, bleu DSFR, à droite-premier-plan -->
+            <g transform="translate(160,90)">
+              <!-- Corps -->
+              <path d="M 5 28 L 10 14 Q 12 10 16 10 L 70 10 Q 74 10 76 14 L 81 28 L 84 28 Q 88 28 88 32 L 88 46 Q 88 50 84 50 L 2 50 Q -2 50 -2 46 L -2 32 Q -2 28 2 28 Z"
+                    fill="#000091" stroke="#000091" stroke-width="1.5"/>
+              <!-- Vitres -->
+              <path d="M 14 27 L 18 13 L 42 13 L 42 27 Z M 44 13 L 66 13 L 70 27 L 44 27 Z" fill="#a8c9ff"/>
+              <!-- Bandeau de toit (toit ouvrant style premium) -->
+              <line x1="22" y1="14" x2="62" y2="14" stroke="#a8c9ff" stroke-width="1"/>
+              <!-- Phares avant -->
+              <rect x="78" y="32" width="6" height="3" rx="1" fill="#ffd05a"/>
+              <!-- Roues -->
+              <circle cx="14" cy="52" r="6" fill="#3a3a3a"/>
+              <circle cx="14" cy="52" r="2.5" fill="#a8c9ff"/>
+              <circle cx="72" cy="52" r="6" fill="#3a3a3a"/>
+              <circle cx="72" cy="52" r="2.5" fill="#a8c9ff"/>
+              <!-- Bandeau bas (différenciation premium) -->
+              <line x1="-2" y1="45" x2="88" y2="45" stroke="#1212ff" stroke-width="1"/>
+              <!-- Petit éclair sur le côté (motorisation électrique) -->
+              <polygon points="46,30 44,36 47,36 45,42 50,34 47,34 49,30" fill="#ffd05a" stroke="#000091" stroke-width="0.4"/>
+            </g>
+            <!-- Étiquette "après" -->
+            <text x="204" y="155" font-family="Marianne, system-ui, sans-serif" font-size="9"
+                  fill="#000091" font-weight="700" text-anchor="middle">à mensualité équivalente</text>
           </svg>`
       };
 
       // Catégories : ordre d'affichage + picto DSFR (fr-icon-*) + intro
       const CATEGORIES = [
+        {
+          kind: "fact-checker",
+          label: "Changer de regard",
+          iconClass: "fr-icon-question-line",
+          intro: "Outils de mise en perspective des idées reçues : un sujet, une question, des chiffres sourcés. Pour aider le grand public à se forger un avis sur la base de données vérifiées."
+        },
         {
           kind: "simulateur",
           label: "Simulateurs",
@@ -314,9 +386,11 @@
       function featuredCardHTML(s) {
         const tags = tagsHTML(s);
         const visual = FEATURED_VISUALS[s.slug] || "";
+        const cols = s.featuredCols ? `fr-col-12 fr-col-md-${s.featuredCols}` : "fr-col-12";
+        const variant = s.featuredVariant ? ` featured-card--${s.featuredVariant}` : "";
         return `
-          <div class="fr-col-12">
-            <div class="fr-card fr-card--horizontal fr-enlarge-link featured-card">
+          <div class="${cols}">
+            <div class="fr-card fr-card--horizontal fr-enlarge-link featured-card${variant}">
               <div class="fr-card__body">
                 <div class="fr-card__content">
                   <h3 class="fr-card__title">
@@ -341,6 +415,7 @@
         }, { total: 0 });
         const tiles = [
           { num: counts.total,                     lbl: "Outils au total" },
+          { num: counts["fact-checker"] || 0,      lbl: "Changer de regard" },
           { num: counts.simulateur || 0,           lbl: "Simulateurs" },
           { num: counts.carte || 0,                lbl: "Cartes" },
           { num: counts.dashboard || 0,            lbl: "Tableaux de bord" },

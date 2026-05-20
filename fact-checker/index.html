@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="fr" data-fr-scheme="system">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000091">
+  <title>Idées reçues sur le véhicule électrique — Portail simulateurs</title>
+  <meta name="description" content="Confrontez les idées reçues les plus fréquentes sur le véhicule électrique à des données chiffrées et sourcées (ADEME, INSEE, AFIREV, etc.).">
+
+  <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/apple-touch-icon.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/favicon/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/utility/utility.min.css">
+
+  <link rel="stylesheet" href="/shared/portal-bar.css">
+  <script src="/shared/portal-bar.js" defer></script>
+
+  <link rel="stylesheet" href="/shared/business-modal.css">
+
+  <style>
+    /* Sélecteurs de catégories et sous-freins (boutons tile DSFR-like) */
+    .fc-list { display: grid; gap: .75rem; margin: 0; padding: 0; list-style: none; }
+    .fc-tile {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      text-align: left;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-left: 4px solid #6a6af4;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      transition: background .15s ease, border-color .15s ease, transform .15s ease;
+      font-family: inherit;
+      color: inherit;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    .fc-tile:hover {
+      background: #f6f6fc;
+      border-color: #aaa;
+      border-left-color: #000091;
+      transform: translateX(2px);
+    }
+    .fc-tile:focus-visible {
+      outline: 2px solid #0a76f6;
+      outline-offset: 2px;
+    }
+    .fc-tile__icon {
+      width: 40px; height: 40px;
+      border-radius: 4px;
+      background: #e3e3fd;
+      color: #000091;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+    .fc-tile__icon::before { margin: 0; }
+    .fc-tile__label { flex: 1; font-weight: 500; }
+    .fc-tile__chev {
+      color: #666;
+      font-size: 1.25rem;
+      flex: 0 0 auto;
+    }
+    /* Variante sous-frein (pas d'icône carrée, pastille colorée) */
+    .fc-tile--sub { border-left-width: 4px; padding: .875rem 1.125rem; }
+    .fc-tile--sub .fc-tile__bullet {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--fc-cat-color, #000091);
+      flex: 0 0 auto;
+    }
+
+    /* Couleurs par catégorie (pour la pastille sous-frein + le badge réponse) */
+    .fc-cat--financial    { --fc-cat-color: #b34000; }
+    .fc-cat--usage        { --fc-cat-color: #1e7c52; }
+    .fc-cat--confidence   { --fc-cat-color: #6e445a; }
+    .fc-cat--territorial  { --fc-cat-color: #b3236a; }
+    .fc-cat--environment  { --fc-cat-color: #2f4077; }
+
+    /* Bandeau catégorie en haut de l'écran sous-frein / réponse */
+    .fc-cat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .35rem .75rem;
+      border-radius: 999px;
+      background: #f5f5fe;
+      border: 1px solid #ccc;
+      font-size: .875rem;
+      color: #161616;
+      font-weight: 500;
+    }
+    .fc-cat-badge__dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--fc-cat-color, #000091);
+    }
+
+    /* Grille des stats — pattern KPI maison cohérent avec home & dashboards */
+    .fc-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .fc-stat {
+      background: #f5f5fe;
+      border-left: 4px solid var(--fc-cat-color, #000091);
+      padding: 1rem 1.125rem;
+    }
+    .fc-stat__value {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #161616;
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: .25rem;
+    }
+    .fc-stat__label {
+      font-size: .875rem;
+      color: #3a3a3a;
+      line-height: 1.45;
+    }
+    .fc-stat__source {
+      font-size: .75rem;
+      color: #666;
+      font-style: italic;
+      margin-top: .5rem;
+    }
+
+    /* Bloc analyse & conseil */
+    .fc-insight {
+      background: #e8edff;
+      border-left: 4px solid #000091;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0 1rem;
+    }
+    .fc-insight__label {
+      font-size: .75rem;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #000091;
+      font-weight: 600;
+      margin-bottom: .35rem;
+    }
+    .fc-insight p { margin: 0; line-height: 1.6; }
+
+    .fc-tip {
+      background: #fef7da;
+      border-left: 4px solid #716043;
+      padding: .875rem 1.125rem;
+      display: flex;
+      gap: .75rem;
+      align-items: flex-start;
+    }
+    .fc-tip__label {
+      color: #716043;
+      font-weight: 600;
+    }
+    .fc-tip p { margin: 0; line-height: 1.55; color: #3a3a3a; }
+
+    /* Actions bas de page (résultat) */
+    .fc-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      margin-top: 1.5rem;
+    }
+    .fc-actions__reset {
+      display: block;
+      width: 100%;
+      margin-top: .5rem;
+      text-align: center;
+      background: none;
+      border: none;
+      color: #666;
+      font-size: .8125rem;
+      cursor: pointer;
+      padding: .5rem;
+      font-family: inherit;
+    }
+    .fc-actions__reset:hover { color: #000091; text-decoration: underline; }
+
+    /* Stepper visuel léger */
+    .fc-step-intro {
+      font-size: .8125rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #000091;
+      font-weight: 600;
+      margin: 0 0 .5rem;
+    }
+
+    /* Écran accueil */
+    .fc-welcome {
+      background: #f5f5fe;
+      border: 1px solid #ddd;
+      padding: 2rem;
+      margin: 1.5rem 0;
+    }
+    .fc-welcome h2 { margin-top: 0; color: #000091; }
+    .fc-welcome ul { padding-left: 1.25rem; }
+    .fc-welcome li { margin-bottom: .35rem; }
+
+    /* Espacement haut sous portal-bar */
+    main { padding-top: var(--portal-bar-height, 0); }
+  </style>
+</head>
+<body>
+  <a class="fr-skiplink" href="#contenu">Contenu</a>
+
+  <header role="banner" class="fr-header">
+    <div class="fr-header__body">
+      <div class="fr-container">
+        <div class="fr-header__body-row">
+          <div class="fr-header__brand fr-enlarge-link">
+            <div class="fr-header__brand-top">
+              <div class="fr-header__logo">
+                <p class="fr-logo">République<br>Française</p>
+              </div>
+            </div>
+            <div class="fr-header__service">
+              <a href="/" title="Accueil — Portail simulateurs">
+                <p class="fr-header__service-title">Idées reçues sur le véhicule électrique</p>
+              </a>
+              <p class="fr-header__service-tagline">Une question, une réponse chiffrée et sourcée</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main role="main" id="contenu">
+    <div class="fr-container fr-py-6w">
+
+      <!-- Avertissement données : statut draft -->
+      <div class="fr-alert fr-alert--info fr-alert--sm fr-mb-4w">
+        <p>Les données chiffrées présentées ci-dessous sont issues d'une compilation de sources publiques
+        (ADEME, INSEE, AFIREV, AVERE, Argus, etc.) et restent à valider par la DGEC avant publication officielle.</p>
+      </div>
+
+      <!-- Stepper DSFR -->
+      <div class="fr-stepper">
+        <h2 class="fr-stepper__title">
+          <span class="fr-stepper__state">Étape <span id="fc-step-current">1</span> sur 3</span>
+          <span id="fc-step-title">Choisissez un sujet</span>
+        </h2>
+        <div class="fr-stepper__steps" data-fr-current-step="1" data-fr-steps="3"></div>
+        <p class="fr-stepper__details" id="fc-step-next" hidden>
+          <span class="fr-text--bold">Étape suivante&nbsp;:</span> <span></span>
+        </p>
+      </div>
+
+      <!-- Zone de rendu pilotée par JS -->
+      <div id="fc-screen"></div>
+
+    </div>
+  </main>
+
+  <footer class="fr-footer" role="contentinfo">
+    <div class="fr-container">
+      <div class="fr-footer__body">
+        <div class="fr-footer__brand fr-enlarge-link">
+          <p class="fr-logo">République<br>Française</p>
+        </div>
+        <div class="fr-footer__content">
+          <p class="fr-footer__content-desc">
+            Outil de mise en perspective des idées reçues — Portail simulateurs DGEC.
+          </p>
+        </div>
+      </div>
+      <div class="fr-footer__bottom">
+        <ul class="fr-footer__bottom-list">
+          <li class="fr-footer__bottom-item">
+            <a class="fr-footer__bottom-link" href="https://legifrance.gouv.fr" target="_blank" rel="noopener">legifrance.gouv.fr</a>
+          </li>
+          <li class="fr-footer__bottom-item">
+            <a class="fr-footer__bottom-link" href="https://service-public.fr" target="_blank" rel="noopener">service-public.fr</a>
+          </li>
+          <li class="fr-footer__bottom-item">
+            <a class="fr-footer__bottom-link" href="https://gouvernement.fr" target="_blank" rel="noopener">gouvernement.fr</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Business modal — méthodo, sources, arbitrages -->
+  <script type="application/json" id="business-modal-data">
+  {
+    "title": "Méthode, données et arbitrages — Idées reçues VE",
+    "audience": "DGEC / chargés de communication / acteurs métier",
+    "intro": "Outil pédagogique destiné au grand public. Les chiffres affichés doivent rester sourcés, à jour, et validés. Voici le cadre méthodologique et les questions ouvertes.",
+    "sections": {
+      "perimetre": [
+        "Public cible : grand public hésitant à passer au véhicule électrique (5 catégories d'interrogations, 17 sujets précis).",
+        "Périmètre : usage ménages (voiture particulière). Le poids lourd et la flotte d'entreprise sont traités par d'autres simulateurs du portail.",
+        { "q": "Élargir aux 2-roues et utilitaires légers ?", "status": "open", "note": "Hors v1." }
+      ],
+      "arbitrages": [
+        { "q": "Wording institutionnel factuel — pas de 'mythe', 'irrationnel', 'catastrophe'.", "status": "ok" },
+        { "q": "Chaque interrogation = 3 à 5 chiffres + une analyse + un conseil pratique. Pas d'éditorial militant.", "status": "ok" },
+        { "q": "Mentionner systématiquement la source de chaque chiffre (organisme + année).", "status": "ok" },
+        { "q": "Conserver l'expression d'opinion de l'usager dans la formulation des questions (ex. 'Le coût me freine') sans la disqualifier.", "status": "ok" }
+      ],
+      "sources": [
+        { "q": "Liste des chiffres officiels via API ADEME / INSEE / AFIREV pour mise à jour automatique.", "status": "todo", "note": "v1 = chiffres saisis en dur, à actualiser à la main." },
+        { "q": "Validation par la DGEC de l'ensemble des chiffres avant publication.", "status": "todo" },
+        { "q": "Date de référence affichée par chiffre (année de la source).", "status": "ok" }
+      ],
+      "hypotheses": [
+        { "q": "Bonus écologique 2024 (5 000 € / 7 000 € modestes / 1 000 € prime conversion) — à actualiser au barème en vigueur.", "status": "open" },
+        { "q": "Mix électrique français : intensité 22 gCO₂/kWh (RTE 2023). À actualiser au dernier rapport.", "status": "ok" },
+        { "q": "Coût installation Wallbox : 800–1 500 € (FFIE 2024). Plage indicative.", "status": "ok" },
+        { "q": "Trajet médian INSEE 30 km — moyenne 41 km : indicateurs ménages, hors usage pro intensif.", "status": "ok" }
+      ],
+      "attention": [
+        { "q": "Évolution rapide du barème bonus écologique : prévoir une revue trimestrielle.", "status": "open" },
+        { "q": "Comparaisons internationales (mix carbone Allemagne, marché bornes UE) — choisir des sources fixes (ACEA, T&E).", "status": "open" },
+        { "q": "Lien avec le simulateur 'voiture' : un bouton 'Calculer mon cas' devrait renvoyer vers /voiture/.", "status": "todo" },
+        { "q": "Accessibilité : tester avec lecteur d'écran le wizard 3 étapes.", "status": "todo" }
+      ]
+    },
+    "updated": "2026-05-20"
+  }
+  </script>
+  <script src="/shared/business-modal.js" defer></script>
+
+  <script type="module"
+          src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.module.min.js"></script>
+  <script type="text/javascript" nomodule
+          src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.nomodule.min.js"></script>
+
+  <script>
+    /* =========================================================================
+       Données : catégories × sous-sujets × réponse (titre, stats, analyse, conseil)
+       Wording institutionnel factuel — pas de "mythe", "irrationnel", "catastrophe".
+       ========================================================================= */
+    const CATEGORIES = [
+      {
+        id: "financial",
+        label: "Coût et financement",
+        iconClass: "fr-icon-money-euro-circle-line",
+        subs: [
+          {
+            id: "purchase_price",
+            label: "Le prix d'achat me paraît trop élevé",
+            response: {
+              title: "Le coût d'achat après aides publiques",
+              stats: [
+                { value: "5 000 €",   label: "Bonus écologique maximal en 2024 (sous conditions de revenus).", source: "Décret n° 2023-1214" },
+                { value: "1 000 €",   label: "Prime à la conversion en cas de mise au rebut d'un véhicule thermique ancien.", source: "Service-public.fr 2024" },
+                { value: "7 000 €",   label: "Bonus écologique majoré pour les ménages dont le revenu fiscal de référence est inférieur à 15 400 €.", source: "Décret n° 2023-1214" },
+                { value: "≈ 23 000 €", label: "Prix moyen d'un véhicule électrique neuf de segment B après bonus (exemple : Renault 5 E-Tech).", source: "AAA Data 2024" }
+              ],
+              insight: "Plutôt que de comparer uniquement le prix d'achat, le coût total de possession (TCO) sur 5 ans intègre le carburant, l'entretien, l'assurance et la décote. Selon l'ADEME, l'électricité revient en moyenne à un tiers du coût de l'essence au kilomètre, et l'entretien d'un véhicule électrique est environ 40 % moins coûteux (pas de vidange, d'embrayage ni de distribution).",
+              tip: "Pour un comparatif sur votre situation précise, utilisez le simulateur « Achat d'une voiture électrique » du portail."
+            }
+          },
+          {
+            id: "resale",
+            label: "Je doute de la valeur de revente",
+            response: {
+              title: "La valeur de revente des véhicules électriques",
+              stats: [
+                { value: "−20 %",  label: "Décote moyenne d'un véhicule électrique de 3 ans par rapport au neuf (−35 % pour un thermique équivalent).", source: "Argus / Autobiz 2024" },
+                { value: "+28 %",  label: "Hausse des prix de l'occasion électrique observée entre 2021 et 2023.", source: "AAA Data 2023" },
+                { value: "8 ans / 160 000 km", label: "Garantie constructeur réglementaire minimale sur la batterie en Europe.", source: "Règlement UE 2023" }
+              ],
+              insight: "La valeur résiduelle s'améliore avec la maturation du marché de l'occasion. La garantie batterie obligatoire de 8 ans constitue un repère stable pour les acheteurs en seconde main, ce qui contribue à soutenir les prix.",
+              tip: "Un véhicule électrique d'occasion encore sous garantie batterie peut représenter un compromis pertinent entre prix d'achat et risque technique."
+            }
+          },
+          {
+            id: "charging_install",
+            label: "L'installation d'une borne à domicile me semble coûteuse",
+            response: {
+              title: "Coût d'installation et aides disponibles",
+              stats: [
+                { value: "500 €",          label: "Aide ADVENIR pour l'installation d'un point de recharge en maison individuelle.", source: "ADVENIR / AFIREV 2024" },
+                { value: "75 %",           label: "Part des recharges effectuées à domicile ou sur le lieu de travail.", source: "ADEME 2023" },
+                { value: "800 à 1 500 €",  label: "Plage de coût d'installation d'une borne murale (matériel + pose).", source: "FFIE 2024" },
+                { value: "75 % / 300 €",   label: "Crédit d'impôt pour la mise en place d'un système de charge à domicile, plafonné à 300 € par équipement.", source: "CGI art. 200 quater C" }
+              ],
+              insight: "Le cumul de l'aide ADVENIR et du crédit d'impôt couvre une part importante du coût pour une maison individuelle. En copropriété, la loi LOM (2019) garantit à chaque résident un « droit à la prise » : la copropriété ne peut pas s'opposer à l'installation d'une borne individuelle dans un parking privatif.",
+              tip: "Pour un projet en copropriété, faire la demande au syndic par lettre recommandée — le délai de réponse est encadré (3 mois)."
+            }
+          },
+          {
+            id: "battery_cost",
+            label: "Je redoute le coût d'un remplacement de batterie",
+            response: {
+              title: "Durée de vie réelle des batteries",
+              stats: [
+                { value: "90 %",        label: "Capacité résiduelle moyenne d'une batterie après 8 ans d'usage, selon les études terrain.", source: "Recurrent Auto 2023" },
+                { value: "< 2 %",       label: "Taux de remplacement de batterie observé sous garantie constructeur.", source: "ADAC 2024" },
+                { value: "8 ans / 160 000 km", label: "Garantie batterie réglementaire minimale en Europe.", source: "Règlement UE 2023" },
+                { value: "−89 %",       label: "Baisse du coût des batteries lithium-ion entre 2010 et 2023.", source: "BloombergNEF 2023" }
+              ],
+              insight: "Les retours d'expérience disponibles depuis l'arrivée des premiers véhicules électriques grand public montrent une dégradation lente et progressive — pas d'effondrement brutal. Sous garantie, les remplacements complets restent très rares, et le coût d'un module unitaire (en cas de défaut localisé) est sensiblement inférieur à celui d'un remplacement total.",
+              tip: "Pour l'achat d'occasion, demander un rapport d'état de santé de la batterie (SOH) : la plupart des constructeurs et garages le fournissent gratuitement."
+            }
+          }
+        ]
+      },
+      {
+        id: "usage",
+        label: "Autonomie et recharge",
+        iconClass: "fr-icon-battery-charge-line",
+        subs: [
+          {
+            id: "range_anxiety",
+            label: "L'autonomie me paraît insuffisante",
+            response: {
+              title: "Autonomie réelle face aux trajets quotidiens",
+              stats: [
+                { value: "30 km",       label: "Distance médiane domicile-travail en France.", source: "INSEE 2023" },
+                { value: "350 à 600 km", label: "Autonomie WLTP des véhicules électriques commercialisés en France en 2024.", source: "AVERE 2024" },
+                { value: "95 %",        label: "Part des trajets en France réalisables sans recharge intermédiaire avec un véhicule électrique récent.", source: "ADEME 2023" },
+                { value: "41 km",       label: "Distance moyenne parcourue en voiture par jour et par personne en France.", source: "ENTD / ADEME" }
+              ],
+              insight: "L'autonomie est l'interrogation la plus fréquemment citée dans les enquêtes d'opinion. Les données d'usage montrent toutefois que la grande majorité des trajets du quotidien tiennent dans une seule charge hebdomadaire pour la plupart des conducteurs. Le ressenti d'anxiété diminue rapidement après quelques semaines d'usage.",
+              tip: "Avant l'achat, regarder son kilométrage annuel réel sur la carte grise et la décomposition entre trajets quotidiens et longs trajets — l'écart avec les besoins théoriques est souvent important."
+            }
+          },
+          {
+            id: "charge_time",
+            label: "Le temps de recharge me paraît trop long",
+            response: {
+              title: "Temps de recharge selon les usages",
+              stats: [
+                { value: "≈ 8 h",   label: "Recharge complète sur prise renforcée domestique 7 kW.", source: "IEC 61851" },
+                { value: "≈ 30 min", label: "Recharge de 20 à 80 % sur borne rapide DC 50–150 kW.", source: "Constructeurs 2024" },
+                { value: "+150 %",  label: "Croissance du réseau de bornes rapides en France entre 2021 et 2024.", source: "AFIREV 2024" }
+              ],
+              insight: "Le modèle d'usage diffère du plein d'essence : la majorité des conducteurs rechargent à domicile la nuit et démarrent le matin avec une batterie pleine. La borne rapide n'intervient que pour les longs trajets, et une pause de 25 à 30 minutes y suffit pour ajouter 200 à 300 km d'autonomie.",
+              tip: "Sur autoroute, planifier la recharge sur des aires équipées de bornes ≥ 150 kW — le gain de temps par rapport aux bornes ≤ 50 kW est significatif."
+            }
+          },
+          {
+            id: "charging_network",
+            label: "Le réseau de bornes publiques me semble insuffisant",
+            response: {
+              title: "État actuel du réseau de bornes en France",
+              stats: [
+                { value: "≈ 130 000", label: "Points de charge publics ouverts en France fin 2024.", source: "AFIREV / GIREVE 2024" },
+                { value: "100 %",     label: "Aires de service autoroutières équipées en bornes de recharge rapide.", source: "ASFA 2024" },
+                { value: "×3",        label: "Multiplication du nombre de points de charge publics en France entre 2021 et 2024.", source: "AFIREV 2024" }
+              ],
+              insight: "La couverture autoroutière nationale est désormais complète et les zones urbaines denses sont bien équipées. Les zones rurales restent un point de vigilance, mais le rythme de déploiement reste soutenu, notamment grâce au cofinancement de l'État et des collectivités.",
+              tip: "Avant un long trajet, repérer les bornes sur le parcours via Chargemap ou A Better Route Planner (ABRP) — ces applications intègrent les statuts de fonctionnement en temps réel."
+            }
+          },
+          {
+            id: "reliability",
+            label: "Je crains que les bornes soient souvent en panne",
+            response: {
+              title: "Fiabilité du réseau de recharge",
+              stats: [
+                { value: "78 %", label: "Taux de disponibilité moyen des bornes publiques en France en 2023.", source: "AFIREV 2023" },
+                { value: "91 %", label: "Taux de disponibilité des bornes rapides sur autoroute.", source: "AFIREV 2023" },
+                { value: "99 %", label: "Objectif réglementaire de disponibilité fixé par le règlement européen AFIR à horizon 2030.", source: "Règlement UE AFIR" }
+              ],
+              insight: "La fiabilité s'améliore progressivement, sous l'effet conjoint de la réglementation européenne (AFIR, 2023) et de la concurrence entre opérateurs. Les réseaux des opérateurs principaux (Tesla Supercharger, IONITY, Fastned, Electra) atteignent déjà des taux de disponibilité supérieurs à 97 %.",
+              tip: "Pour les longs trajets, privilégier les opérateurs reconnus pour leur fiabilité et la qualité de leur supervision en temps réel."
+            }
+          }
+        ]
+      },
+      {
+        id: "confidence",
+        label: "Confiance et habitudes",
+        iconClass: "fr-icon-question-line",
+        subs: [
+          {
+            id: "fear_stranded",
+            label: "Je crains de tomber en panne d'énergie",
+            response: {
+              title: "Le risque de panne d'énergie en pratique",
+              stats: [
+                { value: "0,04 %", label: "Part des interventions de dépannage pour panne d'énergie sur véhicules électriques (vs 0,6 % pour les thermiques).", source: "RAC Foundation 2023" },
+                { value: "2 alertes", label: "Niveaux d'alerte successifs sur la plupart des véhicules électriques (20 % puis 10 % de batterie).", source: "ADAC 2023" }
+              ],
+              insight: "Les systèmes de navigation embarqués anticipent l'autonomie restante en fonction du parcours, du relief et de la météo, et proposent automatiquement les bornes adaptées. Le risque réel de panne d'énergie est sensiblement plus faible qu'avec un véhicule thermique, à condition d'utiliser la navigation connectée pour les longs trajets.",
+              tip: "Activer la navigation connectée fournie par le constructeur : elle recalcule l'autonomie en temps réel et adapte la vitesse de croisière si nécessaire."
+            }
+          },
+          {
+            id: "technology_anxiety",
+            label: "La technologie me paraît complexe",
+            response: {
+              title: "Complexité mécanique comparée",
+              stats: [
+                { value: "≈ 20", label: "Nombre de pièces mobiles dans un moteur électrique (contre ≈ 2 000 dans un moteur thermique avec sa transmission).", source: "IEA 2023" },
+                { value: "4,5/5", label: "Note de satisfaction moyenne des propriétaires de véhicules électriques en France.", source: "UFC-Que Choisir 2023" },
+                { value: "≈ 90 %", label: "Part des propriétaires de véhicule électrique déclarant ne pas vouloir revenir au thermique.", source: "Kantar 2023" }
+              ],
+              insight: "La motorisation électrique est mécaniquement plus simple : pas de boîte de vitesses à plusieurs rapports, pas de distribution, pas de système d'échappement complexe. L'interface change avec le mode de conduite « une pédale » (frein régénératif), mais l'expérience est généralement décrite comme plus simple après quelques jours d'usage.",
+              tip: "Un essai d'au moins 48 h, idéalement sur un week-end mêlant trajets quotidiens et un déplacement plus long, permet de se forger un avis concret."
+            }
+          },
+          {
+            id: "habit_change",
+            label: "Je ne souhaite pas modifier mes habitudes",
+            response: {
+              title: "Ce qui change dans l'usage quotidien",
+              stats: [
+                { value: "≈ 5 min",   label: "Temps moyen quotidien consacré à la gestion de la recharge (brancher/débrancher).", source: "Études usagers ADEME 2023" },
+                { value: "≈ 2 semaines", label: "Durée d'adaptation moyenne déclarée par les nouveaux propriétaires.", source: "AVERE 2023" }
+              ],
+              insight: "Le principal changement d'habitude consiste à brancher le véhicule en rentrant chez soi (ou au travail), comme on branche un téléphone. La conduite, l'entretien et les démarches administratives restent identiques à un véhicule thermique. Le passage à la recharge planifiée plutôt qu'au plein réactif modifie la temporalité, sans nécessairement la complexifier.",
+              tip: "La location longue durée (1 à 3 mois) peut être un format intermédiaire pour tester l'usage avant un achat ferme."
+            }
+          }
+        ]
+      },
+      {
+        id: "territorial",
+        label: "Logement et géographie",
+        iconClass: "fr-icon-home-4-line",
+        subs: [
+          {
+            id: "apartment",
+            label: "Je suis locataire ou en appartement sans borne",
+            response: {
+              title: "Droits des locataires et copropriétaires",
+              stats: [
+                { value: "Loi LOM 2019", label: "Droit à la prise : toute copropriété doit permettre l'installation d'une borne individuelle en parking privatif.", source: "Loi d'Orientation des Mobilités" },
+                { value: "3 mois",       label: "Délai maximum imposé à la copropriété pour se prononcer après demande formelle.", source: "Code de la construction et de l'habitation" },
+                { value: "≈ 75 %",       label: "Part des Français ayant accès à au moins une borne publique à moins de 1 km de leur domicile en 2024.", source: "AFIREV 2024" }
+              ],
+              insight: "La loi LOM (2019) a clarifié le cadre du droit à la prise pour les copropriétés : un refus motivé par une raison non technique est désormais contestable juridiquement. Pour les locataires sans accès à une borne privée, les recharges au travail, sur les parkings publics et les centres commerciaux couvrent une part importante des besoins.",
+              tip: "Faire la demande au syndic par lettre recommandée avec accusé de réception, en mentionnant l'article L. 111-3-8 du Code de la construction."
+            }
+          },
+          {
+            id: "rural",
+            label: "Je vis en zone rurale, les bornes me semblent rares",
+            response: {
+              title: "Véhicule électrique en zone rurale",
+              stats: [
+                { value: "+45 %", label: "Croissance du nombre de bornes en zones rurales entre 2022 et 2024.", source: "AFIREV 2024" },
+                { value: "≈ 85 %", label: "Part des ménages ruraux résidant en maison individuelle, condition favorable à la recharge à domicile.", source: "INSEE 2023" },
+                { value: "≈ 4 €", label: "Coût d'une recharge complète de 60 kWh à domicile en heures creuses (0,17 €/kWh).", source: "EDF 2024" }
+              ],
+              insight: "En milieu rural, la recharge à domicile en heures creuses constitue souvent le scénario le plus économique, du fait de la prévalence des maisons individuelles. La dépendance au réseau public reste secondaire pour la majorité des usages. Les grands rouleurs (> 30 000 km / an) constituent un cas particulier à étudier au cas par cas.",
+              tip: "Vérifier auprès de son fournisseur l'option heures creuses : la recharge nocturne y est environ 30 % moins chère qu'en tarif de base."
+            }
+          },
+          {
+            id: "long_distance",
+            label: "Je fais régulièrement de longs trajets",
+            response: {
+              title: "Longs trajets en véhicule électrique",
+              stats: [
+                { value: "25 à 30 min", label: "Durée moyenne d'une recharge 20–80 % sur borne rapide haute puissance (≥ 150 kW).", source: "Constructeurs 2024" },
+                { value: "100 %",       label: "Aires d'autoroute françaises équipées en recharge rapide fin 2024.", source: "ASFA 2024" },
+                { value: "≈ 1",         label: "Pause de recharge nécessaire en moyenne sur un trajet d'environ 450 km avec un véhicule récent.", source: "Tests Argus 2024" }
+              ],
+              insight: "Pour les longs trajets ponctuels (vacances, déplacements professionnels occasionnels), le maillage autoroutier permet une expérience comparable au thermique, avec une pause supplémentaire qui peut coïncider avec une pause repas. Pour un usage très intensif (plusieurs longs trajets hebdomadaires), un véhicule à grande autonomie ou un hybride rechargeable mérite étude.",
+              tip: "Avant un long trajet, simuler le parcours avec une application dédiée (ABRP, Chargemap) — cela permet d'estimer précisément la durée et les coûts de recharge."
+            }
+          }
+        ]
+      },
+      {
+        id: "environment",
+        label: "Environnement et choix de société",
+        iconClass: "fr-icon-leaf-line",
+        subs: [
+          {
+            id: "carbon_footprint",
+            label: "Je doute du bilan environnemental réel",
+            response: {
+              title: "Bilan carbone du véhicule électrique en France",
+              stats: [
+                { value: "−70 %",        label: "Réduction des émissions de CO₂ sur le cycle de vie complet en France par rapport à un véhicule thermique équivalent.", source: "ADEME ACV 2022" },
+                { value: "2 à 3 ans",    label: "Durée moyenne nécessaire pour que le bilan carbone d'un véhicule électrique devienne favorable par rapport au thermique (en France).", source: "ADEME 2022" },
+                { value: "−50 %",        label: "Réduction des émissions à l'échelle du mix électrique européen moyen (plus carboné que le mix français).", source: "Transport & Environment 2021" },
+                { value: "22 gCO₂/kWh",  label: "Intensité carbone moyenne de l'électricité française (vs 400 g/kWh environ pour l'Allemagne).", source: "RTE 2023" }
+              ],
+              insight: "L'analyse de cycle de vie (ACV) de l'ADEME prend en compte la fabrication de la batterie, son usage et sa fin de vie. En France, l'intensité carbone du mix électrique (faible grâce au nucléaire et aux renouvelables) rend le bilan particulièrement favorable. Le surcoût carbone initial lié à la production de la batterie est compensé après 2 à 3 ans d'usage moyen.",
+              tip: "Le bilan dépend du pays d'utilisation : il est particulièrement favorable en France, en Suède et en Norvège (mix électrique peu carboné)."
+            }
+          },
+          {
+            id: "lithium_mining",
+            label: "L'impact de l'extraction du lithium me préoccupe",
+            response: {
+              title: "Lithium et ressources minières",
+              stats: [
+                { value: "≈ 8 kg", label: "Quantité de lithium dans une batterie de véhicule électrique de segment B.", source: "Constructeurs 2024" },
+                { value: "95 %",   label: "Taux minimal de recyclage des batteries imposé par la réglementation européenne à horizon 2031.", source: "Règlement UE Batteries 2023" },
+                { value: "0 %",    label: "Part de cobalt dans les nouvelles batteries LFP (lithium-fer-phosphate), de plus en plus répandues.", source: "IEA 2023" }
+              ],
+              insight: "L'extraction minière reste un sujet réel, qui fait l'objet d'efforts d'encadrement (réglementation européenne, audits, traçabilité). Les chimies récentes (LFP, sodium-ion) réduisent ou éliminent les métaux critiques comme le cobalt. À mettre en perspective avec l'impact cumulé de l'extraction et du raffinage du pétrole sur la durée de vie d'un véhicule thermique.",
+              tip: "Si l'origine des matériaux est un critère personnel, privilégier les modèles équipés de batteries LFP — moins de lithium, pas de cobalt, et durée de vie élevée."
+            }
+          },
+          {
+            id: "forced_change",
+            label: "Le calendrier réglementaire me semble contraignant",
+            response: {
+              title: "Calendrier de la transition automobile en Europe",
+              stats: [
+                { value: "2035",        label: "Fin de la vente de voitures neuves thermiques en Europe (règlement UE 2023/851).", source: "Règlement UE 2023/851" },
+                { value: "2040-2050",   label: "Horizon estimé pour que la majorité du parc en circulation soit électrifié.", source: "AIE 2024" },
+                { value: "≈ 90 %",      label: "Part des propriétaires actuels de véhicule électrique déclarant ne pas envisager de revenir au thermique.", source: "Kantar 2024" }
+              ],
+              insight: "L'échéance 2035 concerne uniquement la vente de véhicules neufs, pas les voitures déjà en circulation ni le marché de l'occasion. La transition réelle du parc s'étalera sur plusieurs décennies. La réglementation laisse aux ménages le temps de s'adapter à leur rythme.",
+              tip: "Suivre les évolutions du barème de bonus écologique et de la prime à la conversion, qui orientent fortement le coût d'entrée selon les profils."
+            }
+          }
+        ]
+      }
+    ];
+
+    /* =========================================================================
+       Rendu
+       ========================================================================= */
+    const screen = document.getElementById("fc-screen");
+    const stepCurrent = document.getElementById("fc-step-current");
+    const stepTitle = document.getElementById("fc-step-title");
+    const stepperBar = document.querySelector(".fr-stepper__steps");
+    const stepNext = document.getElementById("fc-step-next");
+
+    const STEP_TITLES = [
+      "Choisissez un sujet",
+      "Précisez votre interrogation",
+      "Ce que disent les données"
+    ];
+    const STEP_NEXT = [
+      "Préciser votre interrogation",
+      "Voir la réponse chiffrée",
+      ""
+    ];
+
+    let state = { step: 1, categoryId: null, subId: null };
+
+    function setStep(n) {
+      state.step = n;
+      stepCurrent.textContent = String(n);
+      stepTitle.textContent = STEP_TITLES[n - 1];
+      stepperBar.setAttribute("data-fr-current-step", String(n));
+      if (n < 3) {
+        stepNext.hidden = false;
+        stepNext.querySelector("span:last-child").textContent = STEP_NEXT[n - 1];
+      } else {
+        stepNext.hidden = true;
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function escapeHTML(s) {
+      return String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function renderCategories() {
+      const tiles = CATEGORIES.map(c => `
+        <li>
+          <button class="fc-tile" data-cat="${c.id}" type="button">
+            <span class="fc-tile__icon ${c.iconClass}" aria-hidden="true"></span>
+            <span class="fc-tile__label">${escapeHTML(c.label)}</span>
+            <span class="fc-tile__chev" aria-hidden="true">›</span>
+          </button>
+        </li>
+      `).join("");
+      screen.innerHTML = `
+        <p class="fc-step-intro">Étape 1 — Sujet</p>
+        <h2 class="fr-h4">Quel sujet vous interroge le plus ?</h2>
+        <p class="fr-text--sm fr-mb-3w">Cinq grandes familles d'interrogations identifiées dans les enquêtes d'opinion. Choisissez celle qui vous concerne le plus.</p>
+        <ul class="fc-list">${tiles}</ul>
+      `;
+      screen.querySelectorAll(".fc-tile").forEach(btn => {
+        btn.addEventListener("click", () => {
+          state.categoryId = btn.dataset.cat;
+          renderSubs();
+          setStep(2);
+        });
+      });
+    }
+
+    function renderSubs() {
+      const cat = CATEGORIES.find(c => c.id === state.categoryId);
+      if (!cat) { renderCategories(); setStep(1); return; }
+      const tiles = cat.subs.map(s => `
+        <li>
+          <button class="fc-tile fc-tile--sub fc-cat--${cat.id}" data-sub="${s.id}" type="button">
+            <span class="fc-tile__bullet" aria-hidden="true"></span>
+            <span class="fc-tile__label">${escapeHTML(s.label)}</span>
+            <span class="fc-tile__chev" aria-hidden="true">›</span>
+          </button>
+        </li>
+      `).join("");
+      screen.innerHTML = `
+        <p class="fc-step-intro">Étape 2 — Préciser</p>
+        <div class="fr-mb-2w">
+          <button class="fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-icon-arrow-left-line fr-btn--icon-left" id="fc-back-1" type="button">Changer de sujet</button>
+        </div>
+        <div class="fc-cat-badge fc-cat--${cat.id}">
+          <span class="fc-cat-badge__dot" aria-hidden="true"></span>
+          ${escapeHTML(cat.label)}
+        </div>
+        <h2 class="fr-h4 fr-mt-2w">Sur quel aspect précisément&nbsp;?</h2>
+        <ul class="fc-list">${tiles}</ul>
+      `;
+      document.getElementById("fc-back-1").addEventListener("click", () => {
+        state.subId = null;
+        renderCategories();
+        setStep(1);
+      });
+      screen.querySelectorAll(".fc-tile").forEach(btn => {
+        btn.addEventListener("click", () => {
+          state.subId = btn.dataset.sub;
+          renderResult();
+          setStep(3);
+        });
+      });
+    }
+
+    function renderResult() {
+      const cat = CATEGORIES.find(c => c.id === state.categoryId);
+      const sub = cat && cat.subs.find(s => s.id === state.subId);
+      if (!cat || !sub) { renderCategories(); setStep(1); return; }
+      const r = sub.response;
+      const stats = r.stats.map(st => `
+        <div class="fc-stat">
+          <div class="fc-stat__value">${escapeHTML(st.value)}</div>
+          <div class="fc-stat__label">${escapeHTML(st.label)}</div>
+          ${st.source ? `<div class="fc-stat__source">Source&nbsp;: ${escapeHTML(st.source)}</div>` : ""}
+        </div>
+      `).join("");
+      screen.innerHTML = `
+        <p class="fc-step-intro">Étape 3 — Données</p>
+        <div class="fr-mb-2w">
+          <button class="fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-icon-arrow-left-line fr-btn--icon-left" id="fc-back-2" type="button">Changer d'interrogation</button>
+        </div>
+        <div class="fc-cat-badge fc-cat--${cat.id}">
+          <span class="fc-cat-badge__dot" aria-hidden="true"></span>
+          ${escapeHTML(cat.label)} · ${escapeHTML(sub.label)}
+        </div>
+        <h2 class="fr-h3 fr-mt-2w">${escapeHTML(r.title)}</h2>
+
+        <div class="fc-stats fc-cat--${cat.id}">${stats}</div>
+
+        <div class="fc-insight">
+          <div class="fc-insight__label">Analyse</div>
+          <p>${escapeHTML(r.insight)}</p>
+        </div>
+
+        <div class="fc-tip">
+          <div>
+            <span class="fc-tip__label">Conseil pratique&nbsp;:</span>
+            <p>${escapeHTML(r.tip)}</p>
+          </div>
+        </div>
+
+        <div class="fc-actions">
+          <button class="fr-btn fr-btn--secondary" id="fc-back-2b" type="button">Voir un autre aspect</button>
+          <button class="fr-btn" id="fc-restart" type="button">Explorer un autre sujet</button>
+        </div>
+        <button class="fc-actions__reset" id="fc-reset" type="button">Revenir à l'accueil</button>
+      `;
+      document.getElementById("fc-back-2").addEventListener("click", () => {
+        state.subId = null;
+        renderSubs();
+        setStep(2);
+      });
+      document.getElementById("fc-back-2b").addEventListener("click", () => {
+        state.subId = null;
+        renderSubs();
+        setStep(2);
+      });
+      document.getElementById("fc-restart").addEventListener("click", () => {
+        state.subId = null;
+        state.categoryId = null;
+        renderCategories();
+        setStep(1);
+      });
+      document.getElementById("fc-reset").addEventListener("click", () => {
+        state.subId = null;
+        state.categoryId = null;
+        renderCategories();
+        setStep(1);
+      });
+    }
+
+    // Démarrage
+    renderCategories();
+    setStep(1);
+  </script>
+</body>
+</html>

@@ -1,6 +1,25 @@
 {
-  "$schema": "Manifest of all simulators. Each entry drives the home page list AND the cross-simulator dropdown in the portal bar. `kind` regroupe sur la home : 'carte' | 'dashboard' | 'doc' | 'simulateur'.",
+  "$schema": "Manifest of all simulators. Each entry drives the home page list AND the cross-simulator dropdown in the portal bar. `kind` regroupe sur la home : 'fact-checker' | 'simulateur' | 'carte' | 'dashboard' | 'doc'.",
   "simulators": [
+    {
+      "slug": "changer-de-classe",
+      "kind": "fact-checker",
+      "featured": true,
+      "featuredCols": 8,
+      "featuredVariant": "upgrade",
+      "title": "Avec l'électrique, changez de classe",
+      "tagline": "Les économies de carburant et d'entretien d'un VE génèrent une capacité d'emprunt — à mensualité équivalente, vous pouvez viser une catégorie au-dessus.",
+      "status": "draft",
+      "tags": ["ménages", "financement", "surclassement"]
+    },
+    {
+      "slug": "fact-checker",
+      "kind": "fact-checker",
+      "title": "Idées reçues sur le véhicule électrique",
+      "tagline": "Cinq familles d'interrogations, 17 sujets précis, des chiffres et des sources à confronter aux idées reçues.",
+      "status": "draft",
+      "tags": ["pédagogie", "ménages", "véhicule électrique"]
+    },
     {
       "slug": "passer-a-electrique",
       "kind": "simulateur",
