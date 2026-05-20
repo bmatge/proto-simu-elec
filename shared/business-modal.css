@@ -1,0 +1,238 @@
+/* Discreet "behind-the-scenes" modal for business stakeholders.
+   A floating top-right button opens a dialog listing the methodological
+   arbitrages, data sources and open questions of the current page.
+   Self-contained — no DSFR dependency required. */
+
+/* DSFR redéfinit les états :hover / :focus / :active des <button> via des
+   variables (background-image / box-shadow / color). On force toutes les
+   propriétés sensibles sur tous les états pour éviter le "blanc sur blanc". */
+button.bm-trigger,
+button.bm-trigger:link,
+button.bm-trigger:visited,
+button.bm-trigger:hover,
+button.bm-trigger:focus,
+button.bm-trigger:focus-visible,
+button.bm-trigger:active {
+  color: #fff;
+  background-image: none;
+  text-decoration: none;
+}
+button.bm-trigger {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9000;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background-color: #000091;
+  border: none;
+  border-radius: 999px;
+  font: 600 14px/1.2 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 145, 0.32), 0 2px 4px rgba(0, 0, 0, 0.18);
+  transition: background-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+button.bm-trigger:hover {
+  background-color: #1212a8;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(0, 0, 145, 0.4), 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+button.bm-trigger:focus-visible {
+  outline: 3px solid #f6d54a;
+  outline-offset: 2px;
+}
+button.bm-trigger:active {
+  background-color: #00006b;
+  transform: translateY(0);
+}
+.bm-trigger__icon {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  font-style: italic;
+}
+.bm-trigger__label {
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+@media (max-width: 600px) {
+  button.bm-trigger { bottom: 14px; right: 14px; padding: 10px 14px; font-size: 13px; }
+}
+
+/* Native <dialog> styling */
+dialog.bm-dialog {
+  width: min(880px, calc(100vw - 32px));
+  max-height: calc(100vh - 64px);
+  margin: auto;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.22);
+  background: #fff;
+  color: #161616;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+dialog.bm-dialog::backdrop {
+  background: rgba(22, 22, 22, 0.55);
+}
+.bm-dialog__inner {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 64px);
+}
+.bm-dialog__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px 12px;
+  border-bottom: 1px solid #eee;
+}
+.bm-dialog__titles { flex: 1 1 auto; min-width: 0; }
+.bm-dialog__eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6a6af4;
+  margin-bottom: 4px;
+}
+.bm-dialog__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #161616;
+}
+.bm-dialog__intro {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #444;
+}
+button.bm-dialog__close,
+button.bm-dialog__close:hover,
+button.bm-dialog__close:focus,
+button.bm-dialog__close:focus-visible,
+button.bm-dialog__close:active {
+  color: #161616;
+  background-image: none;
+}
+button.bm-dialog__close {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+button.bm-dialog__close:hover,
+button.bm-dialog__close:focus-visible {
+  background-color: #f6f6f6;
+  outline: none;
+}
+
+.bm-dialog__body {
+  padding: 16px 24px 20px;
+  overflow-y: auto;
+}
+.bm-section { margin-top: 20px; }
+.bm-section:first-child { margin-top: 4px; }
+.bm-section__header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.bm-section__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 4px;
+  background: #f0f0fa;
+  color: #000091;
+  font-size: 12px;
+  font-weight: 700;
+}
+.bm-section__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #161616;
+}
+.bm-section__hint {
+  margin: 0 0 8px 32px;
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+.bm-section ul {
+  margin: 0 0 0 32px;
+  padding: 0;
+  list-style: none;
+}
+.bm-section li {
+  position: relative;
+  padding: 6px 0 6px 16px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #1f1f1f;
+  border-bottom: 1px dashed #eee;
+}
+.bm-section li:last-child { border-bottom: none; }
+.bm-section li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6a6af4;
+}
+.bm-section li .bm-q {
+  font-weight: 600;
+  color: #161616;
+}
+.bm-section li .bm-note {
+  display: block;
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: #555;
+}
+.bm-section li[data-status="todo"]::before  { background: #ce614a; }
+.bm-section li[data-status="ok"]::before    { background: #18753c; }
+.bm-section li[data-status="open"]::before  { background: #b34000; }
+
+.bm-dialog__footer {
+  padding: 12px 24px 18px;
+  border-top: 1px solid #eee;
+  font-size: 12px;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.bm-dialog__footer strong { color: #161616; }
+
+@media print {
+  .bm-trigger { display: none; }
+  dialog.bm-dialog { box-shadow: none; max-height: none; }
+  dialog.bm-dialog::backdrop { background: transparent; }
+}

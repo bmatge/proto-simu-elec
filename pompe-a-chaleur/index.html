@@ -351,7 +351,9 @@
     }
   </style>
   <link rel="stylesheet" href="/shared/portal-bar.css">
+  <link rel="stylesheet" href="/shared/business-modal.css">
   <script src="/shared/portal-bar.js" defer></script>
+  <script src="/shared/business-modal.js" defer></script>
 </head>
 <body>
   <a class="fr-skiplink" href="#contenu">Contenu</a>
@@ -1260,6 +1262,61 @@
     // Init
     render();
   })();
+  </script>
+
+  <script type="application/json" id="business-modal-data">
+  {
+    "title": "Méthode, données et arbitrages — Pompe à chaleur",
+    "audience": "DGEC bâtiment · service rénovation thermique",
+    "intro": "Coût d'installation d'une PAC après aides (MaPrimeRénov' + CEE) et durée d'amortissement. Voici les choix de modélisation et les données à valider avec vous.",
+    "updated": "2026-05-20",
+    "sections": {
+      "perimetre": [
+        {"q": "Maison individuelle propriétaire occupant uniquement, ou logement collectif / copropriété aussi ?", "note": "Aujourd'hui : MI propriétaire occupant."},
+        {"q": "Type de PAC couvert : air/eau, air/air, géothermie ? Aujourd'hui : air/eau et air/air. À étendre ?"},
+        {"q": "Remplacement d'une chaudière fioul / gaz / électrique : on traite les 3 ? Le surcoût d'aide diffère."},
+        {"q": "Spotlight État (% du surcoût financé) : l'argument fait-il consensus côté pilotage ?"},
+        {"q": "Input « facture réelle » pour calibrer le modèle : à conserver malgré le risque de saisie erronée ?"}
+      ],
+      "arbitrages": [
+        {"q": "Durée d'amortissement affichée : économies annuelles vs surcoût initial après aides — taux d'actualisation à fixer."},
+        {"q": "Économies d'énergie : on compare au coût de l'énergie remplacée (fioul, gaz) ou à un mix de référence ?"},
+        {"q": "Cumul MPR + CEE : on additionne ? Avec quel plafond combiné (la « pince » 100 % du coût TTC) ?"},
+        {"q": "Forfait CEE « Coup de pouce chauffage » : on prend le bonifié précarité ou le standard selon RFR ?"},
+        {"q": "Reste à charge minimum : règle des 10 % pour les « très modestes » — appliquée systématiquement ?"},
+        {"q": "Évolution prix énergies : on fige 2026 ou on intègre une courbe (gaz +X %, élec +Y %) ?"},
+        {"q": "ECS solaire / ballon thermodynamique en complément : couvert ou hors périmètre ?"}
+      ],
+      "sources": [
+        {"q": "Barème MaPrimeRénov' PAC air/eau et air/air 2026 : arrêté de référence et fréquence MAJ ?"},
+        {"q": "Forfaits CEE Coup de pouce chauffage 2026 (BAR-TH-171, BAR-TH-172) : grille à jour ?"},
+        {"q": "Plafonds RFR par part — fichier annuel Anah confirmé ?"},
+        {"q": "Tarif réglementé EDF base + HC/HP : snapshot à quelle fréquence ?"},
+        {"q": "Prix moyen du gaz naturel (TTC ménages, B1 / B2i) : source CRE ?"},
+        {"q": "Prix moyen du fioul domestique : source CGDD hebdo ?"},
+        {"q": "Coûts moyens d'installation PAC par puissance : statistiques ADEME / FNCH ou retours installateurs ?"},
+        {"q": "Offres partenaires (EDF Pulse Habitat, Engie, etc.) : à intégrer via shared/partner-offers.json.", "status": "todo"}
+      ],
+      "hypotheses": [
+        {"q": "COP saisonnier (SCOP) : 3.5 pour air/eau, 3.0 pour air/air. À moduler selon zone H1/H2/H3 ?"},
+        {"q": "Surface chauffée : 90 m² par défaut. OK ?"},
+        {"q": "Besoin thermique : 90 kWh/m²/an (logement non rénové) vs 50 kWh/m²/an (rénové) — variable saisie ou figée ?"},
+        {"q": "Durée de vie PAC : 15 ans. Cohérent avec amortissements ADEME ?"},
+        {"q": "Coût installation moyen : 12 000 € (air/eau) / 6 000 € (air/air) HT. Source à confirmer."},
+        {"q": "Entretien annuel obligatoire : 200 €/an. OK ?"},
+        {"q": "Provision remplacement compresseur à mi-vie : à inclure ou ignorer ?"}
+      ],
+      "attention": [
+        {"q": "DPE F/G en passoire thermique : PAC seule sans isolation = inefficace. Faut-il bloquer ou alerter ?", "status": "open"},
+        {"q": "Locataire : aides MPR Locataire vs Propriétaire — on n'a aujourd'hui que le PO. À étendre ?"},
+        {"q": "MaPrimeRénov' Parcours Rénovation Ampleur (anc. Sérénité) : bonification si rénovation globale. Géré ?"},
+        {"q": "RGE obligatoire pour bénéficier des aides : on l'affiche comme prérequis ?"},
+        {"q": "Bruit PAC extérieur : info à mentionner pour les acheteurs en pavillonnaire dense ?"},
+        {"q": "Coupures hivernales et back-up résistance électrique : impact sur les économies réelles à H1 ?"},
+        {"q": "Accessibilité RGAA : tiles cliquables PAC / Revenus — focus visible et ratio de contraste OK ?"}
+      ]
+    }
+  }
   </script>
 </body>
 </html>

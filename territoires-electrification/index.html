@@ -245,7 +245,9 @@
     .callout-info p { margin: 0; line-height: 1.55; }
   </style>
   <link rel="stylesheet" href="/shared/portal-bar.css">
+  <link rel="stylesheet" href="/shared/business-modal.css">
   <script src="/shared/portal-bar.js" defer></script>
+  <script src="/shared/business-modal.js" defer></script>
 </head>
 <body>
 
@@ -640,5 +642,52 @@
 
 <script type="module" src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.module.min.js"></script>
 <script nomodule       src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.nomodule.min.js"></script>
+
+<script type="application/json" id="business-modal-data">
+{
+  "title": "Méthode, données et arbitrages — 100 territoires d'électrification",
+  "audience": "DGEC · cabinet · pilotage Mesure 1 du Plan",
+  "intro": "Carte interactive des 100 territoires accompagnés par l'État (Mesure 1). Données SIMULÉES tant que la DGEC n'a pas publié la liste officielle. Cette modale liste ce qu'il faut clarifier avant le go.",
+  "updated": "2026-05-20",
+  "sections": {
+    "perimetre": [
+      {"q": "100 territoires : EPCI, communes, bassins de vie ? Quelle unité administrative officielle ?", "status": "todo"},
+      {"q": "Critères de sélection des 100 : densité industrielle ? potentiel ENR ? gisements de décarbonation ? mix critères ?", "status": "todo"},
+      {"q": "Outre-mer : combien de territoires inclus dans les 100 ?"},
+      {"q": "Niveau d'engagement État : contractualisation type CRTE/contrat de relance, ou simple flèche budgétaire ?"},
+      {"q": "Public visé par la carte : grand public (transparence) ou pilotage interne (suivi avancement) ?"}
+    ],
+    "arbitrages": [
+      {"q": "Engagements 2030 : indicateurs uniformes (MW ENR installés, % logements rénovés, % bornes/hab) ou indicateurs ad hoc par territoire ?"},
+      {"q": "Financements mobilisés : total cumulé toutes sources (État + collectivités + privé), ou seulement État ?"},
+      {"q": "Couleur des polygones : par statut d'avancement (en démarrage / en cours / objectif atteint) ou par typologie (industriel, rural, urbain) ?"},
+      {"q": "Statut « en retard » : qui le déclare et selon quels jalons ?", "status": "open"},
+      {"q": "Une fois la liste officielle publiée, faut-il garder l'historique des jalons (timeline) ou seul l'état courant ?"}
+    ],
+    "sources": [
+      {"q": "Liste officielle des 100 territoires : annonce DGEC prévue été 2026 — date ferme ?", "status": "open"},
+      {"q": "Indicateurs cibles par territoire : qui les fournit (DREAL, ADEME locale, EPCI) ?"},
+      {"q": "Financements mobilisés : remontée comment ? ANCT / DGEC / API budget ?"},
+      {"q": "Contours géographiques : si EPCI, source IGN ADMIN-EXPRESS-COG mise à jour annuelle ?"},
+      {"q": "Statut d'avancement : déclaratif territoire, validation État, ou indicateur calculé ?"},
+      {"q": "Aujourd'hui : data simulée dans territoires-electrification/data/territoires.json (185 KB, généré par scripts/generate-data.py). À remplacer dès parution.", "status": "todo"}
+    ],
+    "hypotheses": [
+      {"q": "Aujourd'hui : 100 territoires fictifs avec valeurs aléatoires plausibles. Les ordres de grandeur sont-ils crédibles ?"},
+      {"q": "Format de la donnée : un JSON statique servi comme une API. À remplacer par un service dynamique le jour où la liste évolue plus vite ?"},
+      {"q": "Mise à jour des indicateurs : annuelle, semestrielle, trimestrielle ?"},
+      {"q": "Indicateurs cibles 2030 : exprimés en valeur absolue ou en variation vs 2026 ?"}
+    ],
+    "attention": [
+      {"q": "Risque éditorial : afficher des données SIMULÉES sur un portail .gouv. Une mention CALLOUT-INFO est en place — suffisant ?"},
+      {"q": "Politiquement sensible : montrer un territoire « en retard » publiquement avant validation du préfet ?", "status": "open"},
+      {"q": "Mise à jour le jour J de l'annonce DGEC : check-list de bascule (data + storytelling) à préparer ?"},
+      {"q": "Limite dsfr-data-map-popup : <template> capté trop tôt — workaround _renderTemplate after DOMContentLoaded. À conserver ou patcher en amont ?"},
+      {"q": "Accessibilité : alternative non visuelle (liste triable) à la carte ?"},
+      {"q": "Lien avec la Mesure 1 du Plan : on documente la mesure dans l'UI ou on renvoie vers plan-electrification ?"}
+    ]
+  }
+}
+</script>
 </body>
 </html>

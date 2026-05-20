@@ -15,7 +15,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/utility/utility.min.css">
 
   <link rel="stylesheet" href="/shared/portal-bar.css">
+  <link rel="stylesheet" href="/shared/business-modal.css">
   <script src="/shared/portal-bar.js" defer></script>
+  <script src="/shared/business-modal.js" defer></script>
 
   <style>
     :root {
@@ -2990,6 +2992,62 @@ recalc();
 
 <script type="module" src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.module.min.js"></script>
 <script type="text/javascript" nomodule src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.nomodule.min.js"></script>
+
+<script type="application/json" id="business-modal-data">
+{
+  "title": "Méthode, données et arbitrages — Voiture électrique vs thermique",
+  "audience": "DGEC mobilité · service VE",
+  "intro": "TCO d'une voiture électrique vs thermique sur la durée de détention. Trois modes : neuf VE/th, vente actuelle pour VE, occasion. Cette modale liste ce qu'il reste à arbitrer / sourcer pour fiabiliser l'outil.",
+  "updated": "2026-05-20",
+  "sections": {
+    "perimetre": [
+      {"q": "Particulier individuel uniquement, ou flotte pro / LLD / LOA aussi ?", "note": "Aujourd'hui : ménages. La fiscalité LOA / TVS pro change le calcul."},
+      {"q": "3 modes de comparaison : neuf VE vs neuf thermique / vente actuelle pour VE / occasion VE vs occasion thermique. Tous à valider ?"},
+      {"q": "Distance d'usage : trajets domicile-travail + loisirs uniquement, ou on intègre les voyages longue distance avec recharge rapide ?"},
+      {"q": "Zone géographique : métropole. DROM (avec spécificités de mix électrique carboné) à traiter ?"},
+      {"q": "Objectif explicite : convaincre, comparer objectivement, ou aider à décider ? Le ton du wording dépend de la réponse."}
+    ],
+    "arbitrages": [
+      {"q": "Durée de détention : 5 ans par défaut. Quelle est la médiane retenue par la DGEC mobilité ?", "note": "Insee 2024 : 5,3 ans en moyenne pour le 1er propriétaire."},
+      {"q": "Valeur résiduelle : on l'inclut dans le TCO ? Si oui, source des cotes (Argus, Autovista) ?", "status": "open"},
+      {"q": "Recharge : split domestique (HC/HP) vs publique (lent/rapide) — quels pourcentages par défaut ?"},
+      {"q": "Coût d'installation borne résidentielle : on l'amortit sur la durée de détention ou on l'affiche à part ?"},
+      {"q": "Entretien : forfait annuel fixe (VE = 250 €, th = 600 €) ou modèle par km parcouru ?"},
+      {"q": "Assurance : on intègre le différentiel VE/thermique (typiquement +10-15 % en VE en 2026) ?"},
+      {"q": "Malus thermique CO2 + malus poids 2026 : intégrés dès l'achat ou ignorés ?"},
+      {"q": "Évolution du prix de l'électricité et du carburant sur la durée : taux d'inflation à fixer."}
+    ],
+    "sources": [
+      {"q": "Catalogues prix VE neufs (Renault, Stellantis, Tesla, asiatiques) — mise à jour mensuelle, par qui ?"},
+      {"q": "Bonus écologique 2026 : nouveau barème conditionné au score environnemental — arrêté de référence ?", "status": "todo"},
+      {"q": "Prime à la conversion : conditions 2026 (ZFE, RFR, ancienneté véhicule à mettre au rebut) — fichier à jour ?"},
+      {"q": "Leasing social : barème 2026 et plafonds — qui valide la grille ?"},
+      {"q": "Tarif réglementé EDF base + HC/HP — snapshot à quelle fréquence ?"},
+      {"q": "Prix carburants : moyenne hebdo SP95-E10 / Gazole — source CGDD (prix-carburants.gouv.fr) ?"},
+      {"q": "Cotes occasion : Argus, La Centrale, Leboncoin — qui paie la licence si on en exploite une API ?"},
+      {"q": "Offres partenaires (Renault Rezo, Mobilize, etc.) : schéma JSON shared/partner-offers.json en cours. À formaliser ADR.", "status": "todo"}
+    ],
+    "hypotheses": [
+      {"q": "Conso VE : 18 kWh/100 km par défaut. Cohérent avec Cycle WLTP ou avec mesure réelle (typiquement +20 %) ?"},
+      {"q": "Conso thermique : 6 L/100 km essence, 5 L/100 km diesel. Acceptable ?"},
+      {"q": "Kilométrage annuel : 12 000 km. On laisse l'utilisateur l'ajuster (déjà le cas) ?"},
+      {"q": "Mix de recharge : 80 % domicile / 15 % travail/dest / 5 % rapide. À valider."},
+      {"q": "Coût borne : 1 200 € installation + 0 €/an. OK pour pavillonnaire — copropriété c'est différent."},
+      {"q": "Pneus, contrôle technique, lave-glace etc. — inclus dans le forfait entretien ou séparés ?"},
+      {"q": "Frais financiers (crédit auto) : on les ignore, ou on propose une vue financée + apport ?"}
+    ],
+    "attention": [
+      {"q": "Cas limite : utilisateur sans place de parking attribuée (urbain) — l'absence de recharge domicile change tout le calcul. Comment on le matérialise ?"},
+      {"q": "Granularité modèles : aujourd'hui on saisit prix + conso. Faut-il une bibliothèque de modèles présélectionnés (Zoé, Megane E-Tech, Model 3, ID.3) ?"},
+      {"q": "Affichage CO2 évité : on l'ajoute pour le pédagogique, ou on reste 100 % monétaire ?"},
+      {"q": "ZFE : l'interdiction Crit'Air 3 puis 2 doit-elle apparaître comme « risque » sur la branche thermique ?", "status": "open"},
+      {"q": "Comparaison avec « ne rien faire » (garder le véhicule actuel) : actuellement non explicite. À ajouter ?"},
+      {"q": "Sensibilité au prix de l'électricité : afficher une plage [-20 % ; +20 %] pour montrer la robustesse du résultat ?"},
+      {"q": "Accessibilité RGAA : ratio de contraste sur les courbes Chart.js verte/orange ?"}
+    ]
+  }
+}
+</script>
 
 </body>
 </html>

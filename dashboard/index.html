@@ -35,7 +35,9 @@
     dsfr-data-chart { display:block; min-height:300px; }
   </style>
   <link rel="stylesheet" href="/shared/portal-bar.css">
+  <link rel="stylesheet" href="/shared/business-modal.css">
   <script src="/shared/portal-bar.js" defer></script>
+  <script src="/shared/business-modal.js" defer></script>
 </head>
 <body>
 
@@ -466,6 +468,56 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr-chart@2.0.4/dist/DSFRChart/DSFRChart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dsfr-data@0/dist/dsfr-data.core.umd.js"></script>
+
+  <script type="application/json" id="business-modal-data">
+  {
+    "title": "Méthode, données et arbitrages — Tableau de bord Électrification",
+    "audience": "DGEC · cabinet · direction de la communication",
+    "intro": "Quatre angles éditoriaux (mix électrique, mobilité, bâtiment, cap 2050) confrontés aux données opendata officielles. Cette modale liste les choix éditoriaux et les sources à valider avec vous.",
+    "updated": "2026-05-20",
+    "sections": {
+      "perimetre": [
+        {"q": "Quatre axes éditoriaux figés (mix élec / mobilité / bâtiment / cap 2050) — l'ordre porte un message. Validé ?"},
+        {"q": "Cible : grand public / journalistes / parlementaires ? Le niveau de détail diffère."},
+        {"q": "France entière (métropole + DROM agrégés) ou possibilité de filtrer par région ?"},
+        {"q": "Horizon temporel : 2015-2024 (recul) + 2030/2050 (cibles) ? Faut-il afficher le mensuel ?"},
+        {"q": "Format dashboard statique vs interactif : à quel point l'utilisateur peut-il manipuler les courbes ?"}
+      ],
+      "arbitrages": [
+        {"q": "Mix électrique : énergie produite (TWh) ou capacité installée (GW) ? Le message diffère (nucléaire dominant en énergie, ENR dominantes en capacité)."},
+        {"q": "Mobilité : parc VE roulant (cumul immatriculations) ou ventes mensuelles ? Les deux racontent une histoire différente."},
+        {"q": "Bâtiment : nb rénovations MPR par an, % logements F/G résiduels, ou DPE moyen ? Quel KPI fait sens politiquement ?"},
+        {"q": "Cap 2050 : SNBC 3 (à venir) vs SNBC 2 actuelle — on attend la publication ou on positionne sur les cibles connues ?", "status": "open"},
+        {"q": "Indicateurs comparatifs UE (Allemagne, Espagne) : à mettre en regard ou non ?"},
+        {"q": "Sources mixtes (RTE, ADEME, SDES, INSEE) : on assume des conventions différentes (année calendaire vs glissante) ou on retraite ?"}
+      ],
+      "sources": [
+        {"q": "RTE : production / consommation électrique horaire (eco2mix, opendata.rte-france.com). Fréquence MAJ : quasi temps réel."},
+        {"q": "SDES (CGDD) : statistiques bâtiment, mobilité, énergie. Datasets précis à lister ?"},
+        {"q": "ADEME (data.ademe.fr) : DPE, MaPrimeRénov', bilans GES. Bloqué par CSP — passe via use-proxy."},
+        {"q": "INSEE : population, ménages, parc logements. Fréquence annuelle."},
+        {"q": "AAA (Association Auxiliaire de l'Automobile) ou CCFA : immatriculations VE mensuelles."},
+        {"q": "Eurostat : comparaisons UE — utile pour le narratif cap 2050."},
+        {"q": "Liste exhaustive des datasets utilisés et leur licence : à formaliser dans une page « sources » ?"}
+      ],
+      "hypotheses": [
+        {"q": "Conversion énergie primaire vs finale : on parle en quelle unité de référence ?"},
+        {"q": "Année de base pour les % d'évolution : 2015 (Accord de Paris), 2017 (PPE 2), ou autre ?"},
+        {"q": "Cible 2030 baisse émissions : -55 % (Fit for 55) — qu'on rappelle ?"},
+        {"q": "Hypothèse de stabilité des nomenclatures (ex : Crit'Air, classes DPE post-réforme 2024) : MAJ manuelle nécessaire ?"}
+      ],
+      "attention": [
+        {"q": "Hotfix récent (commit 8ff0040) : ADEME bloquée par CSP → use-proxy. Vérifier que TOUTES les sources non-allowlistées passent par use-proxy.", "status": "todo"},
+        {"q": "Audit transverse use-proxy à faire sur les 8 simulateurs (priorité 2 sur la fiche projet).", "status": "todo"},
+        {"q": "Fraîcheur de la donnée : à quel point afficher la date du dernier point de données ?"},
+        {"q": "Comparaisons d'années : 2024 vs 2023 — éviter les courbes qui finissent en chute par effet « année incomplète »."},
+        {"q": "Accessibilité RGAA : les charts ont-ils une alternative texte (tableau de données) ?"},
+        {"q": "Mention « données opendata officielles » : à équilibrer avec la nuance « interprétations éditoriales DGEC »."},
+        {"q": "Si la donnée diverge entre RTE et SDES (cas connu sur les ENR), quelle source prime ?", "status": "open"}
+      ]
+    }
+  }
+  </script>
 
 </body>
 </html>

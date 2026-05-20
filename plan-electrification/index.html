@@ -213,7 +213,9 @@
     .src-table td code { background: #eee; padding: 1px 4px; font-size: .75rem; }
   </style>
   <link rel="stylesheet" href="/shared/portal-bar.css">
+  <link rel="stylesheet" href="/shared/business-modal.css">
   <script src="/shared/portal-bar.js" defer></script>
+  <script src="/shared/business-modal.js" defer></script>
 </head>
 <body>
 
@@ -865,5 +867,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script type="module" src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.module.min.js"></script>
 <script type="text/javascript" nomodule src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.nomodule.min.js"></script>
+
+<script type="application/json" id="business-modal-data">
+{
+  "title": "Méthode, données et arbitrages — Suivi du Plan d'électrification",
+  "audience": "DGEC · cabinet · SGPE · pilotage opérationnel",
+  "intro": "Suivi des 22 mesures annoncées en avril 2026. KPIs globaux + calendrier 5 colonnes + onglet par axe. Cette modale liste ce qui doit être tranché et fourni pour passer du suivi déclaratif au suivi piloté.",
+  "updated": "2026-05-20",
+  "sections": {
+    "perimetre": [
+      {"q": "22 mesures du Plan : périmètre figé ou évolutif (mesures réorientées en cours de route) ?"},
+      {"q": "Granularité : 1 carte par mesure suffit, ou il faut descendre aux jalons / sous-mesures ?"},
+      {"q": "Public cible : pilotage interne (SGPE), restitution publique (transparence), ou les deux modes ?"},
+      {"q": "Axes thématiques : combien et quel découpage (mobilité, bâtiment, industrie, territoires, …) ?"},
+      {"q": "Outil de référence pour le cabinet, ou outil de communication grand public ?"}
+    ],
+    "arbitrages": [
+      {"q": "Statut d'une mesure : « non démarrée / en cours / réalisée / en retard » — 4 statuts suffisent ?"},
+      {"q": "Indicateurs cibles : chiffrés (X TWh, Y bornes) ou narratifs (« décret publié ») ?"},
+      {"q": "Calendrier 5 colonnes (2026 / 2027 / 2028 / 2029 / 2030+) : trimestre ou année ?"},
+      {"q": "Mesure « en retard » : qui le déclare ? Logique automatique (jalon dépassé) ou validation humaine ?"},
+      {"q": "Affichage du % d'avancement : moyenne pondérée ou jugement qualitatif d'un référent ?"},
+      {"q": "Lien financement : on affiche le budget alloué par mesure ? Si oui, source ?", "status": "open"}
+    ],
+    "sources": [
+      {"q": "Texte officiel des 22 mesures : annonce d'avril 2026 — fiche détaillée par mesure (porteur, échéance, indicateurs) ?", "status": "todo"},
+      {"q": "Tableau de bord interne SGPE / Matignon : on s'y connecte ou on duplique l'effort de saisie ?"},
+      {"q": "Indicateurs externes (immatriculations VE, MPR, ENR raccordées) : remontés automatiquement depuis SDES / RTE / ADEME ?"},
+      {"q": "Calendrier juridique : décrets / arrêtés liés à chaque mesure — qui maintient le statut « publié / en consultation » ?"},
+      {"q": "Cartes mesure listent les sources nécessaires — qui les valide mesure par mesure ?"},
+      {"q": "Mise à jour : mensuelle, trimestrielle, événementielle (à chaque décret) ?"}
+    ],
+    "hypotheses": [
+      {"q": "Statut initial des 22 mesures = « en cours » par défaut, sauf mention contraire. OK comme posture ?"},
+      {"q": "Jalons par mesure : 2-4 par mesure, calés sur les annonces officielles + dates de décrets attendus."},
+      {"q": "Indicateurs cibles 2030 : alignés sur SNBC 3 quand elle sera publiée, sinon SNBC 2."},
+      {"q": "Référent métier par axe : 1 personne identifiée pour valider les MAJ — OK ?"}
+    ],
+    "attention": [
+      {"q": "Risque politique : afficher publiquement une mesure « en retard » avant arbitrage cabinet ?", "status": "open"},
+      {"q": "Gouvernance : qui édite ce dashboard ? Workflow validation avant chaque MAJ ?", "status": "open"},
+      {"q": "Mesure 1 (100 territoires) → renvoie vers /territoires-electrification/ : cohérence des deux outils à maintenir."},
+      {"q": "Mesure 12 (PL aide achat) → renvoie vers /poids-lourd/ : id."},
+      {"q": "Versionning de la liste : si une mesure est fusionnée / scindée, on garde la trace dans un journal ?"},
+      {"q": "Indicateurs « réalisé » sans backing data précis : risque d'auto-déclaration biaisée — qui contrôle ?"},
+      {"q": "Accessibilité RGAA : timeline / calendrier 5 colonnes ont-ils une alternative en lecture séquentielle ?"},
+      {"q": "Export PDF / CSV : nécessaire pour les revues de cabinet ?"}
+    ]
+  }
+}
+</script>
 </body>
 </html>

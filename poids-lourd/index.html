@@ -216,7 +216,9 @@
     .methodo code { background: #e5e5e5; padding: 1px 5px; font-size: .8125rem; }
   </style>
   <link rel="stylesheet" href="/shared/portal-bar.css">
+  <link rel="stylesheet" href="/shared/business-modal.css">
   <script src="/shared/portal-bar.js" defer></script>
+  <script src="/shared/business-modal.js" defer></script>
 </head>
 <body class="fr-background-default--grey">
 
@@ -898,5 +900,59 @@
 
 <script type="module" src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.module.min.js"></script>
 <script type="text/javascript" nomodule src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.nomodule.min.js"></script>
+
+<script type="application/json" id="business-modal-data">
+{
+  "title": "Méthode, données et arbitrages — Poids lourd électrique vs diesel",
+  "audience": "DGEC mobilité · service fret · Mesure 12 du Plan",
+  "intro": "TCO d'un poids lourd électrique vs diesel selon le kilométrage annuel. Aide jusqu'à 100 k€ (tracteur) / 50 k€ (porteur). Cette modale recense les arbitrages et données à valider avec les transporteurs et la DGITM.",
+  "updated": "2026-05-20",
+  "sections": {
+    "perimetre": [
+      {"q": "Catégories couvertes : tracteur 40-44 t et porteur 19-26 t. Faut-il ajouter 12 t / 7,5 t (logistique urbaine) ?"},
+      {"q": "Usages : longue distance, régional, dernier km ? L'autonomie VE diffère radicalement."},
+      {"q": "Public cible : grand transporteur (flotte > 50 PL), PME (5-50), artisan (1-5) ? La logique d'aide cumulable change."},
+      {"q": "Mesure 12 du Plan d'électrification : on cite explicitement la mesure dans l'outil ?"},
+      {"q": "Comparaison vs gaz (BioGNV) à intégrer en option, ou strict diesel only ?"}
+    ],
+    "arbitrages": [
+      {"q": "Horizon TCO : 5 ans ou 7 ans (durée typique de détention 1er propriétaire en transport routier) ?", "note": "Aujourd'hui le pivot km/an est affiché."},
+      {"q": "Valeur résiduelle : marché de l'occasion VE PL quasi inexistant en 2026 — on met à zéro ou on prévoit une cote prudentielle ?"},
+      {"q": "Aide CEE TRA (transport routier) : on l'intègre ou on s'en tient à l'aide directe achat ?"},
+      {"q": "Plafond aide directe achat : 100 k€ tracteur / 50 k€ porteur — validés par DGEC ? Avec quelle date de fin de dispositif ?"},
+      {"q": "Bornes haute puissance (350-1000 kW) : on amortit le CAPEX recharge dans le TCO, ou on suppose accès tiers payant ?"},
+      {"q": "Coût conducteur : on l'exclut du TCO (égal entre VE/diesel) — sauf si formation VE nécessaire, à intégrer comme coût ponctuel ?"},
+      {"q": "Évolution prix énergies : taux d'inflation gazole / électricité sur 5 ans ?"}
+    ],
+    "sources": [
+      {"q": "Prix catalogue PL électriques (Renault Trucks, Volvo, Daimler, Scania, MAN, DAF) : qui maintient la grille ?", "status": "todo"},
+      {"q": "Prix gazole professionnel TTC pro (avec remboursement TICPE partiel) — source CGDD / DGEC ?"},
+      {"q": "Tarif électricité B2B haute puissance — barème CRE ou contrats négociés type AO ?"},
+      {"q": "Coûts d'entretien PL électrique : retours d'expérience flottes pilotes (Schneider Electric, FM Logistic, etc.) ?"},
+      {"q": "Fiscalité PL : TICPE remboursée, taxe à l'essieu, péages — à intégrer ?"},
+      {"q": "Mesure 12 : enveloppe budgétaire totale, échéance, modalités de versement — fiche détaillée DGEC ?"},
+      {"q": "Disponibilité bornes HPC le long des grands axes (PFAC, plan TEN-T) : data Avere / Gireve ?"}
+    ],
+    "hypotheses": [
+      {"q": "Conso VE : 120 kWh/100 km (tracteur 40t à pleine charge). Cohérent avec retours Renault E-Tech T ?"},
+      {"q": "Conso diesel : 32 L/100 km (tracteur 40t). OK avec moyenne CCFA ?"},
+      {"q": "Kilométrage annuel : pivot affiché ~80 k km/an. Plage à explorer ?"},
+      {"q": "Durée vie batterie : 8 ans / 1 000 000 km. À confirmer avec constructeurs."},
+      {"q": "Coût électricité moyen recharge mixte (dépôt 0,15 €/kWh + ailleurs 0,40 €/kWh) : split à valider."},
+      {"q": "Coût installation borne dépôt : 50 k€ pour 350 kW. Amortissement sur combien de PL ?"},
+      {"q": "Surcoût d'achat VE vs diesel : ~250 k€ avant aide. Hypothèse réaliste pour 2026 ?"}
+    ],
+    "attention": [
+      {"q": "Autonomie réelle en charge + froid + relief : -25 à -35 % vs théorique. On ajoute un slider « conditions sévères » ?"},
+      {"q": "TVS / taxe à l'essieu : exemption VE confirmée jusque quand ?"},
+      {"q": "Crédit d'impôt + suramortissement (art. 39 decies A) : régime 2026 ? Confirmé ?", "status": "open"},
+      {"q": "Accès aux bornes publiques HPC : maillage encore très lacunaire. Comment matérialiser ce risque ?"},
+      {"q": "Cas du transport sous température dirigée (frigo) : la conso électrique est ~+30 %. Géré ?"},
+      {"q": "Modèle 2 graphiques (TCO cumulé + pivot km/an) : compréhensible pour un patron de PME transport ?"},
+      {"q": "Confidentialité : les patrons saisiraient-ils leur kilométrage réel sans crainte de fuite concurrentielle ? Pas de stockage côté serveur — à rappeler."}
+    ]
+  }
+}
+</script>
 </body>
 </html>

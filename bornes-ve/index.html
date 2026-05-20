@@ -285,7 +285,9 @@
   }
 </style>
 <link rel="stylesheet" href="/shared/portal-bar.css">
+<link rel="stylesheet" href="/shared/business-modal.css">
 <script src="/shared/portal-bar.js" defer></script>
+<script src="/shared/business-modal.js" defer></script>
 </head>
 <body class="fr-background-default--grey">
 
@@ -833,6 +835,57 @@
     </div>
   </div>
 </footer>
+
+<script type="application/json" id="business-modal-data">
+{
+  "title": "Méthode, données et arbitrages — Carte des bornes de recharge IRVE",
+  "audience": "DGEC mobilité · Avere France · collectivités",
+  "intro": "Visualisation cartographique des points de recharge publics. Le périmètre, la fraîcheur de la donnée et les conventions de filtrage doivent être validés avec les acteurs métier.",
+  "updated": "2026-05-20",
+  "sections": {
+    "perimetre": [
+      {"q": "Bornes publiques uniquement, ou aussi semi-publiques (parkings privés ouverts au public) ?"},
+      {"q": "Métropole + DROM, ou métropole seule en v1 ?"},
+      {"q": "Quels usages : grand public (planifier un trajet), pilotage public (suivre l'objectif AFIR), ou les deux ?"},
+      {"q": "Distinction véhicules légers vs poids lourds (HPC > 350 kW) : à ajouter comme filtre dédié ?", "status": "open"},
+      {"q": "Bornes hors service (déclarées non disponibles) : on les masque, on les grise, ou on les compte dans l'objectif ?"}
+    ],
+    "arbitrages": [
+      {"q": "Choroplèthes : densité bornes/habitant ou bornes/km² ou bornes/100 km de route ? Le message change."},
+      {"q": "Agrégation région vs département : laquelle est l'unité de pilotage de référence ?"},
+      {"q": "Définition d'un « point de recharge » : par prise (connecteur) ou par station ? L'IRVE expose les deux, on choisit lequel ?"},
+      {"q": "Filtres facettes : multiselect (type prise, opérateur) + radios oui/non (paiement CB, accessibilité PMR). Granularité suffisante ?"},
+      {"q": "Seuil HPC : on met 50 kW (norme actuelle AFIR), 150 kW, ou les deux paliers ?"},
+      {"q": "Cible AFIR (recharge tous les 60 km sur RTE-T) : on l'affiche en overlay ?", "status": "open"}
+    ],
+    "sources": [
+      {"q": "Base IRVE Etalab (data.gouv.fr) : fréquence de mise à jour réelle ? Aujourd'hui : hebdo.", "note": "URL data.gouv.fr/fr/datasets/fichier-consolide-des-bornes-de-recharge-pour-vehicules-electriques/"},
+      {"q": "Qualité : déclarations opérateurs avec champs facultatifs (puissance, horaires, paiement). Tolérance face aux manques ?"},
+      {"q": "Contours GeoJSON régions / départements : aujourd'hui internalisés dans bornes-ve/data/. Quelle source (IGN AdminExpress) et quelle mise à jour ?"},
+      {"q": "Gireve / Hubject (interopérabilité) : on intègre leurs données en complément ou on reste sur IRVE seul ?"},
+      {"q": "Données temps réel (occupation, panne) via SDMX / FlexiCharge : pertinent ou hors scope ?"},
+      {"q": "Étoiles qualité OperateurDeMobilité : intégrées par bornes-ve/data ?"}
+    ],
+    "hypotheses": [
+      {"q": "Une « borne » dans le compte = un point de recharge (PDC). Validé ?"},
+      {"q": "Bornes domiciles / employeurs hors fichier IRVE : volontairement exclues. À rappeler dans l'UI ?"},
+      {"q": "Population par département (dénominateur de densité) : INSEE recensement 2024. À actualiser annuellement ?"},
+      {"q": "Catégorisation puissance : Lente (<22 kW) / Accélérée (22-50) / Rapide (50-150) / HPC (>150). Conforme à la nomenclature AFIR ?"},
+      {"q": "Disponibilité paiement CB : champ booléen IRVE — valeur manquante = ? On suppose « oui » ou « inconnu » ?"}
+    ],
+    "attention": [
+      {"q": "Limite dsfr-data-facets : id obligatoire silencieux. À reporter au mainteneur (déjà sur la todo projet).", "status": "todo"},
+      {"q": "Limite dsfr-data-facets : mode radio = dropdown, pas radio inline. Workaround custom CSS — fragile aux mises à jour du composant.", "status": "todo"},
+      {"q": "Limite dsfr-data-map-popup : template enfant capté trop tôt dans connectedCallback. Workaround _renderTemplate after DOMContentLoaded. À documenter ADR.", "status": "todo"},
+      {"q": "Performance : à zoom France, on affiche les choroplèthes ; à zoom local, on bascule sur les POI. Seuil de bascule à valider."},
+      {"q": "Accessibilité carte Leaflet : alternative non visuelle (tableau ou stats lues) ? RGAA obligatoire."},
+      {"q": "Mention « données opérateurs déclaratives » et limites : à formaliser dans le footer ?"},
+      {"q": "Comparaison cible AFIR vs déploiement réel : qui valide les jalons ?"},
+      {"q": "Mise en avant des « zones blanches » (départements sous-équipés) : politiquement sensible — qui arbitre l'éditorial ?", "status": "open"}
+    ]
+  }
+}
+</script>
 
 </body>
 </html>
