@@ -14,7 +14,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/utility/utility.min.css">
   <link rel="stylesheet" href="/shared/portal-bar.css">
+  <link rel="stylesheet" href="/shared/business-modal.css">
   <script src="/shared/portal-bar.js" defer></script>
+  <script src="/shared/business-modal.js" defer></script>
   <style>
     :root {
       --pae-accent: #169B62;
@@ -3522,6 +3524,67 @@
 
   <script type="module" src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.module.min.js"></script>
   <script type="text/javascript" nomodule src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.14.4/dist/dsfr.nomodule.min.js"></script>
+
+  <script type="application/json" id="business-modal-data">
+  {
+    "title": "Méthode, données et arbitrages — Passer à l'électrique",
+    "audience": "DGEC · pilotage du Plan d'électrification",
+    "intro": "Synthèse ménage (mobilité + chauffage + rénovation + solaire). Cette modale recense la méthode de calcul retenue, les données mobilisées et les arbitrages encore ouverts à valider avec vous avant publication.",
+    "updated": "2026-05-20",
+    "sections": {
+      "perimetre": [
+        {"q": "Public cible : foyer particulier en métropole — est-ce qu'on inclut DROM dès la v1 ou plus tard ?", "note": "Les barèmes MaPrimeRénov' et CEE diffèrent en outre-mer."},
+        {"q": "Décision aidée : « qu'est-ce que je peux faire en priorité ? » plutôt qu'un chiffrage juridiquement engageant. Validez-vous cette posture ?"},
+        {"q": "Champ couvert : VE neuve/occasion, PAC air/eau, isolation, panneaux solaires. Faut-il ajouter ECS solaire, batterie, borne résidentielle, vélo cargo ?", "status": "open"},
+        {"q": "Sortie attendue : wizard 6 étapes pour le grand public + mode expert pour ajuster — gardée comme posture ?"},
+        {"q": "Utilisateur secondaire (conseiller France Rénov', agent collectivité, journaliste) : on conçoit pour eux aussi, ou outil grand public seul ?"}
+      ],
+      "arbitrages": [
+        {"q": "Définition du « gain net cumulé » = aides + économies × horizon − coût des projets engagés. Formule maintenant alignée entre étape 5, étape 6 et mode expert.", "note": "Le mode expert intégrait auparavant les aides + économies sans déduire le coût projet (62 305 €) ; il est désormais cohérent avec le wizard (~12 800 €).", "status": "ok"},
+        {"q": "Horizon des économies récurrentes : 10 ans par défaut (paramétrable). À conserver, ou bascule par défaut à 5 / 15 ans ?"},
+        {"q": "Coût VE compté = surcoût vs thermique (9 000 €) et non prix total du VE — on suppose que le ménage rachèterait un véhicule de toute façon. Hypothèse à valider ?", "status": "open"},
+        {"q": "Tous les projets démarrent en année 1 par défaut (alignement guidé/expert + message « agir maintenant »). On garde, ou on rétablit un échelonnement par défaut ?", "note": "Avant correctif, le wizard étalait sur 4 ans : créait un décalage avec le mode expert."},
+        {"q": "Tally étape 5 : bascule visuelle en rouge avec libellé « Perte nette cumulée » si gain < 0. Acceptable côté éditorial, ou anxiogène ?", "status": "ok"},
+        {"q": "Aides cumulables : on additionne MPR + CEE + bonus, mais on plafonne quand ? (taux de prise en charge, reste à charge minimum 10 % très modestes, plafonds Anah)"},
+        {"q": "Reste à charge ménage : on suppose la trésorerie disponible, ou on propose un financement (éco-PTZ, prêts bonifiés) ?"},
+        {"q": "Économies d'énergie : kWh évités valorisés au tarif réglementé bleu, ou au TTC moyen incluant ARENH/marché ?"},
+        {"q": "Année de référence des barèmes : 2026 figé, ou prise en compte des évolutions PLF / loi de finances en cours d'année ?"},
+        {"q": "Bonus écologique VE 2026 : on fige le barème actuel ou on prévoit le rebasculement annoncé (score environnemental) ?"}
+      ],
+      "sources": [
+        {"q": "Barème MaPrimeRénov' (PAC, isolation, ventilation) — arrêté de référence et fréquence de mise à jour ?", "note": "Aujourd'hui codé en dur dans le JS."},
+        {"q": "Forfaits CEE « Coup de pouce » chauffage + rénovation d'ampleur — qui nous fournit la grille à jour ?"},
+        {"q": "Bonus écologique VE neuve + prime à la conversion + leasing social — barème à valider avec la DGEC mobilité."},
+        {"q": "Tarif réglementé EDF (option base / heures creuses) — snapshot mensuel suffisant, ou flux dynamique ?"},
+        {"q": "Prix moyens carburants (gazole, SP95-E10) — source CGDD hebdo ou prix-carburants.gouv.fr ?"},
+        {"q": "Plafonds RFR par part par tranche (très modeste / modeste / intermédiaire / supérieur) — fichier annuel Anah confirmé ?"},
+        {"q": "Productivité solaire moyenne par zone climatique (kWh/kWc/an) — base PVGIS ou ADEME ?"},
+        {"q": "Prix moyen d'un VE neuf (32 000 €) et d'un thermique équivalent (23 000 €) : valeurs de référence à confirmer ? Hypothèses figées en dur dans le JS.", "status": "todo"},
+        {"q": "Offres partenaires (EDF, Renault, Engie) — schéma JSON shared/partner-offers.json en cours de conception, à formaliser ADR.", "note": "Priorité 1 sur la fiche projet — sans ce schéma, intégration impossible.", "status": "todo"}
+      ],
+      "hypotheses": [
+        {"q": "Conso VE : 18 kWh/100 km par défaut. OK pour citadine moyenne, sous-estimé pour SUV/break — laisse-t-on l'utilisateur l'ajuster ?"},
+        {"q": "Kilométrage annuel : 12 000 km par défaut (moyenne nationale CGDD). On garde ?"},
+        {"q": "Coût borne domicile : valeur figée dans COUT_BORNE_DOMICILE — à exposer dans un accordéon « hypothèses » ?"},
+        {"q": "COP PAC air/eau : 3.5 fixe. Faut-il moduler selon zone climatique H1/H2/H3 ?"},
+        {"q": "Surface logement par défaut : 90 m² (T4 moyen). Acceptable ?"},
+        {"q": "Durée de vie : 12 ans (VE batterie), 15 ans (PAC), 25 ans (PV). Cohérent avec amortissements ADEME ?"},
+        {"q": "Taux d'inflation des prix de l'énergie : on fige à 0 % réel, ou on intègre +2 %/an comme la CRE ?"},
+        {"q": "Taux d'actualisation pour le cumul long terme : 4 % (taux usuel CGDD) ou 0 % (lecture grand public) ?"}
+      ],
+      "attention": [
+        {"q": "Cas limite RFR > plafond supérieur : on affiche « non éligible MPR » ou on bascule sur CEE seul ?"},
+        {"q": "Locataire vs propriétaire occupant : les aides rénovation ne s'appliquent pas pareil. Filtre actif ou simple alerte ?"},
+        {"q": "Copropriété : aides MPR Copro vs individuelles — on les traite ou on renvoie vers un autre outil ?"},
+        {"q": "VE en location longue durée (LLD / leasing social) : aides versées au loueur, pas au ménage. Calcul à adapter ?"},
+        {"q": "Ménage sans projet de rachat véhicule : compter le surcoût VE (9 000 €) reste-t-il valide, ou devrait-on basculer sur le prix complet ?", "status": "open"},
+        {"q": "Données personnelles : RFR saisi → est-ce qu'on déclare CNIL / RGPD sachant qu'on ne stocke rien côté serveur ?"},
+        {"q": "Stepper cliquable + raccourcis clavier (← → Esc) : auditable RGAA niveau AA ?"},
+        {"q": "Affichage des pertes nettes en rouge : pédagogique pour le ménage, mais comment évite-t-on un effet « bashing » sur certaines combinaisons (ex : PV seul sur logement mal orienté) ?"}
+      ]
+    }
+  }
+  </script>
 
 </body>
 </html>
