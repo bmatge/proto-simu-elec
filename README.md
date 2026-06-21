@@ -1,7 +1,8 @@
 # simulateurs-portail-elec
 
 Portail regroupant plusieurs simulateurs autour de l'**énergie / électricité** (DGEC),
-servi en statique par nginx, déployé sur `https://simu-elec.bercy.matge.com`.
+servi en statique par nginx, déployé sur `https://proto-simu-elec.lab.miweb.run`
+(ancien domaine `simu-elec.bercy.matge.com` redirigé en 301).
 
 ## Architecture
 
@@ -21,10 +22,8 @@ plus lourd avec son propre `package.json` et un `dist/` buildé en amont.
 │   └── index.html
 ├── nginx.conf
 ├── Dockerfile
-├── docker-compose.yml
-├── docker-compose.override.yml   # dev (port 8080, hot-reload volumes)
-├── docker-compose.prod.yml       # prod (Traefik, ecosystem-network, ACME)
-└── deploy.sh
+├── docker-compose.yml            # contrat spawn (réseau proxy, labels Traefik ${APP_NAME}/${DOMAIN})
+└── docker-compose.dev.yml        # dev (port 8080, hot-reload volumes) — à passer via -f
 ```
 
 ## Ajouter un simulateur
@@ -48,26 +47,25 @@ plus lourd avec son propre `package.json` et un `dist/` buildé en amont.
    ```
    `status` ∈ `draft | beta | published | archived`.
 
-Pas de build à lancer — `docker compose up` recharge tout au refresh navigateur
+Pas de build à lancer — le compose dev recharge tout au refresh navigateur
 grâce aux volumes montés en read-only.
 
 ## Dev local
 
 ```bash
-docker compose up        # → http://localhost:8080
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up   # → http://localhost:8080
 ```
 
-## Déploiement prod
-
-Sur le VPS :
+## Déploiement (lab VibeLab / spawn)
 
 ```bash
-./deploy.sh
+ssh vps "spawn up proto-simu-elec git@github.com:bmatge/proto-simu-elec.git"
 ```
 
-Pull → build → up. Le conteneur s'attache au réseau Docker `ecosystem-network`
-sur lequel Traefik écoute, qui obtient un certificat Let's Encrypt via
-`certresolver=letsencrypt`. Domaine : `simu-elec.bercy.matge.com`.
+`spawn` fait pull → build → up derrière Traefik (réseau `proxy`, ACME
+`letsencrypt`) et expose `https://proto-simu-elec.lab.miweb.run`. L'ancien
+domaine `simu-elec.bercy.matge.com` est redirigé 301 (cf. skill `vps-spawn`,
+section « Migration oldvps → lab », et ADR-047).
 
 ## Doc projet
 

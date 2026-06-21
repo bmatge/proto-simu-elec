@@ -1,4 +1,6 @@
-# Development — `docker compose up`
+# Development — `docker compose -f docker-compose.yml -f docker-compose.dev.yml up`
+# (NOT auto-merged: kept out of the default override name so `spawn`'s plain
+# `docker compose up` deploys the prod image without these dev-only ports/mounts.)
 # Mount the entire working copy in read-only so any new simulator folder
 # is picked up automatically (no compose edit needed when adding a simu).
 # Hidden files (.git, .claude…) and dev plumbing are blocked by nginx.conf.

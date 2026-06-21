@@ -11,8 +11,8 @@
 
 - HTML / CSS / JS statique, **pas de framework imposé** au niveau du portail.
 - DSFR via CDN jsdelivr (`@gouvfr/dsfr@1.14.4`) — uniquement pour le portail d'accueil ; les simulateurs sont libres de leur stack.
-- nginx (alpine) en runtime, Docker Compose, déploiement via `./deploy.sh` derrière Traefik (réseau `ecosystem-network`, ACME `letsencrypt`).
-- Domaine prod : `simu-elec.bercy.matge.com`.
+- nginx (alpine) en runtime, Docker Compose au **contrat spawn** (réseau `proxy`, labels Traefik `${APP_NAME}`/`${DOMAIN}`, ACME `letsencrypt`). Déploiement : `ssh vps "spawn up proto-simu-elec git@github.com:bmatge/proto-simu-elec.git"`. Dev : `docker compose -f docker-compose.yml -f docker-compose.dev.yml up`.
+- Domaine : `proto-simu-elec.lab.miweb.run` (ancien `simu-elec.bercy.matge.com` redirigé 301).
 
 ## 🗂️ Convention d'arborescence
 
